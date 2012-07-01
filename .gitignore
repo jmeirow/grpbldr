@@ -12,7 +12,7 @@
 /db/reset.*
 /db/seeds.*
 /db/schema.rb
-
+/db/*.sqlite3
 
 /vendor/*.yml
 

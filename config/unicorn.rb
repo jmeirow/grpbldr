@@ -1,8 +1,9 @@
-working_directory "/vagrant"
-pid "/vagrant/tmp/pids/unicorn.pid"
-stderr_path "/vagrant/log/unicorn.log"
-stdout_path "/vagrant/log/unicorn.log"
+root = "/home/deployer/apps/grpbldr/current"
+working_directory root
+pid "#{root}/tmp/pids/unicorn.pid"
+stderr_path "#{root}/log/unicorn.log"
+stdout_path "#{root}/log/unicorn.log"
 
-listen "/tmp/unicorn.todo.sock"
+listen "/tmp/unicorn.grpbldr.sock"
 worker_processes 2
 timeout 30
