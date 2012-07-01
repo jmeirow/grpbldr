@@ -1,0 +1,66 @@
+
+
+  
+ <style type='text/css'>
+ 
+ .tr {
+
+  border-bottom-color:black;
+  border-top-color:black;
+
+ }
+ .td {
+
+  text-align:right;
+
+ }
+
+ </style> 
+
+  <div style='width:735px;float:left'>   
+
+    <div id='logox' style='padding-left:20px; ;float:left'>
+      <img src=<%= asset_path "logo.jpeg" %> style='width:120px;height:100px'/>
+    </div>
+
+
+    <div   style='margin-left:150px'>
+
+        <strong>Welcome to our meeting!</strong><br/><br/>
+
+        The mission of a Toastmaster Club is to provide a mutually supportive and positive learning environment in which every member has the opportunity to develop communication and leadership skills, which in turn foster self-confidence and personal growth.
+        <br/><br/>
+    </div>
+  </div>
+
+  <br/>
+  <br/>
+  <br/>
+  <br/>  <br/>
+  <br/>  <br/>
+  <br/>
+ 
+  <% @member = current_member %>
+
+
+  <div id='content' style='width:735px;margin-left:50px' >   
+    <h2>Meeting Notes for Meeting of <%= @meeting.meeting_date.strftime("%m/%d/%Y") %></h2>
+    <br/><br/>
+
+      <% @meeting_notes.each do |meeting_note| %>
+
+       <% if (
+            (params[:include_private] == "1" && meeting_note.is_private ==  true && meeting_note.member_id == @member.id) || 
+            (params[:include_public] == "1" && meeting_note.is_private == false)  
+           ) %>
+ 
+            <strong><label>Author: </label></strong><br/><br/>
+            <%= meeting_note.member_name %> <br/> <br/>
+            
+
+            <strong><label>Note:</label></strong><br/><br/>
+            <%= simple_format h(meeting_note.body) %> <br/> <br/>
+            <hr/>
+        <% end %>
+      <% end %>
+  </div>

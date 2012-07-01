@@ -1,0 +1,59 @@
+<% if  notice %>
+	<div class="alert-box success" >
+		<%= notice %> 
+	</div>
+<% end %>
+
+
+<%= form_for([ current_club ,@meeting], :class => 'nice' ) do |f| %>
+  <% if @meeting.errors.any? %>
+       <div id="error_explanation" class="alert-box [error]">
+      <h4><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h4>
+
+      <ul>
+      <% @meeting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <label>Meeting Date:</label>
+  <%= f.text_field :meeting_date_display, :class => 'input-text' %><br><br>
+
+
+
+
+ <label style='margin-top:20px;margin-bottom:10px'>Meeting Time:</label>
+ 
+
+
+ <table border=0>
+  <tr>
+    <td><%= f.text_field :hour    , :maxlength => 2, :class => 'time'  , :style => 'display:inline' %></td>
+    <td><%= f.text_field :minute  , :value => (f.object.padded_minutes  if f.object.minute), :maxlength => 2, :class => 'time' , :style => 'display:inline' %></td>
+    <td valing='bottom'> <%= f.select  :am_pm, options_for_select([['AM', 'AM'], ['PM', 'PM']] , @meeting.am_pm  ),:class => 'input-text', :style => 'display:inline'    %></td>
+  </tr>
+</table>
+
+<style>
+ .time   { width: 30px; }
+</style>
+
+	 
+  <div class="actions">
+    <%= f.submit nil, :class => 'button' , :style => 'font-size:8pt;margin-top:20px'  %>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+

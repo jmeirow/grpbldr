@@ -1,0 +1,48 @@
+<!-- container -->
+<header style='margin-bottom:2px'>
+<!-- <div class="container" id="header"> -->
+  
+
+<div style='padding-left:20px;padding-top:20px;padding-right:20px;padding-bottom:20px'>
+  <div style='  float:left;  '>
+    <div style='font-size:20pt;padding-bottom:5px'>GroupBuilder </div> 
+    <div style='text-align:center;'>Version 0.5.1  </div>
+    
+    
+
+  </div>
+
+  <div style='float:left;padding-left:20px'>
+  <a href='/updates/new' target='_blank'>Release History</a></span> 
+  </div>
+
+
+  <div style='; float:right;  ' >
+
+
+     
+    <%= link_to "Change Password", user_edit_password_path(current_user) %>  |   
+    <%= link_to "Change Email Address", user_edit_email_path(current_user) %>  |     
+    <%= link_to "Log out", log_out_path %> 
+
+
+  </div> 
+  <br/>
+
+  <div style='font-size:7pt;float:right; ' >
+      
+    <% 
+      member = current_member
+      member_info = member.first_name + ' ' + member.last_name + " from " + current_club.name 
+    %>
+    You are logged in as: <%= member_info %>
+
+  </div>
+
+</div>
+
+
+<hr style="height:5px;border:none;background-color:green;color:green" />   
+ 
+</header>
+<!-- end container -->

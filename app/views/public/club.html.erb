@@ -1,0 +1,66 @@
+<%= content_for :sidebar do %>
+  <div class="twelve columns">
+    <h3 class="side-title"><span class="location">Location</span></h3>
+    <div class="side-entry">
+      <%= image_tag "comment-triangle.png", :class => "comment-triangle", :alt => "" %>
+      <div class="address">
+        <h4>Shelby Community Center</h4>
+        <p>51670 Van Dyke Ave<br />
+          Shelby Twp, MI 48316<br />
+          Phone 586.623.9987<br />
+          </p><a class="button-custom" target='_blank' href="https://maps.google.com/maps?q=51670+Van+Dyke+Ave+Shelby+Twp,+MI+48316&hl=en&sll=42.508536,-83.004191&sspn=0.481374,0.663986&hnear=51670+Van+Dyke+Ave,+Shelby+Township,+Macomb,+Michigan+48316&t=m&z=17">Map/Directions</a>
+      </div>
+      
+ 
+       
+    </div>
+    <h3 class="side-title"><span class="tweets">Recent Tweets</span></h3>
+    <div class="side-entry">
+      <%= image_tag "comment-triangle.png", :class => "comment-triangle", :alt => "" %>
+      <p class="tweet">Happy Holidays.<br /><span class="tweet-date">Dec. 22 at 10:15am</span></p>                <p class="tweet">Ima Tweet (and a Pirate!)<br /><span class="tweet-date">Dec. 22 at 10:15am</span></p>
+      <p class="tweet">Members don’t miss lunch tomorrow. Coco’s Italian Market!<br /><span class="tweet-date">Dec. 22 at 10:15am</span></p>
+      <p class="tweet">Mobile pros out there: How much are you working from your favorite 3rd places this week before the Xmas holiday?<br /><span class="tweet-date">Dec. 22 at 10:15am</span></p>
+      <p class="tweet">Members don’t miss lunch tomorrow. Coco’s Italian Market!<br /><span class="tweet-date">Dec. 22 at 10:15am</span></p>
+    </div>
+    <h3 class="title-download">Downloads</h3>
+    <a href="#" title="" class="alternate-button"><span>Document One</span></a>
+    <a href="#" title="" class="alternate-button"><span>Document Two</span></a>
+
+  </div><!-- end twelve columns -->
+<% end %>
+
+<h4 class="eye-catcher"><%=@club.name%></h4>
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan tincidunt eleifend.
+  Morbi ut orci et libero molestie accumsan nec vel lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Nulla accumsan tincidunt eleifend.
+</p>
+<div class="row">
+  <div class="six columns gray-box">
+    <span class="calendar">Come checkout out a meeting soon! Here's our club calendar.</span>
+    <a href="#" title="" class="button-custom"><span>View the Calendar</span></a>
+  </div>
+  <div class="six columns gray-box">
+    <span class="meet-peep">Meet our members. They are so friendly.</span>
+    <a href="#" title="" class="button-custom"><span>Meet Our Members</span></a>
+  </div>
+</div>
+<div class="row">
+  <div class="twelve columns">
+    <h2 class="hm-article-title">Services</h2>
+    <div id="hm-article-entry">
+      <%= image_tag "comment-triangle.png", :class => "comment-triangle", :alt => "" %>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan tincidunt eleifend. Morbi ut orci et libero molestie accumsan nec vel lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan tincidunt eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan tincidunt eleifend. Morbi ut orci et libero molestie accumsan nec vel lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan tincidunt eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan tincidunt eleifend. Morbi ut orci et libero molestie accumsan nec vel lacus.</p>
+      <%= image_tag "http://placehold.it/200x200.png", :alt => "", :class => "entry-img", :width => "200", :height => "200" %>
+      <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+        <li>Four</li>
+        <li>Five</li>
+        <li>Six</li>
+        <li>Seven</li>
+      </ul>
+    </div>
+  </div>
+</div>

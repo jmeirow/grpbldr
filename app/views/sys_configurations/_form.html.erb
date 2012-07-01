@@ -1,0 +1,32 @@
+<%= form_for(@sys_configuration) do |f| %>
+  <% if @sys_configuration.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sys_configuration.errors.count, "error") %> prohibited this sys_configuration from being saved:</h2>
+
+      <ul>
+      <% @sys_configuration.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :config_key %><br />
+    <%= f.text_field :config_key %>
+  </div>
+  <div class="field">
+    <%= f.label :config_value %><br />
+    <%= f.text_field :config_value , :maxlength => 200, :size => 50 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :config_description %><br />
+    <%= f.text_area :config_description %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

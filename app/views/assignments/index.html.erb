@@ -1,0 +1,51 @@
+	<% if  notice %>
+		<div class="alert-box success" style='width:536px' >
+			<%= notice %> 
+		</div>
+	<% end %>
+
+
+
+ 
+<div style='width:550px;    text-align:center'>
+	 
+	 	<div style=' ;background-color:lightgray'>
+		  <h4  >Upcoming Activity for <em><%= @member.full_name %></em></h4> 
+  		</div>
+	<br/>
+
+	<div style='width:550px;'>
+			<div style='float:left'> <%= paginate @assignments %></div>
+	</div>
+
+</div>
+
+ 
+
+<table style='width:550px;'>
+	<thead>
+
+
+  	<tr >
+	    <th>Date</th>
+	    <th>Role</th>
+	    <th>Member Assigned</th>
+        <th style='width:100px'  >Remove <br/>Assignment</th>
+	</tr>
+	</thead>
+
+	<tbody>
+		<% @assignments.each do |assignment| %>
+			<% @member = Member.find(assignment.member_id) %>
+		  <tr>
+				<td><%= assignment.meeting.meeting_date.strftime("%m/%d/%Y") %></td>
+				<td><%= assignment.role.description %></td>
+				<td><%= assignment.member.full_name %></td>
+				<td > <%= link_to 'Remove', club_member_assignment_path(params[:club_id],@member,assignment), confirm: 'Are you sure?', method: :delete %></td>
+					 
+		  </tr>
+	</tbody>		  
+<% end %>
+</table>
+
+<br />

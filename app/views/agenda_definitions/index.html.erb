@@ -1,0 +1,46 @@
+
+<div style='width:650px;    text-align:center'>
+   
+    <div style=' align:center ;background-color:lightgray'>
+      <h4 >Agenda Types </h4> 
+      </div>
+
+  <% if  notice %>
+    <div class="alert-box success" style='width:650px'>
+      <%= notice %> 
+    </div>
+  <% end %>
+</div>
+
+<br/>
+ 
+      
+         
+     
+    
+ 
+ 
+
+
+<table width='650px'>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+     
+  </tr>
+
+<% @agenda_definitions.each do |agenda_definition| %>
+  <tr>
+    <td><%= agenda_definition.name %></td>
+    <td><%= agenda_definition.description %></td>
+    <td><%= link_to 'Compose', club_agenda_definition_path(params[:club_id],agenda_definition) %></td>
+    <td style='width:100px'><%= link_to 'Edit Description', edit_club_agenda_definition_path(params[:club_id],agenda_definition) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Define New Agenda Type', new_club_agenda_definition_path %>

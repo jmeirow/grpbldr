@@ -1,0 +1,30 @@
+ 
+<h4>Meeting Notes - Print Setup.</h4>
+
+<%=form_tag( club_meeting_print_notes_path, :method=>'post', :target=>'_blank' ) do %>
+
+	<br/><br/>
+
+
+
+	<p>
+		Include All Public Notes <br/>
+		<%= check_box_tag "include_public", 1, true %>
+
+	</p>
+
+	<br/>
+
+	<p>
+		 Include My Private Notes <br/>
+		 <%= check_box_tag "include_private" %>
+	</p>
+
+
+	<br/>
+	
+
+	<%= submit_tag 'Submit' %>
+
+
+<% end %>

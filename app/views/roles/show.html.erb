@@ -1,0 +1,31 @@
+
+
+ 
+<h4>Viewing Meeting Role...</h4>
+ 
+<div class='container' >
+ 
+	<br>
+	<% if  notice %>
+		<div class="alert-box success" >
+			<%= notice %> 
+		</div>
+		
+	<% end %>
+
+	<p>
+	  <%= 'Role Description' %><br>
+	  <%=  @role.description %><br>
+	</p>
+	
+	<p>
+	  <%= 'Minimum Required Experience to Execute Role (in months):' %><br>
+	  <%=  @role.minimum_required_experience %><br>
+	</p>
+
+
+	
+
+	<%= link_to 'Edit', edit_club_role_path(params[:club_id],@role) %> |
+	<%= link_to 'New Role', new_club_role_path(params[:club_id]) %><br><br>
+</div>

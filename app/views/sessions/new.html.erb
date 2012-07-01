@@ -1,0 +1,48 @@
+ 
+
+
+
+
+
+<%= form_tag sessions_path do %>
+ 
+
+    <label>Email Address:</label>
+		    <%= text_field_tag :email, params[:email] %><br><br>
+  
+
+
+    <label>Password:</label>
+    		<%= password_field_tag :password %>
+  
+
+
+  <div class="actions">
+  		<p><%= submit_tag "Sign In",    :class => "button" , :style => 'font-size:8pt'  %>
+  </div>
+
+
+
+	<br><br>
+
+
+	<% if notice %>
+	   <div id="error_explanation" class="alert-box failure">
+				 <%= notice %> 
+ 		</div>
+	<% end %>
+
+
+	<br><br>
+
+
+	<%= link_to "Create Account", sign_up_path %> 
+
+		<br/><br/>or..<br/><br/>
+
+	<%= link_to "Register Organization", new_enrollment_path %>
+	
+
+
+
+<% end %>

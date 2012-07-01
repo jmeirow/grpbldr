@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+  <!-- ***************************************************************** -->
+  <!-- HTML HEAD AREA  -->
+  <!-- ***************************************************************** -->
+
+  <head>
+    <title>Group Builder &copy;</title>
+
+    <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" %>
+    <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+
+
+
+
+  
+  </head>
+
+
+
+
+  <!-- ***************************************************************** -->
+  <!-- HTML BODY AREA                                                    -->
+  <!-- ***************************************************************** -->
+
+  <body  >
+
+    <table style='width:960px;background-color:whitesmoke'>
+      <tr><td>
+    
+    <!-- ***************************************************************** -->
+    <!-- If current user is logged in, display user-nav menu area         -->
+    <!-- ***************************************************************** -->    
+    
+   
+      <%= render 'layouts/header' %>
+
+       
+
+        <div class='container' style='margin-top:20px; '>
+
+          <div style='float:left;background-color:#63DB93;margin-left:15px;padding-left:10px;padding-right:10px;border-radius:5px; '>     
+           
+            <span style='font-weight:bold'>  Club Administration  </span>
+            <br/><br/>
+
+
+            <% if session[:logged_in_admin] %>
+
+              <strong>
+              <%= link_to "Return to Main Menu", club_member_assignments_path(session[:club_id], current_member) %>
+              </strong>
+              <br/>    
+              <br/>  
+
+
+                <div style='padding-top:3px;'>
+                  <%= link_to "Agenda Types", club_agenda_definitions_path(session[:club_id]) %><br/> 
+                </div>
+
+                <div style='padding-top:3px;'>
+                  <a href='#'>Email</a><br/>  
+                </div>
+
+
+                <div style='padding-top:3px;'>
+                  <%= link_to "Generate Assignments", forassignment_club_meetings_path(session[:club_id]) %><br> 
+                </div>                
+
+
+                <div style='padding-top:3px;'>
+                  <%= link_to "Leader Definition", club_leaders_path(session[:club_id]) %><br> 
+                </div>                
+
+
+                <div style='padding-top:3px;'>
+                  <a href='#'>Leader Maintenance </a><br/> 
+                </div> 
+
+
+                <div style='padding-top:3px;'>
+                  <a href='#'>Reports </a><br/> 
+                </div>               
+
+
+                <div style='padding-top:3px;'>
+                  <%= link_to "Roles", club_roles_path(session[:club_id]) %><br>
+                </div>         
+
+
+                <div style='padding-top:3px;'>
+                  <%= link_to "Role Groups",club_role_groups_path(session[:club_id])  %><br>   
+                </div>
+
+                <div style='padding-top:3px;'>
+                  <a href='#'>Social Media </a><br/>  
+                </div>
+
+
+                
+ 
+            <br/><br/>
+             <br/><br/>
+             <br/><br/>
+             <br/><br/>
+             <br/><br/>              
+             <% end %>
+             
+            </div> 
+
+
+
+ 
+
+ 
+
+
+          </div>
+
+         <!-- ***************************************************************** -->
+         <!-- Yield below... this is where the currently selected view displays -->
+         <!-- ***************************************************************** -->
+
+        
+         <div class='container' style='margin-left:170px'  >
+             
+              <%= yield %>
+             
+        </div>
+
+  
+
+
+     </div>
+      
+     <%= render 'layouts/footer' %>
+
+   </td></tr></table>
+  </body>
+
+</html>

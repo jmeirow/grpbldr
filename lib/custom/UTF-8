@@ -1,0 +1,100 @@
+b[:second] = 2
+a[:second] = 2
+a
+a[:first]
+a[:third]
+a[:third].nil?
+a[:first].nil?
+a[:third].exists?
+a[:third].exist?
+x.to_str
+x.password = 'joe'
+x.password
+x.smtp_domain
+require '/Users/joemeirow/rails/myprojects/rolemaster/lib/custom/smtp_config'
+x = SmtpConfig.new
+Time.now
+Time.now.strftime('%H:%l:%S')
+"123".slice(0.1)
+"123".slice(2.1)
+1..255 put "1"
+require DateTime
+require 'datetime'
+require 'DateTime'
+require 'date_time'
+require 'date'
+require 'time'
+Date.today
+Date.today.dqy
+Date.today.day
+Date.today.weekday
+Date.today.wday
+Date.today.wday.Sunday?
+Date.today.methods.to_symbol
+Date.today.methods
+Date.today.sunday?
+Date.today.thursday?
+now
+Npw
+Now
+DateTime.now
+DateTime.now.time
+DateTime.methods
+DateTime.current
+DateTime.ri
+x = DateTime.new
+x.strftime("%I:%M %P")
+x DateTime.strptime("10:00 AM")
+x DateTime.strptime("2012-05-10 10:30 AM")
+x DateTime.strptime("2012-05-10 10:30")
+x DateTime.strptime("6/30/2012 10:00 AM")
+x DateTime.strptime("6/30/2012 10:00:--")
+x DateTime.strptime("6/30/2012 10:00:00
+")
+x DateTime.strptime("6/30/2012 10:00:00")
+Date.today.strftime("%M/%d/%y")
+Date.today.strftime("%m/%d/%Y")
+newtime = DateTime.strptime("'#{Date.today.strftime('%m/%d/%Y)} 
+parsed_time = DateTime.strptime('03/05/2010 14:25:00', '%d/%m/%Y %H:%M:%S')
+newtime = DateTime.strptime("#{parsed_time.strftime('%m/%d/%Y)},
+x = 9
+"05d" % x
+"05d" % 9
+"%05d" % 9
+14 / 8
+39 / 60
+60 / 60
+60 % 60
+require 'lib/custom/running_time.rb'
+require 'running_time.rb'
+require 'running_time'
+pwd
+require running_time.rb
+x
+s = 3
+s.inclusive?(1..5)
+s.inclusive(1..5)
+s
+s.include(1..5)
+unload './running_time.rb'
+reset!
+reset
+x.increment = 20
+x.increment(20)
+x.increment(90)
+x.increment(15)
+x.increment(600)
+x.increment(60)
+x.to_s
+x.increment(120)
+x + 40
+x+20
+x+2
+x+10
+x+30
+reload!
+.reload
+reload
+require './running_time.rb'
+x = RunningTime.new(10,0)
+exit

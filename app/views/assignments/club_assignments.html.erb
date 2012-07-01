@@ -1,0 +1,45 @@
+ 
+<h4>Listing Assigned Roles </h4>
+	<table>
+	  <tr>
+	    <th>Member Name</th>	
+	    <th>Date</th>
+	    <th>Role</th>
+	  </tr>
+
+		<% @assignments.each do |assignment| %>
+			<% @member = Member.find(assignment.member_id)  %>
+		  <tr>
+				<td><%= @member.full_name %></td>
+				<td><%= assignment.meeting.meeting_date.strftime("%m/%d/%Y") %></td>
+				<td><%= assignment.role.description %></td>
+ 
+		  </tr>
+		<% end %>
+	</table>
+<br />
+
+<h5>Bypassed Role Assignments </h5>
+<br>
+	<table>
+	  <tr>
+	    <th>Meeting Date</th>
+	    <th>Member Name</th>
+	    <th>Role</th>	
+	    <th>Reason</th>	
+	
+	  </tr>
+		<% @messages = AssignmentReport.where("club_id = ? and created_at <= ?", session[:club_id], Time.now)%>
+		<% @messages.each do |message| %>
+			<% member = Member.find(message.member_id) %>
+			<% role = Role.find(message.role_id) %>
+		  <tr>
+				<td><%= message.meeting_date.strftime("%m/%d/%Y") %></td>
+				<td><%= member.full_name %></td>
+				<td><%= role.description %></td>
+				<td><%= message.reason %></td>
+				
+		  </tr>
+		<% end %>
+	</table>
+<br />

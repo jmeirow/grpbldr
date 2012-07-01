@@ -1,0 +1,9 @@
+<%- flash.each do |type, message| %>
+  <div class="row">
+    <div class="twelve columns">
+      <%= content_tag :div, message, :id => "flash_#{type}", :class => "flash #{type}" do %>
+        <p><%= message %></p>
+      <%- end %>
+    </div>
+  </div>
+<%- end %>

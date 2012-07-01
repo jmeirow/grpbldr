@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>Class: ActiveRecord::Base</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>vendor/plugins/ar_fixtures/lib/ar_fixtures.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-dump_to_file">::dump_to_file</a>
+    
+    <li><a href="#method-c-habtm_to_fixture">::habtm_to_fixture</a>
+    
+    <li><a href="#method-c-load_from_file">::load_from_file</a>
+    
+    <li><a href="#method-c-to_fixture">::to_fixture</a>
+    
+    <li><a href="#method-c-to_skeleton">::to_skeleton</a>
+    
+    <li><a href="#method-c-traverse_includes">::traverse_includes</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../vendor/plugins/ar_fixtures/CHANGELOG.html">CHANGELOG</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../ActiveRecord.html">ActiveRecord</a>
+  
+    <li><a href="../ActiveRecord/Base.html">ActiveRecord::Base</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class ActiveRecord::Base</h1>
+
+  <div id="description" class="description">
+    
+<p>Extension to make it easy to read and write data to a file.</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-dump_to_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_to_file</span><span
+            class="method-args">(path=nil, limit=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Writes content of this table to db/table_name.yml, or the specified file.</p>
+
+<p>Writes all content by default, but can be limited.</p>
+          
+
+          
+          <div class="method-source-code" id="dump_to_file-source">
+            <pre><span class="ruby-comment"># File vendor/plugins/ar_fixtures/lib/ar_fixtures.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_to_file</span>(<span class="ruby-identifier">path</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">limit</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">opts</span> = {}
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:limit</span>] = <span class="ruby-identifier">limit</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">limit</span>
+  <span class="ruby-identifier">path</span> <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;db/#{table_name}.yml&quot;</span>
+  <span class="ruby-identifier">write_file</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">path</span>, <span class="ruby-constant"> ::Rails.root.to_s</span>), <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>, <span class="ruby-identifier">opts</span>).<span class="ruby-identifier">to_yaml</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- dump_to_file-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- dump_to_file-method -->
+
+    
+      <div id="method-c-habtm_to_fixture" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">habtm_to_fixture</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Write the habtm association table</p>
+          
+
+          
+          <div class="method-source-code" id="habtm_to_fixture-source">
+            <pre><span class="ruby-comment"># File vendor/plugins/ar_fixtures/lib/ar_fixtures.rb, line 128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">habtm_to_fixture</span>
+  <span class="ruby-identifier">joins</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reflect_on_all_associations</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">j</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">j</span>.<span class="ruby-identifier">macro</span> <span class="ruby-operator">==</span> <span class="ruby-value">:has_and_belongs_to_many</span>
+  }
+  <span class="ruby-identifier">joins</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">join</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">hsh</span> = {}
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">select_all</span>(<span class="ruby-node">&quot;SELECT * FROM #{join.options[:join_table]}&quot;</span>).<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">record</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">hsh</span>[<span class="ruby-node">&quot;join_#{'%05i' % i}&quot;</span>] = <span class="ruby-identifier">record</span>
+    }
+    <span class="ruby-identifier">write_file</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-node">&quot;test/fixtures/#{join.options[:join_table]}.yml&quot;</span>, <span class="ruby-constant"> ::Rails.root.to_s</span>), <span class="ruby-identifier">hsh</span>.<span class="ruby-identifier">to_yaml</span>(<span class="ruby-value">:SortKeys</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>))
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- habtm_to_fixture-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- habtm_to_fixture-method -->
+
+    
+      <div id="method-c-load_from_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_from_file</span><span
+            class="method-args">(path=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Delete existing data in database and load fresh from file in
+db/table_name.yml</p>
+
+<p>ERB tags are also possible, as with the rest of Rails fixtures.</p>
+          
+
+          
+          <div class="method-source-code" id="load_from_file-source">
+            <pre><span class="ruby-comment"># File vendor/plugins/ar_fixtures/lib/ar_fixtures.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_from_file</span>(<span class="ruby-identifier">path</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">path</span> <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;db/#{table_name}.yml&quot;</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">destroy_all</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:reset_pk_sequence!</span>)
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">reset_pk_sequence!</span>(<span class="ruby-identifier">table_name</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">rawdata</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">path</span>, <span class="ruby-constant"> ::Rails.root.to_s</span>))
+  <span class="ruby-identifier">erb_data</span> = <span class="ruby-constant">ERB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">rawdata</span>).<span class="ruby-identifier">result</span>
+  <span class="ruby-identifier">records</span> = <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span>( <span class="ruby-identifier">erb_data</span> )
+
+  <span class="ruby-identifier">records</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">record</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;______________&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">to_yaml</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;______________&quot;</span>
+    <span class="ruby-identifier">record_copy</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">attributes</span>)
+    <span class="ruby-identifier">record_copy</span>.<span class="ruby-identifier">id</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">id</span>
+
+    <span class="ruby-comment"># For Single Table Inheritance</span>
+    <span class="ruby-identifier">klass_col</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">inheritance_column</span>.<span class="ruby-identifier">to_sym</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">record</span>[<span class="ruby-identifier">klass_col</span>]
+      <span class="ruby-identifier">record_copy</span>.<span class="ruby-identifier">type</span> = <span class="ruby-identifier">record</span>[<span class="ruby-identifier">klass_col</span>]
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">record_copy</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:reset_pk_sequence!</span>)
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">reset_pk_sequence!</span>(<span class="ruby-identifier">table_name</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- load_from_file-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- load_from_file-method -->
+
+    
+      <div id="method-c-to_fixture" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_fixture</span><span
+            class="method-args">(*args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Write a file that can be loaded with +fixture :some_table+ in tests. Uses
+existing data in the database.</p>
+
+<p>Will be written to <code>test/fixtures/table_name.yml</code>. Can be
+restricted to some number of rows.</p>
+          
+
+          
+          <div class="method-source-code" id="to_fixture-source">
+            <pre><span class="ruby-comment"># File vendor/plugins/ar_fixtures/lib/ar_fixtures.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_fixture</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">extract_options!</span>
+  <span class="ruby-comment"># Work with limit as the first argument</span>
+  <span class="ruby-identifier">limit</span>, = *<span class="ruby-identifier">args</span>
+  
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:limit</span>] = <span class="ruby-identifier">limit</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">limit</span>
+  <span class="ruby-identifier">includes</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:include</span>]
+  <span class="ruby-identifier">keep_current_fixtures</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:keep_current_fixtures</span>)
+  
+  <span class="ruby-identifier">records</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = {}
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">record</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">record_name</span> = <span class="ruby-node">&quot;#{table_name.singularize}_#{'%05i' % record.id}&quot;</span>
+    <span class="ruby-identifier">records</span>[<span class="ruby-identifier">table_name</span>][<span class="ruby-identifier">record_name</span>] = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">attributes</span>
+    
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">includes</span>
+      <span class="ruby-identifier">traverse_includes</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">includes</span>, <span class="ruby-identifier">records</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">records</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">current_table_name</span>, <span class="ruby-identifier">records</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">yaml_file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-node">&quot;test/fixtures/#{current_table_name}.yml&quot;</span>, <span class="ruby-constant"> ::Rails.root.to_s</span>)
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">keep_current_fixtures</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">yaml_file</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">fixtures</span> = <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span>(<span class="ruby-constant">ERB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">yaml_file</span>)).<span class="ruby-identifier">result</span>)
+        <span class="ruby-identifier">records</span> = <span class="ruby-identifier">fixtures</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">records</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    
+    <span class="ruby-identifier">write_file</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-node">&quot;test/fixtures/#{current_table_name}.yml&quot;</span>, <span class="ruby-constant"> ::Rails.root.to_s</span>),
+               <span class="ruby-identifier">records</span>.<span class="ruby-identifier">to_yaml</span>(<span class="ruby-value">:SortKeys</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>))
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">habtm_to_fixture</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_fixture-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_fixture-method -->
+
+    
+      <div id="method-c-to_skeleton" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_skeleton</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Generates a basic fixture file in test/fixtures that lists the table’s
+field names.</p>
+
+<p>You can use it as a starting point for your own fixtures.</p>
+
+<pre>record_1:
+  name:
+  rating:
+record_2:
+  name:
+  rating:</pre>
+
+<p>TODO Automatically add :id field if there is one.</p>
+          
+
+          
+          <div class="method-source-code" id="to_skeleton-source">
+            <pre><span class="ruby-comment"># File vendor/plugins/ar_fixtures/lib/ar_fixtures.rb, line 153</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_skeleton</span>
+  <span class="ruby-identifier">record</span> = {
+    <span class="ruby-string">&quot;record_1&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">attributes</span>,
+    <span class="ruby-string">&quot;record_2&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">attributes</span>
+  }
+  <span class="ruby-identifier">write_file</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-node">&quot;test/fixtures/#{table_name}.yml&quot;</span>, <span class="ruby-constant"> ::Rails.root.to_s</span>),
+  <span class="ruby-identifier">record</span>.<span class="ruby-identifier">to_yaml</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_skeleton-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_skeleton-method -->
+
+    
+      <div id="method-c-traverse_includes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">traverse_includes</span><span
+            class="method-args">(target_record, includes, records)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="traverse_includes-source">
+            <pre><span class="ruby-comment"># File vendor/plugins/ar_fixtures/lib/ar_fixtures.rb, line 98</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">traverse_includes</span>(<span class="ruby-identifier">target_record</span>, <span class="ruby-identifier">includes</span>, <span class="ruby-identifier">records</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">target_record</span>
+
+  <span class="ruby-constant">Array</span>(<span class="ruby-identifier">target_record</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">record</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">record_name</span> = <span class="ruby-node">&quot;#{record.class.table_name.singularize}_#{'%05i' % record.id}&quot;</span>
+    <span class="ruby-identifier">records</span>[<span class="ruby-identifier">record</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">table_name</span>][<span class="ruby-identifier">record_name</span>] = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">attributes</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">includes</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Array</span>
+    <span class="ruby-identifier">includes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child_accessor</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">traverse_includes</span>(<span class="ruby-identifier">target_record</span>, <span class="ruby-identifier">child_accessor</span>, <span class="ruby-identifier">records</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Hash</span>
+    <span class="ruby-identifier">includes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child_accessor</span>, <span class="ruby-identifier">children_includes</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">traverse_includes</span>(<span class="ruby-identifier">target_record</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">child_accessor</span>), <span class="ruby-identifier">children_includes</span>, <span class="ruby-identifier">records</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>, <span class="ruby-constant">Symbol</span>
+    <span class="ruby-constant">Array</span>(<span class="ruby-identifier">target_record</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">record</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">Array</span>(<span class="ruby-identifier">record</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">includes</span>)).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child_record</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">record_name</span> = <span class="ruby-node">&quot;#{child_record.class.table_name.singularize}_#{'%05i' % child_record.id}&quot;</span>
+        <span class="ruby-identifier">records</span>[<span class="ruby-identifier">child_record</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">table_name</span>][<span class="ruby-identifier">record_name</span>] = <span class="ruby-identifier">child_record</span>.<span class="ruby-identifier">attributes</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Unknown includes type: #{includes.inspect}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- traverse_includes-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- traverse_includes-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

@@ -1,0 +1,185 @@
+
+
+<%= form_for([@club,@agenda_definition,@agenda_line_item]) do |f| %>
+  <% if @agenda_line_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@agenda_line_item.errors.count, "error") %> prohibited this agenda_line_item from being saved:</h2>
+
+      <ul>
+      <% @agenda_line_item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div style='float:left'>
+    <div style='float:left'>
+
+
+            <div class="field">
+               Sequence In Agenda<br />
+              <%= f.number_field :sequence_nbr %>
+            </div>
+           
+            <div class="field">
+              <div style='padding-bottom:0px'>
+              Include In Agenda?
+              </div><br />
+              <%= f.select :include_in_agenda, options_for_select([['Yes', 'Yes'], ['No', 'No']] , @agenda_line_item.include_in_agenda  )    %> 
+            </div>
+
+            <div class="field">
+             Line Item Header Text<br />
+              <%= f.text_area :line_item_header, :rows => 5 %>
+            </div>  
+            <div class="field">
+              Line Item Text<br />
+              <%= f.text_area :line_item_text  , :rows => 5 %>
+            </div>
+
+    </div>
+
+
+    <div style='float:left;padding-left:20px'>
+
+
+          <div class="field">
+           Duration (in minutes)<br />
+            <%= f.text_field :duration_in_minutes %>
+          </div>  
+          <div class="field">
+            <div style='padding-bottom:0px'>
+            Time Format
+            </div><br />
+            <%= f.select(:time_format, options_for_select( [ ['None', 'None'], ['Start Time', 'Start Time'], ['Start & End Time', 'Start & End Time']  ] , @agenda_line_item.time_format   )  )  %> 
+          
+          </div>
+
+          <div class="field" >
+           Line Item Owner  <br />
+            <%= f.text_field :person_display_name %>
+          </div>
+          <div class="field">
+            <div style='padding-bottom:0px'>
+              Owner Data Source
+            </div><br/>   
+            <%= f.select(:person_display_name_source, options_for_select( [ ['Static Text', 'Static Text'], 
+                  ['Dynamically Read From Meeting Info', 'Dynamically Read From Meeting Info'] ] , @agenda_line_item.person_display_name_source  )  )  %> 
+          </div>
+          <div class="actions" style='font-size:8px'>
+            <%= f.submit "Create/Save Line Item" %>
+          </div>
+          <div class="field" style='height:0px'>
+            <%= f.hidden_field :agenda_definition_id %>
+          </div>
+
+    </div>
+
+    <div style='float:left;width:220px'>
+
+      <div style='padding-left:15px;padding-right:15px;
+                  padding-top:2px;padding-bottom:2px;
+                  float:left;
+                  width=220px;
+                  font-size:8pt;
+                  background-color:lightgray; 
+                  ;border-style:solid;border-color:gray;border-width:2px;'>
+
+                  The role names below can be copied into agenda text for dynamic output.
+
+      </div>
+
+      <ul style=' font-size:9pt;
+                  list-style-type:none;
+                  width:197px;height:100px;
+                  overflow:auto;
+                  border-style:solid;border-color:gray;border-width:2px '>
+
+                <%@roles.each do |role| %>
+                  <li style='margin-top:1px;margin-bottom:1px'>$$<%=role.description%>$$</li>
+                <% end %>
+      </ul>
+    </div>
+
+
+ <div style='float:left;width:220px'>
+
+      <div style='padding-left:15px;padding-right:15px;
+                  padding-top:2px;padding-bottom:2px;
+                  float:left;
+                  width=220px;
+                  font-size:8pt;
+                  background-color:lightgray; 
+                  ;border-style:solid;border-color:gray;border-width:2px;'>
+
+                  The offices/officers below can be copied into agenda text for dynamic output.
+
+      </div>
+
+      <ul style=' font-size:9pt;
+                  list-style-type:none;
+                  width:197px;height:100px;
+                  overflow:auto;
+                  border-style:solid;border-color:gray;border-width:2px '>
+
+                <%@leaders.each do |leader| %>
+                  <li style='margin-top:1px;margin-bottom:1px'>$$<%=leader.title%>$$</li>
+                <% end %>
+      </ul>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+ 
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

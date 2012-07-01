@@ -1,0 +1,120 @@
+
+
+  
+ <style type='text/css'>
+ 
+ .tr {
+
+  border-bottom-color:black;
+  border-top-color:black;
+
+ }
+ .td {
+
+  text-align:right;
+
+ }
+
+ </style> 
+
+
+
+  <div style='width:735px;float:left'>   
+
+    <div id='logox' style='padding-left:20px; ;float:left'>
+      <img src=<%= asset_path "logo.jpeg" %> style='width:120px;height:100px'/>
+    </div>
+
+
+    <div   style='margin-left:150px'>
+
+        <strong><%= @agenda.agenda_top.heading_text %></strong><br/><br/>
+
+        <%= @agenda.agenda_top.body_text %>
+        <br/><br/>
+    </div>
+  </div>
+
+  <br/>
+  <br/>
+
+
+  <div id='content' style='width:735px'>   
+      <table id='table' cellpadding='5' cellspacing='5'>
+
+        <thead>
+          <tr><th width='70px'>Time</th><th width='370px'>Role / Agenda Item for  <%= @agenda.meeting_date %></th><th width='130px'>Member</th></tr>
+        </thead>
+
+        <tbody>
+
+          <% @agenda.agenda_line_items.each do |agenda_line_item| %>
+
+          <%
+                Role.where("club_id = ?", @club.id).each do |role|
+                    agenda_line_item.line_item_text.gsub!('$$'+role.description+'$$', @agenda.member_for(role.description))
+                    agenda_line_item.line_item_header.gsub!('$$'+role.description+'$$', @agenda.member_for(role.description))
+                   
+
+                end
+                
+
+
+          %>
+
+
+
+              <tr>
+
+                <td  valign='top'>
+                          <%= agenda_line_item.start_time %> 
+                </td>
+                <td>  
+                    <strong><%=agenda_line_item.line_item_header %></strong><br/>
+                    <%= agenda_line_item.line_item_text  %>
+                </td>
+                <td  valign='top'>
+
+                      <%=  
+                         if  agenda_line_item.person_display_name_source == 'Static Text'
+                                 agenda_line_item.person_display_name
+                              else 
+                                @agenda.member_for(agenda_line_item.person_display_name)
+                              end 
+                      %> 
+                </td>
+            </tr>
+          <% end %>
+        </tbody>       
+      </table> 
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

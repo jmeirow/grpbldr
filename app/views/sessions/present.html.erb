@@ -1,0 +1,60 @@
+ 
+
+<%= form_tag select_url do %>
+ 
+
+
+  
+
+	<% 
+		clubs = Hash.new
+		@members.each do |member|
+			club = Club.find(member.club_id)
+			clubs[member.id] = club.name
+		end
+	%>
+
+
+
+	<p style='width:400px;background-color:#FF4040;padding:10px;color:white;border-radius:5px;'>
+	You are currently associated with more than one club within GroupBuilder.
+	Please select the club you wish to log in as and then click 'Submit'.
+	</p>
+  
+  <select id='member_id' style='width:420px '
+          name='member_id'   multiple='multiple' size='<%=clubs.length%>' >
+  	<% @members.each do |member|
+					club = Club.find(member.club_id)   %>
+			  
+				<option value="<%=member.id%>"><%=club.name%></option>
+  	<% end %>
+  </select>
+
+
+
+
+  <div class="actions">
+  		<p><%= submit_tag "Submit",    :class => "button", :style => 'font-size:8pt' %>
+  </div>
+
+
+
+	<br><br>
+
+
+	<% if notice %>
+	   <div id="error_explanation" class="alert-box failure">
+				 <%= notice %> 
+ 		</div>
+	<% end %>
+
+
+	<br><br>
+
+
+
+	
+
+
+
+<% end %>

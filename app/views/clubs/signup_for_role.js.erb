@@ -1,0 +1,31 @@
+$('body').html("
+
+<table>
+  <thead>
+  <tr>
+    <th>Meeting Date</th>
+		<th>Role Description</th>
+		 
+	</tr>
+  </thead>
+
+	<tbody>
+	<% @assignment_query_results.each do |aa| %>
+	 
+	  <tr>
+			<td><%= aa.meeting.meeting_date.strftime('%m/%d/%Y')  %></td>
+			<td><%= aa.role.description %></td>
+		
+	  </tr>
+	<% end %>
+	</tbody>
+</table>
+
+<br />
+
+
+"
+
+
+
+) ;

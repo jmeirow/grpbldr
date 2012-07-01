@@ -1,0 +1,71 @@
+
+<div style='width:550px;    text-align:center'>
+ 
+  <div style=' align:center ;background-color:lightgray'>
+  
+    <h4>Meeting for <%=@meeting.meeting_date.strftime("%m/%d/%Y")%>    </h4>
+  </div>
+</div>
+
+<div class='container'>
+  
+  <br>
+  <% if  notice %>
+    <div class="alert-box success" style='width:475'>
+      <%= notice %> 
+    </div>
+  <% end %>
+
+  
+ 
+         
+  <%= link_to 'Change Meeting Date', edit_club_meeting_path(params[:club_id],@meeting) %>        |      
+  <%= link_to 'Create Meeting Note', new_club_meeting_meeting_note_path(params[:club_id], @meeting) %>      
+ 
+
+  <% if  @meeting_notes.length > 0 %>
+
+    <br/> <br/> 
+    
+    <h7>Meeting Notes</h7>
+
+    <br/><br/>
+
+    <% @member = current_member %>
+
+ 
+      <table class='tbl'>
+        <tr>
+          <th><strong>Author</strong></th>
+          <th><strong>Body<strong/></th>
+          <th colspan='3' align='center'><strong>Actions</strong> </th>
+           
+        </tr>
+
+      <% @meeting_notes.each do |meeting_note| %>
+
+        <% if meeting_note.member_id == @member.id %>
+          <tr>
+            <td><%= meeting_note.member_name %></td>
+            <td><%= meeting_note.body.slice(0..30) + '...' %></td>
+            <td><%= link_to 'Show', club_meeting_meeting_note_path(session[:club_id],@meeting,meeting_note) %></td>
+            <% if @member.id == meeting_note.member_id %>
+              <td><%= link_to 'Edit', edit_club_meeting_meeting_note_path(session[:club_id],@meeting,meeting_note) %> </td>
+              <td> <%= link_to 'Delete', club_meeting_meeting_note_path(session[:club_id],@meeting,meeting_note), confirm: 'Are you sure?', method: :delete %>  </td>
+            <% else %>
+              <td></td>
+              <td></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+      </table>
+  <% end %>
+
+
+
+  
+
+
+</div>
+

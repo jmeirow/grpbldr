@@ -1,0 +1,33 @@
+<h1>Listing agenda_tops</h1>
+
+<table>
+  <tr>
+    <th>Agenda definition</th>
+    <th>Heading text</th>
+    <th>Body text</th>
+    <th>Image source</th>
+    <th>Image width</th>
+    <th>Image height</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @agenda_tops.each do |agenda_top| %>
+  <tr>
+    <td><%= agenda_top.agenda_definition_id %></td>
+    <td><%= agenda_top.heading_text %></td>
+    <td><%= agenda_top.body_text %></td>
+    <td><%= agenda_top.image_source %></td>
+    <td><%= agenda_top.image_width %></td>
+    <td><%= agenda_top.image_height %></td>
+    <td><%= link_to 'Show', club_agenda_definition_agenda_top_path(params[:club_id],params[:agenda_definition_id],agenda_top) %></td>
+    <td><%= link_to 'Edit',  edit_club_agenda_definition_agenda_top_path(params[:club_id],params[:agenda_definition_id],agenda_top) %></td>
+    <td><%= link_to 'Destroy', club_agenda_definition_agenda_top_path(params[:club_id],params[:agenda_definition_id],agenda_top), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Agenda top', new_club_agenda_definition_agenda_top_path(params[:club_id],params[:agenda_definition_id]) %>

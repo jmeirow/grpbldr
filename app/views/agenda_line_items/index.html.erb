@@ -1,0 +1,159 @@
+
+
+
+
+<div style='float:left; width:580px;margin-top:0px;margin-bottom:10px' >
+    <div style='float:left;  ;margin-top:0px; '>
+
+      <h2   style=' margin-left:20px;margin-bottom:0px ' >Agenda Line Items</h2>
+
+
+      <!-- ***********************************************************
+
+       This is the area for links that apply to this page
+
+      **************************************************************** -->
+
+     
+      <div style='float:right'>
+        <ul >
+          <li style='margin-top:0px;margin-bottom:0px'   ><%= link_to 'New Agenda line item', new_club_agenda_definition_agenda_line_item_path(@club,@agenda_definition) %></li>
+          <li style='margin-top:0px;margin-bottom:0px' ><%= link_to "Update all line items to be included in agenda." , agenda_definition_include_all_lines_path(@agenda_definition) %></li>
+          <li style='margin-top:0px;margin-bottom:0px'  ><%= link_to "Preview Agenda." , club_meeting_agenda_definition_print_path(session[:club_id], current_club.next_meeting, @agenda_definition)  %></li>
+        </ul>
+     
+
+      
+
+      </div>
+     
+    </div>
+
+    <div style='overflow:auto;float:left;margin-left:10px;background-color:powderblue;border-radius:5px;height:80px;width:250px;padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:10px'>
+      <div style='text-align:center'>
+
+            <strong><label>How To Use This Page</label></strong><br/>  <br/> 
+        </div>
+
+        <div style='font-family:helvetica;font-size:8pt;'>
+
+
+            <p>Create new line items by click the <strong><em>'New Agenda Line Item'</em></strong> link to the left. Once you've created line items, you can sort their position
+              by dragging and dropping them in the list below.</p>
+
+
+            <p>To view the full text of an Agenda Line Item, click the link labeled <strong><em>Full Text</em> </strong>at the right-hand edge of the green line item bar.
+            </p>
+
+
+        </div>
+     
+
+
+    </div>
+  </br></br></br></br></br></br>
+<div style='margin-left:20px;margin-top:10px;background-color:gray;height:10px;width:550px'>&nbsp;</div>
+
+</div>
+
+
+
+  <script>
+        $(function() {
+          $("#line_items").sortable( { cursor: 'pointer',   opacity: 0.60,
+
+          update: function(event, ui) {
+
+              $.post($(this).data('update-url'), $(this).sortable('serialize'),
+                 location.reload());
+            },
+          start: function(event, ui) {
+              $(ui.item).css('background-color','red')
+
+            },
+          stop: function(event, ui) {
+              $(ui.item).css('background-color', 'green')
+           }
+          });          
+        }) ;
+  </script>
+ 
+ 
+<%= form_for @agenda_definition, :remote => true do |f| %>
+
+   
+
+  <ul id='line_items'   data-update-url="<%= agenda_definition_sort_line_items_url%>" style='width:560px;height:300px;overflow:auto '>
+
+
+
+
+    <% @agenda_line_items.each do |agenda_line_item| %>
+
+     <li id='agenda_line_item_<%=agenda_line_item.id%>'  style='padding-bottom:5px;margin-bottom:10px;
+                                                  font-size:9pt;width:540px;display:inline-block;
+                                                  background-color:<%=agenda_line_item.color%>;color:white'>   
+
+        <% text = agenda_line_item.line_item_header  %>
+        
+        <%= agenda_line_item.start_time %> - 
+        <%=link_to  text.slice(0..40), edit_club_agenda_definition_agenda_line_item_path(@club,@agenda_definition,agenda_line_item) , 
+         {:style => 'color:white'} %>  
+        
+          <% link_id = agenda_line_item.id.to_s + "_link"
+             dialog_id = agenda_line_item.id.to_s + "_dialog" 
+          %> 
+
+
+          <%
+
+          toggle_link = agenda_line_item.include_in_agenda  == 'Yes' ? 'Exclude' : 'Include' %>
+
+          <%= link_to  toggle_link, club_agenda_definition_agenda_line_item_toggle_inclusion_path(@club,@agenda_definition,agenda_line_item)  ,
+          {:style => 'color:white;float:right;margin-right:10px'} %>  
+
+          <a id='<%=link_id %>' href="#"><span style='margin-right:10px;float:right;font-weight:bold;color:white'>Full Text<span/></a>
+            <div id="<%=dialog_id %>"  style='display:none' class='dialog' title="Agenda Item Description">
+                <p><%= agenda_line_item.line_item_header %></p>    
+                <p><%= agenda_line_item.line_item_text %></p>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#<%=dialog_id%>").dialog({ autoOpen: false, autoClose: true });
+             
+                    $("#<%=link_id%>").click(
+                        function () {
+                            $("#<%=dialog_id%>").dialog('open');
+                            return false;
+                        }
+                    );
+
+            
+                });
+            </script>
+
+
+      </li>
+     
+    <% end %>
+
+  </ul>
+ 
+
+
+
+
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+

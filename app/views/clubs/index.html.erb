@@ -1,0 +1,32 @@
+<div style='width:550px;    text-align:center'>
+   
+    <div style=' ;background-color:lightgray'>
+      <h4  >Listing Clubs </h4> 
+      </div>
+  <br/>
+
+  <div style='width:550px;'>
+      <div style='float:left'> <%= paginate @assignments %></div>
+  </div>
+
+</div>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @clubs.each do |club| %>
+  <tr>
+    <td><%= link_to 'Show', club %></td>
+    <td><%= link_to 'Edit', edit_club_path(club) %></td>
+    <td><%= link_to 'Destroy', club, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Club', new_club_path %>

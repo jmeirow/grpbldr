@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Leader:</b>
+  <%= @leader_history.leader_id %>
+</p>
+
+<p>
+  <b>Member:</b>
+  <%= @leader_history.member_id %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @leader_history.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @leader_history.end_date %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @leader_history.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_leader_history_path(@leader_history) %> |
+<%= link_to 'Back', leader_histories_path %>

@@ -1,0 +1,97 @@
+
+
+
+<div class='container'>
+	 
+	<br>
+	<% if  notice %>
+		<div class="alert-box success"  style='width:475px'>
+			<%= notice %> 
+		</div>
+	<% end %>
+
+<h4>Show Member</h4>
+
+<table width='475px'>
+	<tr>
+			<td>
+  <label>First Name:</label><br>
+		<%=  @member.first_name %> <br><br>
+  
+  <label>Last Name:</label><br>
+		<%=  @member.last_name %> <br><br>
+ 
+
+  <label>Address One:</label><br>
+		<%=  @member.address_one %> <br><br>
+
+  <label>Address Two:</label><br>
+		<%=  @member.address_two %> <br><br>
+
+  <label>City:</label><br>
+		<%=  @member.city %> <br><br>
+
+  <label>State:</label><br>
+		<%=  @member.state %> <br><br>
+
+  <label>Zip Code:</label><br>
+		<%=  @member.zip_code %> <br><br>
+
+			</td>
+
+			<td>
+
+
+  <label>Email:</label><br>
+		<%=  @member.email %> <br><br>
+
+
+  <label>Phone:</label><br>
+		<%=  @member.phone %> <br><br>
+
+  <label>Mobile Phone:</label><br>
+		<%=  @member.mobile_phone %> <br><br>
+
+			
+  <label>Assignable:</label><br>
+		<%=  @member.assignable %><br><br>
+
+
+ <label>Club Start Date:</label><br>
+		<%=  @member.start_date_display %><br><br>
+ 
+  <label>Club End Date:</label><br>
+		<%=  @member.end_date_display %><br><br>	
+
+			</td>
+
+
+	</tr>
+
+
+
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+<%= link_to 'Edit', edit_club_member_path(params[:club_id],@member) %> |
+<%= link_to 'New Member', new_club_member_path(params[:club_id]) %>
+
+ 
+
+
+		
+</div>
+
+
+

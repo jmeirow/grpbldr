@@ -1,0 +1,35 @@
+<%= form_for(@assignment) do |f| %>
+  <% if @assignment.errors.any? %>
+       <div id="error_explanation" class="alert-box [error]">
+      <h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
+
+      <ul>
+      <% @assignment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+	<table cellspacing="0">
+	    <tr>
+	        <td><%= f.label :meeting_id, "Meeting Date" %></td>
+	        <td><%= collection_select(:assignment, :meeting_id, Meeting.where("club_id = ?", session[:club_id]), :id, :meeting_date) %></td>
+	    </tr>
+	    <tr>
+	         <td><%= f.label :member_id, "Member" %></td>
+	         <td><%= collection_select(:assignment, :member_id, Member.where("club_id = ?", session[:club_id]), :id, :full_name) %></td>
+	    </tr>
+	    <tr>
+	         <td><%= f.label :role_id, "Role" %></td>
+	        <td><%= collection_select(:assignment, :role_id, Role.where("club_id = ?", session[:club_id]),  :id, :description) %></td>
+	    </tr>
+	</table>
+	
+	
+	
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

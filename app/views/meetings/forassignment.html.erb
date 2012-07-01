@@ -1,0 +1,54 @@
+	<script language='javascript' type='text/javascript'>
+	
+	$(function () { // this line makes sure this code runs on page load
+		$('.checkall').click(function () {
+			$(this).parents('fieldset:eq(0)').find(':checkbox').attr('checked', this.checked);
+		});
+	});
+	
+	</script>
+	
+ 
+
+ 
+	<% if @meetings.length > 0 %>
+
+	    <div style=' align:center ;background-color:lightgray'>
+	      <h4> Choose Meetings / Generate Assignments </h4>
+	    </div>
+	
+	 		The following meetings have one or more vacant roles.	Select one or meetings and then click the button "Assign Roles" to automatically assign available club members to fill a role for that meeting.<br><br>
+	
+
+		    <%= form_tag(generate_club_assignments_path(params[:club_id]),  :method => "post" ) do %>
+				
+				<fieldset>
+				<ul>
+					<li> <%= check_box_tag "check_all", 0, false, :class => :checkall %> Check all</li>
+					<% @meetings.each do |meeting|  %>
+						<li>
+
+							<%= check_box_tag "meeting_ids[]", meeting.id    %> 
+							<%= meeting.meeting_date.strftime("%A %B %d, %Y") %> 
+						</li>
+					<% end %>
+				</ul>
+				</fieldset>
+				 
+ 
+					<p style='font-size:7pt'><%= submit_tag "Make Assignments",    :class => "button" %>
+				 
+			<% end -%>  
+
+		<% else %>
+		
+			<br><br>
+			<p>
+			There are no meetings with unfilled roles. 
+			</p>
+			
+		<% end %>
+		
+ 
+
+ 

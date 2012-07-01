@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+
+
+
+  <head>
+    <title>GroupBuild Plus!</title>
+ 
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='http://fonts.googleapis.com/css?family=Ruluko' rel='stylesheet' type='text/css'>
+  
+  </head>
+  <body>
+
+
+  <div style='margin-top:50px;margin-left:50px;float:left;height:100px'> 
+      <div style='      float:left' >
+         
+
+
+                 
+
+
+        <span style='font-size:30pt'>GroupBuilder </span>
+        <br/>
+
+       Version 0.5.1
+
+
+                   
+                                                      
+                 
+
+              
+
+      </div>
+
+      
+
+      <div class='container' style='padding-top:100px;  '>
+        <%= yield %>
+      </div>
+
+    <br/><br/><br/><br/><br/><br/>
+    Email services by <a target='_blank' href='http://www.sendgrid.com'>SendGrid</a>.
+    
+    </div>
+
+  </body>
+</html>

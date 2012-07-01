@@ -1,0 +1,42 @@
+<div style='width:550px;    text-align:center'>
+   
+ 
+
+ 
+
+ 
+
+
+
+	<table>
+	  <thead>
+	  <tr>
+	    <th>Member Name</th>
+	     <th>Club Name</th>
+		</tr>
+	  </thead>
+
+	<tbody>
+
+	 
+	<% @members.each do |member| %>
+	  <tr>
+	  		
+			<td><%= member.full_name  %></td>
+			<% 
+
+
+			club = Club.where("id = ?", member.club_id)
+			club.each do |club|
+				@name = club.name
+			end
+			 %>
+			<td><%= @name  %></td>
+	  </tr>
+	<% end %>
+	</tbody>
+	</table>
+
+	<br />
+
+</div>

@@ -1,0 +1,25 @@
+<h4>Listing Meeting Notes</h4>
+
+<table>
+  <tr>
+    <th>Member name</th>
+    <th>Body</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @meeting_notes.each do |meeting_note| %>
+  <tr>
+    <td><%= meeting_note.member_name %></td>
+    <td><%= meeting_note.body %></td>
+    <td><%= link_to 'Show', meeting_note %></td>
+    <td><%= link_to 'Edit', edit_meeting_note_path(meeting_note) %></td>
+    <td><%= link_to 'Destroy', meeting_note, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+ 

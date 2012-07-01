@@ -1,0 +1,138 @@
+$crimson1: #e91c21;
+$crimson2: #d01217;
+$midnightblue: #221155;
+$royalblue: #2a85e8;
+$lightseagreen: #11639d;
+$deepskyblue1: #0192dd;
+$deepskyblue2: #0593dc;
+$deepskyblue3: #00a6fc;
+$darkolivegreen1: #5b8737;
+$darkolivegreen2: #699c40;
+$darkolivegreen3: #4a6b2d;
+$darkolivegreen4: #598527;
+$darkolivegreen5: #43531e;
+$olive1: #7fae00;
+$olive2: #677718;
+$olive3: #6e7e00;
+$yellowgreen1: #afc800;
+$yellowgreen2: #9eaf2d;
+$yellowgreen3: #c0d53b;
+$yellowgreen4: #c1d43a;
+$yellow: #ffff00;
+$orange: #ffa500;
+$mediumorange: #f68b01;
+$darkorange: #cc4714;
+$black1: #000000;
+$black2: #141414;
+$black3: #181818;
+$black4: #222222;
+$black5: #252525;
+$black6: #333333;
+$dimgray1: #444444;
+$dimgray2: #464646;
+$dimgray3: #555555;
+$darkred1: #c00000;
+$darkred2: #b90b0b;
+$dimgray1: #707070;
+$darkgray2: #777777;
+$darkgray3: #888888;
+$darkgray4: #959595;
+$gray1: #999999;
+$gray2: #aaaaaa;
+$silver1: #b7b7b7;
+$silver2: #bbbbbb;
+$lightgray1: #cacaca;
+$lightgray2: #cccccc;
+$lightgray3: #d7d7d7;
+$gainsboro1: #dadada;
+$gainsboro2: #dddddd;
+$gainsboro3: #e1e1e1;
+$gainsboro4: #e9e9e9;
+$whitesmoke1: #eaeaea;
+$whitesmoke2: #ebebeb;
+$whitesmoke3: #eeeeee;
+$whitesmoke4: #efefef;
+$whitesmoke5: #f4f4f4;
+$whitesmoke6: #f5f5f5;
+$whitesmoke7: #f7f7f7;
+$whitesmoke8: #f9f9f9;
+$white: #ffffff;
+
+$header-background: $darkolivegreen4;
+$header-button-text: $white;
+$header-button-border: $dimgray1;
+
+$logo-background: $lightgray3;
+
+$body-background: $whitesmoke2;
+$content-background: $white;
+$body-deemphasis-text: $darkgray3;
+$image-border: $lightgray3;
+
+$h1-text: $darkolivegreen5;
+$h2-text: $dimgray1;
+$h3-text: $olive2;
+$h4-text: $darkgray4;
+$h5-text: $yellowgreen3;
+$h6-text: $black5;
+
+$jquery-ui-heading-text: $darkolivegreen5;
+$jquery-ui-highlight: $darkolivegreen4;
+$jquery-ui-border: $yellowgreen1;
+
+$h2-sidebar-title-text: $darkolivegreen5;
+$h3-sidebar-title-text: $lightgray3;
+$h3-sidebar-text: $darkolivegreen5;
+
+$h2-eyecatcher-text: $darkolivegreen5;
+$h2-eyecatcher-border: $whitesmoke2;
+
+$link-text: $olive3;
+$link-hover-text: $olive3;
+
+$nav-link-text: $white;
+$nav-link-hover: $yellowgreen4;
+$nav-border: $black1;
+
+$subnavigation-text: $olive2;
+$subnavigation-border: $whitesmoke2;
+
+$button-background: $yellowgreen1;
+$button-text: $white;
+$button-hover-text: $white;
+$button-hover-background: $orange;
+
+$alternate-button-text: $dimgray1;
+$alternate-button-hover: $yellowgreen2;
+$alternate-button-background: $gainsboro3;
+$alternate-button-hover-text: $white;
+
+$box-background: $whitesmoke2;
+$box-background-text: $black1;
+$box-content-background: $whitesmoke7;
+
+$form-border: $gainsboro2;
+$form-input-border: $silver2;
+$form-input-background: $white;
+$form-input-focus-background: $whitesmoke8;
+$form-input-disabled-background: $gainsboro2;
+$form-label-text: $black1;
+$form-hint-text: $gray1;
+
+$pagination-link-text: $dimgray3;
+$pagination-hover-text: $black2;
+$pagination-hover-border: $black1;
+$pagination-disabled-text: $gray1;
+
+$table-head-text: $black6;
+$table-border: $whitesmoke4;
+
+$notice-text: $darkolivegreen4;
+$notice-background: $whitesmoke3;
+$error-text: $darkred1;
+$error-input-border: $darkred1;
+
+$footer-h4-text: $darkolivegreen5;
+$footer-nav-link-text: $dimgray2;
+$footer-background: $whitesmoke1;
+$footer-column-border: $silver1;

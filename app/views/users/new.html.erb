@@ -1,0 +1,35 @@
+
+<h4>Creating User Account...</h4>
+
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+	    <div id="error_explanation" class="alert-box [error]">
+			<h4>Form is invalid</h4>
+			<ul>
+				<% for message in @user.errors.full_messages %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		
+		<p>
+		  Email Address:<br>
+		  <%= f.text_field :email %><br>
+		</p>
+		<p>
+		  <%= f.label :password %><br>
+		  <%= f.password_field :password %><br>
+		</p>
+		<p>
+		  <%= f.label :password_confirmation %><br>
+		  <%= f.password_field :password_confirmation %><br>
+		</p>
+		
+	  <div class="actions">
+	    <%= f.submit nil, :class => 'button'   %>
+	  </div>
+		
+		
+<% end -%>
+ 

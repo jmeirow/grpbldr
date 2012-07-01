@@ -1,0 +1,18 @@
+
+
+
+<%
+
+msg =  SysConfiguration.where("config_key = ?", "web.down.message").first
+      @message = msg.config_value 
+%>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+
+<h1><%= @message %><h1/>

@@ -1,0 +1,24 @@
+@import "base";
+nav.pagination {
+  display: block;
+  height: 24px;
+  margin-left: -5px;
+  span {
+    float: left;
+    display: block;
+    height: 24px;
+    color: $pagination-disabled-text;
+    font-size: 15px;
+    margin-left: 5px;
+    a {
+      display: block;
+      padding: 0px 7px 4px;
+      color: $pagination-link-text;
+      text-decoration: none; }
+    &.current a, &:hover a, a:focus {
+      border-bottom: solid 2px $pagination-hover-border;
+      color: $pagination-hover-text; } }
+  .next, .prev {
+    font-weight: bold; }
+  .first, .last {
+    font-style: italic; } }

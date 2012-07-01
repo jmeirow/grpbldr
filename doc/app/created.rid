@@ -1,0 +1,22 @@
+Sat, 17 Dec 2011 23:45:14 -0500
+doc/README_FOR_APP	Tue, 13 Dec 2011 19:52:02 -0500
+app/controllers/absences_controller.rb	Tue, 13 Dec 2011 20:01:57 -0500
+app/controllers/application_controller.rb	Tue, 13 Dec 2011 19:52:02 -0500
+app/controllers/home_controller.rb	Tue, 13 Dec 2011 20:02:25 -0500
+app/controllers/meetings_controller.rb	Tue, 13 Dec 2011 20:01:34 -0500
+app/controllers/member_assignments_controller.rb	Tue, 13 Dec 2011 20:01:46 -0500
+app/controllers/members_controller.rb	Tue, 13 Dec 2011 22:34:05 -0500
+app/controllers/roles_controller.rb	Tue, 13 Dec 2011 20:01:24 -0500
+app/helpers/absences_helper.rb	Tue, 13 Dec 2011 20:01:57 -0500
+app/helpers/application_helper.rb	Tue, 13 Dec 2011 19:52:02 -0500
+app/helpers/home_helper.rb	Tue, 13 Dec 2011 20:02:25 -0500
+app/helpers/meetings_helper.rb	Tue, 13 Dec 2011 20:01:34 -0500
+app/helpers/member_assignments_helper.rb	Tue, 13 Dec 2011 20:01:46 -0500
+app/helpers/members_helper.rb	Tue, 13 Dec 2011 20:01:07 -0500
+app/helpers/roles_helper.rb	Tue, 13 Dec 2011 20:01:24 -0500
+app/models/absence.rb	Sat, 17 Dec 2011 20:11:15 -0500
+app/models/meeting.rb	Sat, 17 Dec 2011 20:20:07 -0500
+app/models/meeting_assignment.rb	Tue, 13 Dec 2011 19:59:48 -0500
+app/models/member.rb	Thu, 15 Dec 2011 06:04:42 -0500
+app/models/role.rb	Tue, 13 Dec 2011 22:13:47 -0500
+app/models/role_master_application.rb	Sat, 17 Dec 2011 23:25:44 -0500

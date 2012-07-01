@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Envy</title>
+
+<link rel="stylesheet" type="text/css" href="http://documentup.com/stylesheets/screen.css">
+
+
+
+
+</head>
+<body><div id="container">
+<div id="nav">
+
+<div id="header">
+<a href="#" id="logo">Envy</a>
+</div>
+
+<ul id="sections">
+
+<li>
+<a href="#about-theme-envy">About Theme Envy</a>
+
+<ul>
+
+<li>
+<a href="#about-theme-envy/special-features">Special Features</a>
+</li>
+
+<li>
+<a href="#about-theme-envy/theme-layouts">Theme Layouts</a>
+</li>
+
+<li>
+<a href="#about-theme-envy/color-scheme">Color Scheme</a>
+</li>
+
+<li>
+<a href="#about-theme-envy/browser-support">Browser Support</a>
+</li>
+
+<li>
+<a href="#about-theme-envy/gem-support">Gem Support</a>
+</li>
+
+</ul>
+
+</li>
+
+<li>
+<a href="#about-railsthemes">About RailsThemes</a>
+
+<ul>
+
+<li>
+<a href="#about-railsthemes/directory-structure">Directory Structure</a>
+</li>
+
+<li>
+<a href="#about-railsthemes/naming-conventions">Naming Conventions</a>
+</li>
+
+<li>
+<a href="#about-railsthemes/jquery-ui">JQuery UI</a>
+</li>
+
+<li>
+<a href="#about-railsthemes/rails-version-support">Rails Version Support</a>
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+
+
+
+<div class="extra twitter">
+<iframe allowtransparency="true" frameborder="0" scrolling="no" style="width:162px; height:20px;" src="https://platform.twitter.com/widgets/follow_button.html?screen_name=railsthemes&show_count=false"></iframe>
+</div>
+
+
+</div>
+<div id="content">
+
+<h1>Theme Usage &amp; Style Guide</h1>
+<h2 id='about-theme-envy'>About Theme Envy</h2 id='about-theme-envy'>
+<p>This theme will make your friends green with envy.  Or red. Or purple. Or any color you choose, because the color scheme can be customized using SASS!
+
+
+</p>
+<h3 id='about-theme-envy/special-features'>Special Features</h3 id='about-theme-envy/special-features'>
+<ul>
+<li>Responsive design</li>
+<li>Color changing (via. sass)</li>
+<li>Matching jQuery UI theme (using the same color-changing ready sass)</li>
+</ul>
+<h3 id='about-theme-envy/theme-layouts'>Theme Layouts</h3 id='about-theme-envy/theme-layouts'>
+<p>This theme has the standard application and landing page styles. In addition, the standard application page accomodates pages with or without subnavigation.
+
+
+
+</p>
+<h3 id='about-theme-envy/color-scheme'>Color Scheme</h3 id='about-theme-envy/color-scheme'>
+<div>
+<style type="text/css">
+div.swatch {
+float: left;
+margin: 0 10px 10px 0;
+}
+div.outer {
+float: left;
+border: 1px solid #CCC;
+padding: 1px;
+}
+div.shadow {
+padding: 1px;
+}
+div.color {
+width: 40px;
+height: 40px;
+padding: 0;
+margin: 0;
+}
+div.caption {
+float: left;
+width: 160px;
+color: #555;
+font-size: 12px;
+line-height: 16px;
+margin: 0 0 0 10px;
+}
+.caption h3.caption {
+margin: 0 0 4px 0 !important;
+padding: 0 0 2px 0;
+width: 160px;
+border-bottom: 1px solid #E6E6E6;
+}
+
+div.swatch.tiny .color { width: 20px; height: 20px; }
+div.swatch.tiny div.caption { min-height: 60px; }
+div.swatch.tiny h3.caption { font-size: 66%; }
+</style>
+<div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#E91C21;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$crimson1</h3>HEX: #E91C21</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#D01217;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$crimson2</h3>HEX: #D01217</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#221155;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$midnightblue</h3>HEX: #221155</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#2A85E8;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$royalblue</h3>HEX: #2A85E8</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#11639D;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$lightseagreen</h3>HEX: #11639D</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#0192DD;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$deepskyblue1</h3>HEX: #0192DD</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#0593DC;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$deepskyblue2</h3>HEX: #0593DC</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#00A6FC;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$deepskyblue3</h3>HEX: #00A6FC</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#5B8737;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$darkolivegreen1</h3>HEX: #5B8737</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#699C40;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$darkolivegreen2</h3>HEX: #699C40</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#4A6B2D;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$darkolivegreen3</h3>HEX: #4A6B2D</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#598527;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$darkolivegreen4</h3>HEX: #598527</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#43531E;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$darkolivegreen5</h3>HEX: #43531E</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#7FAE00;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$olive1</h3>HEX: #7FAE00</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#677718;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$olive2</h3>HEX: #677718</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#6E7E00;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$olive3</h3>HEX: #6E7E00</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#AFC800;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$yellowgreen1</h3>HEX: #AFC800</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#9EAF2D;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$yellowgreen2</h3>HEX: #9EAF2D</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#C0D53B;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$yellowgreen3</h3>HEX: #C0D53B</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#C1D43A;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$yellowgreen4</h3>HEX: #C1D43A</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#FFFF00;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$yellow</h3>HEX: #FFFF00</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#FFA500;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$orange</h3>HEX: #FFA500</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#F68B01;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$mediumorange</h3>HEX: #F68B01</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#CC4714;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$darkorange</h3>HEX: #CC4714</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#000000;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$black1</h3>HEX: #000000</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#141414;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$black2</h3>HEX: #141414</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#181818;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$black3</h3>HEX: #181818</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#222222;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$black4</h3>HEX: #222222</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#252525;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$black5</h3>HEX: #252525</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#333333;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$black6</h3>HEX: #333333</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#444444;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$dimgray1</h3>HEX: #444444</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#464646;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$dimgray2</h3>HEX: #464646</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#555555;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$dimgray3</h3>HEX: #555555</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#C00000;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$darkred1</h3>HEX: #C00000</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#B90B0B;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$darkred2</h3>HEX: #B90B0B</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#707070;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$dimgray1</h3>HEX: #707070</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#777777;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$darkgray2</h3>HEX: #777777</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#888888;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$darkgray3</h3>HEX: #888888</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#959595;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$darkgray4</h3>HEX: #959595</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#999999;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$gray1</h3>HEX: #999999</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#AAAAAA;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$gray2</h3>HEX: #AAAAAA</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#B7B7B7;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$silver1</h3>HEX: #B7B7B7</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#BBBBBB;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$silver2</h3>HEX: #BBBBBB</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#CACACA;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$lightgray1</h3>HEX: #CACACA</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#CCCCCC;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$lightgray2</h3>HEX: #CCCCCC</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#D7D7D7;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$lightgray3</h3>HEX: #D7D7D7</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#DADADA;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$gainsboro1</h3>HEX: #DADADA</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#DDDDDD;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$gainsboro2</h3>HEX: #DDDDDD</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#E1E1E1;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$gainsboro3</h3>HEX: #E1E1E1</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#E9E9E9;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$gainsboro4</h3>HEX: #E9E9E9</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#EAEAEA;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$whitesmoke1</h3>HEX: #EAEAEA</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#EBEBEB;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$whitesmoke2</h3>HEX: #EBEBEB</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#EEEEEE;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$whitesmoke3</h3>HEX: #EEEEEE</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#EFEFEF;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$whitesmoke4</h3>HEX: #EFEFEF</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#F4F4F4;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$whitesmoke5</h3>HEX: #F4F4F4</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#F5F5F5;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$whitesmoke6</h3>HEX: #F5F5F5</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#F7F7F7;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$whitesmoke7</h3>HEX: #F7F7F7</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#F9F9F9;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$whitesmoke8</h3>HEX: #F9F9F9</div>
+</div><div class='swatch'>
+<div class='outer'>
+<div class='shadow' style='border:1px solid #000000;background-color:#111111;'>
+<div class='color' style='background-color:#FFFFFF;'></div>
+</div>
+</div>
+<div class='caption'><h3 class='caption'>$white</h3>HEX: #FFFFFF</div>
+</div>
+<br style='clear: both;' />
+</div>
+
+
+<h3 id='about-theme-envy/browser-support'>Browser Support</h3 id='about-theme-envy/browser-support'>
+<p>A browser support report (and example screenshots) can be found at <a href="https://railsthemes.com/themes/envy"><a href="https://railsthemes.com/themes/envy">https://railsthemes.com/themes/envy</a></a>
+
+</p>
+<h3 id='about-theme-envy/gem-support'>Gem Support</h3 id='about-theme-envy/gem-support'>
+<p>In addition to all of the standard styling/markup support, this gem includes special stylesheets for:
+
+</p>
+<ul>
+<li>formtastic</li>
+<li>kaminari</li>
+<li>simple_form</li>
+<li>will_paginate</li>
+</ul>
+<p>Stylesheets are automatically included by the installer based on the contents of your Gemfile.
+
+</p>
+<h2 id='about-railsthemes'>About RailsThemes</h2 id='about-railsthemes'>
+<p>All of our themes take advantage of the Rails 3.1+ asset pipeline.  As such, you&#39;ll find our generated files in the following locations:
+
+</p>
+<h3 id='about-railsthemes/directory-structure'>Directory Structure</h3 id='about-railsthemes/directory-structure'>
+<ul>
+<li>app<ul>
+<li>assets<ul>
+<li>images<ul>
+<li><em>various</em></li>
+</ul>
+</li>
+<li>javascripts<ul>
+<li><em>various</em></li>
+</ul>
+</li>
+<li>stylesheets<ul>
+<li><em>various</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>controllers<ul>
+<li>railsthemes (example only)</li>
+</ul>
+</li>
+<li>views<ul>
+<li>layouts<ul>
+<li>application</li>
+<li>landing</li>
+<li>_flash</li>
+<li>_footer</li>
+<li>_header</li>
+</ul>
+</li>
+<li>railsthemes<ul>
+<li>inner (example of general layout)</li>
+<li>landing (example of landing layout)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>public<ul>
+<li>favicon.ico</li>
+</ul>
+</li>
+</ul>
+<h3 id='about-railsthemes/naming-conventions'>Naming Conventions</h3 id='about-railsthemes/naming-conventions'>
+<p>Most theme files are either namespaced (e.g. railsthemes_themename_filename.ext) or in a railsthemes specific folder (e.g. railsthemes_themename/)
+
+</p>
+<p>The exceptions to this are images and standard css/js assets from elsewhere (e.g. html5shiv).
+
+</p>
+<h3 id='about-railsthemes/jquery-ui'>JQuery UI</h3 id='about-railsthemes/jquery-ui'>
+<p>All themes include an appropriate jQuery UI theme.
+
+</p>
+<h3 id='about-railsthemes/rails-version-support'>Rails Version Support</h3 id='about-railsthemes/rails-version-support'>
+<p>Our themes are designed for Rails 3.1+
+</p>
+
+</div>
+</div></body>
+</html>

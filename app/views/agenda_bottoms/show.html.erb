@@ -1,0 +1,24 @@
+ 
+<% if  notice %>
+	<div class="alert-box success"  style='width:475px'>
+		<%= notice %> 
+	</div>
+<% end %>
+
+<h2 style='padding-bottom:0px'>Agenda Type:<em> <%= @agenda_definition.name %></em></h2>
+<h4 style='padding-top:0px'>Section: <em> Agenda Bottom</em></h4>
+
+
+<p>
+  <b>Agenda definition:</b>
+  <%= @agenda_bottom.agenda_definition_id %>
+</p>
+
+<p>
+  <b>Body text:</b>
+  <%= @agenda_bottom.body_text %>
+</p>
+
+
+ <%= link_to  "Back To This Agenda's Definition", club_agenda_definition_path(current_club,@agenda_definition) %>
+  

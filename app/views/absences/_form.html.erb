@@ -1,0 +1,32 @@
+<%= form_for([current_club,@member,@absence]) do |f| %>
+  <% if @absence.errors.any? %>
+    <div id="error_explanation" class="alert-box [error]">
+      <h6><%= pluralize(@absence.errors.count, "error") %> prohibited this absence from being saved:</h6>
+
+      <ul>
+      <% @absence.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+	<p>
+	  <%= f.label :start_date %><br>
+	  <%= f.text_field :start_date_display %><br>
+	</p>
+	<p>
+	  <%= f.label :end_date %><br>
+	  <%= f.text_field :end_date_display %><br>
+	</p>
+		<input type=hidden id=member_id value='<%= @member.id %>'/>
+	
+	
+  
+
+
+  <div class="actions">
+    <%= f.submit nil, :class => 'button'   %>
+  </div>
+<% end %>

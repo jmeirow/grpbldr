@@ -1,0 +1,182 @@
+
+
+  
+ <style type='text/css'>
+ 
+ .tr {
+
+  border-bottom-color:black;
+  border-top-color:black;
+
+ }
+ .td {
+
+  text-align:right;
+
+ }
+
+ </style> 
+
+  <div style='width:735px;float:left'>   
+
+    <div id='logo' style='padding-left:20px; ;float:left'>
+      <img src=<%= asset_path "logo.jpeg" %> style='width:120px;height:100px'/>
+    </div>
+
+
+    <div   style='margin-left:150px'>
+
+        <strong>Welcome to our meeting!</strong><br/><br/>
+
+        The mission of a Toastmaster Club is to provide a mutually supportive and positive learning environment in which every member has the opportunity to develop communication and leadership skills, which in turn foster self-confidence and personal growth.
+        <br/><br/>
+    </div>
+  </div>
+
+  <br/>
+  <br/>
+
+
+  <div id='content' style='width:735px'>   
+      <table id='table' cellpadding='5' cellspacing='5'>
+
+        <thead>
+          <tr><th width='70px'>Time</th><th width='370px'>Role / Agenda Item for  <%= @agenda.meeting_date %></th><th width='130px'>Member</th></tr>
+        </thead>
+
+        <tbody>
+
+          <tr><td  valign='top'  >10:00 AM</td><td><strong>President</strong><br/>
+              Leads pledge of allegiance, welcomes guests, summarized club biz, introduces TM of the day
+            </td><td  valign='top' >Club President</td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:06 AM</td><td><strong>Toastmaster</strong><br/>
+                Introduces JokeMaster of the day
+            </td>
+
+            <td  valign='top' ><%= @agenda.member_for('Toastmaster of the Day') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:11 AM</td><td><strong>Joke/Inspiration of the Day</strong><br/>
+              Provides a light-hearted story or joke to kick off the meeting. Returns control to Toastmaster
+            </td><td  valign='top' ><%= @agenda.member_for('Joke/Inspiration of the Day') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:13 AM</td><td><strong>Toastmaster Introduces General Evaluator</strong><br/>
+              General Evaluator explains their role and introduces Evaluation team
+            </td><td  valign='top' ><%= @agenda.member_for('Toastmaster of the Day') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:15 AM</td><td><strong>Word of the Day</strong><br/>
+              Provides the Word of the Day, definition, origin and use in an example sentence. Keeps track of word usage. (OPTIONAL: provide slips of paper with word and definition to members)
+            </td><td  valign='top' ><%= @agenda.member_for('Word of the Day') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:16 AM</td><td><strong>Timer</strong><br/>
+              Keeps the time of each role and reports times when called upon  
+            </td><td  valign='top' ><%= @agenda.member_for('Timer') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:17 AM</td><td><strong>Ah-Counter</strong><br/>
+              Counts "ah","um", and other verbal pauses
+            </td><td  valign='top' ><%= @agenda.member_for('Ah-Counter') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:18 AM</td><td><strong>Grammarian</strong><br/>
+              Keeps track of incorrect and particularly good uses of grammar  
+            </td><td  valign='top' ><%= @agenda.member_for('Grammarian') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:19 AM</td><td><strong>Toastmaster Introduces Table TopicsMaster</strong><br/>
+              Explains Table Topics purpose, invites member participation
+            </td><td><%= @agenda.member_for('Toastmaster of the Day') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:20 AM</td><td><strong>Table Topics Master</strong><br/>
+              The Table TopicsMaster calls upon several members to deliver 1-2 minute impromptu talks on a topic announced right before the member is chosen.
+            </td><td  valign='top' ><%= @agenda.member_for('Table Topics Master') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:30 AM</td><td><strong>Table Topics Master</strong><br/>
+              Asks for Timer's report on TableTopics speech times and Calls for VOTE for Best TableTopics
+            </td><td  valign='top' ><%= @agenda.member_for('Table Topics Master') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:32 AM</td><td><strong>Toastmaster Introduces First Speaker</strong><br/>
+              Toastmaster reads the prepared introduction for the first speaker
+            </td><td  valign='top' ><%= @agenda.member_for('Toastmaster of the Day') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:33 AM</td><td><strong>Speaker #1</strong><br/>
+              The first prepared speech
+            </td><td  valign='top' ><%= @agenda.member_for('Speaker #1') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:40 AM</td><td><strong>Toastmaster Introduces Second Speaker</strong><br/>
+              Toastmaster reads the prepared introduction for the second speaker
+            </td><td  valign='top' ><%= @agenda.member_for('Toastmaster of the Day') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:41 AM</td><td><strong>Speaker #2</strong><br/>
+              The second prepared speech  
+            </td><td  valign='top' ><%= @agenda.member_for('Prepared Speech Speaker #2') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:48 AM</td><td><strong>Toastmaster Introduces Third Speaker</strong><br/>
+              Toastmaster reads the prepared introduction for the third speaker
+            </td><td  valign='top' ><%= @agenda.member_for('Prepared Speech Speaker #2') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >10:55 AM</td><td><strong>Speaker #3</strong><br/>
+              The third prepared speech
+            </td><td  valign='top' ><%= @agenda.member_for('Prepared Speech Speaker #3') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >11:02 AM</td><td><strong>Toastmaster</strong><br/>
+              Asks for Timer's Report on Speeches and Calls for VOTE for "Best Speaker"
+            </td><td  valign='top' ><%= @agenda.member_for('Toastmaster of the Day') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >11:04 AM</td><td><strong>General Evaluator</strong><br/>
+ 
+            </td><td  valign='top' ><%= @agenda.member_for('General Evaluator') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >11:05 AM</td><td><strong>Speech Evaluator #1</strong><br/>
+              Evaluates speaker #1
+            </td><td  valign='top' ><%= @agenda.member_for('Speech Evaluator #1') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >11:08 AM</td><td><strong>Speech Evaluator #2</strong><br/>
+              Evaluates speaker #2
+            </td><td  valign='top' ><%= @agenda.member_for('Speech Evaluator #2') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >11:11 AM</td><td><strong>Speech Evaluator #3</strong><br/>
+              Evaluates speaker #3
+            </td><td  valign='top' ><%= @agenda.member_for('Speech Evaluator #3') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >11:14 AM</td><td><strong>General Evaluator</strong><br/>
+              Asks for Timer's Report on Evaluators and calls for VOTE on Best Evaluator
+            </td><td  valign='top' ><%= @agenda.member_for('General Evaluator') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >11:16 AM</td><td><strong>General Evaluator Completes Meeting Evaluation</strong><br/>
+              General Evaluator calls for reports: Ah-Counter, Grammarian, Lexicologist then provides general meeting &amp; leader evaluations, returns control to the Toastmaster.
+            </td><td  valign='top' ><%= @agenda.member_for('General Evaluator') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >11:26 AM</td><td><strong>Toastmaster Presents Awards</strong><br/>
+              Returns control to the President
+            </td><td  valign='top' ><%= @agenda.member_for('Toastmaster of the Day') %></td>
+          </tr>
+          <tr>
+            <td  valign='top' >11:30 AM</td><td><strong>President</strong><br/>
+              Makes Closing Remarks and Meeting Adjourns  -
+            </td><td  valign='top' >Club President</td>
+          </tr>
+        </tbody>       
+      </table> 
+  </div>

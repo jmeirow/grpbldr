@@ -1,0 +1,327 @@
+
+
+
+<style type="text/css">
+  .demoHeaders { margin-top: 2em; }
+  #dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+  #dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+  ul#icons {margin: 0; padding: 0;}
+  ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+  ul#icons span.ui-icon {float: left; margin: 0 4px;}
+
+  .ui-widget-header {
+  background: red;
+  }
+
+</style>
+
+ 
+
+<% member = current_member %>
+
+<% dcnt = 1 %>
+
+<div style='width:650px;    text-align:center'>
+
+  <% if  notice %>
+    <div class="alert-box success" style='width:635px'>
+      <%= notice %> 
+    </div>
+  <% end %>
+   
+    <div style=' ;background-color:lightgray'>
+      <h4  >Find a Meeting Role </h4> 
+    </div>
+
+    <% if @helper.errors.any? %>
+      <div id="error_explanation" class="alert-box error"  >
+        <h6><%= pluralize(@helper.errors.count, "error") %> prohibited this request from being saved:</h6>
+
+        <ul>
+        <% @helper.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+</div>
+
+
+
+<% if multiple_members? %>
+     <div id="error_explanation"   style='width:620px;background-color:#BA2F39;color:white'>
+    You are a member of multiple GroupBuilder clubs. Continue to use this page to sign up for roles for <%= current_club.name %>. 
+    If you'd like to sign up for roles with visibility into all of your clubs, click <%= 
+          link_to "here", signup_for_role_multi_club_club_member_assignments_path(params[:club_id],params[:member_id]), :style => 'color:white' %>.
+
+    </div>
+ 
+<% end %>
+
+ 
+<%= form_tag  url_for(:controller => 'assignments', :action => 'signup_for_role')  , :method=>:get, :id => 'find_role'  do  %>
+
+
+
+ 
+  <div id='container' style='width:650px'>
+
+    <br/>
+
+    <div id="role" style='float:left;text-align:center'>
+
+
+
+      Select Role You're Looking For:
+
+        <%= 
+            if params[:role].nil?
+            
+                collection_select(:role, :role_id,  
+                              Role.roles_with_groups(@club.id)   , :first, :last, 
+                              :include_blank => 'All roles' ) 
+            else
+
+                collection_select(:role, :role_id,  
+                              Role.roles_with_groups(@club.id)  , :first, :last, 
+                              :selected => params[:role][:role_id] ,
+                              :include_blank => 'All roles' )
+            end
+        %>
+    </div>
+
+    <div id="select" style='text-align:center;float:left;padding-right:10px;padding-left:10px '>
+
+        Show Meetings <br/>Where Role Is:
+
+        <%= 
+              if params[:role].nil?
+              
+                  select_tag(:assignments, 
+                        options_for_select(
+                        [ ['Available', 1], 
+                          ['Available or Filled', 2] 
+                        ])) 
+              else
+                  select_tag(:assignments, 
+                      options_for_select(
+                      [ ['Available', 1], 
+                        ['Available or Filled', 2] 
+                      ],  :selected => params[:assignments] )) 
+              end
+      %>
+    </div>
+
+
+    <% if session[:logged_in_admin] %>
+
+      <div id="select_member" style='text-align:center;float:left;padding-right:0px;padding-left:0px '>
+
+          Sign up on<br/> on behalf of: 
+
+          <%=  collection_select(:selected_member , :member_id,  
+                      Member.where("club_id = ?", current_club.id).order("last_name, first_name")  , 
+                              :id, :full_name,  :include_blank => 'Select From List'  ) %>
+
+
+
+          
+            
+      </div>
+
+    <% end %>
+
+   <div id="free" style='float:left;text-align:center'>
+        Show only dates I'm completely free:
+
+        <% 
+           
+          if  params[:filtered_on_free]== "1" %>
+          <%=check_box_tag 'filtered_on_free', '1', true  %>
+        <% else %>
+           <%=check_box_tag 'filtered_on_free', '1'   %>
+        <% end %>
+   </div>
+     
+   <div style='text-align:center;font-size:7pt;float:left; '>
+        
+        <%= submit_tag 'Save Selection(s)' ,  :id => 'submit_request'%>
+    </div>
+    <br><br>
+     
+     <div style='float:left' >
+      Dates appearing as buttons indicate you're already scheduled for one or more roles. Click the button to display them and then decide if you are able to take on an additional role.
+     </div>
+  </div>
+
+ 
+
+
+  <div style='float:left;width:700px;height:190px;overflow:auto'>  
+    
+    <table style='width:650px'>
+      <thead>
+      <tr>
+        <th>Sign Up!</th>
+        <th>Meeting Date</th>
+        <th>Description</th>
+        <th>Occupant</th>
+        <th>Request Switch</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @requested_information.each do |aa| 
+
+            if   (  (params[:filtered_on_free]=="1" &&  aa.prior_committments.length == 0 )  || ( params[:filtered_on_free]=="0"  ))
+
+              holder = Assignment.member_for_meeting_and_role(aa.meeting.id, aa.role.id) %>
+            <tr>
+
+
+              <!-- Put checkbox here if the role is open -->
+
+              <td> 
+                
+                <%= 
+
+
+                if holder == 'Open'  
+                  check_box_tag   'signup_ids[]', aa.meeting.id.to_s + '_' + aa.role.id.to_s   
+                end  
+              %>
+
+
+             
+
+              </td>
+
+                    
+              <td>
+
+                <%  if holder == 'Open'  && aa.prior_committments.length > 0  
+
+                    x = String.new 
+                    x='<ul>'
+
+                    aa.prior_committments.each do |committment|
+                      x += '<li>' + committment.role.description   + '</li>'
+                    end
+                    x += '</ul>'
+                %>
+
+
+                         <a href='#' id='dialog_link_<%=dcnt%>' class= 'ui-state-default ui-corner-all'   ><%= aa.meeting.meeting_date.strftime("%m/%d/%Y")  %></a>  
+
+                        <script type='text/javascript' >
+
+                          $(function(){
+
+                            // Dialog
+                            $('#dialog_<%=dcnt%>').dialog({
+                              autoOpen: false,
+                              width: 600,
+                              buttons: {
+                                "Ok": function() {
+                                  $(this).dialog("close");
+                                },
+                                "Cancel": function() {
+                                  $(this).dialog("close");
+                                }
+                              }
+                            });
+
+                            // Dialog Link
+                            $('#dialog_link_<%=dcnt%>').click(function(){
+                              $('#dialog_<%=dcnt%>').dialog('open');
+                              return false;
+                            });
+
+                         
+
+                            //hover states on the static widgets
+                            $('#dialog_link_<%=dcnt%>, ul#icons li').hover(
+                              function() { $(this).addClass('ui-state-hover'); },
+                              function() { $(this).removeClass('ui-state-hover'); }
+                            );
+
+                          });
+
+
+                      </script>
+
+                        <div id="dialog_<%=dcnt%>" title="Items Already On Your Calendar"  >
+                          <p>You are already scheduled for the following on <%= aa.meeting.meeting_date.strftime("%m/%d/%Y")  %>:</p>
+                          <p><%=h simple_format(x) %></p>
+                        </div>
+
+
+
+       
+                        <% dcnt = dcnt + 1 %>
+
+                <% else %>
+                  <%= aa.meeting.meeting_date.strftime("%m/%d/%Y")  %>
+                <% end %>
+
+
+              </td>
+              <td><%= aa.role.description %></td>
+              <td><%= holder %></td>
+
+              <!-- put checkbox here if the role is filled (request a switch from current holder) -->
+
+              <td><%=   
+                if holder != 'Open' && holder != member.full_name
+                  check_box_tag  'switch_ids[]', aa.assignment.id.to_s
+                end 
+                %> 
+      
+              </td>
+              
+            </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end  %>
+
+ 
+
+ 
+<script type='text/javascript'>
+
+
+
+  $('#role').change(function() 
+  {
+    $('#find_role').submit()
+
+  });  
+
+
+  
+  $('#free').change(function() 
+  {
+    $('#find_role').submit()
+
+  });
+
+  $('#assignments').change(function() 
+  {
+    $('#find_role').submit()
+ 
+  });  
+  
+  
+  $('#mybutton').click(function() 
+  {
+    $('#did_user_submit').val('true');
+    $('#submit_request').submit()
+
+  });
+  
+ 
+ 
+</script>

@@ -1,0 +1,16 @@
+Dear <%= @member_currently_with_role.first_name %>:
+
+
+A member of <%= @club.name %> has made an inquiry about an upcoming meeting role and would like to know if you would be willing to allow them to fill the role instead. The information is below:
+
+
+Meeting Date: <%= @meeting.meeting_date.strftime("%m/%d/%Y") %>
+Role: <%= @role.description %>
+Requesting Member: <%= @requesting_member.first_name + ' ' + @requesting_member.last_name %> 
+Contact Email: <%= @requesting_member.email %>
+
+Contact the member and let them know if you are able to switch/relinquish this role on this date. 
+
+Remember, you had this role first and are under no obligation to relinquish it.
+
+

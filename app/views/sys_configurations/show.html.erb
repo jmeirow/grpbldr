@@ -1,0 +1,33 @@
+	<% if  notice %>
+		<div class="alert-box success"  style='width:475px'>
+			<%= notice %> 
+		</div>
+	<% end %>
+
+<p>
+  <b>Key:</b>
+  <%= @sys_configuration.config_key %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @sys_configuration.config_value %>
+</p>
+
+
+<p style='width:650px'>
+  <b>Description:</b>
+  <%= @sys_configuration.config_description %>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_sys_configuration_path(@sys_configuration) %> |
+<%= link_to 'Back', sys_configurations_path %>
+
+
+
+
+
+ 

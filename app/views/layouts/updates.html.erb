@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+		
+    
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+
+
+    <title>GroupBuilder &copy; - Release History</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+
+  </head>
+  <body>
+
+      <%= render 'layouts/header' %>
+
+        <%= yield %>
+
+        <%= render 'layouts/footer' %>
+  </body>
+</html>

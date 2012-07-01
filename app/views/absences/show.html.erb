@@ -1,0 +1,28 @@
+ 
+<h4>Show Absence</h4>
+ 
+<div class="alert-box success" >
+<p id="notice"><%= notice %></p>
+</div>
+
+
+	<p>
+	  <%= 'Member Name' %><br>
+	  <%=  @absence.member_full_name %><br>
+	</p>
+	
+	<p>
+	  <%= 'Absence Start Date' %><br>
+	  <%=  @absence.start_date.strftime("%m/%d/%Y") %><br>
+	</p>
+	
+	<p>
+	  <%= 'Absence End Date' %><br>
+	  <%=  @absence.end_date.strftime("%m/%d/%Y") %><br>
+	</p>
+	
+	
+
+
+<%= link_to 'Edit', edit_club_member_absence_path(params[:club_id],@member,@absence) %> |
+<%= link_to 'New Absence', new_club_member_absence_path(params[:club_id],@member) %>

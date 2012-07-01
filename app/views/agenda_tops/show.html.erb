@@ -1,0 +1,48 @@
+
+<% if  notice %>
+  <div class="alert-box success" style='width:475'>
+    <%= notice %> 
+  </div>
+<% end %>
+
+<h2 style='padding-bottom:0px'>Agenda Type:<em> <%= @agenda_definition.name %></em></h2>
+<h4 style='padding-top:0px'>Section:<em> Top Section</em></h4>
+
+
+
+<p>
+  <b>Agenda Definition:</b>
+  <%= @agenda_top.agenda_definition_id %>
+</p>
+
+<p>
+  <b>Heading Text:</b>
+  <%= @agenda_top.heading_text %>
+</p>
+
+<p>
+  <b>Body Text:</b>
+  <%= @agenda_top.body_text %>
+</p>
+
+<p>
+  <b>Image Source:</b>
+  <%= @agenda_top.image_source %>
+</p>
+
+<p>
+  <b>Image Width:</b>
+  <%= @agenda_top.image_width %>
+</p>
+
+<p>
+  <b>Image Height:</b>
+  <%= @agenda_top.image_height %>
+</p>
+
+ 
+
+<%= link_to  "Back To This Agenda's Definition", club_agenda_definition_path(current_club,@agenda_definition) %>
+    
+
+<br/><br/>

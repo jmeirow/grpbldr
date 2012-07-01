@@ -1,0 +1,8 @@
+ 
+<h4>Editing Absence...</h4>
+ 
+
+<%= render 'form' %>
+
+<%= link_to 'Show',club_member_absence_path(params[:club_id],@member,@absence) %> |
+<%= link_to 'Back', club_member_absences_path(params[:club_id],@member) %>

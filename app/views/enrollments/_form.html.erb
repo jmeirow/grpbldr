@@ -1,0 +1,53 @@
+
+<%= form_for( @enrollment,   :class => 'nice') do |f| %>
+
+  <% if @enrollment.errors.any? %>
+       <div id="error_explanation" class="alert-box [error]">
+      <h5><%= pluralize(@enrollment.errors.count, "error") %> prohibited this enrollment from being processed:</h5>
+
+      <ul>
+      <% @enrollment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <br/><br/>
+	<p>
+	  <%= f.label :first_name %> 
+	  <%= f.text_field :first_name %><br>
+	</p>
+	<p>
+	  <%= f.label :last_name %> 
+	  <%= f.text_field :last_name %><br> 
+	</p>
+	<p>
+	  <%= f.label :club_name %> 
+	  <%= f.text_field :club_name %><br> 
+	</p>
+	<!-- <p>
+	  <%= f.label :start_date %><br>
+	  <%= f.text_field :start_date %><br>
+	</p> -->
+	<p>
+	  <%= f.label :email %> 
+	  <%= f.text_field :email %><br> 
+	</p>
+	<p>
+	  <%= f.label :password %> 
+	  <%= f.password_field :password %><br> 
+	</p>
+	
+	<p>
+	  <%= f.label :password_confirmation %> 
+	  <%= f.password_field :password_confirmation %><br> 
+	</p>
+	
+	
+	
+  <div class="actions">
+     <%= f.submit 'Register Club', :class => 'button'   %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+== Welcome Rolemaster
+
+
+This application will allow members of clubs to generate role assignments for future meetings, thus eliminating the 
+reliance on volunteers which is spotty and unpredictable at best.
+
+
+FEATURES TO ADD  
+
+0) add a club table. Modify all current members, roles and meetings to belong to that club.
+1) list all assignments for a member
+2) list all meetings without assignments
+3) Add link on Meetings index page to display assignments for just that meeting
+4) allow optional designation of minimum experience level required for a role and skip assignments of people based on that
+5) ensure the big_member_array is NEVER too short.
+6) add pagination
+7) compare sourcery to devise
+8) checkout active admin vs the other admin package
+

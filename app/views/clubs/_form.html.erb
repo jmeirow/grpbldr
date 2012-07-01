@@ -1,0 +1,36 @@
+
+
+
+
+<%= form_for(@club) do |f| %>
+  <% if @club.errors.any? %>
+       <div id="error_explanation" class="alert-box [error]">
+      <h2><%= pluralize(@club.errors.count, "error") %> prohibited this club from being saved:</h2>
+
+      <ul>
+      <% @club.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ 
+  
+
+	<p>
+	  <%= f.label :name %><br>
+	  <%= f.text_field :name %><br>
+	</p>
+	
+	
+    <p>
+    <%= f.label :email_enabled %><br>
+    <%= f.check_box :email_enabled %><br>
+  </p>
+	
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

@@ -1,0 +1,77 @@
+ 
+<% if  notice %>
+  <div class="alert-box success"  style='width:475px'>
+    <%= notice %> 
+  </div>
+<% end %>
+
+
+ 
+ 
+
+
+
+<div style='float:left; width:565px;margin-top:0px;margin-bottom:10px'>
+ 
+  <h2 style='padding-bottom:0px'>Agenda Type:<em> <%= @agenda_definition.name %></em></h2>
+  <h4 style='padding-top:0px'>Section: <em> Line Items</em></h4>
+
+  <!-- ***********************************************************
+
+   This is the area for links that apply to this page
+
+  **************************************************************** -->
+
+  <div style='float:right;  '>
+    <%= link_to 'New Agenda line item', new_club_agenda_definition_agenda_line_item_path(@club,@agenda_definition) %>
+  </div>
+
+  <br/>
+
+  <div style='float:right; margin-bottom:10px '>
+    <%= link_to 'Back To Line Items Listing',       club_agenda_definition_agenda_line_items_path(@club, @agenda_definition) %> 
+  </div>
+    </br>
+  <div style='margin-left:20px;margin-top:10px;background-color:gray;height:10px;width:550px'>&nbsp;</div>
+</div>
+
+<div style='float:left'>
+
+<br/> 
+
+ 
+<p>
+  <b>Time Format: </b>
+  <%= @agenda_line_item.time_format %>
+</p>
+
+<p>
+  <b>Line Item Heading:</b>
+  <%= @agenda_line_item.line_item_header %>
+</p>
+
+<p>
+  <b>Line Item Body:</b>
+  <%= @agenda_line_item.line_item_text %>
+</p>
+
+
+
+  <b>Line Item Owner:</b>
+  <%= @agenda_line_item.person_display_name %>
+</p>
+
+<p>
+  <b>Line item Owner Data Source:</b>
+  <%= @agenda_line_item.person_display_name_source %>
+</p>
+
+ <p>
+  <b>Duration In Minutes:</b>
+  <%= @agenda_line_item.duration_in_minutes %>
+</p>
+
+
+ </div>
+
+ 

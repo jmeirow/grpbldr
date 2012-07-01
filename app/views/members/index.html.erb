@@ -1,0 +1,71 @@
+ 
+
+<div style='width:550px;    text-align:center'>
+   
+    <div style=' align:center ;background-color:lightgray'>
+      <h4  >Members of <em><%=current_club.name %> </em> </h4> 
+      </div>
+
+	<div style='width:550px'>
+			<div style='float:left'> <%= paginate @members %>   	</div>
+			<div style='float:right'>	
+				<% if session[:logged_in_admin] %>
+					<%= link_to 'New Member', new_club_member_path(params[:club_id]) %>
+				<% end %>	
+
+			</div>	
+	</div>
+
+	<br/>
+	<br/>
+
+
+
+	<table>
+	  <thead>
+	  <tr>
+	    <th>Member</th>
+	    <th>Start Date</th>
+
+	 		<th>Assignments</th>
+	 		<th>Absences</th>
+	 		<th>Show</th>
+	 		<th>Edit</th>
+		</tr>
+	  </thead>
+
+	<tbody>
+
+	<% user = User.find(session[:user_id]) %>
+	<% @members.each do |member| %>
+	  <tr>
+			<td><%= member.full_name %></td>
+			<td><%= member.start_date.strftime("%m/%d/%Y") %></td>
+			<% if session[:logged_in_admin]  or member.email == user.email %>	
+				<td><%= link_to  'Assignments',  club_member_assignments_path(params[:club_id],member) %></td>		
+				<td><%= link_to  'Absences',  club_member_absences_path(params[:club_id],member) %></td>		
+		    <td><%= link_to 'Show', club_member_path(params[:club_id],member) %></td>
+		    <td><%= link_to 'Edit', edit_club_member_path(params[:club_id],member) %></td>
+			<% else %>
+				<td>&nbsp;</td>		
+				<td>&nbsp;</td>		
+			  <td>&nbsp;</td>
+			  <td>&nbsp;</td>
+			  <td>&nbsp;</td>
+			<% end %>
+	  </tr>
+	<% end %>
+	</tbody>
+	</table>
+
+	<br />
+
+</div>
+
+
+
+
+
+
+
+

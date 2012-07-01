@@ -1,0 +1,2 @@
+module MemberAssignmentsHelper
+end

@@ -1,0 +1,37 @@
+
+
+
+<%= form_for([current_club,@meeting,@meeting_note])   do |f| %>
+  <% if @meeting_note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@meeting_note.errors.count, "error") %> prohibited this meeting_note from being saved:</h2>
+
+      <ul>
+      <% @meeting_note.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+
+  <div class="field">
+    <label>Member Name:</label> 
+    <%= current_member.full_name %>
+  </div><br /><br />
+
+  <div class="field">
+    <label>Make This Note Private:</label> 
+    <%= f.check_box :is_private %>
+  </div><br /><br />
+
+  <div class="field">
+    <label>Note Body:</label><br />
+    <%= f.text_area :body %>
+  </div><br /><br />
+
+  <div class="actions">
+    <%= f.submit "Submit Meeting Note" %>
+  </div>
+<% end %>

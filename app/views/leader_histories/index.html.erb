@@ -1,0 +1,31 @@
+<h1>Listing leader_histories</h1>
+
+<table>
+  <tr>
+    <th>Leader</th>
+    <th>Member</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Notes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @leader_histories.each do |leader_history| %>
+  <tr>
+    <td><%= leader_history.leader_id %></td>
+    <td><%= leader_history.member_id %></td>
+    <td><%= leader_history.start_date %></td>
+    <td><%= leader_history.end_date %></td>
+    <td><%= leader_history.notes %></td>
+    <td><%= link_to 'Show', leader_history %></td>
+    <td><%= link_to 'Edit', edit_leader_history_path(leader_history) %></td>
+    <td><%= link_to 'Destroy', leader_history, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Leader history', new_leader_history_path %>

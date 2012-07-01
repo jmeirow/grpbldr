@@ -1,0 +1,74 @@
+
+
+ 
+  <div style='width:550px;    text-align:center;'>
+   
+    <div style=' align:center ;background-color:lightgray'>
+      <h4   > Role Groups for <em> <%=current_club.name %>  </h4>
+    </div>
+    <br/>
+
+    <% if  notice %>
+      <div class="alert-box success" style='width:536px' >
+        <%= notice %> 
+      </div>
+    <% end %>
+
+    <br/>
+
+  </div>
+ 
+
+  <%= form_tag(:controller => 'role_groups', :action => 'create',   :method => "post" ) do %>
+
+  <span style='font-weight:bold;color:black'> Step 1: </span>  
+  Enter new Role Group Name:  
+  <%= text_field_tag(:description) %>
+
+      <select id='role_group_id' name='role_group_id[]' size='<%=@role_groups.length%>' >
+    <% @role_groups.each do |group| %>
+    <option value="<%=group.id%>"><%=group.description%></option>
+    <% end %>
+  </select>
+
+
+  <br/><br/>  
+
+
+
+ <span style='font-weight:bold;color:black'> Step 2: </span>  From the list below, select multiple Roles to be grouped. 
+  <select id='role[role_ids][]'
+          name='role[role_ids][]' class='multiselect' multiple='multiple' size='<%=@roles.length%>' >
+  	<% @roles.each do |role| %>
+		<option value="<%=role.id%>"><%=role.description%></option>
+  	<% end %>
+  </select>
+
+	<br/><br/>
+ <span style='font-weight:bold;color:black'> Step 3: </span>  Click the 'Submit' button below.<br/><br/>
+ <%= submit_tag("Submit")  %>
+
+  <br/><br/>
+
+
+
+
+
+	<br/><br/>
+
+  <input type='hidden' id='club_id' value='<%=params[:club_id]%>' />
+
+  	
+
+  <% end %>
+
+ 
+
+
+
+
+
+<br />
+
+
+

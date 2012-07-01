@@ -1,0 +1,55 @@
+
+
+<div style='padding-left:50px'>
+
+	<%= form_for([ current_club ,@role]  , :class => 'nice') do |f| %>
+		  <% if @role.errors.any? %>
+		    <div id="error_explanation" class="alert-box [error]">
+		      <h2><%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:</h2>
+
+		      <ul>
+		      <% @role.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+
+
+		  <br>
+
+
+
+
+			<label>Role Description:</label>
+			  <%= f.text_field :description %><br>
+			 
+
+		 	<label>Role Minimum Required Experience to Execute Role (in months):</label>
+			  <%= f.text_field :minimum_required_experience %><br>
+		 
+			
+		 
+			 <label>Number of Meetings to Skip Before Assigning Again:</label>
+			 	<%= f.text_field :meetings_to_skip_before_assigning_again %><br>
+
+
+			 <label>Assignable:</label>
+			 	<%= f.check_box :assignable %><br>
+
+
+			<br>
+
+		  <div class="actions">
+		  <%= f.submit nil, :class => 'button'   %>
+		  </div>
+
+
+	 
+
+
+
+		<% end %>
+
+</div>
+			

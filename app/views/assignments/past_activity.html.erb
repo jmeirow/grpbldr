@@ -1,0 +1,49 @@
+
+
+
+ 
+<div style='width:550px;    text-align:center'>
+
+
+
+	 	<div style='align:center; ;background-color:lightgray'>
+		  <h4  >Previous Activity for <em> <%= @member.full_name %></em></h4> 
+  		</div> 
+	
+	<br/>
+
+	<div style='width:600px'>
+			<div style='float:left'> <%= paginate @assignments %></div>
+	</div>
+
+</div>
+
+<br/>
+<br/>
+
+
+<table style='width:550px'>
+  <thead >
+    <th>Date</th>
+    <th>Role</th>
+    <th>Member Assigned</th>
+		<% if session[:logged_in_admin] %>
+			
+       <th style='width:100px'  >Remove <br/>Assignment</th>
+  	<% end %>
+</thead>
+
+<% @assignments.each do |assignment| %>
+	<% @member = Member.find(assignment.member_id) %>
+  <tr>
+		<td><%= assignment.meeting.meeting_date.strftime("%m/%d/%Y") %></td>
+		<td><%= assignment.role.description %></td>
+		<td><%= assignment.member.full_name %></td>
+			<% if session[:logged_in_admin] %>			
+		    <td > <%= link_to 'Remove', club_member_assignment_path(params[:club_id],@member,assignment), confirm: 'Are you sure?', method: :delete %></td>
+			<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />

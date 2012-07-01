@@ -1,0 +1,138 @@
+
+
+ 
+
+<% @club = current_club %>
+<% show_assignments = false %>
+
+
+<div style='width:550px;    text-align:center'>
+   
+    <div style=' align:center ;background-color:lightgray'>
+      <h4  >Meetings for <em><%=current_club.name %></em> </h4> 
+      </div>
+
+  <% if  notice %>
+    <div class="alert-box success" style='width:535px'>
+      <%= notice %> 
+    </div>
+  <% end %>
+
+
+
+   
+
+  <table width='550px'  color='white'>
+
+    <tr style='width:550'>
+      <td > 
+        <%= paginate @meetings %>   
+      </td>
+
+      <td> 
+            <% if params[:show_assignments] == 'true' %>
+              <%= link_to "Hide Assignments", club_meetings_path(@club),:show_assignments => 'false' %><br>
+              <% show_assignments = true %>
+            <% else %>
+              <%= link_to "Show Assignments", club_meetings_path(@club, :show_assignments => 'true') %><br>
+              <% show_assignments = false %>
+            <% end %>
+      </td>
+
+      <td> 
+          <span style='float:right '>  
+              <% if session[:logged_in_admin] %>
+                <%= link_to 'New Meeting', new_club_meeting_path(@club) %>
+              <% end %> 
+           </span>
+      </td>
+    </tr>
+
+  </table>
+
+
+
+  <table style='width:550px'>
+    <thead>
+    <tr>
+      <th>Meeting Date</th>
+      <th>Available Roles</th>
+      <th>Get Agenda</th>
+      <% if session[:logged_in_admin] %>      
+        <th colspan='3'>Add/Change/Delete Meetings</th>
+      <% else %>
+        <th>Show/Notes</th>
+      <% end %>
+      
+
+      
+
+    </tr>
+    </thead>
+
+    <tbody>
+
+
+      <% @meetings.each do |meeting| %>
+            <tr>
+              <td><%= meeting.meeting_date_display %></td>
+              <td><%= meeting.unfilled_roles_count(params[:club_id]) %></td>
+              <td><%=  link_to 'Agenda', club_meeting_print_path(params[:club_id], meeting)  , :target => "_blank" %></td>
+              
+    
+
+                    <td><%= link_to 'Show/Notes', club_meeting_path(params[:club_id],meeting) %></td>
+              <% if session[:logged_in_admin] %>  
+                    <td><%= link_to 'Edit', edit_club_meeting_path(params[:club_id],meeting) %></td>
+                    <td><%= link_to 'Delete', club_meeting_path(params[:club_id],meeting), confirm: 'Are you sure?', method: :delete %></td>
+              <% end %>
+            </tr>
+
+
+            <% if show_assignments %>
+                <tr>
+
+                  <td colspan="5">
+              
+
+                       
+
+                      <% @assignments = Assignment.where("meeting_id = ?", meeting.id).order("role_id") %>
+
+                      <% if @assignments.length > 0 %>
+                          <table>
+                            <thead>
+                                <tr>
+                                   <td>Role</td>
+                                    <td>Assigned To</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+              
+                            <% @assignments.each do |assignment| %>
+                                <% role = Role.find(assignment.role_id) %>
+                                <% member = Member.find (assignment.member_id) %>
+                                <tr>
+                                  <td><%=role.description %></td>
+                                  <td><%=member.full_name %></td>
+                                </tr>
+                            <% end %>
+
+
+                            </tbody>
+                          </table>
+                      <% end %>
+
+
+                    </td>
+                </tr>
+            <% end %>
+        <% end %>
+    
+    </tbody>
+  </table>
+
+</div>
+  
+ 
+

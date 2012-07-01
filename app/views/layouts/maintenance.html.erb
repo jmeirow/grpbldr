@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+  <!-- ***************************************************************** -->
+  <!-- HTML HEAD AREA  -->
+  <!-- ***************************************************************** -->
+
+  <head>
+    <title>GroupBuilder Plus!</title>
+
+    <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" %>
+    <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+
+
+
+
+  
+  </head>
+
+
+
+
+  <!-- ***************************************************************** -->
+  <!-- HTML BODY AREA                                                    -->
+  <!-- ***************************************************************** -->
+
+  <body>
+    
+    <!-- ***************************************************************** -->
+    <!-- If current user is logged in, display user-nav menu area         -->
+    <!-- ***************************************************************** -->    
+    
+    <div style='padding-left:10px;  margin-top:20px; ' >
+       
+       <span style='font-size:20pt'>GroupBuilder </span>
+
+        
+
+       Version 0.5.1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style-'width:600px;float:right'> <a href='/updates/new' target='_blank'>What's new? Software updates</a></span> 
+
+       <hr style="height:5px;border:none;background-color:green;color:green" />
+
+        <div class='container' style='margin-top:20px; margin-left:15px;padding-right:200px; '>
+
+          <div style='float:left'>    
+           
+    
+
+
+
+
+         <!-- ***************************************************************** -->
+         <!-- Yield below... this is where the currently selected view displays -->
+         <!-- ***************************************************************** -->
+
+        
+         <div class='container' style='margin-left:200px'  >
+          <%= yield %>
+
+
+        </div>
+
+      </div>
+
+
+     </div>
+      
+
+  </body>
+
+</html>

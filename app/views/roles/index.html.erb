@@ -1,0 +1,65 @@
+ 
+ 
+  <div style='width:550px;    text-align:center; '>
+    <div style=' align:center ;background-color:lightgray'>
+      <h4>  Meeting Roles for <em> <%=current_club.name %> </em>  </h4>
+    </div>
+    <br/>
+
+    <div style='width:550px'>
+        <div style='float:left'> <%= paginate @roles %>     </div>
+        <span style='float:right'>  
+        <% if session[:logged_in_admin] %>
+          <%= link_to 'New Role', new_club_role_path(@club) %>
+        <% end %> 
+        </span>
+
+    </div>
+
+    <br/>
+
+  </div>
+  <br>
+   
+
+   
+  <table width='500px'>
+    <thead>
+    <tr>
+      <th>Role Description</th>
+
+      <th>Minimum<br>Experience<br>(Months)</th>
+      <th>Meetings<br>Between<br>Assignment</th>
+      <th>Assignable</th>
+      
+      <% if session[:logged_in_admin] %>      
+        <th colspan='3'>Add/Change/Delete Roles</th>
+      <% end %>
+    </tr>
+    </thead>
+
+
+
+  <tbody>
+  <% @roles.each do |role| %>
+    <tr>
+      <td><%= role.description %></td>
+      <td><%= role.minimum_required_experience %></td>
+      <td><%= role.meetings_to_skip_before_assigning_again %></td>
+      <td><%= role.assignable %></td>
+      
+        
+      <% if session[:logged_in_admin] %>      
+       <td><%= link_to 'Show', club_role_path(params[:club_id],role) %></td>
+        <td><%= link_to 'Edit', edit_club_role_path(params[:club_id],role) %></td>
+        <td><%= link_to 'Delete', club_role_path(params[:club_id],role), confirm: 'Are you sure?', method: :delete %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+  </table>
+
+  <br />
+ 
+
+
