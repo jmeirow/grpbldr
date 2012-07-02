@@ -17,6 +17,9 @@
 /vendor/*.yml
 
 
+/public/assets
+
+
 
 
 log/*.log
