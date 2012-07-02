@@ -20,6 +20,8 @@ Rolemaster::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.assets.enabled = false
+  
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
