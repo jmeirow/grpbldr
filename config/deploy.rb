@@ -7,7 +7,7 @@ server '50.116.43.172', :web, :app, :db, primary: true
 set :application, "grpbldr"
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
-#set :deploy_via, :remote_cache
+set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, :git
@@ -50,12 +50,26 @@ namespace :deploy do
     end
   end
   before "deploy", "deploy:check_revision"
+
+  after "deploy:restart", "deploy:cleanup"
+
+  namespace :assets do
+    desc "Precompile assets on local machine and upload them to the server."
+    task :precompile, roles: :web, except: {no_release: true} do
+      run_locally "bundle exec rake assets:precompile"
+      find_servers_for_task(current_task).each do |server|
+        run_locally "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{server.host}:#{shared_path}/"
+      end
+    end
+  end
+
+
 end
 
 
 
 # if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
@@ -68,3 +82,7 @@ end
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
+
+ 
+
+

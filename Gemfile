@@ -26,7 +26,6 @@ gem 'hirb'
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'mail'
 gem 'iron_worker'
-gem 'therubyracer' 
 gem 'execjs'
 
 
@@ -34,6 +33,7 @@ group :development, :test do
     gem 'rspec' 
     gem 'rspec-rails' 
     gem 'factory_girl'
+    gem 'therubyracer' 
 end
 
 
