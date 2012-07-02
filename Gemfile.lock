@@ -211,6 +211,7 @@ DEPENDENCIES
   chronic
   coffee-rails (~> 3.2.2)
   eventmachine
+  execjs
   factory_girl
   heroku
   hirb

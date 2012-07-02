@@ -27,7 +27,7 @@ gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'mail'
 gem 'iron_worker'
 gem 'therubyracer' 
-#gem 'execjs'
+gem 'execjs'
 
 
 group :development, :test do
