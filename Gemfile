@@ -1,13 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.6'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-group :development  do
-  gem 'sqlite3'
-end
  
  
 gem 'pg', '0.14.0'
@@ -28,14 +25,9 @@ gem 'ori'
 gem 'hirb'
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'mail'
-
 gem 'iron_worker'
 gem 'therubyracer' 
- 
-
-
- 
-gem 'execjs'
+#gem 'execjs'
 
 
 group :development, :test do
