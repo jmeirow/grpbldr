@@ -1,4 +1,5 @@
 require File.expand_path('../boot', __FILE__)
+require "sprockets/railtie"
 
 require 'rails/all'
 

@@ -10,4 +10,4 @@
 //= require modernizr.foundation
 //= require foundation
 //= require railsthemes_envy
-//= require "sprockets/railtie"
+ 
