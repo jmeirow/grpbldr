@@ -7,7 +7,5 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require modernizr.foundation
-//= require foundation
-//= require railsthemes_envy
+//= require_tree .
  
