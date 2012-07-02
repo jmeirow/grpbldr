@@ -9,4 +9,5 @@
  *= require railsthemes_envy_ie
  *= require railsthemes_envy_overrides
  *= require_self
+ *= require "sprockets/railtie"
 */
