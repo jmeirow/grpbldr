@@ -6,7 +6,7 @@ class TestEmailWorker  < IronWorker::Base
 
   attr_accessor :x, :message   
 
-  merge_gem 'actionmailer',{:require=>'action_mailer',:version=>'3.2.3'}
+  merge_gem 'action_mailer',{:require=>'action_mailer',:version=>'3.2.3'}
 
 
   merge_mailer 'app/mailers/test_mailer', {'app/views/test_mailer'=>"test"}
