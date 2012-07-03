@@ -20,6 +20,8 @@
 /public/assets
 /public/assets/*
 /public/assets/app*
+/public/assets/application.*
+/public/assets/application.*
 
 
 

@@ -206,6 +206,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionmailer
   bcrypt-ruby
   capistrano
   chronic
