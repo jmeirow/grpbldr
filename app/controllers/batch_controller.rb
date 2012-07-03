@@ -1,7 +1,4 @@
-#require 'custom/batch_worker.rb'
-#require 'custom/email_worker.rb' 
-#require 'custom/smtp_config.rb'
-
+ 
 
 
 
@@ -13,31 +10,13 @@ class BatchController <  ApplicationController
 
   def bootstrap
 
-    if current_user_is_super_user?  
-     
-      worker = BatchWorker.new
-      worker.configure(ENV['GB_BATCH_RUN_URL'])
-       
-      if Rails.env.production?
-        worker.schedule(
-         :start_at=>1.minutes.from_now,
-         :run_every=>15)
-      else
-        worker.run
-      end
-      end
-
+    
 
   end
 
 
   def run
-    if current_user_is_super_user?  
-      worker = EmailWorker.new
-      worker.configure_smtp(SmtpConfig.new)
-      worker.message = "Subject: Invoked from URL\n\nMessage sent at #{Time.now.strftime('%H:%l:%S')}"
-      worker.queue
-      end
+    
 
   end
 

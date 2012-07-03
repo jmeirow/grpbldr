@@ -26,7 +26,7 @@ gem 'ori'
 gem 'hirb'
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'mail'
-gem 'iron_worker'
+ 
 gem 'execjs'
 
 
