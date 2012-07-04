@@ -58,7 +58,11 @@ $whitesmoke7: #f7f7f7;
 $whitesmoke8: #f9f9f9;
 $white: #ffffff;
 
-$header-background: $darkolivegreen4;
+
+
+
+
+$header-background: $lightseagreen;
 $header-button-text: $white;
 $header-button-border: $dimgray1;
 
@@ -79,6 +83,7 @@ $h6-text: $black5;
 $jquery-ui-heading-text: $darkolivegreen5;
 $jquery-ui-highlight: $darkolivegreen4;
 $jquery-ui-border: $yellowgreen1;
+$jquery-ui-bar-background: $darkolivegreen2;
 
 $h2-sidebar-title-text: $darkolivegreen5;
 $h3-sidebar-title-text: $lightgray3;
@@ -116,6 +121,7 @@ $form-input-border: $silver2;
 $form-input-background: $white;
 $form-input-focus-background: $whitesmoke8;
 $form-input-disabled-background: $gainsboro2;
+$form-placeholder-text: $darkgray3;
 $form-label-text: $black1;
 $form-hint-text: $gray1;
 
@@ -125,7 +131,11 @@ $pagination-hover-border: $black1;
 $pagination-disabled-text: $gray1;
 
 $table-head-text: $black6;
+$table-body-text: $black6;
 $table-border: $whitesmoke4;
+$table-background: $whitesmoke6;
+$table-body-background: $white; //clarify variable meaning
+$table-alternating-background: $whitesmoke8;
 
 $notice-text: $darkolivegreen4;
 $notice-background: $whitesmoke3;
@@ -136,3 +146,4 @@ $footer-h4-text: $darkolivegreen5;
 $footer-nav-link-text: $dimgray2;
 $footer-background: $whitesmoke1;
 $footer-column-border: $silver1;
+

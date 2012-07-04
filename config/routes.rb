@@ -135,4 +135,7 @@ Rolemaster::Application.routes.draw do
 
     
 
+  match 'railsthemes/landing' => 'railsthemes#landing'
+  match 'railsthemes/inner' => 'railsthemes#inner'
+  match 'railsthemes/jquery_ui' => 'railsthemes#jquery_ui'
 end

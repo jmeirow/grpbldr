@@ -1,3 +1,8 @@
+// This file is included as part of the Envy theme from
+// RailsThemes.com, which is licensed for use in a single website. The
+// license can be found in the doc folder of this application or at
+// railsthemes.com/terms.
+
 @import "railsthemes_envy/base";
 
 /* Foundation v2.2 http://foundation.zurb.com */
@@ -73,16 +78,16 @@ time, mark, audio, video {
 
 
 
-  body { background: $white; font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size: 13px; line-height: 18px; color: $dimgray3; position: relative; -webkit-font-smoothing: antialiased; }
+  body { background: $content-background; font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size: 13px; line-height: 18px; color: $dimgray3; position: relative; -webkit-font-smoothing: antialiased; }
 
 
 
   /*    --------------------------------------------------
   :: Links
   -------------------------------------------------- */
-a { color: $royalblue; text-decoration: none; line-height: inherit; }
-a:hover { color: $lightseagreen; }
-a:focus { color: $darkorange; outline: none; }
+a { color: $link-text; text-decoration: none; line-height: inherit; }
+a:hover { color: $link-hover-text; }
+a:focus { color: $link-hover-text; outline: none; }
 p a, p a:visited { line-height: inherit; }
 
 
@@ -103,9 +108,9 @@ ul.large li { line-height: 21px; }
 /*    --------------------------------------------------
 :: Tables
 -------------------------------------------------- */
-table { background: $whitesmoke6; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; margin: 0 0 18px; border: 1px solid $gainsboro2;  }
+table { background: $table-body-background; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; margin: 0 0 18px; border: 1px solid $gainsboro2;  }
 
-table thead, table tfoot { background: $whitesmoke6; }
+table thead, table tfoot { background: $table-background; }
 table thead tr th,
 table tfoot tr th,
 table tbody tr td,
@@ -117,9 +122,9 @@ table thead tr th:first-child, table tfoot tr td:first-child { border-left: none
 table thead tr th:last-child, table tfoot tr td:last-child { border-right: none; }
 
 table tbody tr.even,
-table tbody tr.alt { background: $whitesmoke8; }
-table tbody tr:nth-child(even) { background: $whitesmoke8; }
-table tbody tr td { color: $black6; padding: 9px 10px; vertical-align: top; border: none; }
+table tbody tr.alt { background: $table-alternating-background; }
+table tbody tr:nth-child(even) { background: $table-alternating-background; }
+table tbody tr td { color: $table-body-text; padding: 9px 10px; vertical-align: top; border: none; }
 
 /* --------------------------------------------------
 :: Misc
@@ -351,7 +356,7 @@ Buttons
   display: inline-block;
   text-align: center;
   padding: 9px 34px 11px;
-  color: $white;
+  color: $button-text;
   text-decoration: none;
   font-weight: bold;
   font-size: 13px; font-size: 1.3rem;
@@ -467,7 +472,7 @@ Buttons
   Alerts
   -------------------------------------------------- */
 
-div.alert-box { display: block; padding: 6px 7px; font-weight: bold; font-size: 13px; background: $whitesmoke3; border: 1px solid rgba(0,0,0,0.1); margin-bottom: 12px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; text-shadow: 0 1px rgba(255,255,255,0.9); position: relative; }
+div.alert-box { display: block; padding: 6px 7px; font-weight: bold; font-size: 13px; background: $notice-background; border: 1px solid rgba(0,0,0,0.1); margin-bottom: 12px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; text-shadow: 0 1px rgba(255,255,255,0.9); position: relative; }
 .alert-box.success { background-color: $olive1; color: $white; text-shadow: 0 -1px rgba(0,0,0,0.3); }
 .alert-box.warning { background-color: $mediumorange; color: $white; text-shadow: 0 -1px rgba(0,0,0,0.3); }
 .alert-box.error { background-color: $darkred1; color: $white; text-shadow: 0 -1px rgba(0,0,0,0.3); }
@@ -479,16 +484,16 @@ div.alert-box { display: block; padding: 6px 7px; font-weight: bold; font-size: 
 Labels
 -------------------------------------------------- */
 
-.label { padding: 0 4px 2px; font-size: 11px; font-weight: bold; text-align: center; text-decoration: none; line-height: 1;  white-space: nowrap; display: inline; position: relative; bottom: 1px; color: $white; background: $deepskyblue3; }
-.label.radius { -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; }
-.label.round { padding: 1px 7px 2px; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }
+span.label { padding: 0 4px 2px; font-size: 11px; font-weight: bold; text-align: center; text-decoration: none; line-height: 1;  white-space: nowrap; display: inline; position: relative; bottom: 1px; color: $white; background: $deepskyblue3; }
+span.label.radius { -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; }
+span.label.round { padding: 1px 7px 2px; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }
 
 /* Colors ---------- */
-.blue.label                { background-color: $deepskyblue3; }
-.red.label                { background-color: $crimson1; }
-.green.label            { background-color: $olive1; }
-.white.label            { background-color: $gainsboro4; color: $black6; }
-.black.label            { background-color: $black2; }
+span.blue.label                { background-color: $deepskyblue3; }
+span.red.label                { background-color: $crimson1; }
+span.green.label            { background-color: $olive1; }
+span.white.label            { background-color: $gainsboro4; color: $black6; }
+span.black.label            { background-color: $black2; }
 
 
 /*    --------------------------------------------------
@@ -533,10 +538,10 @@ ul.nice.contained.tabs-content>li { border-color: $whitesmoke3; }
 Pagination
 -------------------------------------------------- */
 ul.pagination { display: block; height: 24px; margin-left: -5px; }
-ul.pagination li { float: left; display: block; height: 24px; color: $gray1; font-size: 15px; margin-left: 5px; }
-ul.pagination li a { display: block; padding: 6px 7px 4px; color: $dimgray3; }
-ul.pagination li.current a, ul.pagination li:hover a, ul.pagination li a:focus { border-bottom: solid 2px $deepskyblue3; color: $black2; }
-ul.pagination li.unavailable a { cursor: default; color: $gray1; }
+ul.pagination li { float: left; display: block; height: 24px; color: $pagination-disabled-text; font-size: 15px; margin-left: 5px; }
+ul.pagination li a { display: block; padding: 6px 7px 4px; color: $pagination-link-text; }
+ul.pagination li.current a, ul.pagination li:hover a, ul.pagination li a:focus { border-bottom: solid 2px $deepskyblue3; color: $pagination-hover-text; }
+ul.pagination li.unavailable a { cursor: default; color: $pagination-disabled-text; }
 ul.pagination li.unavailable:hover a, ul.pagination li.unavailable a:focus { border-bottom: none; }
 
 /*  --------------------------------------------------
@@ -772,21 +777,21 @@ Standard Forms
 form { margin: 0 0 18px; }
 form label { display: block; font-size: 13px; line-height: 18px; cursor: pointer; margin-bottom: 9px; }
 
-input.input-text, textarea { border-right: 1px solid $silver2; border-bottom: 1px solid $silver2; }
+input.input-text, textarea { border-right: 1px solid $form-input-border; border-bottom: 1px solid $form-input-border; }
 input.input-text, textarea, select { display: block; margin-bottom: 9px; }
 label + input.input-text, label + textarea, label + select, label + div.dropdown, select + div.dropdown { margin-top: -9px; }
 
 /* Text input and textarea font and padding */
-input.input-text, textarea { font-size: 13px; padding: 4px 3px 2px; background: $white; }
+input.input-text, textarea { font-size: 13px; padding: 4px 3px 2px; background: $form-input-background; }
 input.input-text:focus, textarea:focus { outline: none !important; }
 input.input-text.oversize, textarea.oversize { font-size: 18px !important; padding: 4px 5px !important; }
-input.input-text:focus, textarea:focus { background: $whitesmoke8; }
+input.input-text:focus, textarea:focus { background: $form-input-focus-background; }
 
 /* Text input and textarea, disabled */
-input.input-text[disabled], textarea[disabled] { background-color: $gainsboro2; }
+input.input-text[disabled], textarea[disabled] { background-color: $form-input-disabled-background; }
 
 /* Inlined Label Style */
-input.placeholder, textarea.placeholder { color: $darkgray3; }
+input.placeholder, textarea.placeholder { color: $form-placeholder-text; }
 
 /* Text input and textarea sizes */
 input.input-text, textarea { width: 254px; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; }
@@ -796,15 +801,15 @@ input.large, textarea.large { width: 434px; }
 input.expand, textarea.expand { width: 100%; }
 
 /* Fieldsets */
-form fieldset { padding: 9px 9px 2px 9px; border: solid 1px $gainsboro2; margin: 18px 0; }
+form fieldset { padding: 9px 9px 2px 9px; border: solid 1px $form-border; margin: 18px 0; }
 
 /* Inlined Radio & Checkbox */
 .form-field input[type=radio], div.form-field input[type=checkbox] { display: inline; width:auto; margin-bottom:0; }
 
 /* Errors */
-.form-field.error input, input.input-text.red { border-color: $darkred1; background-color: rgba(255,0,0,0.15); }
-.form-field.error label, label.red { color: $darkred1; }
-.form-field.error small, small.error { margin-top: -6px; display: block; margin-bottom: 9px; font-size: 11px; color: $darkred1; width: 254px; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; }
+.form-field.error input, input.input-text.red { border-color: $error-input-border; background-color: rgba(255,0,0,0.15); }
+.form-field.error label, label.red { color: $error-text; }
+.form-field.error small, small.error { margin-top: -6px; display: block; margin-bottom: 9px; font-size: 11px; color: $error-text; width: 254px; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; }
 
 .small + small.error { width: 134px; }
 .medium + small.error { width: 254px; }
@@ -819,18 +824,18 @@ form fieldset { padding: 9px 9px 2px 9px; border: solid 1px $gainsboro2; margin:
 /* -----------------------------------------
 Nicer Forms
 ----------------------------------------- */
-form.nice div.form-field input, form.nice input.input-text, form.nice textarea { border: solid 1px $silver2; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; }
-form.nice div.form-field input, form.nice input.input-text, form.nice textarea { font-size: 13px; padding: 6px 3px 4px; outline: none !important; background: url(image-path('misc/input-bg.png')) $white; }
-form.nice div.form-field input:focus, form.nice input.input-text:focus, form.nice textarea:focus { background-color: $whitesmoke8; }
+form.nice div.form-field input, form.nice input.input-text, form.nice textarea { border: solid 1px $form-input-border; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; }
+form.nice div.form-field input, form.nice input.input-text, form.nice textarea { font-size: 13px; padding: 6px 3px 4px; outline: none !important; background: url(image-path('misc/input-bg.png')) $form-input-background; }
+form.nice div.form-field input:focus, form.nice input.input-text:focus, form.nice textarea:focus { background-color: $form-input-focus-background; }
 
 /* Text input and textarea, disabled */
-form.nice div.form-field input[disabled], form.nice input.input-text[disabled], form.nice textarea[disabled] { background-color: $gainsboro2; }
+form.nice div.form-field input[disabled], form.nice input.input-text[disabled], form.nice textarea[disabled] { background-color: $form-input-disabled-background; }
 
 form.nice fieldset { border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; }
 
 form.nice div.form-field input[type=radio], form.nice div.form-field input[type=checkbox] { display: inline; width:auto; margin-bottom:0; }
 
-form.nice div.form-field.error small, form.nice small.error { padding: 6px 4px; border: solid 0 $darkred1; border-width: 0 1px 1px 1px; margin-top: -10px; background: $darkred1; color: $white; font-size: 12px; font-weight: bold; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; -webkit-border-bottom-left-radius: 2px; -webkit-border-bottom-right-radius: 2px; -moz-border-radius-bottomleft: 2px; -moz-border-radius-bottomright: 2px; }
+form.nice div.form-field.error small, form.nice small.error { padding: 6px 4px; border: solid 0 $error-input-border; border-width: 0 1px 1px 1px; margin-top: -10px; background: $error-input-border; color: $white; font-size: 12px; font-weight: bold; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; -webkit-border-bottom-left-radius: 2px; -webkit-border-bottom-right-radius: 2px; -moz-border-radius-bottomleft: 2px; -moz-border-radius-bottomright: 2px; }
 
 form.nice div.form-field.error .small + small, form.nice .small + small.error { width: 132px; }
 form.nice div.form-field.error .medium + small, form.nice .medium + small.error { width: 252px; }
@@ -851,11 +856,11 @@ form.custom span.custom.checkbox.checked { background-position: 0 -28px; }
 
 form.custom div.custom.dropdown { display: block; position: relative; width: auto; height: 28px; margin-bottom: 9px; margin-top: 2px; }
 form.custom div.custom.dropdown a.current { display: block; width: auto; line-height: 26px; min-height: 26px; padding: 0 38px 0 6px; border: solid 1px $gainsboro2; color: $black2; background-color: $white; }
-form.custom div.custom.dropdown a.selector { position: absolute; width: 26px; height: 26px; display: block; background: url(image-path('misc/custom-form-sprites.png')) -14px 1px no-repeat; right: 0; top: 0; border: solid 1px $gainsboro2; }
+form.custom div.custom.dropdown a.selector { position: absolute; width: 26px; height: 26px; display: block; background: url(image-path('misc/custom-form-sprites.png')) -14px 1px no-repeat; right: 0; top: 0; border: solid 1px $form-border; }
 form.custom div.custom.dropdown:hover a.selector,
 form.custom div.custom.dropdown.open a.selector { background-position: -14px -26px; }
 
-form.custom div.custom.dropdown ul { position: absolute; width: auto; display: none; margin: 0; left: 0; top: 27px; margin: 0; padding: 0; background: $white; background: rgba(255,255,255,0.95); border: solid 1px $gainsboro2; }
+form.custom div.custom.dropdown ul { position: absolute; width: auto; display: none; margin: 0; left: 0; top: 27px; margin: 0; padding: 0; background: $white; background: rgba(255,255,255,0.95); border: solid 1px $form-border; }
 form.custom div.custom.dropdown ul li { cursor: pointer; padding: 3px 38px 3px 6px; min-height: 18px; margin: 0; white-space: nowrap}
 form.custom div.custom.dropdown ul li.selected { background: url(image-path('misc/custom-form-sprites.png')) right -52px no-repeat; }
 form.custom div.custom.dropdown ul li:hover { background-color: $royalblue; color: $white; }
@@ -1392,7 +1397,7 @@ button.button, input[type="submit"].button { width: 100%; padding-left: 0; paddi
     .nav-bar>li:first-child>a.main { border-top: none; }
     .nav-bar>li.has-flyout>a.flyout-toggle { position: absolute; right: 0; top: 0; padding: 22px; z-index: 2; border-left: 1px dashed $whitesmoke3; display: block; }
     .nav-bar>li.has-flyout>a.flyout-toggle span { content: ""; width: 0; height: 0; border-left: 4px solid transparent;border-right: 4px solid transparent; border-top: 4px solid $royalblue; display: block; }
-    .nav-bar>li.has-flyout>a.flyout-toggle:hover span { border-top-color: $black2; }
+    .nav-bar>li.has-flyout>a.flyout-toggle:hover span { border-top-color: $pagination-hover-text; }
 
     .flyout { position: relative; width: auto; top: auto; margin-right: -2px; border-width: 1px 1px 0 1px; }
     .flyout.right { float: none; right: auto; left: -1px; }

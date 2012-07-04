@@ -1,4 +1,16 @@
+// This file is included as part of the Envy theme from
+// RailsThemes.com, which is licensed for use in a single website. The
+// license can be found in the doc folder of this application or at
+// railsthemes.com/terms.
+
 @import "railsthemes_envy/base";
+
+// Note: We leave this file similar to the original jquery-ui theme roller
+// generated css regardless of whether you are using scss or css.
+// This will help you if you choose to regenerate the theme later
+
+
+
 /*!
  * jQuery UI CSS Framework 1.8.20
  *
@@ -68,7 +80,7 @@
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: $button-text; text-decoration: none; }
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid $button-hover-background; background: $button-hover-background url(image-path('jquery_ui/ui-bg_inset-soft_50_ffa500_1x100.png')) 50% 50% repeat-x; font-weight: bold; color: $header-button-text; }
 .ui-state-hover a, .ui-state-hover a:hover { color: $button-hover-text; text-decoration: none; }
-.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid $jquery-ui-border; background: $whitesmoke6 url(image-path('jquery_ui/ui-bg_highlight-hard_100_f5f5f5_1x100.png')) 50% 50% repeat-x; font-weight: bold; color: $jquery-ui-heading-text; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid $jquery-ui-border; background: $whitesmoke6; font-weight: bold; color: $jquery-ui-heading-text; }
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: $jquery-ui-heading-text; text-decoration: none; }
 .ui-widget :active { outline: none; }
 
@@ -564,3 +576,18 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
  */
 .ui-progressbar { height:2em; text-align: left; overflow: hidden; }
 .ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }
+
+
+/* RailsThemes Stormy Tweaks */
+// jQueryUI changes that are not color related go here:
+
+.ui-state-error, .ui-state-highlight {
+  p:last-child {
+    line-height: 16px; margin: 0.5em 0;
+  }
+}
+
+.ui-slider-range, .ui-progressbar-value {
+  background: none;
+  background-color: $jquery-ui-bar-background;
+}
