@@ -34,7 +34,7 @@ namespace :deploy do
     put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
     puts "Now edit the config files in #{shared_path}."
   end
-  after "deploy:setup", "deploy:setup_config"4
+  after "deploy:setup", "deploy:setup_config"
 
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
@@ -53,15 +53,15 @@ namespace :deploy do
 
   after "deploy:restart", "deploy:cleanup"
 
-  namespace :assets do
-    desc "Precompile assets on local machine and upload them to the server."
-    task :precompile, roles: :web, except: {no_release: true} do
-      run_locally "bundle exec rake assets:precompile"
-      find_servers_for_task(current_task).each do |server|
-        run_locally "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{server.host}:#{shared_path}/"
-      end
-    end
-  end
+  # namespace :assets do
+  #   desc "Precompile assets on local machine and upload them to the server."
+  #   task :precompile, roles: :web, except: {no_release: true} do
+  #     run_locally "bundle exec rake assets:precompile"
+  #     find_servers_for_task(current_task).each do |server|
+  #       run_locally "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{server.host}:#{shared_path}/"
+  #     end
+  #   end
+  # end
 
 
 end
