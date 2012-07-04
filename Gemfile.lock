@@ -57,7 +57,7 @@ GEM
       multi_json (~> 1.0)
     factory_girl (3.5.0)
       activesupport (>= 3.0.0)
-    heroku (2.28.7)
+    heroku (2.28.8)
       heroku-api (~> 0.2.6)
       launchy (>= 0.3.2)
       netrc (~> 0.7.5)
@@ -131,6 +131,9 @@ GEM
       activesupport (= 3.2.6)
       bundler (~> 1.0)
       railties (= 3.2.6)
+    railsthemes (1.0.4)
+      rest-client
+      thor
     railties (3.2.6)
       actionpack (= 3.2.6)
       activesupport (= 3.2.6)
@@ -186,9 +189,6 @@ GEM
       rack
       raindrops (~> 0.7)
     yard (0.8.2.1)
-    zurb-foundation (2.2.1.2)
-      jquery-rails (>= 1.0)
-      railties (>= 3.1.0, < 4.0)
 
 PLATFORMS
   ruby
@@ -216,6 +216,7 @@ DEPENDENCIES
   pry-stack_explorer
   pry_debug
   rails (= 3.2.6)
+  railsthemes
   rspec
   rspec-rails
   sass-rails (~> 3.2.5)
@@ -224,4 +225,3 @@ DEPENDENCIES
   tzinfo
   uglifier (>= 1.0.3)
   unicorn
-  zurb-foundation

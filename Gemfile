@@ -26,7 +26,8 @@ gem 'ori'
 gem 'hirb'
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'mail'
- 
+gem 'railsthemes'
+
 gem 'execjs'
 
 
@@ -44,7 +45,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.5'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.0.3'
-  gem 'zurb-foundation'
+  #gem 'zurb-foundation'
 end
 
 gem 'jquery-rails'
