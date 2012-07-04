@@ -2,48 +2,522 @@
  * This is a manifest file that'll automatically include all the stylesheets available in this directory
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
-
-
-
-
  
+
+
+
+
+
+
+
+
 
 */
 
-/* line 2, ../../../app/assets/stylesheets/railsthemes_envy/kaminari.css.scss */
-nav.pagination {
-  display: block;
-  height: 24px;
-  margin-left: -5px;
+/*! normalize.css 2012-03-11T12:53 UTC - http://github.com/necolas/normalize.css */
+
+/* =============================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/*
+ * Corrects block display not defined in IE6/7/8/9 & FF3
+ */
+
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+    display: block;
 }
-/* line 6, ../../../app/assets/stylesheets/railsthemes_envy/kaminari.css.scss */
-nav.pagination span {
-  float: left;
-  display: block;
-  height: 24px;
-  color: #999999;
-  font-size: 15px;
-  margin-left: 5px;
+
+/*
+ * Corrects inline-block display not defined in IE6/7/8/9 & FF3
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
 }
-/* line 13, ../../../app/assets/stylesheets/railsthemes_envy/kaminari.css.scss */
-nav.pagination span a {
-  display: block;
-  padding: 0px 7px 4px;
-  color: #555555;
-  text-decoration: none;
+
+/*
+ * Prevents modern browsers from displaying 'audio' without controls
+ * Remove excess height in iOS5 devices
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
 }
-/* line 18, ../../../app/assets/stylesheets/railsthemes_envy/kaminari.css.scss */
-nav.pagination span.current a, nav.pagination span:hover a, nav.pagination span a:focus {
-  border-bottom: solid 2px black;
-  color: #141414;
+
+/*
+ * Addresses styling for 'hidden' attribute not present in IE7/8/9, FF3, S4
+ * Known issue: no IE6 support
+ */
+
+[hidden] {
+    display: none;
 }
-/* line 21, ../../../app/assets/stylesheets/railsthemes_envy/kaminari.css.scss */
-nav.pagination .next, nav.pagination .prev {
-  font-weight: bold;
+
+
+/* =============================================================================
+   Base
+   ========================================================================== */
+
+/*
+ * 1. Corrects text resizing oddly in IE6/7 when body font-size is set using em units
+ *    http://clagnut.com/blog/348/#c790
+ * 2. Prevents iOS text size adjust after orientation change, without disabling user zoom
+ *    www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
+ */
+
+html {
+    font-size: 100%; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+    -ms-text-size-adjust: 100%; /* 2 */
 }
-/* line 23, ../../../app/assets/stylesheets/railsthemes_envy/kaminari.css.scss */
-nav.pagination .first, nav.pagination .last {
-  font-style: italic;
+
+/*
+ * Addresses font-family inconsistency between 'textarea' and other form elements.
+ */
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+}
+
+/*
+ * Addresses margins handled incorrectly in IE6/7
+ */
+
+body {
+    margin: 0;
+}
+
+
+/* =============================================================================
+   Links
+   ========================================================================== */
+
+/*
+ * Addresses outline displayed oddly in Chrome
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/*
+ * Improves readability when focused and also mouse hovered in all browsers
+ * people.opera.com/patrickl/experiments/keyboard/test
+ */
+
+a:hover,
+a:active {
+    outline: 0;
+}
+
+
+/* =============================================================================
+   Typography
+   ========================================================================== */
+
+/*
+ * Addresses font sizes and margins set differently in IE6/7
+ * Addresses font sizes within 'section' and 'article' in FF4+, Chrome, S5
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.75em;
+    margin: 2.33em 0;
+}
+
+/*
+ * Addresses styling not present in IE7/8/9, S5, Chrome
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/*
+ * Addresses style set to 'bolder' in FF3+, S4/5, Chrome
+*/
+
+b,
+strong {
+    font-weight: bold;
+}
+
+blockquote {
+    margin: 1em 40px;
+}
+
+/*
+ * Addresses styling not present in S5, Chrome
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/*
+ * Addresses styling not present in IE6/7/8/9
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/*
+ * Addresses margins set differently in IE6/7
+ */
+
+p,
+pre {
+    margin: 1em 0;
+}
+
+/*
+ * Corrects font family set oddly in IE6, S4/5, Chrome
+ * en.wikipedia.org/wiki/User:Davidgothberg/Test59
+ */
+
+pre,
+code,
+kbd,
+samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/*
+ * Improves readability of pre-formatted text in all browsers
+ */
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/*
+ * 1. Addresses CSS quotes not supported in IE6/7
+ * 2. Addresses quote property not supported in S4
+ */
+
+/* 1 */
+
+q {
+    quotes: none;
+}
+
+/* 2 */
+
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+small {
+    font-size: 75%;
+}
+
+/*
+ * Prevents sub and sup affecting line-height in all browsers
+ * gist.github.com/413930
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+
+/* =============================================================================
+   Lists
+   ========================================================================== */
+
+/*
+ * Addresses margins set differently in IE6/7
+ */
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+/*
+ * Addresses paddings set differently in IE6/7
+ */
+
+menu,
+ol,
+ul {
+    padding: 0 0 0 40px;
+}
+
+/*
+ * Corrects list images handled incorrectly in IE7
+ */
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+
+/* =============================================================================
+   Embedded content
+   ========================================================================== */
+
+/*
+ * 1. Removes border when inside 'a' element in IE6/7/8/9, FF3
+ * 2. Improves image quality when scaled in IE7
+ *    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/
+ */
+
+img {
+    border: 0; /* 1 */
+    -ms-interpolation-mode: bicubic; /* 2 */
+}
+
+/*
+ * Corrects overflow displayed oddly in IE9
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+
+/* =============================================================================
+   Figures
+   ========================================================================== */
+
+/*
+ * Addresses margin not present in IE6/7/8/9, S5, O11
+ */
+
+figure {
+    margin: 0;
+}
+
+
+/* =============================================================================
+   Forms
+   ========================================================================== */
+
+/*
+ * Corrects margin displayed oddly in IE6/7
+ */
+
+form {
+    margin: 0;
+}
+
+/*
+ * Define consistent border, margin, and padding
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/*
+ * 1. Corrects color not being inherited in IE6/7/8/9
+ * 2. Corrects text not wrapping in FF3
+ * 3. Corrects alignment displayed oddly in IE6/7
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0;
+    white-space: normal; /* 2 */
+    *margin-left: -7px; /* 3 */
+}
+
+/*
+ * 1. Corrects font size not being inherited in all browsers
+ * 2. Addresses margins set differently in IE6/7, FF3+, S5, Chrome
+ * 3. Improves appearance and consistency in all browsers
+ */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%; /* 1 */
+    margin: 0; /* 2 */
+    vertical-align: baseline; /* 3 */
+    *vertical-align: middle; /* 3 */
+}
+
+/*
+ * Addresses FF3/4 setting line-height on 'input' using !important in the UA stylesheet
+ */
+
+button,
+input {
+    line-height: normal; /* 1 */
+}
+
+/*
+ * 1. Improves usability and consistency of cursor style between image-type 'input' and others
+ * 2. Corrects inability to style clickable 'input' types in iOS
+ * 3. Removes inner spacing in IE7 without affecting normal text inputs
+ *    Known issue: inner spacing remains in IE6
+ */
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    cursor: pointer; /* 1 */
+    -webkit-appearance: button; /* 2 */
+    *overflow: visible;  /* 3 */
+}
+
+/*
+ * Re-set default cursor for disabled elements
+ */
+
+button[disabled],
+input[disabled] {
+    cursor: default;
+}
+
+/*
+ * 1. Addresses box sizing set to content-box in IE8/9
+ * 2. Removes excess padding in IE8/9
+ * 3. Removes excess padding in IE7
+      Known issue: excess padding remains in IE6
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+    *height: 13px; /* 3 */
+    *width: 13px; /* 3 */
+}
+
+/*
+ * 1. Addresses appearance set to searchfield in S5, Chrome
+ * 2. Addresses box-sizing set to border-box in S5, Chrome (include -moz to future-proof)
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/*
+ * Removes inner padding and search cancel button in S5, Chrome on OS X
+ */
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+
+/*
+ * Removes inner padding and border in FF3+
+ * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/*
+ * 1. Removes default vertical scrollbar in IE6/7/8/9
+ * 2. Improves readability and alignment in all browsers
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+
+/* =============================================================================
+   Tables
+   ========================================================================== */
+
+/*
+ * Remove most spacing between table cells
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 /* Foundation v2.2 http://foundation.zurb.com */
 /* Artfully Masterminded by ZURB */
@@ -3595,55 +4069,951 @@ table.hide-on-tablets {
     padding-top: 0;
   }
 }
-/* Foundation v2.2 http://foundation.zurb.com */
-/* This is for all IE specfific style less than IE9. We hate IE. */
-/* line 6, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
-.lt-ie9 div.panel {
-  border: 1px solid #cccccc;
+@media handheld, only screen and (max-width: 767px) {
+  /* line 4, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+  #logo {
+    position: relative !important;
+    margin: -20px auto 0;
+  }
+
+  /* line 7, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+  #header .five.columns {
+    width: 100%;
+    margin-left: 0;
+    margin-top: -20px;
+  }
+
+  /* line 11, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+  .nav-bar {
+    text-align: center;
+  }
+
+  /* line 14, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+  #header .button-custom {
+    float: none !important;
+  }
+  /* line 16, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+  #header .four.columns {
+    margin-bottom: 25px !important;
+  }
+
+  /* line 18, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+  #main-left {
+    margin-top: 0 !important;
+  }
+
+  /* line 20, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+  .gray-box {
+    width: 95%;
+    margin-left: 0 !important;
+  }
+}
+/* ---------------------------------------------------------------GENERAL */
+/* line 26, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+html, body {
+  background: #ebebeb;
 }
 
-/* line 7, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
-.lt-ie8 .nav-bar li.has-flyout a {
-  padding-right: 20px;
+/* line 29, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+a {
+  color: #6e7e00;
+}
+/* line 31, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+a:hover {
+  color: #6e7e00;
+  text-decoration: underline;
 }
 
-/* line 8, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
-.lt-ie8 .nav-bar li.has-flyout a:after {
-  border-top: none;
+/* line 35, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+ul {
+  list-style: disc inside none;
+  padding-left: 20px;
 }
 
-/* Correct IE7 button padding */
-/* line 11, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
-.lt-ie8 input[type=submit].nice.button {
-  filter: chroma(color=black);
+/* line 39, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+p {
+  font-size: 1.3rem;
+  line-height: 1.8;
+}
+
+/* line 43, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+::selection {
+  background: black;
+  color: white;
+  /* Safari */
+}
+
+/* line 48, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+::-moz-selection {
+  background: black;
+  color: white;
+  /* Firefox */
+}
+
+/* line 53, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h1 {
+  color: #43531e;
+  font-size: 30px;
+  font-family: helvetica,arial,sans-serif;
+  font-weight: bold;
+}
+
+/* line 59, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h2 {
+  color: #707070;
+  font-size: 24px;
+  font-family: helvetica,arial,sans-serif;
+  font-weight: bold;
+}
+
+/* line 65, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h3 {
+  color: #677718;
+  font-family: georgia,serif;
+  font-style: italic;
+}
+
+/* line 70, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h4 {
+  color: #959595;
+  font-family: helvetica,arial,sans-serif;
+  font-weight: bold;
+}
+
+/* line 75, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h5 {
+  color: #c0d53b;
+  font-family: georgia,serif;
+  font-weight: bold;
+}
+
+/* line 80, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h6 {
+  color: #252525;
+  font-family: georgia,serif;
+  font-weight: bold;
+}
+
+/* line 85, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h3, h4, h5, h6 {
+  font-size: 18px;
+}
+
+/* line 88, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h1, h2, h3, h4, h5, h6 {
+  padding: 10px 0;
+}
+
+/* ---------------------------------------------------------------HEADER */
+/* line 93, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#header {
+  background: #598527 url("/assets/bg-hdr.png") repeat-x bottom left;
+  padding-top: 15px;
   position: relative;
-  top: -2px;
+}
+/* line 97, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#header h1 {
+  font-size: 220%;
+  color: #43531e;
+  font-family: georgia,serif;
+}
+/* line 101, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#header .five.columns {
+  width: 38%;
+}
+/* line 103, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#header .offset-by-three {
+  margin-left: 32.5%;
+}
+/* line 105, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#header .four.columns {
+  width: none;
+  margin-bottom: 15px;
+  width: 20.37%;
+}
+/* line 109, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#header .row {
+  position: relative;
 }
 
-/* line 12, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
-.lt-ie8 input[type=submit].tiny.button {
-  padding: 5px 5px 7px;
+/* line 112, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#logo {
+  background: transparent url("/assets/bg-logo.png") no-repeat top center;
+  width: 248px !important;
+  height: 171px;
+  top: -20px;
+  left: 0;
+  text-align: center;
+  padding-top: 30px;
+  position: absolute;
+  z-index: 999;
 }
 
-/* line 13, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
-.lt-ie8 input[type=submit].small.button {
-  padding: 8px 7px 9px;
+/* line 123, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+ul.nav-bar {
+  background: transparent;
+  border: none;
+  margin-top: 0;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding-left: 10px !important;
+}
+/* line 130, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+ul.nav-bar > li {
+  border: none;
+  padding: 0 20px 0 0;
+  margin-left: 0;
+  display: inline-block !important;
 }
 
-/* line 14, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
-.lt-ie8 input[type=submit].medium.button {
-  padding: 9px 13px 9px;
+/* line 136, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.nav-bar a {
+  color: white !important;
+  font-size: 110%;
+  display: block;
+}
+/* line 140, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.nav-bar a:hover {
+  color: #c1d43a !important;
+  text-decoration: none;
 }
 
-/* line 15, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
-.lt-ie8 input[type=submit].large.button {
-  padding: 9px 18px 10px;
+/* line 144, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#header .button-custom {
+  border: 1px solid #707070;
+  float: right;
 }
 
-/* line 17, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
-.ie9 .gradient {
-  filter: none;
+/* line 148, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+button, .button-custom, input[type="submit"] {
+  cursor: pointer;
+  padding: 10px;
+  color: white;
+  font-size: 120%;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #afc800 url("/assets/button-gradient.png") repeat-x top left;
+  white-space: nowrap;
 }
+
+/* line 160, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+button:hover, .button-custom:hover, input[type="submit"]:hover {
+  color: white;
+  background: #ffa500 url("/assets/button-gradient.png") repeat-x top left;
+  text-decoration: none;
+}
+
+/* line 165, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.button-custom span {
+  padding-right: 40px;
+  background: url("/assets/button-arrow.png") no-repeat right center;
+}
+
+/* ---------------------------------------------------------------MAIN SECTION */
+/* line 171, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#main {
+  background: white;
+  padding-top: 2%;
+}
+
+/* line 175, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#main-left {
+  margin-top: 8%;
+}
+/* line 177, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#main-left p {
+  font-size: 1.4rem;
+  line-height: 2;
+}
+
+/* line 181, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.eye-catcher {
+  font-size: 250% !important;
+  font-family: georgia,serif;
+  color: #43531e;
+  font-style: italic;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+/* line 190, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.gray-box {
+  margin-top: 20px;
+  color: black;
+  background: #ebebeb;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  min-height: 140px;
+  margin-left: 2%;
+}
+
+/* line 201, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+span.calendar, span.meet-peep {
+  font-weight: bold;
+  font-family: georgia,serif;
+  margin-top: 20px !important;
+  margin: 0 auto;
+  display: block;
+  width: 60%;
+  padding-bottom: 60px;
+}
+/* line 209, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+span.calendar {
+  padding-left: 55px;
+  background: transparent url("/assets/calendar.png") no-repeat left top;
+}
+/* line 212, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+span.meet-peep {
+  padding-left: 70px;
+  background: transparent url("/assets/meet-peep.png") no-repeat left top;
+}
+
+/* line 216, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.gray-box .button-custom {
+  border: none;
+  bottom: 0;
+  font-size: 160%;
+  font-weight: normal;
+  position: absolute;
+  text-align: right;
+  right: 0;
+  left: 0;
+}
+
+/* line 226, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h2.hm-article-title, h3.side-title:first-child {
+  font-family: georgia,serif;
+  margin-bottom: 0;
+  margin-top: 15px;
+  padding: 13px 0px 13px 20px;
+  color: #43531e;
+  font-size: 300% !important;
+  font-weight: normal;
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-bottomright: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
+  background: #d7d7d7 url("/assets/bg-title.png") repeat-x top left;
+}
+
+/* line 242, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.comment-triangle {
+  border: 0 !important;
+  display: block;
+  margin-left: 25px;
+  margin-bottom: 10px;
+}
+
+/* line 248, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#sidebar .comment-triangle {
+  margin-left: 0px;
+}
+
+/* line 251, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#hm-article-entry {
+  background: #f7f7f7;
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-topright: 0px;
+  -moz-border-radius-bottomright: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -webkit-border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 10px 10px;
+  margin-bottom: 30px;
+  float: left;
+  padding: 0 20px 20px;
+}
+
+/* line 264, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.hm-article-entry p {
+  line-height: 1.4 !important;
+}
+/* line 266, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.hm-article-entry li {
+  list-style-type: disc;
+  margin-left: 15px;
+}
+
+/* line 270, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.entry-img {
+  float: right;
+  margin: 10px;
+  border: 10px solid #d7d7d7;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+/* line 278, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.tweet {
+  color: black;
+  font-size: 11px;
+}
+
+/* line 282, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.tweet-date {
+  color: #888888;
+  font-size: 9px;
+}
+
+/* INSIDE PAGE */
+/* line 288, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.content {
+  margin-bottom: 40px;
+}
+/* line 290, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.content a {
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------------------SIDEBAR */
+/* line 295, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#sidebar {
+  margin-bottom: 25px;
+}
+
+/* line 298, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h3.side-title {
+  font-size: 200% !important;
+  font-style: italic;
+  margin-top: 0;
+}
+/* line 302, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h3.side-title:first-child {
+  font-size: 200% !important;
+  font-style: italic;
+  margin-top: 0;
+}
+
+/* line 307, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.address .button-custom {
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+/* line 311, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.locations {
+  padding-left: 35px;
+  background: url("/assets/locations.png") no-repeat top left;
+  padding-bottom: 10px;
+  margin-left: -5px;
+}
+
+/* line 317, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.tweets {
+  padding-left: 40px;
+  background: url("/assets/tweets.png") no-repeat top left;
+  padding-bottom: 10px;
+  margin-left: -5px;
+}
+
+/* line 323, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h3.side-title {
+  margin-bottom: 0;
+  padding: 13px 0px;
+  padding-left: 20px;
+  background: #d7d7d7 url("/assets/bg-title.png") repeat-x top left;
+}
+
+/* line 330, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#sidebar h3 {
+  font-family: georgia,serif;
+  color: #43531e;
+  font-weight: normal;
+  font-style: italic;
+}
+/* line 335, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#sidebar .comment-triangle {
+  border: 0 !important;
+  position: absolute;
+  top: 0px;
+  left: 20px;
+}
+
+/* line 341, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.side-entry {
+  position: relative;
+  background: #f7f7f7;
+  margin-top: 0;
+  padding: 20px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+/* ---------------------------------------------------------------INSIDE NAV */
+/* line 352, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.inside {
+  padding-top: 70px;
+}
+
+/* line 355, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h2.page-title {
+  font-family: georgia;
+  font-size: 200%;
+  font-weight: normal;
+}
+
+/* line 360, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+ul.nav-inside {
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+  color: #677718;
+  font-size: 130%;
+  font-family: georgia,serif;
+  padding: 20px;
+  list-style: none;
+}
+/* line 368, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+ul.nav-inside a {
+  padding-left: 10px;
+}
+/* line 370, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+ul.nav-inside a:hover {
+  text-decoration: underline;
+}
+
+/* line 373, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.active {
+  background: url("/assets/triangle-black.png") no-repeat center left;
+}
+
+/* ----------------------------DOWNLOAD BUTTON */
+/* line 378, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+h3.title-download {
+  margin: 20px 0 15px;
+  padding-left: 20px;
+}
+
+/* line 382, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.alternate-button {
+  background: #e1e1e1;
+  padding: 10px;
+  color: #707070;
+  font-size: 120%;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  white-space: nowrap;
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+/* line 394, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.alternate-button:hover {
+  color: white;
+  background-color: #9eaf2d;
+  text-decoration: none;
+}
+/* line 398, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.alternate-button span {
+  padding-left: 30px;
+  background: url("/assets/adobe-acrobat.png") no-repeat left center;
+}
+
+/* ---------------------------------------------------------------FOOTER */
+/* line 404, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#footer {
+  background: #eaeaea;
+  padding-bottom: 40px;
+}
+/* line 407, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#footer .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+/* line 410, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#footer .columns {
+  border-left: 1px solid #b7b7b7;
+  margin-top: 20px;
+  padding-left: 20px;
+  min-height: 160px;
+}
+/* line 415, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#footer h4 {
+  color: #959595;
+}
+/* line 417, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#footer .two.columns .button-custom {
+  float: left;
+}
+/* line 419, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#footer ul.nav-bar {
+  border: 0;
+  margin-bottom: 0;
+  height: none !important;
+  float: right;
+}
+/* line 423, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#footer ul.nav-bar li {
+  line-height: 25px !important;
+}
+/* line 426, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#footer .button-custom, #footer .copyright {
+  float: right;
+}
+/* line 428, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#footer ul.nav-bar a {
+  color: #464646 !important;
+}
+/* line 430, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#footer ul.nav-bar a:hover {
+  text-decoration: underline;
+}
+/* line 432, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#footer .button-custom {
+  margin: 10px 0 30px;
+  color: white;
+}
+
+/* line 436, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.copyright {
+  clear: both;
+}
+
+/* SNIPPET STYLING thru end of stylesheet */
+/* line 442, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+table th {
+  font-weight: bold;
+}
+/* line 445, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+table tbody tr td, table th {
+  border-top: 1px solid #efefef;
+  border-right: 1px solid #efefef;
+}
+
+/* line 450, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+th {
+  border: medium none;
+  color: #333333;
+  padding: 9px 10px;
+  vertical-align: top;
+}
+
+/* line 456, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.field select {
+  display: inline-block;
+}
+
+/* line 459, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.form-inputs label {
+  margin-bottom: 9px;
+}
+
+/* line 462, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+form br {
+  display: none;
+}
+
+/* line 466, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+div.form-actions {
+  background-color: transparent;
+  border-top: 0px solid #dddddd;
+}
+/* line 470, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+div.form-inputs select {
+  width: 100px;
+  vertical-align: bottom;
+}
+/* line 473, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+div.form-inputs .input {
+  border: 0px !important;
+}
+
+/* -----------------------------------------
+
+   Standard Forms
+
+----------------------------------------- */
+/* line 482, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+form {
+  margin: 0 0 18px;
+}
+/* line 484, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+form label {
+  display: block;
+  font-size: 15px;
+  line-height: 18px;
+  cursor: pointer;
+}
+
+/* line 491, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.formtastic .label {
+  display: block;
+  font-size: 15px;
+  line-height: 18px;
+  cursor: pointer;
+  margin-bottom: 3px;
+}
+
+/* line 498, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input, textarea {
+  border-right: 1px solid #bbbbbb;
+  border-bottom: 1px solid #bbbbbb;
+}
+
+/* line 502, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input, textarea, select {
+  display: block;
+  margin-bottom: 9px;
+}
+
+/* line 507, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+label + input, label + textarea, label + select, label + div.dropdown {
+  margin-top: -9px;
+}
+
+/* line 510, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+select div.dropdown {
+  margin-top: -9px;
+}
+
+/* Text input and textarea font and padding */
+/* line 515, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input, textarea {
+  font-size: 13px;
+  padding: 4px 3px 2px;
+  background: white;
+}
+
+/* line 520, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input:focus, textarea:focus {
+  outline: none !important;
+}
+
+/* line 523, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input.oversize, textarea.oversize {
+  font-size: 18px !important;
+  padding: 4px 5px !important;
+}
+
+/* line 527, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input:focus, textarea:focus {
+  background: #f9f9f9;
+}
+
+/* Text input and textarea, disabled */
+/* line 532, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input[disabled], textarea[disabled] {
+  background-color: #dddddd;
+}
+
+/* Inlined Label Style */
+/* line 537, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input.placeholder, textarea.placeholder {
+  color: #888888;
+}
+
+/* Text input and textarea sizes */
+/* line 542, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input, textarea {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+/* line 547, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input.small, textarea.small {
+  width: 134px;
+}
+
+/* line 550, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input.medium, textarea.medium {
+  width: 254px;
+}
+
+/* line 553, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input.large, textarea.large {
+  width: 434px;
+}
+
+/* line 556, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input.expand, textarea.expand {
+  width: 100%;
+}
+
+/* Fieldsets */
+/* line 561, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+form fieldset {
+  padding: 9px 9px 2px 9px;
+  border: solid 1px #dddddd;
+  margin: 18px 0;
+}
+
+/* Inlined Radio & Checkbox */
+/* line 568, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+input[type=radio], div input[type=checkbox] {
+  display: inline;
+  width: auto;
+  margin-bottom: 0;
+}
+
+/* Errors */
+/* line 575, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#error_explanation, .flash {
+  padding: 10px 15px;
+  font-weight: bold;
+  background: #eeeeee;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+/* line 582, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#error_explanation p, #error_explanation h2, .flash p, .flash h2 {
+  color: #598527;
+}
+/* line 583, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+#error_explanation p:last-child, .flash p:last-child {
+  margin-bottom: 0;
+}
+
+/* line 587, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.flash.notice p, .flash.notice h2 {
+  color: #598527;
+}
+
+/* line 590, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.flash.error, #error_explanation {
+  background-color: rgba(255, 0, 0, 0.15);
+}
+/* line 592, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.flash.error p, .flash.error h2, #error_explanation p, #error_explanation h2 {
+  color: #c00000;
+}
+
+/* line 595, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.field_with_errors {
+  padding-bottom: 0;
+}
+
+/* line 598, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.error input, input.red, .field_with_errors input, .field_with_errors textarea {
+  border-color: #c00000;
+  background-color: rgba(255, 0, 0, 0.15);
+}
+
+/* line 602, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.error label, label.red, .field_with_errors label {
+  color: #c00000;
+}
+
+/* line 605, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.error small, small.error {
+  margin-top: -6px;
+  display: block;
+  margin-bottom: 9px;
+  font-size: 11px;
+  color: #c00000;
+  width: 254px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+/* line 616, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.small small.error {
+  width: 134px;
+}
+
+/* line 619, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.medium small.error {
+  width: 254px;
+}
+
+/* line 622, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.large small.error {
+  width: 434px;
+}
+
+/* line 625, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.expand small.error {
+  width: 100%;
+}
+
+/* line 628, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.small.oversize small.error {
+  width: 144px;
+}
+
+/* line 631, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.medium.oversize small.error {
+  width: 264px;
+}
+
+/* line 634, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.large.oversize small.error {
+  width: 444px;
+}
+
+/* line 637, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+.expand.oversize small.error {
+  width: 100%;
+}
+
+/* -----------------------------------------
+
+   NICER Forms
+
+----------------------------------------- */
+/* line 647, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+form div {
+  padding-bottom: 15px;
+}
+/* line 649, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+form div i {
+  color: #999999;
+  font-size: 11px;
+}
+/* line 652, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+form div input {
+  border: solid 1px #bbbbbb;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+}
+/* line 657, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+form input, form textarea, form .input {
+  border: solid 1px #bbbbbb;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+}
+/* line 662, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+form div input, form input, form textarea {
+  font-size: 13px;
+  padding: 6px 3px 4px;
+  outline: none !important;
+  background: url("/assets/misc/input-bg.png") white;
+}
+/* line 667, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+form div input:focus, form input:focus, form textarea:focus {
+  background-color: #f9f9f9;
+}
+/* line 669, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+form div input[disabled], form input[disabled], form textarea[disabled] {
+  background-color: #dddddd;
+}
+/* line 671, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+form fieldset {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+/* line 676, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
+form div input[type=radio], form div input[type=checkbox] {
+  display: inline;
+  width: auto;
+  margin-bottom: 0;
+}
+
+/* Text input and textarea, disabled */
 /*
  * jQuery UI CSS Framework 1.8.20
  *
@@ -5813,951 +7183,90 @@ button.ui-button::-moz-focus-inner {
   margin: -1px;
   height: 100%;
 }
-@media handheld, only screen and (max-width: 767px) {
-  /* line 4, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-  #logo {
-    position: relative !important;
-    margin: -20px auto 0;
-  }
-
-  /* line 7, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-  #header .five.columns {
-    width: 100%;
-    margin-left: 0;
-    margin-top: -20px;
-  }
-
-  /* line 11, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-  .nav-bar {
-    text-align: center;
-  }
-
-  /* line 14, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-  #header .button-custom {
-    float: none !important;
-  }
-  /* line 16, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-  #header .four.columns {
-    margin-bottom: 25px !important;
-  }
-
-  /* line 18, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-  #main-left {
-    margin-top: 0 !important;
-  }
-
-  /* line 20, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-  .gray-box {
-    width: 95%;
-    margin-left: 0 !important;
-  }
-}
-/* ---------------------------------------------------------------GENERAL */
-/* line 26, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-html, body {
-  background: #ebebeb;
-}
-
-/* line 29, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-a {
-  color: #6e7e00;
-}
-/* line 31, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-a:hover {
-  color: #6e7e00;
-  text-decoration: underline;
-}
-
-/* line 35, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-ul {
-  list-style: disc inside none;
-  padding-left: 20px;
-}
-
-/* line 39, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-p {
-  font-size: 1.3rem;
-  line-height: 1.8;
-}
-
-/* line 43, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-::selection {
-  background: black;
-  color: white;
-  /* Safari */
-}
-
-/* line 48, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-::-moz-selection {
-  background: black;
-  color: white;
-  /* Firefox */
-}
-
-/* line 53, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h1 {
-  color: #43531e;
-  font-size: 30px;
-  font-family: helvetica,arial,sans-serif;
-  font-weight: bold;
-}
-
-/* line 59, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h2 {
-  color: #707070;
-  font-size: 24px;
-  font-family: helvetica,arial,sans-serif;
-  font-weight: bold;
-}
-
-/* line 65, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h3 {
-  color: #677718;
-  font-family: georgia,serif;
-  font-style: italic;
-}
-
-/* line 70, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h4 {
-  color: #959595;
-  font-family: helvetica,arial,sans-serif;
-  font-weight: bold;
-}
-
-/* line 75, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h5 {
-  color: #c0d53b;
-  font-family: georgia,serif;
-  font-weight: bold;
-}
-
-/* line 80, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h6 {
-  color: #252525;
-  font-family: georgia,serif;
-  font-weight: bold;
-}
-
-/* line 85, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h3, h4, h5, h6 {
-  font-size: 18px;
-}
-
-/* line 88, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h1, h2, h3, h4, h5, h6 {
-  padding: 10px 0;
-}
-
-/* ---------------------------------------------------------------HEADER */
-/* line 93, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#header {
-  background: #598527 url("/assets/bg-hdr.png") repeat-x bottom left;
-  padding-top: 15px;
-  position: relative;
-}
-/* line 97, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#header h1 {
-  font-size: 220%;
-  color: #43531e;
-  font-family: georgia,serif;
-}
-/* line 101, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#header .five.columns {
-  width: 38%;
-}
-/* line 103, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#header .offset-by-three {
-  margin-left: 32.5%;
-}
-/* line 105, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#header .four.columns {
-  width: none;
-  margin-bottom: 15px;
-  width: 20.37%;
-}
-/* line 109, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#header .row {
-  position: relative;
-}
-
-/* line 112, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#logo {
-  background: transparent url("/assets/bg-logo.png") no-repeat top center;
-  width: 248px !important;
-  height: 171px;
-  top: -20px;
-  left: 0;
-  text-align: center;
-  padding-top: 30px;
-  position: absolute;
-  z-index: 999;
-}
-
-/* line 123, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-ul.nav-bar {
-  background: transparent;
-  border: none;
-  margin-top: 0;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  padding-left: 10px !important;
-}
-/* line 130, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-ul.nav-bar > li {
-  border: none;
-  padding: 0 20px 0 0;
-  margin-left: 0;
-  display: inline-block !important;
-}
-
-/* line 136, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.nav-bar a {
-  color: white !important;
-  font-size: 110%;
+/* line 2, ../../../app/assets/stylesheets/railsthemes_envy/kaminari.css.scss */
+nav.pagination {
   display: block;
-}
-/* line 140, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.nav-bar a:hover {
-  color: #c1d43a !important;
-  text-decoration: none;
-}
-
-/* line 144, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#header .button-custom {
-  border: 1px solid #707070;
-  float: right;
-}
-
-/* line 148, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-button, .button-custom, input[type="submit"] {
-  cursor: pointer;
-  padding: 10px;
-  color: white;
-  font-size: 120%;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  border: none;
-  background: #afc800 url("/assets/button-gradient.png") repeat-x top left;
-  white-space: nowrap;
-}
-
-/* line 160, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-button:hover, .button-custom:hover, input[type="submit"]:hover {
-  color: white;
-  background: #ffa500 url("/assets/button-gradient.png") repeat-x top left;
-  text-decoration: none;
-}
-
-/* line 165, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.button-custom span {
-  padding-right: 40px;
-  background: url("/assets/button-arrow.png") no-repeat right center;
-}
-
-/* ---------------------------------------------------------------MAIN SECTION */
-/* line 171, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#main {
-  background: white;
-  padding-top: 2%;
-}
-
-/* line 175, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#main-left {
-  margin-top: 8%;
-}
-/* line 177, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#main-left p {
-  font-size: 1.4rem;
-  line-height: 2;
-}
-
-/* line 181, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.eye-catcher {
-  font-size: 250% !important;
-  font-family: georgia,serif;
-  color: #43531e;
-  font-style: italic;
-  margin-bottom: 15px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #ebebeb;
-}
-
-/* line 190, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.gray-box {
-  margin-top: 20px;
-  color: black;
-  background: #ebebeb;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  min-height: 140px;
-  margin-left: 2%;
-}
-
-/* line 201, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-span.calendar, span.meet-peep {
-  font-weight: bold;
-  font-family: georgia,serif;
-  margin-top: 20px !important;
-  margin: 0 auto;
-  display: block;
-  width: 60%;
-  padding-bottom: 60px;
-}
-/* line 209, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-span.calendar {
-  padding-left: 55px;
-  background: transparent url("/assets/calendar.png") no-repeat left top;
-}
-/* line 212, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-span.meet-peep {
-  padding-left: 70px;
-  background: transparent url("/assets/meet-peep.png") no-repeat left top;
-}
-
-/* line 216, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.gray-box .button-custom {
-  border: none;
-  bottom: 0;
-  font-size: 160%;
-  font-weight: normal;
-  position: absolute;
-  text-align: right;
-  right: 0;
-  left: 0;
-}
-
-/* line 226, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h2.hm-article-title, h3.side-title:first-child {
-  font-family: georgia,serif;
-  margin-bottom: 0;
-  margin-top: 15px;
-  padding: 13px 0px 13px 20px;
-  color: #43531e;
-  font-size: 300% !important;
-  font-weight: normal;
-  -moz-border-radius-topleft: 10px;
-  -moz-border-radius-topright: 10px;
-  -moz-border-radius-bottomright: 0px;
-  -moz-border-radius-bottomleft: 0px;
-  -webkit-border-radius: 10px 10px 0px 0px;
-  border-radius: 10px 10px 0px 0px;
-  background: #d7d7d7 url("/assets/bg-title.png") repeat-x top left;
-}
-
-/* line 242, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.comment-triangle {
-  border: 0 !important;
-  display: block;
-  margin-left: 25px;
-  margin-bottom: 10px;
-}
-
-/* line 248, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#sidebar .comment-triangle {
-  margin-left: 0px;
-}
-
-/* line 251, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#hm-article-entry {
-  background: #f7f7f7;
-  -moz-border-radius-topleft: 0px;
-  -moz-border-radius-topright: 0px;
-  -moz-border-radius-bottomright: 10px;
-  -moz-border-radius-bottomleft: 10px;
-  -webkit-border-radius: 0px 0px 10px 10px;
-  border-radius: 0px 0px 10px 10px;
-  margin-bottom: 30px;
-  float: left;
-  padding: 0 20px 20px;
-}
-
-/* line 264, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.hm-article-entry p {
-  line-height: 1.4 !important;
-}
-/* line 266, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.hm-article-entry li {
-  list-style-type: disc;
-  margin-left: 15px;
-}
-
-/* line 270, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.entry-img {
-  float: right;
-  margin: 10px;
-  border: 10px solid #d7d7d7;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-}
-
-/* line 278, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.tweet {
-  color: black;
-  font-size: 11px;
-}
-
-/* line 282, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.tweet-date {
-  color: #888888;
-  font-size: 9px;
-}
-
-/* INSIDE PAGE */
-/* line 288, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.content {
-  margin-bottom: 40px;
-}
-/* line 290, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.content a {
-  text-decoration: underline;
-}
-
-/* ---------------------------------------------------------------SIDEBAR */
-/* line 295, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#sidebar {
-  margin-bottom: 25px;
-}
-
-/* line 298, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h3.side-title {
-  font-size: 200% !important;
-  font-style: italic;
-  margin-top: 0;
-}
-/* line 302, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h3.side-title:first-child {
-  font-size: 200% !important;
-  font-style: italic;
-  margin-top: 0;
-}
-
-/* line 307, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.address .button-custom {
-  display: inline-block;
-  margin-bottom: 25px;
-}
-
-/* line 311, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.locations {
-  padding-left: 35px;
-  background: url("/assets/locations.png") no-repeat top left;
-  padding-bottom: 10px;
+  height: 24px;
   margin-left: -5px;
 }
-
-/* line 317, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.tweets {
-  padding-left: 40px;
-  background: url("/assets/tweets.png") no-repeat top left;
-  padding-bottom: 10px;
-  margin-left: -5px;
-}
-
-/* line 323, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h3.side-title {
-  margin-bottom: 0;
-  padding: 13px 0px;
-  padding-left: 20px;
-  background: #d7d7d7 url("/assets/bg-title.png") repeat-x top left;
-}
-
-/* line 330, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#sidebar h3 {
-  font-family: georgia,serif;
-  color: #43531e;
-  font-weight: normal;
-  font-style: italic;
-}
-/* line 335, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#sidebar .comment-triangle {
-  border: 0 !important;
-  position: absolute;
-  top: 0px;
-  left: 20px;
-}
-
-/* line 341, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.side-entry {
-  position: relative;
-  background: #f7f7f7;
-  margin-top: 0;
-  padding: 20px;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
-}
-
-/* ---------------------------------------------------------------INSIDE NAV */
-/* line 352, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.inside {
-  padding-top: 70px;
-}
-
-/* line 355, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h2.page-title {
-  font-family: georgia;
-  font-size: 200%;
-  font-weight: normal;
-}
-
-/* line 360, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-ul.nav-inside {
-  border-top: 1px solid #ebebeb;
-  border-bottom: 1px solid #ebebeb;
-  color: #677718;
-  font-size: 130%;
-  font-family: georgia,serif;
-  padding: 20px;
-  list-style: none;
-}
-/* line 368, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-ul.nav-inside a {
-  padding-left: 10px;
-}
-/* line 370, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-ul.nav-inside a:hover {
-  text-decoration: underline;
-}
-
-/* line 373, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.active {
-  background: url("/assets/triangle-black.png") no-repeat center left;
-}
-
-/* ----------------------------DOWNLOAD BUTTON */
-/* line 378, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-h3.title-download {
-  margin: 20px 0 15px;
-  padding-left: 20px;
-}
-
-/* line 382, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.alternate-button {
-  background: #e1e1e1;
-  padding: 10px;
-  color: #707070;
-  font-size: 120%;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  white-space: nowrap;
-  display: inline-block;
-  margin-bottom: 10px;
-  margin-left: 20px;
-}
-/* line 394, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.alternate-button:hover {
-  color: white;
-  background-color: #9eaf2d;
-  text-decoration: none;
-}
-/* line 398, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.alternate-button span {
-  padding-left: 30px;
-  background: url("/assets/adobe-acrobat.png") no-repeat left center;
-}
-
-/* ---------------------------------------------------------------FOOTER */
-/* line 404, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#footer {
-  background: #eaeaea;
-  padding-bottom: 40px;
-}
-/* line 407, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#footer .container {
-  padding-left: 0;
-  padding-right: 0;
-}
-/* line 410, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#footer .columns {
-  border-left: 1px solid #b7b7b7;
-  margin-top: 20px;
-  padding-left: 20px;
-  min-height: 160px;
-}
-/* line 415, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#footer h4 {
-  color: #959595;
-}
-/* line 417, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#footer .two.columns .button-custom {
+/* line 6, ../../../app/assets/stylesheets/railsthemes_envy/kaminari.css.scss */
+nav.pagination span {
   float: left;
-}
-/* line 419, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#footer ul.nav-bar {
-  border: 0;
-  margin-bottom: 0;
-  height: none !important;
-  float: right;
-}
-/* line 423, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#footer ul.nav-bar li {
-  line-height: 25px !important;
-}
-/* line 426, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#footer .button-custom, #footer .copyright {
-  float: right;
-}
-/* line 428, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#footer ul.nav-bar a {
-  color: #464646 !important;
-}
-/* line 430, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#footer ul.nav-bar a:hover {
-  text-decoration: underline;
-}
-/* line 432, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#footer .button-custom {
-  margin: 10px 0 30px;
-  color: white;
-}
-
-/* line 436, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.copyright {
-  clear: both;
-}
-
-/* SNIPPET STYLING thru end of stylesheet */
-/* line 442, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-table th {
-  font-weight: bold;
-}
-/* line 445, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-table tbody tr td, table th {
-  border-top: 1px solid #efefef;
-  border-right: 1px solid #efefef;
-}
-
-/* line 450, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-th {
-  border: medium none;
-  color: #333333;
-  padding: 9px 10px;
-  vertical-align: top;
-}
-
-/* line 456, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.field select {
-  display: inline-block;
-}
-
-/* line 459, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.form-inputs label {
-  margin-bottom: 9px;
-}
-
-/* line 462, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-form br {
-  display: none;
-}
-
-/* line 466, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-div.form-actions {
-  background-color: transparent;
-  border-top: 0px solid #dddddd;
-}
-/* line 470, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-div.form-inputs select {
-  width: 100px;
-  vertical-align: bottom;
-}
-/* line 473, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-div.form-inputs .input {
-  border: 0px !important;
-}
-
-/* -----------------------------------------
-
-   Standard Forms
-
------------------------------------------ */
-/* line 482, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-form {
-  margin: 0 0 18px;
-}
-/* line 484, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-form label {
   display: block;
-  font-size: 15px;
-  line-height: 18px;
-  cursor: pointer;
-}
-
-/* line 491, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.formtastic .label {
-  display: block;
-  font-size: 15px;
-  line-height: 18px;
-  cursor: pointer;
-  margin-bottom: 3px;
-}
-
-/* line 498, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input, textarea {
-  border-right: 1px solid #bbbbbb;
-  border-bottom: 1px solid #bbbbbb;
-}
-
-/* line 502, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input, textarea, select {
-  display: block;
-  margin-bottom: 9px;
-}
-
-/* line 507, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-label + input, label + textarea, label + select, label + div.dropdown {
-  margin-top: -9px;
-}
-
-/* line 510, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-select div.dropdown {
-  margin-top: -9px;
-}
-
-/* Text input and textarea font and padding */
-/* line 515, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input, textarea {
-  font-size: 13px;
-  padding: 4px 3px 2px;
-  background: white;
-}
-
-/* line 520, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input:focus, textarea:focus {
-  outline: none !important;
-}
-
-/* line 523, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input.oversize, textarea.oversize {
-  font-size: 18px !important;
-  padding: 4px 5px !important;
-}
-
-/* line 527, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input:focus, textarea:focus {
-  background: #f9f9f9;
-}
-
-/* Text input and textarea, disabled */
-/* line 532, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input[disabled], textarea[disabled] {
-  background-color: #dddddd;
-}
-
-/* Inlined Label Style */
-/* line 537, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input.placeholder, textarea.placeholder {
-  color: #888888;
-}
-
-/* Text input and textarea sizes */
-/* line 542, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input, textarea {
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-}
-
-/* line 547, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input.small, textarea.small {
-  width: 134px;
-}
-
-/* line 550, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input.medium, textarea.medium {
-  width: 254px;
-}
-
-/* line 553, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input.large, textarea.large {
-  width: 434px;
-}
-
-/* line 556, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input.expand, textarea.expand {
-  width: 100%;
-}
-
-/* Fieldsets */
-/* line 561, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-form fieldset {
-  padding: 9px 9px 2px 9px;
-  border: solid 1px #dddddd;
-  margin: 18px 0;
-}
-
-/* Inlined Radio & Checkbox */
-/* line 568, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-input[type=radio], div input[type=checkbox] {
-  display: inline;
-  width: auto;
-  margin-bottom: 0;
-}
-
-/* Errors */
-/* line 575, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#error_explanation, .flash {
-  padding: 10px 15px;
-  font-weight: bold;
-  background: #eeeeee;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 12px;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-}
-/* line 582, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#error_explanation p, #error_explanation h2, .flash p, .flash h2 {
-  color: #598527;
-}
-/* line 583, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-#error_explanation p:last-child, .flash p:last-child {
-  margin-bottom: 0;
-}
-
-/* line 587, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.flash.notice p, .flash.notice h2 {
-  color: #598527;
-}
-
-/* line 590, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.flash.error, #error_explanation {
-  background-color: rgba(255, 0, 0, 0.15);
-}
-/* line 592, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.flash.error p, .flash.error h2, #error_explanation p, #error_explanation h2 {
-  color: #c00000;
-}
-
-/* line 595, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.field_with_errors {
-  padding-bottom: 0;
-}
-
-/* line 598, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.error input, input.red, .field_with_errors input, .field_with_errors textarea {
-  border-color: #c00000;
-  background-color: rgba(255, 0, 0, 0.15);
-}
-
-/* line 602, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.error label, label.red, .field_with_errors label {
-  color: #c00000;
-}
-
-/* line 605, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.error small, small.error {
-  margin-top: -6px;
-  display: block;
-  margin-bottom: 9px;
-  font-size: 11px;
-  color: #c00000;
-  width: 254px;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-}
-
-/* line 616, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.small small.error {
-  width: 134px;
-}
-
-/* line 619, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.medium small.error {
-  width: 254px;
-}
-
-/* line 622, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.large small.error {
-  width: 434px;
-}
-
-/* line 625, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.expand small.error {
-  width: 100%;
-}
-
-/* line 628, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.small.oversize small.error {
-  width: 144px;
-}
-
-/* line 631, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.medium.oversize small.error {
-  width: 264px;
-}
-
-/* line 634, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.large.oversize small.error {
-  width: 444px;
-}
-
-/* line 637, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-.expand.oversize small.error {
-  width: 100%;
-}
-
-/* -----------------------------------------
-
-   NICER Forms
-
------------------------------------------ */
-/* line 647, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-form div {
-  padding-bottom: 15px;
-}
-/* line 649, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-form div i {
+  height: 24px;
   color: #999999;
-  font-size: 11px;
+  font-size: 15px;
+  margin-left: 5px;
 }
-/* line 652, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-form div input {
-  border: solid 1px #bbbbbb;
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
+/* line 13, ../../../app/assets/stylesheets/railsthemes_envy/kaminari.css.scss */
+nav.pagination span a {
+  display: block;
+  padding: 0px 7px 4px;
+  color: #555555;
+  text-decoration: none;
 }
-/* line 657, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-form input, form textarea, form .input {
-  border: solid 1px #bbbbbb;
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
+/* line 18, ../../../app/assets/stylesheets/railsthemes_envy/kaminari.css.scss */
+nav.pagination span.current a, nav.pagination span:hover a, nav.pagination span a:focus {
+  border-bottom: solid 2px black;
+  color: #141414;
 }
-/* line 662, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-form div input, form input, form textarea {
-  font-size: 13px;
-  padding: 6px 3px 4px;
-  outline: none !important;
-  background: url("/assets/misc/input-bg.png") white;
+/* line 21, ../../../app/assets/stylesheets/railsthemes_envy/kaminari.css.scss */
+nav.pagination .next, nav.pagination .prev {
+  font-weight: bold;
 }
-/* line 667, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-form div input:focus, form input:focus, form textarea:focus {
-  background-color: #f9f9f9;
+/* line 23, ../../../app/assets/stylesheets/railsthemes_envy/kaminari.css.scss */
+nav.pagination .first, nav.pagination .last {
+  font-style: italic;
 }
-/* line 669, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-form div input[disabled], form input[disabled], form textarea[disabled] {
-  background-color: #dddddd;
-}
-/* line 671, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-form fieldset {
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-}
-/* line 676, ../../app/assets/stylesheets/railsthemes_envy_style.css.scss */
-form div input[type=radio], form div input[type=checkbox] {
-  display: inline;
-  width: auto;
-  margin-bottom: 0;
+/* Foundation v2.2 http://foundation.zurb.com */
+/* This is for all IE specfific style less than IE9. We hate IE. */
+/* line 6, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
+.lt-ie9 div.panel {
+  border: 1px solid #cccccc;
 }
 
-/* Text input and textarea, disabled */
+/* line 7, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
+.lt-ie8 .nav-bar li.has-flyout a {
+  padding-right: 20px;
+}
+
+/* line 8, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
+.lt-ie8 .nav-bar li.has-flyout a:after {
+  border-top: none;
+}
+
+/* Correct IE7 button padding */
+/* line 11, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
+.lt-ie8 input[type=submit].nice.button {
+  filter: chroma(color=black);
+  position: relative;
+  top: -2px;
+}
+
+/* line 12, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
+.lt-ie8 input[type=submit].tiny.button {
+  padding: 5px 5px 7px;
+}
+
+/* line 13, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
+.lt-ie8 input[type=submit].small.button {
+  padding: 8px 7px 9px;
+}
+
+/* line 14, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
+.lt-ie8 input[type=submit].medium.button {
+  padding: 9px 13px 9px;
+}
+
+/* line 15, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
+.lt-ie8 input[type=submit].large.button {
+  padding: 9px 18px 10px;
+}
+
+/* line 17, ../../app/assets/stylesheets/railsthemes_envy_ie.css.scss */
+.ie9 .gradient {
+  filter: none;
+}
 /* line 1, ../../app/assets/stylesheets/scaffold.css.scss */
 body {
   background-color: #fff;
