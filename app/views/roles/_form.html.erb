@@ -2,7 +2,7 @@
 
 <div style='padding-left:50px'>
 
-	<%= form_for([ current_club ,@role]  , :class => 'nice') do |f| %>
+	<%= form_for([ @club ,@role]  , :class => 'nice') do |f| %>
 		  <% if @role.errors.any? %>
 		    <div id="error_explanation" class="alert-box [error]">
 		      <h2><%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:</h2>

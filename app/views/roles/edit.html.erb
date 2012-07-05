@@ -7,8 +7,8 @@
 
 	<%= render 'form' %>
 
-	<%= link_to 'Show', club_role_path(params[:club_id],@role) %> |
-	<%= link_to 'Back', club_roles_path(params[:club_id]) %>
+	<%= link_to 'Show', club_role_path(@club,@role) %> |
+	<%= link_to 'Back', club_roles_path(@club) %>
 
 
 </div>

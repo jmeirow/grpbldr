@@ -48,15 +48,7 @@
 
 
 
-<% if multiple_members? %>
-     <div id="error_explanation"   style='width:620px;background-color:#BA2F39;color:white'>
-    You are a member of multiple GroupBuilder clubs. Continue to use this page to sign up for roles for <%= current_club.name %>. 
-    If you'd like to sign up for roles with visibility into all of your clubs, click <%= 
-          link_to "here", signup_for_role_multi_club_club_member_assignments_path(params[:club_id],params[:member_id]), :style => 'color:white' %>.
 
-    </div>
- 
-<% end %>
 
  
 <%= form_tag  url_for(:controller => 'assignments', :action => 'signup_for_role')  , :method=>:get, :id => 'find_role'  do  %>
@@ -64,89 +56,95 @@
 
 
  
-  <div id='container' style='width:650px'>
+  <div id='container' style='width:650px;float:left;margin-top:10px'>
+ 
+   <div style='text-align:center;font-size:7pt;float:left; margin-right:10px'>
+        <%= submit_tag 'Save Selection(s)' ,  :id => 'submit_request'  , :style => 'height:30px;vertical-align:text-middle' %>
+    </div>
 
+     <div id="free" style='float:left;text-align:center;margin-right:50px;font-size:8pt;margin-left:50px'>
+        Show only dates I'm completely free:
+        <% 
+              if  params[:filtered_on_free]== "1" %>
+                  <%=check_box_tag 'filtered_on_free', '1', true  %>
+           <% else %>
+                  <%=check_box_tag 'filtered_on_free', '1'   %>
+           <% end %>
+    </div>
+   
+ 
+
+    <% if multiple_members? %>
+         <div    style='float:left;width:200px;font-size:8pt;'>
+       View my other clubs' schedule. Click <%= 
+              link_to "here", signup_for_role_multi_club_club_member_assignments_path(params[:club_id],params[:member_id]), :style => 'color:black' %>.
+
+        </div>
+     
+    <% end %>
     <br/>
 
-    <div id="role" style='float:left;text-align:center'>
+    <div style='float:left'>
+        <div id="role" style='float:left;text-align:center; padding-left:10px;margin-left:0px'>
+          Select Role You're Looking For:
+            <%= 
+                if params[:role].nil?
+                    collection_select(:role, :role_id,  
+                                  Role.roles_with_groups(@club.id)   , :first, :last, 
+                                  :include_blank => 'All roles' ) 
+                else
+                    collection_select(:role, :role_id,  
+                                  Role.roles_with_groups(@club.id)  , :first, :last, 
+                                  :selected => params[:role][:role_id] ,
+                                  :include_blank => 'All roles' )
+                end
+            %>
+        </div>
+
+        <div id="select" style='text-align:center;float:left;padding-right:10px;padding-left:10px '>
+
+            Show Meetings <br/>Where Role Is:
+
+            <%= 
+                  if params[:role].nil?
+                  
+                      select_tag(:assignments, 
+                            options_for_select(
+                            [ ['Available', 1], 
+                              ['Available or Filled', 2] 
+                            ])) 
+                  else
+                      select_tag(:assignments, 
+                          options_for_select(
+                          [ ['Available', 1], 
+                            ['Available or Filled', 2] 
+                          ],  :selected => params[:assignments] )) 
+                  end
+          %>
+        </div>
+
+
+        <% if session[:logged_in_admin] %>
+
+          <div id="select_member" style='text-align:center;float:left;padding-right:0px;padding-left:0px '>
+
+              Sign up on<br/> on behalf of: 
+
+              <%=  collection_select(:selected_member , :member_id,  
+                          Member.where("club_id = ?", current_club.id).order("last_name, first_name")  , 
+                                  :id, :full_name,  :include_blank => 'Select From List'  ) %>
 
 
 
-      Select Role You're Looking For:
-
-        <%= 
-            if params[:role].nil?
-            
-                collection_select(:role, :role_id,  
-                              Role.roles_with_groups(@club.id)   , :first, :last, 
-                              :include_blank => 'All roles' ) 
-            else
-
-                collection_select(:role, :role_id,  
-                              Role.roles_with_groups(@club.id)  , :first, :last, 
-                              :selected => params[:role][:role_id] ,
-                              :include_blank => 'All roles' )
-            end
-        %>
-    </div>
-
-    <div id="select" style='text-align:center;float:left;padding-right:10px;padding-left:10px '>
-
-        Show Meetings <br/>Where Role Is:
-
-        <%= 
-              if params[:role].nil?
               
-                  select_tag(:assignments, 
-                        options_for_select(
-                        [ ['Available', 1], 
-                          ['Available or Filled', 2] 
-                        ])) 
-              else
-                  select_tag(:assignments, 
-                      options_for_select(
-                      [ ['Available', 1], 
-                        ['Available or Filled', 2] 
-                      ],  :selected => params[:assignments] )) 
-              end
-      %>
-    </div>
+                
+          </div>
 
-
-    <% if session[:logged_in_admin] %>
-
-      <div id="select_member" style='text-align:center;float:left;padding-right:0px;padding-left:0px '>
-
-          Sign up on<br/> on behalf of: 
-
-          <%=  collection_select(:selected_member , :member_id,  
-                      Member.where("club_id = ?", current_club.id).order("last_name, first_name")  , 
-                              :id, :full_name,  :include_blank => 'Select From List'  ) %>
-
-
-
-          
-            
-      </div>
-
-    <% end %>
-
-   <div id="free" style='float:left;text-align:center'>
-        Show only dates I'm completely free:
-
-        <% 
-           
-          if  params[:filtered_on_free]== "1" %>
-          <%=check_box_tag 'filtered_on_free', '1', true  %>
-        <% else %>
-           <%=check_box_tag 'filtered_on_free', '1'   %>
         <% end %>
-   </div>
-     
-   <div style='text-align:center;font-size:7pt;float:left; '>
-        
-        <%= submit_tag 'Save Selection(s)' ,  :id => 'submit_request'%>
-    </div>
+
+
+    </div> 
+
     <br><br>
      
      <div style='float:left' >

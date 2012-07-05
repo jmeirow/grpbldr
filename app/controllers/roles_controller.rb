@@ -7,6 +7,7 @@ class RolesController < ApplicationController
 
 
   def index
+    @club = current_club
     @roles = Role.where("club_id = ?", params[:club_id]).page(params[:page]).per(7)
 
     respond_to do |format|
@@ -19,7 +20,7 @@ class RolesController < ApplicationController
   # GET /roles/1.json
   def show
     @role = Role.find(params[:id])
-
+     @club = current_club
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @role }
@@ -30,7 +31,7 @@ class RolesController < ApplicationController
   # GET /roles/new.json
   def new
     @role = Role.new
-
+     @club = current_club
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @role }
@@ -39,12 +40,15 @@ class RolesController < ApplicationController
 
   # GET /roles/1/edit
   def edit
+     @club = current_club
     @role = Role.find(params[:id])
   end
 
   # POST /roles
   # POST /roles.json
   def create
+    @club = current_club
+
     @role = Role.new(params[:role])
     @role.club_id = params[:club_id]
 
@@ -62,6 +66,8 @@ class RolesController < ApplicationController
   # PUT /roles/1
   # PUT /roles/1.json
   def update
+    @club = current_club
+
     @role = Role.find(params[:id])
 
     respond_to do |format|
@@ -78,6 +84,7 @@ class RolesController < ApplicationController
   # DELETE /roles/1
   # DELETE /roles/1.json
   def destroy
+    @club = current_club
     @role = Role.find(params[:id])
     @role.destroy
 

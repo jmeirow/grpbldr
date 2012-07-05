@@ -58,98 +58,94 @@
 
     <br/>
 
-
-
-    <div id="club" style='float:left;text-align:center'>
-
-
-
-      Club To View:
-
-
-        <%= 
-            if params[:club].nil?
-            
-                collection_select(:club, :id,  
-                              Club.where("id in (?)", @clubs)   , :id, :name  
-                                ) 
-            else
-
-                collection_select(:club, :id, 
-                              Club.where("id in (?)", @clubs)   , :id, :name, 
-                              :selected => params[:club][:id]   )
-            end
-        %>
-
-
+  <div id='container' style='width:650px;float:left;margin-top:10px'>
+ 
+   <div style='text-align:center;font-size:7pt;float:left; margin-right:10px'>
+        <%= submit_tag 'Save Selection(s)' ,  :id => 'submit_request'  , :style => 'height:30px;vertical-align:text-middle' %>
     </div>
 
-
-    <div id="role" style='float:left;text-align:center'>
-
-
-
-      Select Role You're Looking For:
-
-        <%= 
-            if params[:role].nil?
-            
-                collection_select(:role, :role_id,  
-                              Role.roles_with_groups(@club.id)   , :first, :last, 
-                              :include_blank => 'All roles' ) 
-            else
-
-                collection_select(:role, :role_id,  
-                              Role.roles_with_groups(@club.id)  , :first, :last, 
-                              :selected => params[:role][:role_id] ,
-                              :include_blank => 'All roles' )
-            end
-        %>
+     <div id="free" style='float:left;text-align:center;margin-right:50px;font-size:8pt;margin-left:50px;margin-right:100px'>
+        Show only dates I'm completely free:
+        <% 
+              if  params[:filtered_on_free]== "1" %>
+                  <%=check_box_tag 'filtered_on_free', '1', true  %>
+           <% else %>
+                  <%=check_box_tag 'filtered_on_free', '1'   %>
+           <% end %>
     </div>
 
-    <div id="select" style='text-align:center;float:left;padding-right:10px;padding-left:10px '>
+    <div style='float:left '>
 
-        Show Meetings <br/>Where Role Is:
 
-        <%= 
-              if params[:role].nil?
-              
-                  select_tag(:assignments, 
-                        options_for_select(
-                        [ ['Available', 1], 
-                          ['Available or Filled', 2] 
-                        ])) 
-              else
-                  select_tag(:assignments, 
-                      options_for_select(
-                      [ ['Available', 1], 
-                        ['Available or Filled', 2] 
-                      ],  :selected => params[:assignments] )) 
-              end
-      %>
-    </div>
+        <div id="club" style='float:left;text-align:center;margin-left:0px  '>
+
+
+            <label style='font-size:8pt'>Club To View:</label>
+
+            <%= 
+                if params[:club].nil?
+                
+                    collection_select(:club, :id,  
+                                  Club.where("id in (?)", @clubs)   , :id, :name  
+                                    ) 
+                else
+
+                    collection_select(:club, :id, 
+                                  Club.where("id in (?)", @clubs)   , :id, :name, 
+                                  :selected => params[:club][:id]   )
+                end
+            %>
+        </div>
+
+
+        <div id="role" style='float:left;text-align:center;margin-left:10px'>
+
+          Select Role You're Looking For:
+            <%= 
+                if params[:role].nil?
+                
+                    collection_select(:role, :role_id,  
+                                  Role.roles_with_groups(@club.id)   , :first, :last, 
+                                  :include_blank => 'All roles' ) 
+                else
+
+                    collection_select(:role, :role_id,  
+                                  Role.roles_with_groups(@club.id)  , :first, :last, 
+                                  :selected => params[:role][:role_id] ,
+                                  :include_blank => 'All roles' )
+                end
+            %>
+        </div>
+
+        <div id="select" style='text-align:center;float:left; ;margin-left:10px '>
+
+            Show Meetings <br/>Where Role Is:
+
+            <%= 
+                  if params[:role].nil?
+                  
+                      select_tag(:assignments, 
+                            options_for_select(
+                            [ ['Available', 1], 
+                              ['Available or Filled', 2] 
+                            ])) 
+                  else
+                      select_tag(:assignments, 
+                          options_for_select(
+                          [ ['Available', 1], 
+                            ['Available or Filled', 2] 
+                          ],  :selected => params[:assignments] )) 
+                  end
+          %>
+        </div>
 
  
+  </div>
 
 
-     
-    <div style='text-align:center;font-size:7pt;float:left; '>
-        
-        <%= submit_tag 'Save Selection(s)' ,  :id => 'submit_request'%>
-    </div>
+ 
     
-     <br><br>
-    <div id="free" style='float:left;text-align:center'>
-      Show only dates I'm completely free:
 
-      <% 
-         
-        if  params[:filtered_on_free]== "1" %>
-        <%=check_box_tag 'filtered_on_free', '1', true  %>
-      <% else %>
-         <%=check_box_tag 'filtered_on_free', '1'   %>
-      <% end %>
-    </div>
 
      <div style='float:left' >
       Dates appearing as buttons indicate you're already scheduled for one or more roles. Click the button to display them and then decide if you are able to take on an additional role.
