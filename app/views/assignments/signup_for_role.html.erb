@@ -75,9 +75,8 @@
  
 
     <% if multiple_members? %>
-         <div    style='float:left;width:200px;font-size:8pt;'>
-       View my other clubs' schedule. Click <%= 
-              link_to "here", signup_for_role_multi_club_club_member_assignments_path(params[:club_id],params[:member_id]), :style => 'color:black' %>.
+         <div    style='float:left;width:210px;font-size:8pt;'>
+       View my other clubs' schedule. Click <%= link_to "here", signup_for_role_multi_club_club_member_assignments_path(params[:club_id],params[:member_id]), :style => 'color:black' %>.
 
         </div>
      
@@ -86,7 +85,7 @@
 
     <div style='float:left'>
         <div id="role" style='float:left;text-align:center; padding-left:10px;margin-left:0px'>
-          Select Role You're Looking For:
+          Desired Role
             <%= 
                 if params[:role].nil?
                     collection_select(:role, :role_id,  
@@ -103,7 +102,7 @@
 
         <div id="select" style='text-align:center;float:left;padding-right:10px;padding-left:10px '>
 
-            Show Meetings <br/>Where Role Is:
+            Where role is:
 
             <%= 
                   if params[:role].nil?
@@ -128,7 +127,7 @@
 
           <div id="select_member" style='text-align:center;float:left;padding-right:0px;padding-left:0px '>
 
-              Sign up on<br/> on behalf of: 
+              On behalf of: 
 
               <%=  collection_select(:selected_member , :member_id,  
                           Member.where("club_id = ?", current_club.id).order("last_name, first_name")  , 
