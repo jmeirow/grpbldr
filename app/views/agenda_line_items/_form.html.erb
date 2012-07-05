@@ -66,7 +66,7 @@
               Owner Data Source
             </div><br/>   
             <%= f.select(:person_display_name_source,  options_for_select( [ ['Static Text', 'Static Text'], 
-                  ['Dynamically Read From Meeting Info', 'Dynamically Read From Meeting Info'] ] , @agenda_line_item.person_display_name_source  ))  %> 
+                  ['Dynamically', 'Dynamically'] ] , @agenda_line_item.person_display_name_source  ))  %> 
           </div>
           <div class="actions" style='font-size:8px'>
             <%= f.submit "Create/Save Line Item" %>
