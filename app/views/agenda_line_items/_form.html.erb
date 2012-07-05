@@ -42,12 +42,12 @@
     </div>
 
 
-    <div style='float:left;padding-left:20px'>
+    <div style='float:left;margin-left:10px'>
 
 
           <div class="field">
            Duration (in minutes)<br />
-            <%= f.text_field :duration_in_minutes %>
+            <%= f.text_field :duration_in_minutes , :style=> 'width:100px' %>
           </div>  
           <div class="field">
             <div style='padding-bottom:0px'>
@@ -59,14 +59,14 @@
 
           <div class="field" >
            Line Item Owner  <br />
-            <%= f.text_field :person_display_name %>
+            <%= f.text_field :person_display_name , :style => 'width:100px' %>
           </div>
           <div class="field">
             <div style='padding-bottom:0px'>
               Owner Data Source
             </div><br/>   
-            <%= f.select(:person_display_name_source, options_for_select( [ ['Static Text', 'Static Text'], 
-                  ['Dynamically Read From Meeting Info', 'Dynamically Read From Meeting Info'] ] , @agenda_line_item.person_display_name_source  )  )  %> 
+            <%= f.select(:person_display_name_source,  options_for_select( [ ['Static Text', 'Static Text'], 
+                  ['Dynamically Read From Meeting Info', 'Dynamically Read From Meeting Info'] ] , @agenda_line_item.person_display_name_source  ))  %> 
           </div>
           <div class="actions" style='font-size:8px'>
             <%= f.submit "Create/Save Line Item" %>
@@ -77,23 +77,23 @@
 
     </div>
 
-    <div style='float:left;width:220px'>
+    <div style='float:left;width:180px'>
 
       <div style='padding-left:15px;padding-right:15px;
                   padding-top:2px;padding-bottom:2px;
                   float:left;
-                  width=220px;
+                  width=180px;
                   font-size:8pt;
                   background-color:lightgray; 
                   ;border-style:solid;border-color:gray;border-width:2px;'>
 
-                  The role names below can be copied into agenda text for dynamic output.
+                  <p style='width:180px;font-size:8pt'>The role names below can be copied into agenda text for dynamic output.</p>
 
       </div>
 
       <ul style=' font-size:9pt;
                   list-style-type:none;
-                  width:197px;height:100px;
+                  width:190px;height:100px;
                   overflow:auto;
                   border-style:solid;border-color:gray;border-width:2px '>
 
@@ -109,18 +109,18 @@
       <div style='padding-left:15px;padding-right:15px;
                   padding-top:2px;padding-bottom:2px;
                   float:left;
-                  width=220px;
+                  width=180px;
                   font-size:8pt;
                   background-color:lightgray; 
                   ;border-style:solid;border-color:gray;border-width:2px;'>
 
-                  The offices/officers below can be copied into agenda text for dynamic output.
+                  <p style='width:180px;font-size:8pt'>The offices/officers below can be copied into agenda text for dynamic output.</p>
 
       </div>
 
       <ul style=' font-size:9pt;
                   list-style-type:none;
-                  width:197px;height:100px;
+                  width:190px;height:100px;
                   overflow:auto;
                   border-style:solid;border-color:gray;border-width:2px '>
 
