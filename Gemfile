@@ -27,7 +27,7 @@ gem 'hirb'
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'mail'
 gem 'railsthemes'
-
+gem 'newrelic_rpm'
 gem 'execjs'
 
 
