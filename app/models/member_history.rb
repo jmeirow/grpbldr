@@ -1,6 +1,5 @@
 class MemberHistory
 
-
   @segments = Array.new
 
   def initialize
@@ -8,7 +7,7 @@ class MemberHistory
   end
 
   def reload
-    MemberHistorySegment.where("member_history_id = ? ", self[id:]
+    MemberHistorySegment.where("member_history_id = ? ", self[:id])
   end
 
   def current_member?
@@ -36,7 +35,6 @@ class MemberHistory
     if segment 
       segment.through_date = Date.today
       segment.save
-      return true
     else
       raise 'member not currently active.'
     end
@@ -46,7 +44,6 @@ end
 
 
 class MemberHistorySegment
-
   attr_accessor :from_date, :through_date, :reported_date, :member_history_id
 
   def initialize (from_date, though_date, reported_date, member_history_id)
@@ -55,6 +52,4 @@ class MemberHistorySegment
     @reported_date = reported_date
     @member_history_id = member_history_id
   end
-
 end
-
