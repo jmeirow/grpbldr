@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+require 'sidekiq/capistrano'
 
 
 server '50.116.43.172', :web, :app, :db, primary: true
