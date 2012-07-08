@@ -1,3 +1,7 @@
+
+
+
+
 class MemberMailer < ActionMailer::Base
   def member_added(member,club)
   	@member = member;

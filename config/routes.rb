@@ -1,6 +1,7 @@
 Rolemaster::Application.routes.draw do
 
-  
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 
   get "maintenance/display_message" => "maintenance#display_message" , :as => "display_message"
 

@@ -1,10 +1,13 @@
-
+require 'custom/system_services.rb'
 
 
 
 class AssignmentsController < ApplicationController
   # GET /assignments
   # GET /assignments.json
+
+  include SystemServices
+
 
   layout 'admin', :only => [:signup_for_role_multi_club]
 
@@ -110,10 +113,13 @@ def past_activity
   # DELETE /assignments/1
   # DELETE /assignments/1.json
   def destroy
+
     @assignment = Assignment.find(params[:id])
+    meeting_id = @assignment.meeting_id
+    role_id = @assignment.role_id
     member = @assignment.member_id
     @assignment.destroy
-
+    send_email(RoleHasBecomeAvailableMailerWorker,meeting_id, role_id)
     respond_to do |format|
       format.html { redirect_to club_member_assignments_path(params[:club_id],member) }
       format.json { head :ok }

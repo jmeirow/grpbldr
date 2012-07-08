@@ -60,7 +60,15 @@
 </div>
 
 
+  <style>
+    #line_items .handle {
+      font-size:10px;
+      color: white;
+      cursor: move;
+    }
 
+
+  </style>
   <script>
         $(function() {
           $("#line_items").sortable( { cursor: 'pointer',   opacity: 0.60,
@@ -97,6 +105,8 @@
                                                   font-size:9pt;width:540px;display:inline-block;
                                                   background-color:<%=agenda_line_item.color%>;color:white'>   
 
+
+        <span class='handle'>[drag]</span>
         <% text = agenda_line_item.line_item_header  %>
         
         <%= agenda_line_item.start_time %> - 

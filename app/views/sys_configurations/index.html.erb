@@ -1,6 +1,6 @@
 <h1>System Configurations</h1>
 
-<table>
+<table style='width:800px'>
   <tr>
     <th>Key</th>
     <th>Value</th>
@@ -21,12 +21,12 @@
 
     %>
 
-    <td><strong><%= sys_configuration.config_key %></strong></td>
-    <td><%= value  %></td>
-    <td ><em><%= sys_configuration.config_description.slice(0..50) + '....'  %></em></td>
-    <td><%= link_to 'Show', sys_configuration %></td>
-    <td><%= link_to 'Edit', edit_sys_configuration_path(sys_configuration) %></td>
-    <td><%= link_to 'Destroy', sys_configuration, confirm: 'Are you sure?', method: :delete %></td>
+    <td style='width:300px'><strong><%= sys_configuration.config_key %></strong></td>
+    <td style='width:150px'><%= value  %></td>
+    <td style='width:200px' ><em><%= sys_configuration.config_description.slice(0..50) + '....'  %></em></td>
+    <td style='width:50px'><%= link_to 'Show', sys_configuration %></td>
+    <td style='width:50px'><%= link_to 'Edit', edit_sys_configuration_path(sys_configuration) %></td>
+    <td style='width:50px'><%= link_to 'Destroy', sys_configuration, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

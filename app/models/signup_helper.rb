@@ -1,4 +1,4 @@
-
+require 'custom/system_services.rb'
 
 AVAILABLE_ONLY = "1"
 ALL =  "2"
@@ -6,7 +6,8 @@ ALL =  "2"
 
 class SignupHelper
   include ActiveModel::Validations
-   
+  include SystemServices
+
 
   validate :at_least_one_checkbox_must_be_checked
    
@@ -56,23 +57,17 @@ class SignupHelper
   end
 
   def email
-    member = Member.find(@params[:member_id].to_i) 
+
+    member_id = @params[:member_id].to_i
     unless @params[:switch_ids].nil?
       @params[:switch_ids].each do |assignment_id|
-        assignment = Assignment.find(assignment_id.to_i)
-        SwitchRequestMailer.request_switch(member,assignment).deliver
+        send_email(SwitchRequestMailerWorker,member_id,assignment_id)
       end
     end
     unless @params[:signup_ids].nil?
       @params[:signup_ids].each do |assignment_id|
         ids = assignment_id.split('_')
-        assignment = Assignment.where("meeting_id = ? and role_id = ?", ids[0],ids[1]).first
-         
-        if RoleSignupNotificationMailer.email_available?  
-          RoleSignupNotificationMailer.member_signed_up_for_role(member,assignment).deliver 
-        end
-
-
+        send_email(RoleSignupNotificationMailerWorker,member_id,ids[0].to_i,ids[1].to_i)
       end
     end
 

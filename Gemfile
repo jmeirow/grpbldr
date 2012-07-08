@@ -29,6 +29,13 @@ gem 'mail'
 gem 'railsthemes'
 gem 'newrelic_rpm'
 gem 'execjs'
+gem 'thin' , :group => :development
+gem 'sidekiq'
+
+gem 'slim'
+# if you require 'sinatra' you get the DSL extended to Object
+gem 'sinatra', :require => nil
+
 
 
 group :development, :test do

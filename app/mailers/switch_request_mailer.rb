@@ -1,7 +1,11 @@
+
+
+
+
 class SwitchRequestMailer < ActionMailer::Base
-  def request_switch(member,assignment)
-    @requesting_member = member
-    @assignment = assignment
+  def request_switch(member_id,assignment_id)
+    @requesting_member = Member.find(member_id)
+    @assignment = Assignment.find(assignment_id)
     @member_currently_with_role = Member.find(@assignment.member_id)
     @role = Role.find(@assignment.role_id)
     @club = Club.find(@requesting_member.club_id)

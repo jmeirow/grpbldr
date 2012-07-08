@@ -7,3 +7,6 @@ require 'rake/dsl_definition'
 require File.expand_path('../config/application', __FILE__)
 
 Rolemaster::Application.load_tasks
+
+
+ 

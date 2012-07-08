@@ -1,12 +1,11 @@
-#require  'services/iron_worker_config.rb'
-#require  'services/mailers/login_mailer_worker.rb'
-#require  'services/mailers/smtp_config.rb'
+require 'custom/system_services.rb'
+  
 
 
 class SessionsController < ApplicationController 
 
-  
-
+    include SystemServices
+ 
   def new
 
     @enrollement = Enrollment.new
@@ -23,10 +22,8 @@ class SessionsController < ApplicationController
 
       @members =  Member.where( "email = ? and ? between start_date and end_date", user.email, Time.now  )
       if @members.length > 1 
-        
         session[:clubs] = user.clubs
         session[:members] = user.members
-
         render  :action => 'present'
       else
         session[:members] = [@members[0].id]
@@ -64,17 +61,14 @@ class SessionsController < ApplicationController
   def select
 
     if !params[:member_id] || params[:member_id] == ""
-
       user = User.find(session[:user_id]) 
       @members =  Member.where( "email = ? and ? between start_date and end_date", user.email, Time.now  )
+
       if @members.length > 1 
-        
         session[:clubs] = user.clubs
         session[:members] = user.members
-
         flash[:notice] = "You must select a club."
         render :action => 'present'
-    
       end
     else
       member = Member.find(params[:member_id])
@@ -96,27 +90,39 @@ class SessionsController < ApplicationController
     session[:logged_in_admin] = Admin.where("email = ? and club_id = ?", member.email, session[:club_id]).count > 0
     session[:logged_in_super_user] =  (  member.email == ENV['SUPER_USER_TOKEN'] ? member.email : nil )
     
-
     # In the near future this should be an event that an observer acts upon, sending an email,
     # or whatever else should be done when a user logs in.
 
-    send_login_email(club,member)       
+    send_email(LoginMailerWorker,member.id)       
 
   end
-
-  def send_login_email(club,member)
-    #worker = LoginMailerWorker.new
-    #worker.configure_smtp(SmtpConfig.new)
-    #worker.info(club.name, member.first_name, member.last_name)
-    #worker.queue
-  end
-
-
-
-
-
-
-
-
 
 end
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
