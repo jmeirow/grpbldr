@@ -6,7 +6,7 @@ class SysConfigurationsController < ApplicationController
   # GET /sys_configurations
   # GET /sys_configurations.json
   def index
-    @sys_configurations = SysConfiguration.all
+    @sys_configurations = SysConfiguration.where("1=1").order("config_key")
 
     respond_to do |format|
       format.html # index.html.erb

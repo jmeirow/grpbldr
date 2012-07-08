@@ -1,7 +1,5 @@
 module SystemServices
 
-
-
   def email_available?
     val = 'N'
     config = SysConfiguration.where("config_key = ?", "system.email.global.send").first
