@@ -10,7 +10,9 @@ class MembersController < ApplicationController
 
   def index
   
-    @members = Member.where("club_id = ?", params[:club_id]).order("last_name, first_name").page(params[:page]).per(7)
+    @club = current_club
+
+    @members = Member.current(@club).order("last_name, first_name").page(params[:page]).per(7)
 
     respond_to do |format|
       format.html # index.html.erb
