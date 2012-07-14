@@ -39,7 +39,8 @@
  
         <td><%= link_to 'Show', club_member_absence_path(params[:club_id],@member,absence) %></td>
         <td><%= link_to 'Edit', edit_club_member_absence_path(params[:club_id],@member,absence) %></td>
-        <td><%= link_to 'Delete', club_member_absence_path(params[:club_id],@member,absence) , confirm: 'Are you sure?', method: :delete %></td>
+        <td><%= link_to 'Delete', club_member_absence_path(params[:club_id],@member,absence) ,   
+         :data => {:confirm => 'Are you sure?' }    , method: :delete %></td>
 
       </tr>
     <% end %>

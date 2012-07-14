@@ -1,7 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  meeting_date: 2011-12-13
-
-two:
-  meeting_date: 2011-12-13

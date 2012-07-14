@@ -52,7 +52,7 @@
       <% if session[:logged_in_admin] %>      
        <td><%= link_to 'Show', club_role_path(@club,role) %></td>
         <td><%= link_to 'Edit', edit_club_role_path(@club,role) %></td>
-        <td><%= link_to 'Delete', club_role_path(@club,role), confirm: 'Are you sure?', method: :delete %></td>
+        <td><%= link_to 'Delete', club_role_path(@club,role), :data => {:confirm => 'Are you sure?' }, method: :delete %></td>
       <% end %>
     </tr>
   <% end %>

@@ -21,7 +21,7 @@
     <td><%= leader_history.notes %></td>
     <td><%= link_to 'Show', leader_history %></td>
     <td><%= link_to 'Edit', edit_leader_history_path(leader_history) %></td>
-    <td><%= link_to 'Destroy', leader_history, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', leader_history,  :data => {:confirm => 'Are you sure?' }, method: :delete %></td>
   </tr>
 <% end %>
 </table>

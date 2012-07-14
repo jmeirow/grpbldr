@@ -16,8 +16,8 @@ gem 'pry', :group => :development
 gem 'pry-doc', :group => :development
 gem 'pry-rails', :group => :development
 gem 'pry_debug' , :group => :development
-gem 'pry-nav', :group => :development
-gem 'pry-stack_explorer', :group => :development
+#gem 'pry-nav', :group => :development
+#gem 'pry-stack_explorer', :group => :development
 gem 'kaminari'
 gem 'heroku'
 gem 'tzinfo'
@@ -37,11 +37,16 @@ gem 'slim'
 gem 'sinatra', :require => nil
 
 
+gem 'letter_opener', :group => :development
 
-group :development, :test do
-    gem 'rspec' 
-    gem 'rspec-rails' 
-    gem 'factory_girl'
+
+
+gem 'rspec-rails', :group => [:test, :development]
+
+group :test do
+    gem 'factory_girl_rails'
+    gem 'capybara'
+    gem 'guard-rspec'
     gem 'therubyracer' 
 end
 

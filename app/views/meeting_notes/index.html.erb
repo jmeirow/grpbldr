@@ -15,7 +15,7 @@
     <td><%= meeting_note.body %></td>
     <td><%= link_to 'Show', meeting_note %></td>
     <td><%= link_to 'Edit', edit_meeting_note_path(meeting_note) %></td>
-    <td><%= link_to 'Destroy', meeting_note, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', meeting_note,  :data => {:confirm => 'Are you sure?' }, method: :delete %></td>
   </tr>
 <% end %>
 </table>

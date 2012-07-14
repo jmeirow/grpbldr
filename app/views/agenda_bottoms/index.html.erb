@@ -15,7 +15,7 @@
     <td><%= agenda_bottom.body_text %></td>
     <td><%= link_to 'Show', agenda_bottom %></td>
     <td><%= link_to 'Edit', edit_agenda_bottom_path(agenda_bottom) %></td>
-    <td><%= link_to 'Destroy', agenda_bottom, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', agenda_bottom,    :data => {:confirm => 'Are you sure?' }    , method: :delete %></td>
   </tr>
 <% end %>
 </table>
