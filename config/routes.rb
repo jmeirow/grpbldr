@@ -1,5 +1,7 @@
 Rolemaster::Application.routes.draw do
 
+  #get "password_resets/new"
+
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
@@ -73,6 +75,8 @@ Rolemaster::Application.routes.draw do
   end
 
 
+  resources :password_resets
+  
   resources :clubs do
     resources :members do
       resources :assignments do
@@ -87,6 +91,7 @@ Rolemaster::Application.routes.draw do
     end
     resources :roles 
     resources :role_groups  
+    resources :password_resets
 
     resources :meetings do
       get 'forassignment', :on => :collection

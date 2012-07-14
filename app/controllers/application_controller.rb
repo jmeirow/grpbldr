@@ -59,9 +59,10 @@ private
   end
   
   def current_member
-     #return if current_user.nil?
-      
-     Member.find(session[:member_id])
+     
+      Member.find(session[:member_id])  
+    
+
   end
 
   def current_club
