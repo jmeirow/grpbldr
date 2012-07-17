@@ -1,25 +1,11 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.6'
-gem 'actionmailer'
+gem 'actionmailer', '3.2.6'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
- 
- 
 gem 'pg', '0.14.0'
 gem 'eventmachine'
-
-
-gem 'pry', :group => :development
-gem 'pry-doc', :group => :development
-gem 'pry-rails', :group => :development
-gem 'pry_debug' , :group => :development
-#gem 'pry-nav', :group => :development
-#gem 'pry-stack_explorer', :group => :development
 gem 'kaminari'
-gem 'heroku'
 gem 'tzinfo'
 gem 'chronic'
 gem 'ori'
@@ -27,28 +13,44 @@ gem 'hirb'
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'mail'
 gem 'railsthemes'
-gem 'newrelic_rpm'
 gem 'execjs'
-gem 'thin' , :group => :development
 gem 'sidekiq'
-
 gem 'slim'
-# if you require 'sinatra' you get the DSL extended to Object
 gem 'sinatra', :require => nil
+gem 'jquery-rails'
+gem 'capistrano'
+gem 'mail'
 
+group :development do
+  gem 'thin' 
+  gem 'letter_opener'  
+  gem 'pry' 
+  gem 'pry-doc' 
+  gem 'pry-rails' 
+  gem 'pry_debug'  
+  gem 'pry-nav' 
+  gem 'pry-stack_explorer'
+  gem 'rspec-rails' 
+ 
+end
 
-gem 'letter_opener', :group => :development
-
-
-
-gem 'rspec-rails', :group => [:test, :development]
 
 group :test do
-    gem 'factory_girl_rails'
-    gem 'capybara'
-    gem 'guard-rspec'
-    gem 'therubyracer' 
+  gem 'rspec-rails' 
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'therubyracer' 
+  gem 'turn', '0.8.2', :require => false
+  gem 'unicorn'
 end
+
+group :production do
+  gem 'turn', '0.8.2', :require => false
+  gem 'unicorn'
+  gem 'newrelic_rpm'
+end
+
 
 
 # Gems used only for assets and not required
@@ -57,24 +59,10 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.5'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.0.3'
-  #gem 'zurb-foundation'
 end
 
-gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'mailman', :require => false
 
-# Use unicorn as the web server
-gem 'unicorn'
 
-# Deploy with Capistrano
-gem 'capistrano'
 
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
-group :test do
-  # Pretty printed test output
-  gem 'turn', '0.8.2', :require => false
-end

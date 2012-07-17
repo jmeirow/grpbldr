@@ -17,6 +17,12 @@ module SystemServices
       worker.perform_async(*args)
     end
   end
+
+  def relay_email(id)
+    if email_available? == true
+      DistributionListMailer.relay(id).deliver
+    end
+  end
   
 
 end

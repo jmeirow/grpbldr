@@ -1,4 +1,8 @@
-class MemberHistory
+class MembershipHistory
+     
+
+
+
 
   @segments = Array.new
 
@@ -19,7 +23,7 @@ class MemberHistory
   end
 
 
-  def start(date)
+  def create_segment(date)
     segment = current_segment
     if segment
       raise 'member is already active'
@@ -30,7 +34,7 @@ class MemberHistory
     end
   end
 
-  def end(date)
+  def terminate_segment(date)
     segment = current_segment
     if segment 
       segment.through_date = Date.today
@@ -43,13 +47,13 @@ end
 
 
 
-class MemberHistorySegment
-  attr_accessor :from_date, :through_date, :reported_date, :member_history_id
+class MembershipSegment  < ActiveRecord::Base
+  attr_accessor :from_date, :through_date, :reported_date, :member_id
 
   def initialize (from_date, though_date, reported_date, member_history_id)
     @from_date = from_date
     @though_date = though_date
     @reported_date = reported_date
-    @member_history_id = member_history_id
+    @member_id = member_id
   end
 end

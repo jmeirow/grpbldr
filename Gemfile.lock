@@ -32,6 +32,7 @@ GEM
     ansi (1.4.3)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
+    binding_of_caller (0.6.7)
     builder (3.0.0)
     capistrano (2.12.0)
       highline
@@ -63,7 +64,6 @@ GEM
     diff-lcs (1.1.3)
     erubis (2.7.0)
     eventmachine (0.12.10)
-    excon (0.14.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (3.5.0)
@@ -77,14 +77,6 @@ GEM
       thor (>= 0.14.6)
     guard-rspec (1.2.0)
       guard (>= 1.1)
-    heroku (2.28.12)
-      heroku-api (~> 0.2.8)
-      launchy (>= 0.3.2)
-      netrc (~> 0.7.5)
-      rest-client (~> 1.6.1)
-      rubyzip
-    heroku-api (0.2.8)
-      excon (~> 0.14.3)
     highline (1.6.13)
     hike (1.2.1)
     hirb (0.7.0)
@@ -114,7 +106,14 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    method_source (0.7.1)
+    maildir (2.0.0)
+    mailman (0.5.2)
+      activesupport (>= 2.3.4)
+      i18n (>= 0.4.1)
+      listen (>= 0.4.1)
+      mail (>= 2.0.3)
+      maildir (>= 0.5.0)
+    method_source (0.8)
     mime-types (1.19)
     multi_json (1.3.6)
     net-scp (1.0.4)
@@ -124,21 +123,24 @@ GEM
     net-ssh (2.5.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    netrc (0.7.5)
     newrelic_rpm (3.4.0.1)
     nokogiri (1.5.5)
     ori (0.1.0)
     pg (0.14.0)
     polyglot (0.3.3)
-    pry (0.9.9.6)
+    pry (0.9.10)
       coderay (~> 1.0.5)
-      method_source (~> 0.7.1)
-      slop (>= 2.4.4, < 3)
+      method_source (~> 0.8)
+      slop (~> 3.3.1)
     pry-doc (0.4.4)
       pry (>= 0.9.9.6)
       yard (~> 0.8.1)
+    pry-nav (0.2.2)
+      pry (~> 0.9.10)
     pry-rails (0.1.6)
       pry
+    pry-stack_explorer (0.4.5)
+      binding_of_caller (~> 0.6.2)
     pry_debug (0.0.1)
       pry (~> 0.9.0)
     rack (1.4.1)
@@ -158,7 +160,7 @@ GEM
       activesupport (= 3.2.6)
       bundler (~> 1.0)
       railties (= 3.2.6)
-    railsthemes (1.1)
+    railsthemes (1.1.1)
       json
       launchy
       rest-client
@@ -221,7 +223,7 @@ GEM
     slim (1.2.2)
       temple (~> 0.4.0)
       tilt (~> 1.3.3)
-    slop (2.4.4)
+    slop (3.3.2)
     sprockets (2.1.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -256,7 +258,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  actionmailer
+  actionmailer (= 3.2.6)
   bcrypt-ruby
   capistrano
   capybara
@@ -266,18 +268,20 @@ DEPENDENCIES
   execjs
   factory_girl_rails
   guard-rspec
-  heroku
   hirb
   jquery-rails
   kaminari
   letter_opener
   mail
+  mailman
   newrelic_rpm
   ori
   pg (= 0.14.0)
   pry
   pry-doc
+  pry-nav
   pry-rails
+  pry-stack_explorer
   pry_debug
   rails (= 3.2.6)
   railsthemes

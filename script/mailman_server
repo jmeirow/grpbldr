@@ -1,0 +1,73 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'bundler/setup'
+require 'mailman'
+require '/home/jmeirow/grpbldr/lib/custom/system_services.rb'
+
+
+Mailman.config.pop3 = {
+  server: 'pop.secureserver.net', port: 995, ssl: true,
+  username: ENV['RELAY_POP_USERNAME'],
+  password: ENV['RELAY_POP_PASSWORD']
+}
+
+Mailman.config.poll_interval = 10
+
+include SystemServices
+
+Mailman::Application.run do
+  default do
+    email = Email.new
+    email.subject = message.subject
+    email.to = "joe.meirow@gmail.com"
+    email.from = message.from.first
+    email.body = message.text_part.body.decoded
+    email.save
+    relay_email(email.id) 
+  end
+end
+
+
+def expand_recipient_list(original_recipient)
+
+	#-----------------------------------------------------------------------------------------------------------
+	# supported forms of email to list:
+	# 
+	# current members: 
+	#					1234.members@grpbldr.com
+	#					1234@grpbldr.com
+	#					<unique club handle>.members@grpbldr.com (ex:  speakeasy.members@grpbldr.com)
+	#					<unique club name>@grpbldr.com  (ex: speakeasy@grpbldr.com )
+	#
+	# current leaders:
+	#					1234.leaders@grpbldr.com
+	#					<unique club name>.leaders@grpbldr.com (ex: speakeasy.leaders@grpbldr.com)
+	#
+	# custom list:		1234.<list name>@grpbldr.com
+	# 					<unique clubname>.<list name>@grpbldr.com (ex: speakeasy.contestcommittee@grpbldr.com)			#
+	#-----------------------------------------------------------------------------------------------------------	
+
+	tokens = original_recipient.split(".") 
+	return nil if tokens.length > 2
+	if tokens.length == 2 && is_i tokens[0] && is_valid_club? tokens[0]
+
+	else 
+		if tokens.length == 1 
+
+
+
+end
+
+def is_i? str
+  !!(str =~ /^[-+]?[0-9]+$/)
+end
+
+def is_valid_club? id
+  !Club.find(id).nil?
+end
+
+
+
+
+
+
