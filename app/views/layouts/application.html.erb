@@ -71,8 +71,7 @@
                   <%  if meeting.nil? == false %>
                     <%=  link_to "Next Meeting's Agenda", club_meeting_print_path(params[:club_id], meeting, 0)  , :target => "_blank" %><br/> 
 
-                    <%=  link_to "Beta Meeting Agenda", club_meeting_agenda_definition_print_path(params[:club_id], meeting, AgendaDefinition.regular_meeting(params[:club_id]))  , :target => "_blank" %><br/> 
-                  
+
                     <%=  link_to "Next Meeting's Notes",  club_meeting_print_notes_setup_path(params[:club_id], meeting)   %>
                   <%  end %>
 

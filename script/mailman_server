@@ -1,8 +1,92 @@
 #!/usr/bin/env ruby
+
+		#-----------------------------------------------------------------------------------------------------------
+		# supported forms of email to list:
+		# 
+		# current members: 
+		#					1234.members@grpbldr.com
+		#					1234@grpbldr.com
+		#					<unique club handle>.members@grpbldr.com (ex:  speakeasy.members@grpbldr.com)
+		#					<unique club name>@grpbldr.com  (ex: speakeasy@grpbldr.com )
+		#
+		# current leaders:
+		#					1234.leaders@grpbldr.com
+		#					<unique club name>.leaders@grpbldr.com (ex: speakeasy.leaders@grpbldr.com)
+		#
+		# custom list:		1234.<list name>@grpbldr.com
+		# 					<unique clubname>.<list name>@grpbldr.com (ex: speakeasy.contestcommittee@grpbldr.com)			#
+		#-----------------------------------------------------------------------------------------------------------	
+
+
 require 'rubygems'
 require 'bundler/setup'
 require 'mailman'
 require '/home/jmeirow/grpbldr/lib/custom/system_services.rb'
+require '/home/jmeirow/grpbldr/lib/custom/string_helper.rb'
+require '/home/jmeirow/grpbldr/lib/custom/mailing_lists.rb'
+
+
+class RecipientList
+
+	attr_accessor   :recipient_list
+	
+	def initialize(message)
+		@message = message
+		@recipient_list = expand_recipient_list(message.to)
+	end
+
+	def is_valid?
+		#
+		!@recipient_list.nil?
+	end
+
+	def expand_recipient_list(original_recipient)
+
+		tokens = parse_recipient_into_tokens original_recipient
+		
+		return nil if tokens.length > 2 || tokens.length == 0
+
+		mailing_list = MailingLists.new 
+	    
+		club = club_from_email_name(tokens[0]) 
+
+		if tokens.length == 2 
+			return nil if club.nil?
+			club_list_name = tokens[1]
+			dist_list = mailing_list.active_members(club.id) if (club_list_name == 'members')
+	  else # length == 1
+			dist_list = mailing_list.active_members(club.id)  
+		end
+
+		dist_list
+	end
+
+	def invalid_token_count? tokens
+		return true if token.is_a Array && ( tokens.length > 2 || tokens.length == 0)
+		false
+	end
+
+	def parse_recipient_into_tokens original_recipient
+		original_recipient = original_recipient.to_s
+		original_recipient.gsub!(/"/,'').gsub!(/\[/,'').gsub!(/\]/,'')
+
+		tokens = original_recipient.split("@")
+		tokens[0].split(".")
+	end
+
+	def club_from_email_name(email_name)
+		 
+		if StringHelper.is_integer? email_name
+			return Club.where("id = ?",email_name).first 
+		else
+			return Club.where("lower(email_name) = ?", email_name.downcase).first
+		end
+	end
+
+end
+
+
+
 
 
 Mailman.config.pop3 = {
@@ -17,57 +101,13 @@ include SystemServices
 
 Mailman::Application.run do
   default do
+ 		recipient_list = RecipientList.new(message)
     email = Email.new
     email.subject = message.subject
-    email.to = "joe.meirow@gmail.com"
+    email.to = recipient_list.recipient_list
     email.from = message.from.first
     email.body = message.text_part.body.decoded
     email.save
-    relay_email(email.id) 
+    relay_email(email.id) if recipient_list.is_valid?
   end
 end
-
-
-def expand_recipient_list(original_recipient)
-
-	#-----------------------------------------------------------------------------------------------------------
-	# supported forms of email to list:
-	# 
-	# current members: 
-	#					1234.members@grpbldr.com
-	#					1234@grpbldr.com
-	#					<unique club handle>.members@grpbldr.com (ex:  speakeasy.members@grpbldr.com)
-	#					<unique club name>@grpbldr.com  (ex: speakeasy@grpbldr.com )
-	#
-	# current leaders:
-	#					1234.leaders@grpbldr.com
-	#					<unique club name>.leaders@grpbldr.com (ex: speakeasy.leaders@grpbldr.com)
-	#
-	# custom list:		1234.<list name>@grpbldr.com
-	# 					<unique clubname>.<list name>@grpbldr.com (ex: speakeasy.contestcommittee@grpbldr.com)			#
-	#-----------------------------------------------------------------------------------------------------------	
-
-	tokens = original_recipient.split(".") 
-	return nil if tokens.length > 2
-	if tokens.length == 2 && is_i tokens[0] && is_valid_club? tokens[0]
-
-	else 
-		if tokens.length == 1 
-
-
-
-end
-
-def is_i? str
-  !!(str =~ /^[-+]?[0-9]+$/)
-end
-
-def is_valid_club? id
-  !Club.find(id).nil?
-end
-
-
-
-
-
-

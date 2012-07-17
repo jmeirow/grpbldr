@@ -71,6 +71,11 @@
               <br/>    
               <br/>  
 
+                <div style='padding-top:3px;'>
+                  <%= link_to "Club Info", club_path(session[:club_id]) %><br/> 
+                </div>
+
+
 
                 <div style='padding-top:3px;'>
                   <%= link_to "Agenda Types", club_agenda_definitions_path(session[:club_id]) %><br/> 

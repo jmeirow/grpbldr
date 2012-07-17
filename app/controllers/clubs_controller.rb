@@ -5,23 +5,10 @@ class ClubsController < ApplicationController
   # GET /clubs
   # GET /clubs.json
   
- 
+   layout  'admins'
   
   
-  def index
-
-    if session[:logged_in_super_user] != 'joe.meirow@gmail.com'
-      raise ActionController::RoutingError.new('Not Found')
-      return
-    end
-    
-    @clubs = Club.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @clubs }
-    end
-  end
+  
 
   # GET /clubs/1
   # GET /clubs/1.json
@@ -36,17 +23,7 @@ class ClubsController < ApplicationController
 
    
   end
-
-  # GET /clubs/new
-  # GET /clubs/new.json
-  def new
-    @club = Club.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @club }
-    end
-  end
+ 
 
   # GET /clubs/1/edit
   def edit
@@ -55,21 +32,7 @@ class ClubsController < ApplicationController
 
 
 
-  # POST /clubs
-  # POST /clubs.json
-  def create
-    @club = Club.new(params[:club])
-
-    respond_to do |format|
-      if @club.save
-        format.html { redirect_to @club, notice: 'Club was successfully created.' }
-        format.json { render json: @club, status: :created, location: @club }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @club.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+ 
 
   # PUT /clubs/1
   # PUT /clubs/1.json
@@ -87,15 +50,5 @@ class ClubsController < ApplicationController
     end
   end
 
-  # DELETE /clubs/1
-  # DELETE /clubs/1.json
-  def destroy
-    @club = Club.find(params[:id])
-    @club.destroy
-
-    respond_to do |format|
-      format.html { redirect_to clubs_url }
-      format.json { head :ok }
-    end
-  end
+ 
 end

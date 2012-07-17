@@ -5,7 +5,7 @@
 	<%= form_for([ @club ,@role]  , :class => 'nice') do |f| %>
 		  <% if @role.errors.any? %>
 		    <div id="error_explanation" class="alert-box [error]">
-		      <h2><%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:</h2>
+		      <h4><%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:</h4>
 
 		      <ul>
 		      <% @role.errors.full_messages.each do |msg| %>
