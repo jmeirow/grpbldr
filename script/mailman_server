@@ -103,11 +103,12 @@ Mailman::Application.run do
   default do
  		recipient_list = RecipientList.new(message)
     email = Email.new
+    
     email.subject = message.subject
     email.to = recipient_list.recipient_list
     email.from = message.from.first
     email.body = message.text_part.body.decoded
     email.save
-    relay_email(email.id) if recipient_list.is_valid?
+    relay_email(email.id, message) if recipient_list.is_valid?
   end
 end

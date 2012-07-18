@@ -18,9 +18,9 @@ module SystemServices
     end
   end
 
-  def relay_email(id)
+  def relay_email(id, message)
     if email_available? == true
-      DistributionListMailer.relay(id).deliver
+      DistributionListMailer.relay(id,message).deliver
     end
   end
   
