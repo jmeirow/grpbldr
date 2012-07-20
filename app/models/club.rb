@@ -26,7 +26,7 @@ class Club < ActiveRecord::Base
   end
 
   def email_name_numeric_but_not_club_number
-    if StringHelper.is_i? self[:email_name] 
+    if StringHelper.is_integer? self[:email_name] 
       if self[:email_name] != self[:id].to_s  
         errors.add(:email_name, "can't be numeric unless it is your club number (#{self[:id]}).")
       end
