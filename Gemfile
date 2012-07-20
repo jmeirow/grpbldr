@@ -48,7 +48,6 @@ end
 group :production do
   gem 'turn', '0.8.2', :require => false
   gem 'unicorn'
-  gem 'newrelic_rpm'
 end
 
 
