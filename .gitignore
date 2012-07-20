@@ -6,7 +6,6 @@
 
 
 
-/config/database.yml
 
 /db/*.yml
 /db/reset.*
