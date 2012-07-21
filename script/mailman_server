@@ -96,7 +96,7 @@ class RecipientList
 end
 
 
-Mailman.config.logger = Logger.new("log/mailman.log")
+Mailman.config.logger = Logger.new("#{ENV['GB_RAILS_ROOT']}/log/mailman.log")
 
 Mailman.config.pop3 = {
   server: 'pop.secureserver.net', port: 995, ssl: true,
