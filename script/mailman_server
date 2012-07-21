@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-
-
 #-----------------------------------------------------------------------------------------------------------
 # supported forms of email to list:
 # 
@@ -23,17 +21,18 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'mailman'
- 
-
-#require '/home/jmeirow/grpbldr/lib/custom/system_services.rb'
-#require '/home/jmeirow/grpbldr/lib/custom/string_helper.rb'
-#require '/home/jmeirow/grpbldr/lib/custom/mailing_lists.rb'
 
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/string_helper.rb"
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/mailing_lists.rb"
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/system_services.rb"
 
 
+
+
+
+#-----------------------------------------------------------------------------------------------------------
+#  This class represents a recipient list for the new email created from the read email
+#-----------------------------------------------------------------------------------------------------------
 
 
 class RecipientList
@@ -96,6 +95,12 @@ class RecipientList
 end
 
 
+
+
+#-----------------------------------------------------------------------------------------------------------
+#  This is where the "service" begins
+#-----------------------------------------------------------------------------------------------------------
+
 Mailman.config.logger = Logger.new("#{ENV['GB_RAILS_ROOT']}/log/mailman.log")
 
 Mailman.config.pop3 = {
@@ -110,7 +115,6 @@ include SystemServices
 
 Mailman::Application.run do
   default do
- 	
   	begin 
 	 		recipient_list = RecipientList.new(message)
 	    email = Email.new
@@ -124,6 +128,5 @@ Mailman::Application.run do
 	  	Mailman.logger.error "Exception occurred while receiving message:\n#{message}"
 	    Mailman.logger.error [e, *e.backtrace].join("\n")
 	  end
-
   end
 end
