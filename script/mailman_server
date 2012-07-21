@@ -120,7 +120,7 @@ Mailman::Application.run do
 	    email.body = message.text_part.body.decoded
 	    email.save
 	    relay_email(email.id, message) if recipient_list.is_valid?
-	 	rescue
+	 	rescue Exception => e
 	  	Mailman.logger.error "Exception occurred while receiving message:\n#{message}"
 	    Mailman.logger.error [e, *e.backtrace].join("\n")
 	  end
