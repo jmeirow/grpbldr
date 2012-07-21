@@ -62,7 +62,13 @@ class RecipientList
 		if tokens.length == 2 
 			return nil if club.nil?
 			club_list_name = tokens[1]
-			dist_list = mailing_list.active_members(club.id) if (club_list_name == 'members')
+			
+			if (club_list_name == 'members')
+	  		dist_list = mailing_list.active_members(club.id) 
+	  	else
+	  		dist_list = 'joe.meirow@gmail.com'
+	  	end
+
 	  else # length == 1
 			dist_list = mailing_list.active_members(club.id)  
 		end
