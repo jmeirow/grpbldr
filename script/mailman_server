@@ -27,6 +27,7 @@ require "#{ENV['GB_RAILS_ROOT']}/lib/custom/mailing_lists.rb"
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/system_services.rb"
 
 
+Mailman.config.rails_root = ENV['GB_RAILS_ROOT']
 
 
 
