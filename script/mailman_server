@@ -1,29 +1,39 @@
 #!/usr/bin/env ruby
 
-		#-----------------------------------------------------------------------------------------------------------
-		# supported forms of email to list:
-		# 
-		# current members: 
-		#					1234.members@grpbldr.com
-		#					1234@grpbldr.com
-		#					<unique club handle>.members@grpbldr.com (ex:  speakeasy.members@grpbldr.com)
-		#					<unique club name>@grpbldr.com  (ex: speakeasy@grpbldr.com )
-		#
-		# current leaders:
-		#					1234.leaders@grpbldr.com
-		#					<unique club name>.leaders@grpbldr.com (ex: speakeasy.leaders@grpbldr.com)
-		#
-		# custom list:		1234.<list name>@grpbldr.com
-		# 					<unique clubname>.<list name>@grpbldr.com (ex: speakeasy.contestcommittee@grpbldr.com)			#
-		#-----------------------------------------------------------------------------------------------------------	
+
+
+#-----------------------------------------------------------------------------------------------------------
+# supported forms of email to list:
+# 
+# current members: 
+#					1234.members@grpbldr.com
+#					1234@grpbldr.com
+#					<unique club handle>.members@grpbldr.com (ex:  speakeasy.members@grpbldr.com)
+#					<unique club name>@grpbldr.com  (ex: speakeasy@grpbldr.com )
+#
+# current leaders:
+#					1234.leaders@grpbldr.com
+#					<unique club name>.leaders@grpbldr.com (ex: speakeasy.leaders@grpbldr.com)
+#
+# custom list:		1234.<list name>@grpbldr.com
+# 					<unique clubname>.<list name>@grpbldr.com (ex: speakeasy.contestcommittee@grpbldr.com)			#
+#-----------------------------------------------------------------------------------------------------------	
 
 
 require 'rubygems'
 require 'bundler/setup'
 require 'mailman'
-require '/home/jmeirow/grpbldr/lib/custom/system_services.rb'
-require '/home/jmeirow/grpbldr/lib/custom/string_helper.rb'
-require '/home/jmeirow/grpbldr/lib/custom/mailing_lists.rb'
+ 
+
+#require '/home/jmeirow/grpbldr/lib/custom/system_services.rb'
+#require '/home/jmeirow/grpbldr/lib/custom/string_helper.rb'
+#require '/home/jmeirow/grpbldr/lib/custom/mailing_lists.rb'
+
+require "#{ENV['GB_RAILS_ROOT']}/lib/custom/string_helper.rb"
+require "#{ENV['GB_RAILS_ROOT']}/lib/custom/mailing_lists.rb"
+require "#{ENV['GB_RAILS_ROOT']}/lib/custom/system_services.rb"
+
+
 
 
 class RecipientList
@@ -86,8 +96,7 @@ class RecipientList
 end
 
 
-
-
+Mailman.config.logger = Logger.new("log/mailman.log")
 
 Mailman.config.pop3 = {
   server: 'pop.secureserver.net', port: 995, ssl: true,
@@ -101,14 +110,20 @@ include SystemServices
 
 Mailman::Application.run do
   default do
- 		recipient_list = RecipientList.new(message)
-    email = Email.new
-    
-    email.subject = message.subject
-    email.to = recipient_list.recipient_list
-    email.from = message.from.first
-    email.body = message.text_part.body.decoded
-    email.save
-    relay_email(email.id, message) if recipient_list.is_valid?
+ 	
+  	begin 
+	 		recipient_list = RecipientList.new(message)
+	    email = Email.new
+	    email.subject = message.subject
+	    email.to = recipient_list.recipient_list
+	    email.from = message.from.first
+	    email.body = message.text_part.body.decoded
+	    email.save
+	    relay_email(email.id, message) if recipient_list.is_valid?
+	 	rescue
+	  	Mailman.logger.error "Exception occurred while receiving message:\n#{message}"
+	    Mailman.logger.error [e, *e.backtrace].join("\n")
+	  end
+
   end
 end
