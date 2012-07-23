@@ -20,6 +20,7 @@ gem 'sinatra', :require => nil
 gem 'jquery-rails'
 gem 'capistrano'
 gem 'mail'
+gem 'flt'
 
 group :development do
   gem 'thin' 
