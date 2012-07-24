@@ -1,5 +1,7 @@
 Rolemaster::Application.routes.draw do
 
+  get "bizadmins/blank"
+
   #get "password_resets/new"
 
   require 'sidekiq/web'
@@ -29,6 +31,8 @@ Rolemaster::Application.routes.draw do
   get "all_members" => "sysadmins#all_members"
   get "admins/blank" => "admins#blank", :as => "admin"
   get "sysadmins/blank" => "sysadmins#blank", :as => "sysadmins"
+  get "bizadmins/blank" => "bizadmins#blank", :as => "bizadmins"
+
   get "sessions/select" => "sessions#select", :as => "select"
 
 
@@ -53,7 +57,7 @@ Rolemaster::Application.routes.draw do
 
 
   resources :sys_configurations
-
+  resources :agreements
 
 
   
