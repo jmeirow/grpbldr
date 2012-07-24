@@ -15,11 +15,27 @@ comment = <<END
 	Calendar,  p(parse), DecNum
 
 
-	Billing Classes
+	New Classes for Billing 
 
 	Agreement
 	ClubMembershipDetails
 	MemberMonthlyTotals
+
+
+	Development Work
+
+	1) Create CRUD UI for Agreement
+  2) Create CRUD UI for Creating a Billing Batch (this IS an entity)
+	3) Create background process to 
+			a) populate ClubMembershipDetails from Members
+			b) populate MonthlyMemberTotal
+			c) Design class to hold the billing Batch
+			d) Design UI review/accept/reject the billing Batch
+	4) Design UI / process to submit the billing batch to Stripe for payment
+      Includes taking note of failed charges
+
+      
+
 
 
 
