@@ -264,41 +264,38 @@ END
 		end
 
 
-		$final_member_totals = Array.new
+		# $final_member_totals = Array.new
 
-		keys = consolidated.keys
-		keys.sort!
-		keys.each do |member_id|
-			details = consolidated[member_id]
-			if details.length == 1 && details[0].is_full_month?
-				detail = details[0]
-				$final_member_totals << MonthlyMemberTotal.new(detail.club_id, detail.member_id,
-															 detail.is_full_month?, detail.days_of_membership, detail.days_this_billing_period, detail.agreement)
-			else
-				detail = details[0]
-				days = details.inject(0) { |sum,item| sum + item.days_of_membership }
-				$final_member_totals << MonthlyMemberTotal.new(detail.club_id, detail.member_id,
-															 (days == detail.days_this_billing_period) , days, detail.days_this_billing_period, detail.agreement)
-			end
-		end
+		# keys = consolidated.keys
+		# keys.sort!
+		# keys.each do |member_id|
+		# 	details = consolidated[member_id]
+		# 	if details.length == 1 && details[0].is_full_month?
+		# 		detail = details[0]
+		# 		$final_member_totals << MonthlyMemberTotal.new(detail.club_id, detail.member_id,
+		# 													 detail.is_full_month?, detail.days_of_membership, detail.days_this_billing_period, detail.agreement)
+		# 	else
+		# 		detail = details[0]
+		# 		days = details.inject(0) { |sum,item| sum + item.days_of_membership }
+		# 		$final_member_totals << MonthlyMemberTotal.new(detail.club_id, detail.member_id,
+		# 													 (days == detail.days_this_billing_period) , days, detail.days_this_billing_period, detail.agreement)
+		# 	end
+		# end
 
 
 
 		
-		puts ""
-		puts ""
-		rec = $final_member_totals[0]
-		puts "Club # #{rec.club_id} for the period of #{$period_begin_date} through #{$period_end_date} "
+		# puts ""
+		# puts ""
+		# rec = $final_member_totals[0]
+		# puts "Club # #{rec.club_id} for the period of #{$period_begin_date} through #{$period_end_date} "
 
-		$final_member_totals.each do |item|
-			puts item.to_s if item.membership_days_this_period > 0
-		end
+		# $final_member_totals.each do |item|
+		# 	puts item.to_s if item.membership_days_this_period > 0
+		# end
 
-		puts "------------------------------------------"
-		total = $final_member_totals.inject(0) { |sum,item| sum + item.charge_for_period  }
-
-		puts "TOTAL AMOUNT DUE:   #{ DecNum(total.to_s).round(2)  }"
-
-
-
+		# puts "------------------------------------------"
+		# total = $final_member_totals.inject(0) { |sum,item| sum + item.charge_for_period  }
  
+
+  
