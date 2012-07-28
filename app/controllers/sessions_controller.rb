@@ -88,11 +88,12 @@ class SessionsController < ApplicationController
     params[:club_id] = club.id
     session[:club_id] = club.id
     session[:logged_in_admin] = Admin.where("email = ? and club_id = ?", member.email, session[:club_id]).count > 0
-    session[:logged_in_super_user] =  (  member.email == ENV['SUPER_USER_TOKEN'] ? member.email : nil )
+    session[:logged_in_super_user] =  (  member.email == ENV['GB_SUPER_USER_TOKEN'] ? member.email : nil )
     
     # In the near future this should be an event that an observer acts upon, sending an email,
     # or whatever else should be done when a user logs in.
 
+    #LoginMailer.delay_for(5.seconds).member_logged_in(member.id)
     send_email(LoginMailerWorker,member.id)       
 
   end

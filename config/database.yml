@@ -1,33 +1,33 @@
 development:
   adapter: postgresql
-  database: <%= ENV['APP_DEVELOPMENT_DATABASE'] %>
+  database: <%= ENV['GB_APP_DEVELOPMENT_DATABASE'] %>
   pool: 15
   timeout:
   encoding: unicode
   username: postgres
-  password:  <%= ENV['APP_DB_PASSWORD'] %>
+  password:  <%= ENV['GB_APP_DB_PASSWORD'] %>
   host: localhost
 
 
 test:
   adapter: postgresql
-  database: <%= ENV['APP_TEST_DATABASE'] %>
+  database: <%= ENV['GB_APP_TEST_DATABASE'] %>
   pool: 15
   timeout:
   encoding: unicode
   username: postgres
-  password:  <%= ENV['APP_DB_PASSWORD'] %>
+  password:  <%= ENV['GB_APP_DB_PASSWORD'] %>
   host: localhost
 
 
 production:
   adapter: postgresql
-  database: <%= ENV['APP_PRODUCTION_DATABASE'] %>
+  database: <%= ENV['GB_APP_PRODUCTION_DATABASE'] %>
   pool: 15
   timeout:
   encoding: unicode
   username: postgres
-  password:  <%= ENV['APP_DB_PASSWORD'] %>
+  password:  <%= ENV['GB_APP_DB_PASSWORD'] %>
   host: localhost
 
 

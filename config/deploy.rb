@@ -2,11 +2,11 @@ require 'bundler/capistrano'
 require 'sidekiq/capistrano'
 
 
-server ['SERVER'], :web, :app, :db, primary: true
+server ['GB_DEPLOYMENT_SERVER'], :web, :app, :db, primary: true
 
 
 set :application, "grpbldr"
-set :user, ENV['DEPLOYMENT_USER']
+set :user, ENV['GB_DEPLOYMENT_USER']
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false

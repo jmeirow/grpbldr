@@ -14,7 +14,7 @@ gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'mail'
 gem 'railsthemes'
 gem 'execjs'
-gem 'sidekiq'
+gem "sidekiq", "~> 2.1.0"
 gem 'slim'
 gem 'sinatra', :require => nil
 gem 'jquery-rails'

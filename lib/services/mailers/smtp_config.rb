@@ -4,12 +4,12 @@ class SmtpConfig
 
   def initialize
     
-    @smtp_domain = ENV['SMTP_DOMAIN']
-    @smtp_address = ENV['SMTP_ADDRESS']
-    @user_account = ENV['SMTP_USER_NAME']
-    @password = ENV['SMTP_PASSWORD']
-    @from_address = ENV['SMTP_NOTIFICATION_EMAIL']
-    @to_address =ENV['SMTP_NOTIFICATION_EMAIL']
+    @smtp_domain  = ENV['GB_SMTP_DOMAIN']
+    @smtp_address = ENV['GB_SMTP_ADDRESS']
+    @user_account = ENV['GB_SMTP_USER_NAME']
+    @password     = ENV['GB_SMTP_PASSWORD']
+    @from_address = ENV['GB_SMTP_NOTIFICATION_EMAIL']
+    @to_address   = ENV['GB_SMTP_NOTIFICATION_EMAIL']
 
   end
 
