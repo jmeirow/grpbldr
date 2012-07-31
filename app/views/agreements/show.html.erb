@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Club:</b>
+  <%= @agreement.club_id %>
+</p>
+
+<p>
+  <b>From date:</b>
+  <%= @agreement.from_date %>
+</p>
+
+<p>
+  <b>Through date:</b>
+  <%= @agreement.through_date %>
+</p>
+
+<p>
+  <b>Club monthly rate:</b>
+  <%= @agreement.club_monthly_rate %>
+</p>
+
+<p>
+  <b>Member monthly rate:</b>
+  <%= @agreement.member_monthly_rate %>
+</p>
+
+
+<%= link_to 'Edit', edit_agreement_path(@agreement) %> |
+<%= link_to 'Back', agreements_path %>

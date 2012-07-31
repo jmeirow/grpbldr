@@ -1,0 +1,37 @@
+<%= form_for(@agreement) do |f| %>
+  <% if @agreement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@agreement.errors.count, "error") %> prohibited this agreement from being saved:</h2>
+
+      <ul>
+      <% @agreement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :club_id %><br />
+    <%= f.number_field :club_id %>
+  </div>
+  <div class="field">
+    <%= f.label :from_date %><br />
+    <%= f.date_select :from_date %>
+  </div>
+  <div class="field">
+    <%= f.label :through_date %><br />
+    <%= f.date_select :through_date %>
+  </div>
+  <div class="field">
+    <%= f.label :club_monthly_rate %><br />
+    <%= f.text_field :club_monthly_rate %>
+  </div>
+  <div class="field">
+    <%= f.label :member_monthly_rate %><br />
+    <%= f.text_field :member_monthly_rate %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

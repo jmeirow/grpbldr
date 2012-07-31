@@ -2,10 +2,10 @@ class Member < ActiveRecord::Base
 
   # attributes allowed in mass-assignment
 
-  attr_accessible :first_name, :last_name, :start_date, :start_date_display, 
-  :end_date, :end_date_display, :assignable, :email, :club_id, :address_one, 
-  :address_two, :city, :state, :zip_code, :phone, :mobile_phone
-  
+  attr_accessible :first_name, :last_name, :start_date, :start_date_display, :end_date, :end_date_display, :assignable, :email, :club_id, :address_one, :address_two, :city, :state, :zip_code, :phone, :mobile_phone
+
+
+  # attr_accessor :first_name, :last_name, :start_date, :start_date_display, :end_date, :end_date_display, :assignable, :email, :club_id, :address_one, :address_two, :city, :state, :zip_code, :phone, :mobile_phone
 
   # virtual attributes
 
@@ -36,13 +36,13 @@ class Member < ActiveRecord::Base
 
   scope :current, lambda { |club| where(" club_id = ? and ? between start_date and end_date", club.id, Date.today)  }
   scope :past,    lambda { |club| where(" club_id = ? and ? not between start_date and end_date", club.id, Date.today)  }
-
-
+ 
 
   def event
     @event
   end
 
+ 
 
   after_validation do
      @changes = self.changes.to_s

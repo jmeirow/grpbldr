@@ -73,6 +73,7 @@ GEM
       factory_girl (~> 3.5.0)
       railties (>= 3.0.0)
     ffi (1.1.0)
+    flt (1.3.0)
     guard (1.2.3)
       listen (>= 0.4.2)
       thor (>= 0.14.6)
@@ -86,7 +87,7 @@ GEM
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
-    json (1.7.3)
+    json (1.7.4)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -97,7 +98,7 @@ GEM
     letter_opener (0.0.2)
       launchy
     libv8 (3.3.10.4)
-    libwebsocket (0.1.4)
+    libwebsocket (0.1.5)
       addressable
     listen (0.4.7)
       rb-fchange (~> 0.0.5)
@@ -191,7 +192,7 @@ GEM
       rspec-expectations (~> 2.11.0)
       rspec-mocks (~> 2.11.0)
     rspec-core (2.11.1)
-    rspec-expectations (2.11.1)
+    rspec-expectations (2.11.2)
       diff-lcs (~> 1.1.3)
     rspec-mocks (2.11.1)
     rspec-rails (2.11.0)
@@ -210,9 +211,9 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
-    sidekiq (2.0.3)
-      celluloid (~> 0.11.0)
-      connection_pool (~> 0.9.0)
+    sidekiq (2.1.0)
+      celluloid (~> 0.11.1)
+      connection_pool (~> 0.9.2)
       multi_json (~> 1)
       redis (~> 3)
       redis-namespace
@@ -268,6 +269,7 @@ DEPENDENCIES
   eventmachine
   execjs
   factory_girl_rails
+  flt
   guard-rspec
   hirb
   jquery-rails
@@ -287,7 +289,7 @@ DEPENDENCIES
   railsthemes
   rspec-rails
   sass-rails (~> 3.2.5)
-  sidekiq
+  sidekiq (~> 2.1.0)
   sinatra
   slim
   therubyracer

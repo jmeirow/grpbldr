@@ -108,7 +108,7 @@ private
 
   
   def current_user_is_super_user?
-       session[:logged_in_super_user].nil? == false &&  session[:logged_in_super_user] == ENV['SUPER_USER_TOKEN'] 
+       session[:logged_in_super_user].nil? == false &&  session[:logged_in_super_user] == ENV['GB_SUPER_USER_TOKEN'] 
   end
 
 

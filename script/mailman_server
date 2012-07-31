@@ -21,6 +21,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'mailman'
+require 'action_view'
 
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/string_helper.rb"
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/mailing_lists.rb"
@@ -100,6 +101,14 @@ class RecipientList
 
 end
 
+class MailHTMLWrapper
+	def initialize(body)
+		@body = body
+	end
+	def html
+		@body
+	end
+end
 
 
 
@@ -111,7 +120,7 @@ Mailman.config.rails_root = ENV['GB_RAILS_ROOT']
 Mailman.config.poll_interval = 10
 Mailman.config.logger = Logger.new("#{ENV['GB_RAILS_ROOT']}/log/mailman.log")
 Mailman.config.pop3 = {
-  server: 'pop.secureserver.net', port: 995, ssl: true,
+  server: 	ENV['RELAY_POP_SERVER'], port: 995, ssl: true,
   username: ENV['RELAY_POP_USERNAME'],
   password: ENV['RELAY_POP_PASSWORD']
 }
@@ -123,6 +132,7 @@ Mailman.config.pop3 = {
 
 
 include SystemServices
+include ActionView::Helpers::TagHelper
 
 Mailman::Application.run do
   default do
