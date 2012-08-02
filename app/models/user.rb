@@ -9,14 +9,7 @@ class User < ActiveRecord::Base
   attr_accessor     :password, :password_confirmation, :current_password
 
 
-  after_find :load_attributes
-
-  def load_attributes
-    attributes.each do |name, value|
-        send("#{name}=", value)
-    end
-  end
-
+ 
 
   
   validates :email,  :presence => true, :on => :create

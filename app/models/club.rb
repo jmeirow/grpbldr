@@ -14,15 +14,8 @@ class Club < ActiveRecord::Base
   after_create :default_email_name_to_club_number
 
 
-  after_find :load_attributes
-
-  def load_attributes
-    attributes.each do |name, value|
-        send("#{name}=", value)
-    end
-  end
-
-
+ 
+ 
 
   def self.roles
     Role.where("club_id = ?", id)
