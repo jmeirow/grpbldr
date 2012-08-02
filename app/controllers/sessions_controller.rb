@@ -20,15 +20,16 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id 
 
-      @members =  Member.where( "email = ? and ? between start_date and end_date", user.email, Time.now  )
+      @members =  Member.where( "email = ? and ? between start_date and end_date", user.email, Time.now  ) 
+      
       if @members.length > 1 
         session[:clubs] = user.clubs
         session[:members] = user.members
         render  :action => 'present'
       else
-        session[:members] = [@members[0].id]
-        establish_session(@members[0])
-        redirect_to club_member_assignments_path(params[:club_id],@members[0]), :notice => "Logged in!"
+        session[:members] = @members.first # [@members[0].id]
+        establish_session(@members.first) # (@members[0])
+        redirect_to club_member_assignments_path(params[:club_id],@members.first), :notice => "Logged in!"
       end
     else
 

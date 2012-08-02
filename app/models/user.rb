@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   end
 
   def  members
+    
     ids = Array.new
     Member.where("email = ?", self[:email]).each do |member|
       ids << member.id
@@ -35,8 +36,10 @@ class User < ActiveRecord::Base
 
 
   def clubs
+    
+    mbrs = members    
     ids = Array.new
-    members.each do |member_id|
+    mbrs.each do |member_id|
       member = Member.find(member_id)
       club = Club.find(member.club_id)
       ids << club.id

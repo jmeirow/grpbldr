@@ -6,7 +6,7 @@ class DistributionListMailer < ActionMailer::Base
 	@body = email.body
 	
 	content_type = "text/html"
-	#binding.pry
+	 
 	message.attachments.each do |attachment|
 		attachments[attachment.filename] = attachment.read
 		content_type = "multipart/mixed"
