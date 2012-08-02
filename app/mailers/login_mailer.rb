@@ -12,7 +12,7 @@ class LoginMailer < ActionMailer::Base
   	 
   	@member = Member.find(args[0])
   	@club = Club.find(@member.attributes["club_id"])
- 	  mail(:to => "joe.meirow@gmail.com", :subject => @member.['first_name'] + ' ' + @member.['last_name'] + " Has Logged In", :from => "joe.meirow@gmail.com" )  
+ 	  mail(:to => "joe.meirow@gmail.com", :subject => @member['first_name'] + ' ' + @member['last_name'] + " Has Logged In", :from => "joe.meirow@gmail.com" )  
   end
 
 end
