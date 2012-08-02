@@ -4,6 +4,13 @@ class Member < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :start_date, :start_date_display, :end_date, :end_date_display, :assignable, :email, :club_id, :address_one, :address_two, :city, :state, :zip_code, :phone, :mobile_phone
 
+  after_find :load_attributes
+
+  def load_attributes
+    attributes.each do |name, value|
+        send("#{name}=", value)
+    end
+  end
 
   # attr_accessor :first_name, :last_name, :start_date, :start_date_display, :end_date, :end_date_display, :assignable, :email, :club_id, :address_one, :address_two, :city, :state, :zip_code, :phone, :mobile_phone
 

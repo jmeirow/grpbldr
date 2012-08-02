@@ -2,11 +2,20 @@ class User < ActiveRecord::Base
 
   # modules...
 
-  include ActiveModel::MassAssignmentSecurity
+  #include ActiveModel::MassAssignmentSecurity
   include User::Security 
 
   attr_accessible :email, :password, :password_confirmation , :current_password
   attr_accessor     :password, :password_confirmation, :current_password
+
+
+  after_find :load_attributes
+
+  def load_attributes
+    attributes.each do |name, value|
+        send("#{name}=", value)
+    end
+  end
 
 
   
@@ -26,7 +35,6 @@ class User < ActiveRecord::Base
   end
 
   def  members
-    
     ids = Array.new
     Member.where("email = ?", self[:email]).each do |member|
       ids << member.id
@@ -36,10 +44,8 @@ class User < ActiveRecord::Base
 
 
   def clubs
-    
-    mbrs = members    
     ids = Array.new
-    mbrs.each do |member_id|
+    members.each do |member_id|
       member = Member.find(member_id)
       club = Club.find(member.club_id)
       ids << club.id

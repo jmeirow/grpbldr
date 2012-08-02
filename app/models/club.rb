@@ -2,7 +2,7 @@ require 'custom/string_helper.rb'
 
 class Club < ActiveRecord::Base
   	
-  include ActiveModel::MassAssignmentSecurity
+  #include ActiveModel::MassAssignmentSecurity
 	
   attr_accessible :name, :email_enabled, :email_name
 
@@ -14,6 +14,13 @@ class Club < ActiveRecord::Base
   after_create :default_email_name_to_club_number
 
 
+  after_find :load_attributes
+
+  def load_attributes
+    attributes.each do |name, value|
+        send("#{name}=", value)
+    end
+  end
 
 
 
