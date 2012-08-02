@@ -7,13 +7,24 @@ class Club < ActiveRecord::Base
   attr_accessible :name, :email_enabled, :email_name
 
   validates_presence_of :name
-  validate :email_name_already_in_use
-  validate :email_name_contains_blanks
-  validate :email_name_numeric_but_not_club_number
+  validate :email_name_already_in_use,  :on => :update
+  validate :email_name_contains_blanks,  :on => :update
+  validate :email_name_numeric_but_not_club_number,  :on => :update
   
+  after_create :default_email_name_to_club_number
+
+
+
+
+
   def self.roles
     Role.where("club_id = ?", id)
   end
+
+  def default_email_name_to_club_number
+    self[:email_name] = self[:id].to_s
+  end
+  
 
   def next_meeting
   	Meeting.where("club_id = ? and meeting_date >= ?", self.id, Date.today ).order("meeting_date").first

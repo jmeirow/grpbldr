@@ -35,10 +35,10 @@ class Enrollment
     User.transaction do
       begin
 
-        user = User.where("email = ?", email ).first
+        
+        cnt = User.where("email = ?", email ).count
 
-        if user.nil? == false
-
+        if cnt == 0
           User.create(:email => email, :password => password, :password_confirmation => password_confirmation)
         end
 
@@ -50,8 +50,6 @@ class Enrollment
  
 
       rescue ActiveRecord::StatementInvalid
-      
-
         raise ActiveRecord::Rollback
       end
     
