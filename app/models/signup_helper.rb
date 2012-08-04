@@ -67,6 +67,7 @@ class SignupHelper
     unless @params[:signup_ids].nil?
       @params[:signup_ids].each do |assignment_id|
         ids = assignment_id.split('_')
+        binding.pry
         send_email(RoleSignupNotificationMailerWorker,member_id,ids[0].to_i,ids[1].to_i)
       end
     end
