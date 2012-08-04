@@ -7,10 +7,6 @@ class LoginMailer < ActionMailer::Base
   # 	@member = Member.find(args[0])
   # 	@club = Club.find(@member.club_id)
   def member_logged_in(member_id)
-
-    logger.debug "==============================================================="
-    logger.debug member_id
-    logger.debug "==============================================================="
    	member = Member.find(member_id)
   	club = Club.find(member.club_id)
     @member, @club = member, club

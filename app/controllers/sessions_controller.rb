@@ -102,8 +102,7 @@ class SessionsController < ApplicationController
     # In the near future this should be an event that an observer acts upon, sending an email,
     # or whatever else should be done when a user logs in.
 
-    #LoginMailer.delay_for(5.seconds).member_logged_in(member.id)
-    send_email(LoginMailerWorker,member.id)       
+    send_email('LoginMailerWorker',member.id)       
 
   end
 

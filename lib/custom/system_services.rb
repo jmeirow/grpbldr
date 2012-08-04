@@ -1,6 +1,12 @@
 module SystemServices
 
   def email_available?
+
+    Rails.logger.debug ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    Rails.logger.debug "In 'email available'"
+    Rails.logger.debug ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+
+
     val = 'N'
     config = SysConfiguration.where("config_key = ?", "system.email.global.send").first
     if config.nil?
@@ -8,43 +14,42 @@ module SystemServices
     else
       val = config.config_value
     end
+    Rails.logger.debug ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    Rails.logger.debug "val = #{val}"
+    Rails.logger.debug ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+
     return val == 'Y'
   end
 
 
   def send_email(worker, *args )
+    
     if email_available? == true
-      
-      if worker.is_a? LoginMailerWorker 
+      if worker == "LoginMailerWorker"
         member_id = args[0]
-        worker.perform_async(member_id)
+        LoginMailerWorker.perform_async(member_id)
       end
 
-      if worker.is_a? RoleSignupNotificationMailerWorker 
+      if worker == 'RoleHasBecomeAvailableMailerWorker' 
+        meeting_id = args[0]
+        role_id = args[1]
+        RoleHasBecomeAvailableMailerWorker.perform_async(meeting_id,role_id)
+      end
+
+
+      if worker == 'RoleSignupNotificationMailerWorker' 
         member_id = args[0]
         meeting_id = args[1]
         role_id = args[2]
-        worker.perform_async(member_id,meeting_id,role_id)
+        RoleSignupNotificationMailerWorker.perform_async(member_id,meeting_id,role_id)
       end
 
-
-      if worker.is_a? RoleHasBecomeAvailableMailerWorker 
-        member_id = args[0]
-        role_id = args[1]
-        worker.perform_async(member_id,role_id)
-      end
-
-
-      if worker.is_a? SwitchRequestMailerWorker 
+      if worker == 'SwitchRequestMailerWorker' 
+                handled = true
         member_id = args[0]
         assignment_id = args[1]
-        worker.perform_async(member_id,assignment_id)
+        SwitchRequestMailerWorker.perform_async(member_id,assignment_id)
       end
-
-
- 
-
-
     end     
   end
 

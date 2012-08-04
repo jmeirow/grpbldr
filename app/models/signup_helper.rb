@@ -61,14 +61,13 @@ class SignupHelper
     member_id = @params[:member_id].to_i
     unless @params[:switch_ids].nil?
       @params[:switch_ids].each do |assignment_id|
-        send_email(SwitchRequestMailerWorker,member_id,assignment_id)
+        send_email('SwitchRequestMailerWorker',member_id,assignment_id)
       end
     end
     unless @params[:signup_ids].nil?
       @params[:signup_ids].each do |assignment_id|
         ids = assignment_id.split('_')
-        binding.pry
-        send_email(RoleSignupNotificationMailerWorker,member_id,ids[0].to_i,ids[1].to_i)
+        send_email('RoleSignupNotificationMailerWorker',member_id,ids[0].to_i,ids[1].to_i)
       end
     end
 
