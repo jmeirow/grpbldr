@@ -2,11 +2,6 @@ module SystemServices
 
   def email_available?
 
-    Rails.logger.debug ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    Rails.logger.debug "In 'email available'"
-    Rails.logger.debug ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-
-
     val = 'N'
     config = SysConfiguration.where("config_key = ?", "system.email.global.send").first
     if config.nil?
@@ -14,10 +9,6 @@ module SystemServices
     else
       val = config.config_value
     end
-    Rails.logger.debug ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    Rails.logger.debug "val = #{val}"
-    Rails.logger.debug ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-
     return val == 'Y'
   end
 
