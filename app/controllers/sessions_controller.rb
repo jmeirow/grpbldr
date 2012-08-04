@@ -14,8 +14,12 @@ class SessionsController < ApplicationController
   
   def create
     session.clear
+
     
+
     user = User.authenticate(params[:email], params[:password])
+     
+
     @user = user
     if user
       session[:user_id] = user.id 
@@ -24,11 +28,14 @@ class SessionsController < ApplicationController
       
       if @members.length > 1 
         session[:clubs] = user.clubs
-        session[:members] = user.members
+        session[:members] = user.members.length
         render  :action => 'present'
       else
-        session[:members] = @members.first # [@members[0].id]
-        establish_session(@members.first) # (@members[0])
+        
+
+        session[:members] = @members[0].id
+        
+        establish_session @members[0] 
         redirect_to club_member_assignments_path(params[:club_id],@members.first), :notice => "Logged in!"
       end
     else
@@ -82,6 +89,7 @@ class SessionsController < ApplicationController
   private
 
   def establish_session(member)
+
 
     session[:email] = member.email
     session[:member_id] = member.id

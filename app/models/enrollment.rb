@@ -11,7 +11,7 @@ class Enrollment
   
   attr_accessor :last_name,  :first_name,  :club_name, :start_date, :club_id, :end_date, :email, :password, :password_confirmation
   
-   attr_accessible :last_name,  :first_name,  :club_name, :start_date, :club_id, :end_date, :email, :password, :password_confirmation
+  attr_accessible :last_name,  :first_name,  :club_name, :start_date, :club_id, :end_date, :email, :password, :password_confirmation
 
 
 

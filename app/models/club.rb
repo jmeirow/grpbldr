@@ -4,16 +4,19 @@ class Club < ActiveRecord::Base
   	
   #include ActiveModel::MassAssignmentSecurity
 	
+  include ActiveBuilder
+  
   attr_accessible :name, :email_enabled, :email_name
 
   validates_presence_of :name
   validate :email_name_already_in_use,  :on => :update
   validate :email_name_contains_blanks,  :on => :update
   validate :email_name_numeric_but_not_club_number,  :on => :update
-  
+
+
+  #callbacks
+  after_find :gb_set_attribute_methods_from_attributes
   after_create :default_email_name_to_club_number
-
-
  
  
 

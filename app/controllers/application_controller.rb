@@ -45,7 +45,7 @@ private
   end
 
   def multiple_members?
-    session[:members] && session[:members].length > 1
+    session[:members] && session[:members] > 1
   end
 
   def current_user

@@ -1,14 +1,27 @@
 class Meeting < ActiveRecord::Base
-  include ActiveModel::MassAssignmentSecurity
 
+  # modules
+  include ActiveBuilder
+
+  #access
   attr_accessible  :meeting_date, :id , :meeting_date_display, :hour, :minute, :am_pm
   attr_accessor :padded_minutes
-  
+
+  #callbacks  
+  after_find :gb_set_attribute_methods_from_attributes
+
+
+  #associations
   has_many :assignments
   
 
-  # class methods
+  #validation
+  validate :meeting_date_display_parseable 
+  validates :hour , :presence => true, :numericality => {:only_integer => true}, inclusion: {in: 1..12}
+  validates :minute , :presence => true, :numericality => {:only_integer => true}, inclusion: {in: 0..59}
   
+
+  # class methods
   def self.get_total_open_roles_for_meetings(meeting_ids, club_id)
     cnt = 0
     meetings = Meeting.where("club_id = ? and id in (?)", club_id, meeting_ids)
@@ -37,20 +50,7 @@ class Meeting < ActiveRecord::Base
     Meeting.where("club_id = ?   and meeting_date >= ?", club_id,   Date.today).order("meeting_date")
   end
  
-
-
-  # instance code
-  
-  
-	validate :meeting_date_display_parseable 
-  validates :hour , :presence => true, :numericality => {:only_integer => true}, inclusion: {in: 1..12}
-  validates :minute , :presence => true, :numericality => {:only_integer => true}, inclusion: {in: 0..59}
-  
-	
-	#attr_accessor :meeting_date, :meeting_date_display
-	#attr_reader :get_total_open_roles_for_meetings
-
-
+ 
 		
   def unfilled_roles_count (club_id)
     Role.roles(club_id).length -  self[:assignments_count] 

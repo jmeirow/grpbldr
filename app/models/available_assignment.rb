@@ -2,11 +2,16 @@
 
 class AvailableAssignment < ActiveRecord::Base
   
+  # modules
+  include ActiveBuilder
 
+  #access
   attr_accessible :meeting, :role, :assignment
   attr_accessor :prior_committments
   
    
+  #callbacks
+  after_find :gb_set_attribute_methods_from_attributes
   
   def initialize (meeting, role)
     @meeting = meeting

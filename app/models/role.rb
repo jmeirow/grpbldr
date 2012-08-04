@@ -1,8 +1,17 @@
 class Role < ActiveRecord::Base
-	include ActiveModel::MassAssignmentSecurity
 
+
+  # modules
+  include ActiveBuilder
+
+  #access
   attr_accessible :description, :assignable, :id , :minimum_required_experience, :meetings_to_skip_before_assigning_again
 
+
+  #callbacks  
+  after_find :gb_set_attribute_methods_from_attributes
+
+  #validation
   validates :description, :presence => true
 	
 	
