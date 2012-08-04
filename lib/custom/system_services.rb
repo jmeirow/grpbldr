@@ -14,14 +14,38 @@ module SystemServices
 
   def send_email(worker, *args )
     if email_available? == true
+      
       if worker.is_a? LoginMailerWorker 
         member_id = args[0]
         logger.banner "member_id after pulling from args is #{member_id}"
         worker.perform_async(worker,member_id)
-      else
-        id = args[0]
-        worker.perform_async(worker,args)
       end
+
+      if worker.is_a? RoleSignupNotificationMailerWorker 
+        member_id = args[0]
+        meeting_id = args[1]
+        role_id = args[2]
+        worker.perform_async(worker,member_id,meeting_id,role_id)
+      end
+
+
+      if worker.is_a? RoleHasBecomeAvailableMailerWorker 
+        member_id = args[0]
+        role_id = args[1]
+        worker.perform_async(worker,member_id,role_id)
+      end
+
+
+      if worker.is_a? SwitchRequestMailerWorker 
+        member_id = args[0]
+        assignment_id = args[1]
+        worker.perform_async(worker,member_id,assignment_id)
+      end
+
+
+ 
+
+
     end     
   end
 
