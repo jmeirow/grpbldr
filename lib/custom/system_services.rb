@@ -20,7 +20,7 @@ module SystemServices
         worker.perform_async(worker,member_id)
       else
         id = args[0]
-        worker.perform_async(worker,id)
+        worker.perform_async(worker,args)
       end
     end     
   end
