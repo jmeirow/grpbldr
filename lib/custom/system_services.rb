@@ -17,7 +17,6 @@ module SystemServices
       
       if worker.is_a? LoginMailerWorker 
         member_id = args[0]
-        logger.banner "member_id after pulling from args is #{member_id}"
         worker.perform_async(worker,member_id)
       end
 
