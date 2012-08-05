@@ -12,8 +12,6 @@ class RoleHasBecomeAvailableMailer < ActionMailer::Base
       @meeting = Meeting.find(meeting_id)
       @role = Role.find(role_id)
       @club = Club.find(@meeting.club_id)
-     
-
       @meeting_date = @meeting.meeting_date.strftime("%m/%d/%Y")
       mailing_lists = MailingLists.new 
       dist_list = mailing_lists.active_members(@club.id)

@@ -117,7 +117,6 @@ def past_activity
     @assignment = Assignment.find(params[:id])
     meeting_id = @assignment.meeting_id
     role_id = @assignment.role_id
-    meeting_id = @assignment.member_id
     @assignment.destroy
     send_email('RoleHasBecomeAvailableMailerWorker',meeting_id, role_id)
     respond_to do |format|
