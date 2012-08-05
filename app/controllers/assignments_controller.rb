@@ -117,10 +117,11 @@ def past_activity
     @assignment = Assignment.find(params[:id])
     meeting_id = @assignment.meeting_id
     role_id = @assignment.role_id
+    member_id = @assignment.member_id
     @assignment.destroy
     send_email('RoleHasBecomeAvailableMailerWorker',meeting_id, role_id)
     respond_to do |format|
-      format.html { redirect_to club_member_assignments_path(params[:club_id],meeting_id) }
+      format.html { redirect_to club_member_assignments_path(params[:club_id],member_id) }
       format.json { head :ok }
     end
   end
