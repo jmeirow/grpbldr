@@ -8,7 +8,7 @@ class Member < ActiveRecord::Base
 
 
   # attributes allowed in mass-assignment
-  attr_accessible :first_name, :last_name, :start_date, :start_date_display, :end_date, :end_date_display, :assignable, :email, :address_one, :address_two, :city, :state, :zip_code, :phone, :mobile_phone
+  attr_accessible :club_id, :first_name, :last_name, :start_date, :start_date_display, :end_date, :end_date_display, :assignable, :email, :address_one, :address_two, :city, :state, :zip_code, :phone, :mobile_phone
  
 
   #callbacks  
