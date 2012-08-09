@@ -40,8 +40,9 @@ class AgendaDefinitionsController < ApplicationController
   # POST /agenda_definitions
   # POST /agenda_definitions.json
   def create
-    @agenda_definition = AgendaDefinition.new(params[:id])
+    @agenda_definition = AgendaDefinition.new(params[:agenda_definition])
     @club = current_club
+    @agenda_definition.club_id = @club.id
     if @agenda_definition.save
       redirect_to club_agenda_definition_path(@club,@agenda_definition), notice: 'Agenda definition was successfully created.'  
     else
