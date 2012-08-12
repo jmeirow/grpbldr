@@ -6,7 +6,11 @@ class ContestSignup < ActiveRecord::Base
     if self[:member_id].nil? == true
       name = 'OPEN'
     else
-      name = Member.find(self[:member_id]).full_name
+      if self[:role_description].downcase.match(/judge/)
+        name = 'Anonymous'
+      else
+        name = Member.find(self[:member_id]).full_name
+      end
     end
 
     name
