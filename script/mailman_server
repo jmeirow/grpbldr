@@ -117,12 +117,12 @@ end
 #-----------------------------------------------------------------------------------------------------------
 
 Mailman.config.rails_root = ENV['GB_RAILS_ROOT']
-Mailman.config.poll_interval = 10
+Mailman.config.poll_interval = 5
 Mailman.config.logger = Logger.new("#{ENV['GB_RAILS_ROOT']}/log/mailman.log")
 Mailman.config.pop3 = {
-  server: 	ENV['RELAY_POP_SERVER'], port: 995, ssl: true,
-  username: ENV['RELAY_POP_USERNAME'],
-  password: ENV['RELAY_POP_PASSWORD']
+  server: 	ENV['GB_RELAY_POP_SERVER'], port: 995, ssl: true,
+  username: ENV['GB_RELAY_POP_USERNAME'],
+  password: ENV['GB_RELAY_POP_PASSWORD']
 }
 
 
@@ -142,7 +142,7 @@ Mailman::Application.run do
 	    email.subject = message.subject
 	    email.to = recipient_list.recipient_list
 	    email.from = message.from.first
-	    email.body = message.text_part.body.decoded
+	    email.body = message.text_part.body
 	    email.save
 	    relay_email(email.id, message) if recipient_list.is_valid?
 	 	rescue Exception => e
