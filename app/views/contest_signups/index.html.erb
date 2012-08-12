@@ -1,0 +1,47 @@
+<h1>Listing Contest Roles</h1>
+
+<table>
+  <tr>
+   
+    <th>Role Description</th>
+    <th>Person</th>
+    <th></th>
+    
+    <th></th>
+    
+  
+    <% if current_user_admin? == true %>
+      <th></th>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @contest_signups.each do |contest_signup| %>
+  <tr>
+   
+    <td><%= contest_signup.role_description %></td>
+    <td><%= contest_signup.role_holder_name %></td>
+  
+    <td><%= link_to 'Sign Up!', contest_path(contest_signup) %></td>
+
+    <% if contest_signup.member_id.nil? == false && contest_signup.member_id == current_member.id %>
+      <td><%= link_to 'Oops! Remove', remove_path(contest_signup) %></td>
+    <% else %>
+
+      <td></td>
+    <% end %>
+
+    
+
+    <% if current_user_admin? == true %>
+      <td><%= link_to 'Edit Description', edit_contest_signup_path(contest_signup) %></td>
+      <td><%= link_to 'Delete', contest_signup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Contest Role', new_contest_signup_path %>

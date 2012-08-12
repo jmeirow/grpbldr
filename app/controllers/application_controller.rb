@@ -114,7 +114,8 @@ private
 
   
   def current_user_admin?
-    session[:logged_in_admin].nil? == false && session[:logged_in_admin] == current_member.email
+    
+    session[:logged_in_admin].nil? == false && session[:logged_in_admin] == true
   end
 
 

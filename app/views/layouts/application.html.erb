@@ -66,7 +66,8 @@
                <div style='font-size:9pt;font-weight:bold'>
                 <%= link_to "Sign Up for a Role", signup_for_role_club_member_assignments_path(params[:club_id], current_member) %>  <br/>    
                 
-
+                <%= link_to "Contest Roles", contest_signups_path %>  <br/>    
+                
                   <%  meeting = current_club.next_meeting  %>
                   <%  if meeting.nil? == false %>
                     <%=  link_to "Next Meeting's Agenda", club_meeting_print_path(params[:club_id], meeting, 0)  , :target => "_blank" %><br/> 

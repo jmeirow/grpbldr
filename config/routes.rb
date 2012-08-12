@@ -16,7 +16,8 @@ Rolemaster::Application.routes.draw do
 
   match "agendas/print"  
    
-
+  get "contest" => "contest_signups#signup" 
+  get "remove" => "contest_signups#remove" 
 
   get "batch/toggle" => "batch#toggle" 
   get "batch/run" => "batch#run" 
@@ -54,7 +55,7 @@ Rolemaster::Application.routes.draw do
   
 
 
-
+  
 
   resources :sys_configurations
   resources :agreements
@@ -82,7 +83,10 @@ Rolemaster::Application.routes.draw do
 
   resources :password_resets
   
+  resources :contest_signups
+
   resources :clubs do
+   
     resources :members do
       resources :assignments do
         collection do

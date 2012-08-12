@@ -1,0 +1,22 @@
+<%= form_for(@contest_signup) do |f| %>
+  <% if @contest_signup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contest_signup.errors.count, "error") %> prohibited this contest_signup from being saved:</h2>
+
+      <ul>
+      <% @contest_signup.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div class="field">
+    <%= f.label :role_description %><br />
+    <%= f.text_field :role_description %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
