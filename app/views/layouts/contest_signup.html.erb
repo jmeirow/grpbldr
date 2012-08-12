@@ -57,13 +57,13 @@
 
         <div class='container' style='margin-top:20px;width:800px '>
 
-          <div style='float:left;background-color:#63DB93;margin-left:15px;padding-left:10px;padding-right:10px;border-radius:5px; '>     
+          <div style='float:left;background-color:#63DB93;margin-top:20px;margin-left:15px;padding-left:10px;padding-right:10px;border-radius:5px; '>     
            
-            <span style='font-weight:bold'>  Club Administration  </span>
+            <span style='font-weight:bold'>  Contest Role Signup  </span>
             <br/><br/>
 
 
-            <% if session[:logged_in_admin] %>
+          
 
               <strong>
               <%= link_to "Return to Main Menu", club_member_assignments_path(session[:club_id], current_member) %>
@@ -79,7 +79,7 @@
              <br/><br/>
              <br/><br/>
              <br/><br/>              
-             <% end %>
+ 
              
             </div> 
 

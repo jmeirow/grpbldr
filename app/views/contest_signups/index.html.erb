@@ -22,8 +22,14 @@
     <td><%= contest_signup.role_description %></td>
     <td><%= contest_signup.role_holder_name %></td>
   
-    <td><%= link_to 'Sign Up!', contest_path(contest_signup) %></td>
 
+    <% if contest_signup.member_id.nil? == true  %>
+        <td><%= link_to 'Sign Up!', contest_path(contest_signup) %></td>
+    <% else %>
+      <td></td>
+    <% end %>
+
+  
     <% if contest_signup.member_id.nil? == false && contest_signup.member_id == current_member.id %>
       <td><%= link_to 'Oops! Remove', remove_path(contest_signup) %></td>
     <% else %>
