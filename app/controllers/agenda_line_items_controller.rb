@@ -17,7 +17,10 @@ class AgendaLineItemsController < ApplicationController
     @agenda_definition = AgendaDefinition.find(params[:agenda_definition_id])
 
 
-    timer = RunningTime.new(10,0)
+    next_meeting = @club.next_meeting
+
+    
+    timer = RunningTime.new(next_meeting.hour,next_meeting.minute, next_meeting.am_pm) 
 
 
     first = true
