@@ -1,74 +1,56 @@
-
-
  
-  <div style='width:550px;    text-align:center;'>
+
+<div style='width:550px;    text-align:center'>
    
     <div style=' align:center ;background-color:lightgray'>
-      <h4   > Role Groups for <em> <%=current_club.name %>  </h4>
-    </div>
-    <br/>
-
-    <% if  notice %>
-      <div class="alert-box success" style='width:536px' >
-        <%= notice %> 
+      <h4  >Defined Role Groups </h4> 
       </div>
-    <% end %>
 
-    <br/>
+  <div style='width:550px'>
+        
+      <div style='float:right'> 
+        <% if session[:logged_in_admin] %>
+          <%= link_to 'New Role Group', new_club_role_group_path(params[:club_id]) %>
+        <% end %> 
 
+      </div>  
   </div>
- 
 
-  <%= form_tag(:controller => 'role_groups', :action => 'create',   :method => "post" ) do %>
-
-  <span style='font-weight:bold;color:black'> Step 1: </span>  
-  Enter new Role Group Name:  
-  <%= text_field_tag(:description) %>
-
-      <select id='role_group_id' name='role_group_id[]' size='<%=@role_groups.length%>' >
-    <% @role_groups.each do |group| %>
-    <option value="<%=group.id%>"><%=group.description%></option>
-    <% end %>
-  </select>
-
-
-  <br/><br/>  
+  <br/>
+  <br/>
 
 
 
- <span style='font-weight:bold;color:black'> Step 2: </span>  From the list below, select multiple Roles to be grouped. 
-  <select id='role[role_ids][]'
-          name='role[role_ids][]' class='multiselect' multiple='multiple' size='<%=@roles.length%>' >
-  	<% @roles.each do |role| %>
-		<option value="<%=role.id%>"><%=role.description%></option>
-  	<% end %>
-  </select>
+  <table>
+    <thead>
+    <tr>
+      <th>Description</th>
+      <th colspan='3' ></th> 
+    </tr>
+    </thead>
 
-	<br/><br/>
- <span style='font-weight:bold;color:black'> Step 3: </span>  Click the 'Submit' button below.<br/><br/>
- <%= submit_tag("Submit")  %>
-
-  <br/><br/>
+  <tbody>
 
 
-
-
-
-	<br/><br/>
-
-  <input type='hidden' id='club_id' value='<%=params[:club_id]%>' />
-
-  	
-
+  <% @role_groups.each do |role_group| %>
+    <tr>
+      <td><%= role_group.description %></td>
+      <td><%= link_to "Update Description", edit_club_role_group_path(@club, role_group) %></td>
+      <td><%= link_to "Add/Remove Roles", club_role_group_role_group_associations_path(@club, role_group) %></td>
+      <td><%= link_to 'Delete', club_role_group_path(@club,role_group), confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
   <% end %>
+  </tbody>
+  </table>
 
- 
+  <br />
+
+</div>
 
 
 
 
 
-<br />
 
 
 

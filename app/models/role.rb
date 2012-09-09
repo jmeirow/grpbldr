@@ -5,8 +5,11 @@ class Role < ActiveRecord::Base
   include ActiveBuilder
 
   #access
-  attr_accessible :description, :assignable,   :minimum_required_experience, :meetings_to_skip_before_assigning_again
+  attr_accessible :description, :assignable,   :minimum_required_experience, :meetings_to_skip_before_assigning_again, :id
 
+
+  has_many :role_group_associations
+  has_many :role_groups, :through => :role_group_associations
 
   #callbacks  
   after_find :gb_set_attribute_methods_from_attributes

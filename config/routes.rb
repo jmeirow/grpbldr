@@ -99,7 +99,15 @@ Rolemaster::Application.routes.draw do
       resources :absences 
     end
     resources :roles 
-    resources :role_groups  
+    
+    resources :role_groups  do
+      resources :role_group_associations do
+        collection do
+          put "replace" => "role_group_associations#replace"
+        end
+      end
+    end
+
     resources :password_resets
 
     resources :meetings do

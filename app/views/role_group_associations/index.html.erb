@@ -1,0 +1,61 @@
+<h4>Add/Remove Roles for <em><%=@role_group.description %></em></h4>
+
+
+<%= form_tag  url_for(:controller => 'role_group_associations',  :action => 'replace')  , 
+      :method=>:put, :id => 'select_role'  do  %>
+
+     <p> Click on a Role to add it or remove it from this Role Group.</p>
+      
+
+
+      Roles not currently associated with this group </br>
+
+        <select id='added_role_id' name='added_role_id' size='5' style='width:300px'>
+          <%@available_roles.each do |item| %>
+            <option value='<%=item.id%>'><%= item.description %>
+          <%end%>
+        </select> 
+
+      <p>&nbsp;</p> 
+
+      Roles already associated with this group </br>
+
+        <select id='removed_role_id' name='removed_role_id' size='5' style='width:300px'>
+          <%@selected_roles.each do |item| %>
+            <option value='<%=item.id%>'><%= item.description %>
+          <%end%>
+        </select>
+     
+ 
+ 
+    
+        <br />
+
+ <%end%>
+
+<%= link_to "Back to Role Groups", club_role_groups_path  %>
+
+<script type='text/javascript'>
+
+
+
+  $('#added_role_id').change(function() 
+  {
+    $('#select_role').submit()
+
+  });  
+
+
+  
+  $('#removed_role_id').change(function() 
+  {
+    $('#select_role').submit()
+
+  });
+ 
+  
+   
+  
+ 
+ 
+</script>

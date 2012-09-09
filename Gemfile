@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.6'
-gem 'actionmailer', '3.2.6'
+gem 'rails', '3.2.8'
+gem 'actionmailer', '3.2.8'
 
 gem 'pg', '0.14.0'
 gem 'eventmachine'
@@ -32,6 +32,8 @@ group :development do
   gem 'pry-nav' 
   gem 'pry-stack_explorer'
   gem 'rspec-rails' 
+  gem 'factory_girl_rails'
+
  
 end
 
@@ -44,6 +46,8 @@ group :test do
   gem 'therubyracer' 
   gem 'turn', '0.8.2', :require => false
   gem 'unicorn'
+  gem 'launchy'
+  gem 'faker'
 end
 
 group :production do
