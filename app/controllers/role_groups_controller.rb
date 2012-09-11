@@ -87,7 +87,7 @@ class RoleGroupsController < ApplicationController
   # DELETE /role_groups/1.json
   def destroy
     @role_group = RoleGroup.find(params[:id])
-    @role_group.roles.delete
+    @role_group.role_group_associations.delete
     @role_group.destroy
     @club=current_club
 
