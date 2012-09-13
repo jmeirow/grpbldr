@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Description:</b>
+  <%= @meeting_type.description %>
+</p>
+
+<p>
+  <b>Hour:</b>
+  <%= @meeting_type.hour %>
+</p>
+
+<p>
+  <b>Minute:</b>
+  <%= @meeting_type.minute %>
+</p>
+
+<p>
+  <b>Am pm:</b>
+  <%= @meeting_type.am_pm %>
+</p>
+
+<p>
+  <b>Is default:</b>
+  <%= @meeting_type.is_default %>
+</p>
+
+<p>
+  <b>Club:</b>
+  <%= @meeting_type.club_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_club_meeting_type_path(@club,@meeting_type) %> |
+<%= link_to 'Back', club_meeting_types_path  %>

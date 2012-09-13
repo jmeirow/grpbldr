@@ -1,0 +1,34 @@
+<%= form_for([@club,@meeting_type]) do |f| %>
+  <% if @meeting_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@meeting_type.errors.count, "error") %> prohibited this meeting_type from being saved:</h2>
+
+      <ul>
+      <% @meeting_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :hour %><br />
+    <%= f.number_field :hour %>
+  </div>
+  <div class="field">
+    <%= f.label :minute %><br />
+    <%= f.number_field :minute %>
+  </div>
+  <div class="field">
+    <%= f.label :am_pm %><br />
+    <%= f.text_field :am_pm %>
+  </div>
+ 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

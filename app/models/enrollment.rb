@@ -47,6 +47,10 @@ class Enrollment
         Member.create(:first_name => first_name, :last_name => last_name, :email => email, :club_id => club.id, :start_date => Date.today, :end_date => Date.parse("9999/12/31") )
      
         Admin.create(:club_id => club.id, :email => email)
+
+
+        MeetingType.create(:description => 'Regular', :club_id => club.id, :is_default => true, :hour => 12, :minute => 0, :am_pm => 'PM')
+
  
 
       rescue ActiveRecord::StatementInvalid

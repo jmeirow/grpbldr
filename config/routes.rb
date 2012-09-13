@@ -99,6 +99,7 @@ Rolemaster::Application.routes.draw do
       resources :absences 
     end
     resources :roles 
+    resources :meeting_types 
     
     resources :role_groups  do
       resources :role_group_associations do

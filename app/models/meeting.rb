@@ -4,7 +4,7 @@ class Meeting < ActiveRecord::Base
   include ActiveBuilder
 
   #access
-  attr_accessible  :meeting_date, :id , :meeting_date_display, :hour, :minute, :am_pm
+  attr_accessible  :meeting_date, :id , :meeting_date_display, :hour, :minute, :am_pm, :meeting_type_id
   attr_accessor :padded_minutes
 
   #callbacks  
