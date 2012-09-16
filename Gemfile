@@ -19,6 +19,8 @@ gem 'capistrano'
 gem 'mail'
 gem 'flt'
 gem 'mailman', :require => false
+gem 'slim'
+
 
 
 group :development do
