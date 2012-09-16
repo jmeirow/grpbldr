@@ -70,7 +70,7 @@
                 
                   <%  meeting = current_club.next_meeting  %>
                   <%  if meeting.nil? == false %>
-                    <%=  link_to "Next Meeting's Agenda", club_meeting_print_path(params[:club_id], meeting, 0)  , :target => "_blank" %><br/> 
+                    <%=  link_to "Next Meeting's Agenda", club_meeting_print_path(params[:club_id], meeting, 0)  , :target => "_blank" %> <br/> 
 
 
                     <%=  link_to "Next Meeting's Notes",  club_meeting_print_notes_setup_path(params[:club_id], meeting)   %>
