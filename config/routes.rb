@@ -59,7 +59,7 @@ Rolemaster::Application.routes.draw do
 
   resources :sys_configurations
   resources :agreements
-
+  resources :updates
 
   
   #root :to => 'public#home'

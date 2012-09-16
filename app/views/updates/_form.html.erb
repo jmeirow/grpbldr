@@ -1,0 +1,43 @@
+
+
+<div style='padding-left:50px'>
+
+  <%= form_for(@update) do |f| %>
+    <% if @update.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@update.errors.count, "error") %> prohibited this update from being saved:</h2>
+
+        <ul>
+        <% @update.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+
+  
+        <label>Release Date:</label> 
+        <%= f.text_field :release_date %> 
+
+        <label>Major Release Number:</label> 
+        <%= f.text_field :major %> 
+
+        <label>Minor Release Number:</label>  
+        <%= f.text_field :minor %> 
+
+        <label>Patch Release Number:</label>  
+        <%= f.text_field :patch %> 
+   
+        <label>Changes includes in this release: </label> 
+         <%= f.text_area :description, :style => 'width:600px; height:200px' %>  
+         
+      <div class="actions">
+      <%= f.submit nil, :class => 'button'   %>
+      </div>
+
+  <% end %>
+
+
+</div>

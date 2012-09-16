@@ -40,7 +40,7 @@ class RolesController < ApplicationController
 
   # GET /roles/1/edit
   def edit
-     @club = current_club
+    @club = current_club
     @role = Role.find(params[:id])
   end
 
