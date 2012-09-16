@@ -2,7 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.8'
 gem 'actionmailer', '3.2.8'
-
 gem 'pg', '0.14.0'
 gem 'eventmachine'
 gem 'kaminari'
@@ -11,16 +10,16 @@ gem 'chronic'
 gem 'ori'
 gem 'hirb'
 gem 'bcrypt-ruby', :require => "bcrypt"
-gem 'mail'
 gem 'railsthemes'
 gem 'execjs'
 gem "sidekiq", "~> 2.1.0"
-gem 'slim'
 gem 'sinatra', :require => nil
 gem 'jquery-rails'
 gem 'capistrano'
 gem 'mail'
 gem 'flt'
+gem 'mailman', :require => false
+
 
 group :development do
   gem 'thin' 
@@ -31,31 +30,29 @@ group :development do
   gem 'pry_debug'  
   gem 'pry-nav' 
   gem 'pry-stack_explorer'
-  gem 'rspec-rails' 
-  gem 'factory_girl_rails'
-
- 
 end
 
-
 group :test do
+  gem 'faker'
+  gem 'capybara'
+  gem 'therubyracer' 
+  gem 'database_cleaner', '~> 0.7.2'
+  gem 'launchy'
+  gem 'turn', '0.8.2', :require => false
+end
+
+group :development, :test do
+  gem 'slim'
   gem 'rspec-rails' 
   gem 'factory_girl_rails'
-  gem 'capybara'
+  gem 'letter_opener'  
   gem 'guard-rspec'
-  gem 'therubyracer' 
-  gem 'turn', '0.8.2', :require => false
-  gem 'unicorn'
-  gem 'launchy'
-  gem 'faker'
 end
 
 group :production do
   gem 'turn', '0.8.2', :require => false
   gem 'unicorn'
 end
-
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -66,7 +63,7 @@ group :assets do
 end
 
 
-gem 'mailman', :require => false
+
 
 
 

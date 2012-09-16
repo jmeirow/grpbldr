@@ -7,7 +7,7 @@ development:
   username: postgres
   password:  <%= ENV['GB_APP_DB_PASSWORD'] %>
   host: localhost
-
+ 
 
 test:
   adapter: postgresql
