@@ -18,7 +18,16 @@ class Role < ActiveRecord::Base
   validates :description, :presence => true
 	
 	
+  def count_of_role_group_associations
+    RoleGroupAssociation.where('role_id = ?', self[:id]).length
+  end
+
+  def count_of_assignments
+    Assignment.where('role_id = ?', self[:id]).length
+  end
 	
+
+  
 	def self.needed_for_meeting(meeting)
 
     assignments = Assignment.where("meeting_id = ? ", meeting.id)
@@ -46,13 +55,15 @@ class Role < ActiveRecord::Base
   end
 
 
+
+
   
   def self.roles(club_id)
     Role.where("club_id = ?", club_id).order("description")
   end
 
-def self.roles_with_groups(club_id)
-    
+  def self.roles_with_groups(club_id)
+      
     unsorted = Hash.new
     
     Role.where("club_id = ?", club_id).order("description").each do |role|
@@ -68,12 +79,10 @@ def self.roles_with_groups(club_id)
     end
      
     unsorted.sort {|a,b| a[1] <=> b[1]}
-
-
-
-
-
   end
+
+
+
 
 
       

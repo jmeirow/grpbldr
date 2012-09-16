@@ -23,7 +23,7 @@
    
 
    
-  <table width='500px'>
+  <table width='650px'>
     <thead>
     <tr>
       <th>Role Description</th>
@@ -42,17 +42,28 @@
 
   <tbody>
   <% @roles.each do |role| %>
+    <% @role = role %>
     <tr>
-      <td><%= role.description %></td>
-      <td><%= role.minimum_required_experience %></td>
-      <td><%= role.meetings_to_skip_before_assigning_again %></td>
-      <td><%= role.assignable %></td>
+      <td><%= @role.description %></td>
+      <td><%= @role.minimum_required_experience %></td>
+      <td><%= @role.meetings_to_skip_before_assigning_again %></td>
+      <td><%= @role.assignable %></td>
       
         
       <% if session[:logged_in_admin] %>      
-       <td><%= link_to 'Show', club_role_path(@club,role) %></td>
-        <td><%= link_to 'Edit', edit_club_role_path(@club,role) %></td>
-        <td><%= link_to 'Delete', club_role_path(@club,role), :data => {:confirm => 'Are you sure?' }, method: :delete %></td>
+        <td><%= link_to 'Show', club_role_path(@club,@role) %></td>
+        <td><%= link_to 'Edit', edit_club_role_path(@club,@role) %></td>
+        <td width='200px'>
+          
+          <% msg = dependency_message    %>
+          <% if msg   %>
+            <div style='font-size:9pt'>
+             <%= raw msg  %>
+           </div>
+          <% else %>
+              <%= link_to 'Delete', club_role_path(@club,@role), :data => {:confirm => 'Are you sure?' }, method: :delete %>
+          <% end %>
+        </td>
       <% end %>
     </tr>
   <% end %>
