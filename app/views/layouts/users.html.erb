@@ -28,11 +28,11 @@
 
 	<body>
 	 	<div style='padding-left:40px;  margin-top:40px; ' >
-              <span style='font-size:20pt'>GroupBuilder </span>
+              <span style='font-size:20pt;padding-bottom:5px'>GroupBuilder </span>
 
        <br/>
 
-       Version 0.5.1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style-'width:600px;float:right'> <a href='/updates/new' target='_blank'>What's new? Software updates</a></span> 
+       Version <%= link_to Update.current, updates_path, :target => '_blank' %>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style-'width:600px;float:right'> <a href='/updates/new' target='_blank'>What's new? Software updates</a></span> 
 
     </div>
 
