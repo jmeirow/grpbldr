@@ -1,3 +1,5 @@
+
+
 <%= form_for([@club,@meeting_type]) do |f| %>
   <% if @meeting_type.errors.any? %>
     <div id="error_explanation">
@@ -11,22 +13,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :hour %><br />
-    <%= f.number_field :hour %>
-  </div>
-  <div class="field">
-    <%= f.label :minute %><br />
-    <%= f.number_field :minute %>
-  </div>
-  <div class="field">
-    <%= f.label :am_pm %><br />
-    <%= f.text_field :am_pm %>
-  </div>
+
+
+
+  <table>
+    <tr> 
+          <td><strong>Description:</stong></td>    
+          <td><%= f.text_field :description %></td>
+    </tr>
+    <tr> 
+          <td><strong>Hour:</stong></td>           
+          <td> <%= f.select  :hour, options_for_select(@hours , @meeting_type.hour  ),:class => 'input-text', :style => 'display:inline'    %> </td>
+    </tr>
+    <tr> 
+          <td><strong>Minute:</stong></td>       
+          <td><%= f.select  :minute, options_for_select(@minutes , @meeting_type.minute  ),:class => 'input-text', :style => 'display:inline'    %> </td>
+    </tr>
+    <tr> 
+          <td><strong>AM or PM:</stong></td>
+          <td><%= f.select  :am_pm, options_for_select(@am_pm , @meeting_type.am_pm  ),:class => 'input-text', :style => 'display:inline'    %> </td> 
+    </tr>
+
+
+ 
  
   <div class="actions">
     <%= f.submit %>

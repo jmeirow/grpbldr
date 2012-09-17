@@ -1,14 +1,17 @@
-<h1>Listing meeting_types</h1>
+<h1>Meeting Types</h1>
+
+
+
+ 
 
 <table>
-  <tr>
+   <tr>
     <th>Description</th>
     <th>Hour</th>
     <th>Minute</th>
-    <th>Am pm</th>
-    <th>Is default</th>
-    <th>Club</th>
-    <th colspan='3'></th>
+    <th>AM/PM</th>
+   
+    <th colspan='2' align='right'><%= link_to 'New Meeting type', new_club_meeting_type_path %></th>
  
   </tr>
 
@@ -18,13 +21,12 @@
     <td><%= meeting_type.hour %></td>
     <td><%= meeting_type.minute %></td>
     <td><%= meeting_type.am_pm %></td>
-    <td><%= meeting_type.is_default %></td>
-    <td><%= meeting_type.club_id %></td>
-    <td><%= link_to 'Show', club_meeting_type_path(@club,meeting_type) %></td>
+  
+   
     <td><%= link_to 'Edit', edit_club_meeting_type_path(@club,meeting_type) %></td>
 
     <%if meeting_type.is_default == true %>
-        &nbsp;
+        <td>Can't delete defaul meeting type.</td>
     <% else %>
 
     <td><%= link_to 'Destroy', club_meeting_type_path(@club,meeting_type), method: :delete, data: { confirm: 'Are you sure?' } %></td>
