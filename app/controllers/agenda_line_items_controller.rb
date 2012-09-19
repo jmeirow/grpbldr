@@ -57,19 +57,10 @@ class AgendaLineItemsController < ApplicationController
   # GET /agenda_line_items/new
   # GET /agenda_line_items/new.json
   def new
-
-    @next_sequence_nbr = AgendaLineItem.where("agenda_definition_id = ?",params[:agenda_definition_id]).maximum("sequence_nbr")
-    @next_sequence_nbr = @next_sequence_nbr.nil? ? 0 : @next_sequence_nbr  + 1
-    @agenda_definition = AgendaDefinition.find(params[:agenda_definition_id]) 
+    init
     @agenda_line_item = AgendaLineItem.new
     @agenda_line_item.sequence_nbr = @next_sequence_nbr
     @agenda_line_item.agenda_definition_id = @agenda_definition.id
-    @club = current_club
-    @roles = Role.where("club_id = ?", @club.id).order("description asc")
-    @leaders = Leader.where("club_id = ?", @club.id).order("title asc")
-
-
-
   end
 
   # GET /agenda_line_items/1/edit
@@ -87,6 +78,7 @@ class AgendaLineItemsController < ApplicationController
   # POST /agenda_line_items
   # POST /agenda_line_items.json
   def create
+    
     @club = current_club
     @agenda_line_item = AgendaLineItem.new(params[:agenda_line_item])
     @agenda_line_item.agenda_definition_id = params[:agenda_definition_id]
@@ -96,6 +88,7 @@ class AgendaLineItemsController < ApplicationController
     if @agenda_line_item.save
        redirect_to  club_agenda_definition_agenda_line_item_path(@club,@agenda_definition,@agenda_line_item), :method => :get, notice: 'Agenda Line Item was successfully created.'  
     else
+      init 
       render action: "new"  
     end
   end
@@ -150,7 +143,16 @@ class AgendaLineItemsController < ApplicationController
   end
 
 
+  private
 
+  def init
+    @next_sequence_nbr = AgendaLineItem.where("agenda_definition_id = ?",params[:agenda_definition_id]).maximum("sequence_nbr")
+    @next_sequence_nbr = @next_sequence_nbr.nil? ? 0 : @next_sequence_nbr  + 1
+    @agenda_definition = AgendaDefinition.find(params[:agenda_definition_id]) 
+    @club = current_club
+    @roles = Role.where("club_id = ?", @club.id).order("description asc")
+    @leaders = Leader.where("club_id = ?", @club.id).order("title asc")
+  end
 
 
 

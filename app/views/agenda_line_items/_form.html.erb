@@ -3,7 +3,7 @@
 <%= form_for([@club,@agenda_definition,@agenda_line_item]) do |f| %>
   <% if @agenda_line_item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@agenda_line_item.errors.count, "error") %> prohibited this agenda_line_item from being saved:</h2>
+      <h4><%= pluralize(@agenda_line_item.errors.count, "error") %> prohibited this agenda_line_item from being saved:</h4>
 
       <ul>
       <% @agenda_line_item.errors.full_messages.each do |msg| %>

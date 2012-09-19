@@ -13,6 +13,8 @@ class AgendaLineItem < ActiveRecord::Base
   after_find :gb_set_attribute_methods_from_attributes
 
 
+  validates :line_item_header, :presence => true
+  validates :duration_in_minutes, :presence => true,  :numericality => { :only_integer => true, :greater_than_or_equal_to => 0 }
   
   def resolved_person_display_name
 
