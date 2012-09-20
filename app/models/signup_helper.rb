@@ -58,7 +58,7 @@ class SignupHelper
 
   def email
 
-    member_id = @params[:member_id].to_i
+    member_id = member_id_of_role_holder
     unless @params[:switch_ids].nil?
       @params[:switch_ids].each do |assignment_id|
         send_email('SwitchRequestMailerWorker',member_id,assignment_id)
@@ -73,6 +73,15 @@ class SignupHelper
 
 
   end
+
+  def member_id_of_role_holder
+    if @params[:selected_member].nil? == false  &&  @params[:selected_member][:member_id] != ""  
+      @params[:selected_member][:member_id].to_i
+    else
+      @params[:member_id].to_i
+    end
+  end
+
 
 
   #

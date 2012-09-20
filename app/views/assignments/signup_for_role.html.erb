@@ -129,8 +129,7 @@
 
               On behalf of: 
 
-              <%=  collection_select(:selected_member , :member_id,  
-                          Member.where("club_id = ?", current_club.id).order("last_name, first_name")  , 
+              <%=  collection_select(:selected_member , :member_id,           Member.current_members(@club.id),                     
                                   :id, :full_name,  :include_blank => 'Select From List'  ) %>
 
 
