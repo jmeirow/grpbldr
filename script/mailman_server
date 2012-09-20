@@ -116,16 +116,18 @@ end
 #  Mailman configurations
 #-----------------------------------------------------------------------------------------------------------
 
-puts "configuring MailMan..."
+
 Mailman.config.rails_root = ENV['GB_RAILS_ROOT']
-Mailman.config.poll_interval = 5
 Mailman.config.logger = Logger.new("#{ENV['GB_RAILS_ROOT']}/log/mailman.log")
+Mailman.logger.info  "configuring MailMan..."
+
+Mailman.config.poll_interval = 5
 Mailman.config.pop3 = {
   server: 	ENV['GB_RELAY_POP_SERVER'], port: 995, ssl: true,
   username: ENV['GB_RELAY_POP_USERNAME'],
   password: ENV['GB_RELAY_POP_PASSWORD']
 }
-puts "MailMan configuration complete..."
+Mailman.logger.info "MailMan configuration complete..."
 
 #-----------------------------------------------------------------------------------------------------------
 #  This is where the "service" begins
@@ -136,11 +138,11 @@ include SystemServices
 include ActionView::Helpers::TagHelper
 count = 1
 
-puts "beginning monitoring..."
+Mailman.logger.info  "beginning monitoring..."
 Mailman::Application.run do
   default do
   	begin 
-  		puts "polling... #{count}"
+  		Mailman.logger.info  "polling... #{count}"
 	 		recipient_list = RecipientList.new(message)
 	    email = Email.new
 	    email.subject = message.subject
@@ -148,7 +150,12 @@ Mailman::Application.run do
 	    email.from = message.from.first
 	    email.body = message.text_part.body
 	    email.save
-	    relay_email(email.id, message) if recipient_list.is_valid? == true
+	    if recipient_list.is_valid? == true
+	    	relay_email(email.id, message) 
+				Mailman.logger.info  "configuring MailMan..."
+			else
+				Mailman.logger.info "message not sent... invalid distribution list"
+			end
 	 	rescue Exception => e
 	  	Mailman.logger.error "Exception occurred while receiving message:\n#{message}"
 	    Mailman.logger.error [e, *e.backtrace].join("\n")
