@@ -1,21 +1,23 @@
 module SystemServices
 
-  def email_available?
-
-    val = 'N'
+  def email_available?(club)
+    Rails.logger.info("INSIDE OF email_available.................................................")
+    global_email_on = false
     config = SysConfiguration.where("config_key = ?", "system.email.global.send").first
     if config.nil?
-      val = 'N'
+      global_email_on = false
     else
-      val = config.config_value
+      global_email_on = (config.config_value == 'Y')
     end
-    return val == 'Y'
+    result = club.email_enabled && global_email_on
+    Rails.logger.info("Value returned from email_available..#{result}...............................................")
+    result 
   end
 
 
-  def send_email(worker, *args )
-    
-    if email_available? == true
+  def send_email(worker, *args, club )
+    Rails.logger.info("INSIDE OF send_email.................................................")
+    if email_available?(club) == true
       if worker == "LoginMailerWorker"
         member_id = args[0]
         LoginMailerWorker.perform_async(member_id)

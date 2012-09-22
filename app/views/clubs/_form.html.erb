@@ -20,21 +20,31 @@
 
 	<p>
 	  <%= f.label :name %><br>
-	  <%= f.text_field :name %><br>
+	  <%= f.text_field :name , :size => 60 %><br>
 	</p>
 	
   <p>
     Email Distribution List Name:<br>
-    <%= f.text_field :email_name %><br>
+    <%= f.text_field :domain %><br>
   </p>
 	
-  <p>
-    <%= f.label :email_enabled %><br>
-    <%= f.check_box :email_enabled %><br>
-  </p>
-	
-  <div class="actions">
-    <%= f.submit %>
+
+  
+    
+  <p>        
+    Enable Automatic Emails? &nbsp;&nbsp;&nbsp;&nbsp;
+    Yes <%= f.radio_button :email_enabled, "true" %><br/> &nbsp;&nbsp;&nbsp;&nbsp;
+ 
+
+        
+    No <%= f.radio_button :email_enabled, "false" %>
+  </p>  
+
+
+  </br>
+
+  <div class="actions" style='font-size:7pt;float:left; '>
+     <%= f.submit 'Save', :class => 'button'   %>
   </div>
 <% end %>
 

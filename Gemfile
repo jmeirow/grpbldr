@@ -37,7 +37,6 @@ end
 group :test do
   gem 'faker'
   gem 'capybara'
-  gem 'therubyracer' 
   gem 'database_cleaner', '~> 0.7.2'
   gem 'launchy'
   gem 'turn', '0.8.2', :require => false
@@ -46,6 +45,7 @@ end
 group :development, :test do
   gem 'slim'
   gem 'rspec-rails' 
+  gem 'rb-inotify' 
   gem 'factory_girl_rails'
   gem 'letter_opener'  
   gem 'guard-rspec'

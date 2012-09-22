@@ -6,17 +6,16 @@ class Club < ActiveRecord::Base
 	
   include ActiveBuilder
   
-  attr_accessible :name, :email_enabled, :email_name
-
+  attr_accessible :name, :email_enabled, :domain 
   validates_presence_of :name
-  validate :email_name_already_in_use,  :on => :update
-  validate :email_name_contains_blanks,  :on => :update
-  validate :email_name_numeric_but_not_club_number,  :on => :update
-
+  validate :domain_already_in_use,  :on => :update
+  validate :domain_contains_blanks,  :on => :update
+  validate :domain_numeric_but_not_club_number,  :on => :update
+  validates :email_enabled, :inclusion => {:in => [true, false]}
 
   #callbacks
   after_find :gb_set_attribute_methods_from_attributes
-  after_create :default_email_name_to_club_number
+  after_create :default_domain_to_club_number
  
  
 
@@ -24,8 +23,8 @@ class Club < ActiveRecord::Base
     Role.where("club_id = ?", id)
   end
 
-  def default_email_name_to_club_number
-    self[:email_name] = self[:id].to_s
+  def default_domain_to_club_number
+    self[:domain] = self[:id].to_s
   end
   
 
@@ -33,24 +32,21 @@ class Club < ActiveRecord::Base
   	Meeting.where("club_id = ? and meeting_date >= ?", self.id, Date.today ).order("meeting_date").first
   end
 
-  def email_name_already_in_use
-    if (Club.where("email_name = ? and id <> ?", self[:email_name], self[:id]).count > 0)
-       errors.add(:email_name, "is already in use.")
-    end
-  end
 
-  def email_name_numeric_but_not_club_number
-    if StringHelper.is_integer? self[:email_name] 
-      if self[:email_name] != self[:id].to_s  
-        errors.add(:email_name, "can't be numeric unless it is your club number (#{self[:id]}).")
-      end
+  def domain_numeric_but_not_club_number
+    if StringHelper.is_i? self[:domain]   && self[:domain].rstrip != self[:id].to_s
+      errors.add(:domain, "can't be numeric unless it is your club number.")
     end
   end
  
-  def email_name_contains_blanks
-    if (self[:email_name].include?(" ") || self[:email_name].include?("\t") )
-      errors.add(:email_name, "can't contain blanks.")
+  def domain_contains_blanks
+    if self[:domain].match /' '/ || self[:domain].include?("\t") 
+      errors.add(:domain, "can't contain blanks.")
     end
   end
-
+  def domain_already_in_use
+    if Club.where("domain = ? and id <> ?", self[:domain], self[:id]).length > 0
+       errors.add(:domain, "is already in use.")
+    end
+  end
 end

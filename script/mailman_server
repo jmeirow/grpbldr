@@ -58,7 +58,7 @@ class RecipientList
 
 		mailing_list = MailingLists.new 
 	    
-		club = club_from_email_name(tokens[0]) 
+		club = club_from_domain(tokens[0]) 
 
 		if tokens.length == 2 
 			return nil if club.nil?
@@ -90,12 +90,12 @@ class RecipientList
 		tokens[0].split(".")
 	end
 
-	def club_from_email_name(email_name)
+	def club_from_domain(domain)
 		 
-		if StringHelper.is_integer? email_name
-			return Club.where("id = ?",email_name).first 
+		if StringHelper.is_i? domain
+			return Club.where("id = ?",domain).first 
 		else
-			return Club.where("lower(email_name) = ?", email_name.downcase).first
+			return Club.where("lower(domain) = ?", domain.downcase).first
 		end
 	end
 

@@ -84,11 +84,11 @@
     
     <li><a href="#method-c-roles">::roles</a>
     
-    <li><a href="#method-i-email_name_already_in_use">#email_name_already_in_use</a>
+    <li><a href="#method-i-domain_already_in_use">#domain_already_in_use</a>
     
-    <li><a href="#method-i-email_name_contains_blanks">#email_name_contains_blanks</a>
+    <li><a href="#method-i-domain_contains_blanks">#domain_contains_blanks</a>
     
-    <li><a href="#method-i-email_name_numeric_but_not_club_number">#email_name_numeric_but_not_club_number</a>
+    <li><a href="#method-i-domain_numeric_but_not_club_number">#domain_numeric_but_not_club_number</a>
     
     <li><a href="#method-i-next_meeting">#next_meeting</a>
     
@@ -237,10 +237,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-email_name_already_in_use" class="method-detail ">
+      <div id="method-i-domain_already_in_use" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">email_name_already_in_use</span><span
+          <span class="method-name">domain_already_in_use</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -252,27 +252,27 @@
           
 
           
-          <div class="method-source-code" id="email_name_already_in_use-source">
+          <div class="method-source-code" id="domain_already_in_use-source">
             <pre><span class="ruby-comment"># File club.rb, line 22</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">email_name_already_in_use</span>
-  <span class="ruby-keyword">if</span> (<span class="ruby-constant">Club</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;email_name = ? and id &lt;&gt; ?&quot;</span>, <span class="ruby-keyword">self</span>[<span class="ruby-value">:email_name</span>], <span class="ruby-keyword">self</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
-     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:email_name</span>, <span class="ruby-string">&quot;is already in use.&quot;</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">domain_already_in_use</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-constant">Club</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;domain = ? and id &lt;&gt; ?&quot;</span>, <span class="ruby-keyword">self</span>[<span class="ruby-value">:domain</span>], <span class="ruby-keyword">self</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:domain</span>, <span class="ruby-string">&quot;is already in use.&quot;</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- email_name_already_in_use-source -->
+          </div><!-- domain_already_in_use-source -->
           
         </div>
 
         
 
         
-      </div><!-- email_name_already_in_use-method -->
+      </div><!-- domain_already_in_use-method -->
 
     
-      <div id="method-i-email_name_contains_blanks" class="method-detail ">
+      <div id="method-i-domain_contains_blanks" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">email_name_contains_blanks</span><span
+          <span class="method-name">domain_contains_blanks</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -284,27 +284,27 @@
           
 
           
-          <div class="method-source-code" id="email_name_contains_blanks-source">
+          <div class="method-source-code" id="domain_contains_blanks-source">
             <pre><span class="ruby-comment"># File club.rb, line 36</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">email_name_contains_blanks</span>
-  <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>[<span class="ruby-value">:email_name</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot; &quot;</span>) <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>[<span class="ruby-value">:email_name</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;\t&quot;</span>) )
-    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:email_name</span>, <span class="ruby-string">&quot;can't contain blanks.&quot;</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">domain_contains_blanks</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>[<span class="ruby-value">:domain</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot; &quot;</span>) <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>[<span class="ruby-value">:domain</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;\t&quot;</span>) )
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:domain</span>, <span class="ruby-string">&quot;can't contain blanks.&quot;</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- email_name_contains_blanks-source -->
+          </div><!-- domain_contains_blanks-source -->
           
         </div>
 
         
 
         
-      </div><!-- email_name_contains_blanks-method -->
+      </div><!-- domain_contains_blanks-method -->
 
     
-      <div id="method-i-email_name_numeric_but_not_club_number" class="method-detail ">
+      <div id="method-i-domain_numeric_but_not_club_number" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">email_name_numeric_but_not_club_number</span><span
+          <span class="method-name">domain_numeric_but_not_club_number</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -316,23 +316,23 @@
           
 
           
-          <div class="method-source-code" id="email_name_numeric_but_not_club_number-source">
+          <div class="method-source-code" id="domain_numeric_but_not_club_number-source">
             <pre><span class="ruby-comment"># File club.rb, line 28</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">email_name_numeric_but_not_club_number</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-constant">StringHelper</span>.<span class="ruby-identifier">is_i?</span> <span class="ruby-keyword">self</span>[<span class="ruby-value">:email_name</span>] 
-    <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>[<span class="ruby-value">:email_name</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>[<span class="ruby-value">:id</span>].<span class="ruby-identifier">to_s</span>  
-      <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:email_name</span>, <span class="ruby-node">&quot;can't be numeric unless it is your club number (#{self[:id]}).&quot;</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">domain_numeric_but_not_club_number</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">StringHelper</span>.<span class="ruby-identifier">is_i?</span> <span class="ruby-keyword">self</span>[<span class="ruby-value">:domain</span>] 
+    <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>[<span class="ruby-value">:domain</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>[<span class="ruby-value">:id</span>].<span class="ruby-identifier">to_s</span>  
+      <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:domain</span>, <span class="ruby-node">&quot;can't be numeric unless it is your club number (#{self[:id]}).&quot;</span>)
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- email_name_numeric_but_not_club_number-source -->
+          </div><!-- domain_numeric_but_not_club_number-source -->
           
         </div>
 
         
 
         
-      </div><!-- email_name_numeric_but_not_club_number-method -->
+      </div><!-- domain_numeric_but_not_club_number-method -->
 
     
       <div id="method-i-next_meeting" class="method-detail ">

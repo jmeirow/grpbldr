@@ -1,7 +1,6 @@
 class StringHelper
 
-	def self.is_integer?(param)
-    true if Integer(param.to_s.gsub(/"/,'')) rescue false
-	end
-
+	def self.is_i?(param)
+    !!(param =~ /^[-+]?[1-9]([0-9]*)?$/)
+  end
 end

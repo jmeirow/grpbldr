@@ -56,18 +56,18 @@ class SignupHelper
 
   end
 
-  def email
-
+  def send_signup_email club
+    Rails.logger.info("INSIDE OF send_signup_email.................................................")
     member_id = member_id_of_role_holder
     unless @params[:switch_ids].nil?
       @params[:switch_ids].each do |assignment_id|
-        send_email('SwitchRequestMailerWorker',member_id,assignment_id)
+        send_email('SwitchRequestMailerWorker',member_id,assignment_id, club)
       end
     end
     unless @params[:signup_ids].nil?
       @params[:signup_ids].each do |assignment_id|
         ids = assignment_id.split('_')
-        send_email('RoleSignupNotificationMailerWorker',member_id,ids[0].to_i,ids[1].to_i)
+        send_email('RoleSignupNotificationMailerWorker',member_id,ids[0].to_i,ids[1].to_i, club)
       end
     end
 

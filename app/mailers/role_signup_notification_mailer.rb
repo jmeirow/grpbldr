@@ -8,6 +8,8 @@ class RoleSignupNotificationMailer < ActionMailer::Base
 
   def member_signed_up_for_role(member_id,meeting_id,role_id)
     
+      Rails.logger.info("INSIDE OF member_signed_up_for_role.................................................")
+
       @assignment = Assignment.where("meeting_id = ? and role_id = ?", meeting_id,role_id).first
       @member = Member.find(member_id)
       @role = Role.find(role_id)

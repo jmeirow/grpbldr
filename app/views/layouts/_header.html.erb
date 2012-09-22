@@ -35,7 +35,10 @@
       member = current_member
       member_info = member.first_name + ' ' + member.last_name + " from " + current_club.name 
     %>
-    You are logged in as: <%= member_info %>
+    You are logged in as: <%= member_info %><br/>
+    <% if email_available_for_header? == false %>
+      <span style='background-color:red;color:white'>Automatic email notifications are currenly disabled.</span>
+    <% end %>
 
   </div>
 
