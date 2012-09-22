@@ -1,3 +1,5 @@
+ require 'custom/system_services.rb'
+
 module ApplicationHelper
 
   include SystemServices 
