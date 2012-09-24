@@ -5,7 +5,7 @@ FactoryGirl.define do
     id 100
     name "Factory Club"
     email_enabled true
-    sequence(:domain) { |n| n }
+    sequence(:domain) { |n| 'n' }
   end
 end
 
