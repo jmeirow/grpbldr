@@ -79,6 +79,9 @@ class Role < ActiveRecord::Base
     end
      
     unsorted.sort {|a,b| a[1] <=> b[1]}
+
+    
+    
   end
 
 

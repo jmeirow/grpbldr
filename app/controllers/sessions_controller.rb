@@ -31,10 +31,7 @@ class SessionsController < ApplicationController
         session[:members] = user.members.length
         render  :action => 'present'
       else
-        
-
-        session[:members] = @members[0].id
-        
+        session[:members] = @members.length  
         establish_session @members[0] 
         redirect_to club_member_assignments_path(params[:club_id],@members.first), :notice => "Logged in!"
       end
