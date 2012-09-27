@@ -55,7 +55,7 @@ class MembersController < ApplicationController
     @member.club_id = params[:club_id]
     respond_to do |format|
       if @member.save
-        #Member.send_mail(@member)
+        Member.send_mail(@member, current_club, current_member)
         format.html { redirect_to club_member_path(params[:club_id],@member), notice: 'Member was successfully created.' }
         format.json { render json: @member, status: :created, location: @member }
       else

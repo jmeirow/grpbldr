@@ -26,6 +26,11 @@ class SessionsController < ApplicationController
 
       @members =  Member.where( "email = ? and ? between start_date and end_date", user.email, Time.now  ) 
       
+      if @members.length == 0
+        redirect_to root_url , :notice => 'You have not yet been added as a member to any club/organization within GroupBuilder. Please contact the administrator of your organization.'
+        return
+      end  
+
       if @members.length > 1 
         session[:clubs] = user.clubs
         session[:members] = user.members.length

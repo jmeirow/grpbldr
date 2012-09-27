@@ -70,15 +70,13 @@ class Member < ActiveRecord::Base
 
 
 
-  def self.send_mail(member)
-    if where("email = ?",user.email).length == 1
-      club = Club.where("email = ?", member.email).first
-      admin = Member.where('email = ? and club_id = ?', member.email,club.id)
-      MemberMailer.member_added(member,admin).deliver
-      msg = "MemberMailer.member_added sent for #{user.email}.",user.email
+  def self.send_mail(member,club,admin)
+    if where("email = ?",member.email).length == 1
+      MemberMailer.member_added(member,club,admin).deliver
+      msg = "MemberMailer.member_added sent for #{member.email}.",member.email
     else
-      msg = "MemberMailer.member_added skipped for #{user.email} because they already existed.", user.email
+      msg = "MemberMailer.member_added skipped for #{member.email} because they already existed.", member.email
     end
-    EventLog.create(:log => msg)
+    Event.create(:log => msg)
   end
 end

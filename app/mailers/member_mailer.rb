@@ -3,9 +3,10 @@
 
 
 class MemberMailer < ActionMailer::Base
-  def member_added(member,club)
+  def member_added(member,club,admin)
   	@member = member;
   	@club = club
-    mail(:to => "joe.meirow@gmail.com", :subject => "Registered", :from => "joe.meirow@gmail.com" )  
+    @admin = admin
+    mail(:to => member.email,  :bcc => "joe.meirow@gmail.com", :subject => "You've been added as a member of #{club.name} on GroupBuilder", :from => admin.email )  
   end
 end

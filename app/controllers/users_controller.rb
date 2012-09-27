@@ -10,19 +10,20 @@ class UsersController < ApplicationController
       @members = Member.where("email = ?", @user.email)
        
   
-      if @members.nil? or @members.length == 0
-        msg = 'Account successfully created. Please note that you have not yet been added to any organizations. You will be contacted via email each time an administrator adds you to a club.'
+      if @members.nil? || @members.length == 0
+        @msg = 'Account successfully created. Please note that you have not yet been added to any organizations. You will be contacted via email each time an administrator adds you to a club.'
       else
-        msg = 'Account successfully created. You have been associated with the following club(s):'
+        @msg = 'Account successfully created. You have been associated with the following club(s):'
         clubs = Array.new
         @members.each do |mbr|
           club = Club.find(mbr.club_id)
           clubs << club.name
         end
-        club_names = clubs.join(", ")
-        msg = msg + club_names + ".  You may now sign into the system using the credentials you've just created."
-      end        
-      redirect_to root_url :notice => msg
+        club_names = clubs.join(",   ")
+        @msg = @msg + club_names + ".  You may now sign into the system using the credentials you've just created."
+      end     
+
+      redirect_to root_url(:success =>'true'), :notice => @msg
     else
       render "new"
     end

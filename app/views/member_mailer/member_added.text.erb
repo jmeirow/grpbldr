@@ -1,11 +1,15 @@
-Joe,
+Dear <%= @member.first_name %>:
 
-Just thought you'd want to know that <%= @member.first_name + ' ' +  @member.last_name %> has created an account.
+I've added you as a member of <%= @club.name %> on GroupBuilder.
 
+If you've already created a user account then you can now log into the site.
+
+If not, now is a great time to create your login account and start using GroupBuilder today.
 
 Sincerely,
 
-GroupBuilder 
+<%= "#{@admin.first_name}, #{@admin.last_name}" %>
+
 
  
 
