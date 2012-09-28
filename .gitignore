@@ -27,7 +27,8 @@
 
 
 
-
+*.mp4
+*.pdf
 
 log/*.log
 /log/*.log
