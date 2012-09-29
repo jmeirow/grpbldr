@@ -89,7 +89,7 @@
             <%= 
                 if params[:role].nil?
                     collection_select(:role, :role_id,  
-                                  Role.roles_with_groups(@club.id)   , :first, :last, 
+                                  Role.roles_with_groups(@club.id)   , :id, :description, 
                                   :include_blank => 'All roles' ) 
                 else
                     collection_select(:role, :role_id,  

@@ -25,6 +25,7 @@ class MeetingsController < ApplicationController
   def show
     @meeting = Meeting.find(params[:id])
     @meeting_notes = MeetingNote.where("meeting_id = ?", params[:id])
+    
 
     
     
@@ -38,6 +39,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/new.json
   def new
     @club = current_club
+    @meeting_types = MeetingType.where("club_id = ?", @club.id).order('is_default desc, description asc')
     @meeting = Meeting.new
 
    
@@ -51,6 +53,8 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1/edit
   def edit
+    @club = current_club
+    @meeting_types = MeetingType.where("club_id = ?", @club.id).order('is_default desc, description asc')
     @meeting = Meeting.find(params[:id])
   end
 
@@ -78,6 +82,7 @@ class MeetingsController < ApplicationController
   # PUT /meetings/1.json
   def update
     @meeting = Meeting.find(params[:id])
+    
     
     respond_to do |format|
       if @meeting.update_attributes(params[:meeting])
