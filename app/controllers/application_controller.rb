@@ -76,10 +76,10 @@ private
 
   def protect_against_url_tampering
 
-    req = Request.new
-    req.ip_addr  = request.remote_ip.to_s
-    req.page_uri = request.path
-    req.save
+    # req = Request.new
+    # req.ip_addr  = request.remote_ip.to_s
+    # req.page_uri = request.path
+    # req.save
 
 
     return if params[:club_id] && session[:clubs] && session[:clubs].include?(params[:club_id])

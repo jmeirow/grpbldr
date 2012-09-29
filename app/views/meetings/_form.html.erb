@@ -1,3 +1,6 @@
+  
+
+
 <% if  notice %>
 	<div class="alert-box success" >
 		<%= notice %> 
@@ -32,9 +35,12 @@
 
  <table border=0>
   <tr>
-    <td><%= f.text_field :hour    , :maxlength => 2, :class => 'time'  , :style => 'display:inline' %></td>
-    <td><%= f.text_field :minute  , :value => (f.object.padded_minutes  if f.object.minute), :maxlength => 2, :class => 'time' , :style => 'display:inline' %></td>
-    <td valing='bottom'> <%= f.select  :am_pm, options_for_select([['AM', 'AM'], ['PM', 'PM']] , @meeting.am_pm  ),:class => 'input-text', :style => 'display:inline'    %></td>
+
+    
+    <td><%=f.text_field :meeting_time  %></td>
+    <td><%=collection_select(:meeting, :meeting_type_id,  
+                                  @meeting_types   , :id, :description , :selected => @meeting.meeting_type_id ) %> </td>
+
   </tr>
 </table>
 
@@ -52,7 +58,29 @@
 
 
 
+ 
 
+ 
+<script type='text/javascript'>
+  
+  <%=meeting_type_info_js%>
+  
+
+
+  $('#meeting_type_id').change(function() 
+  {
+     
+
+  });  
+
+
+  
+ 
+ 
+  
+ 
+ 
+</script>
 
 
 
