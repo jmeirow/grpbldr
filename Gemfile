@@ -32,10 +32,13 @@ group :development do
   gem 'pry_debug'  
   gem 'pry-nav' 
   gem 'pry-stack_explorer'
+  gem 'vagrant'
+  gem 'therubyracer'
 end
 
 group :test do
   gem 'faker'
+  gem 'vagrant'
   gem 'capybara'
   gem 'database_cleaner', '~> 0.7.2'
   gem 'launchy'
