@@ -20,7 +20,6 @@ gem 'mail'
 gem 'flt'
 gem 'mailman', :require => false
 gem 'slim'
-gem 'bundler'
 
 
 
