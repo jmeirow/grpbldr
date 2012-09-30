@@ -24,7 +24,9 @@ class AssignmentsController < ApplicationController
 
 
 def past_activity
-    @assignments = Assignment.includes(:meeting).where("member_id = ? and meetings.meeting_date < ?", params[:member_id], Date.today).order("meeting_date").page(params[:page]).per(7)
+    @assignments = Assignment.includes(:meeting).where("member_id = ? and meetings.meeting_date < ?", 
+      params[:member_id], Date.today).order("meeting_date DESC").page(params[:page]).per(7)
+    
     @member = Member.find(params[:member_id])
     
     respond_to do |format|
