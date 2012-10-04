@@ -6,7 +6,7 @@ class Club < ActiveRecord::Base
 	
   include ActiveBuilder
   
-  attr_accessible :name, :email_enabled,:domain 
+  attr_accessible :name, :email_enabled,:domain, :default_agenda_definition_id
   validates_presence_of :name
   validate :domain_already_in_use 
   validate :domain_contains_blanks,  :on => :update
