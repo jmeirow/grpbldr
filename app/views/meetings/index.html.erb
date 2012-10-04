@@ -77,7 +77,7 @@
             <tr>
               <td><%= meeting.meeting_date_display %></td>
               <td><%= meeting.unfilled_roles_count(params[:club_id]) %></td>
-              <td><%=  link_to 'Agenda', club_meeting_print_path(params[:club_id], meeting)  , :target => "_blank" %></td>
+              <td><%=  link_to 'Agenda', club_meeting_agenda_definition_print_path(params[:club_id], meeting, @club.default_agenda_definiton_id)  , :target => "_blank" %></td>
               
     
 

@@ -55,8 +55,10 @@
 
         <%
               Role.where("club_id = ?", @club.id).each do |role|
-                  agenda_line_item.line_item_text.gsub!('$$'+role.description+'$$', @agenda.member_for(role.description))
-                  agenda_line_item.line_item_header.gsub!('$$'+role.description+'$$', @agenda.member_for(role.description))
+                agenda_line_item.line_item_text.gsub!('$$'+role.description+'$$', role.description)
+                agenda_line_item.line_item_header.gsub!('$$'+role.description+'$$', role.description)
+                agenda_line_item.person_display_name.gsub!('$$'+role.description+'$$', role.description)
+                
               end
         %>
           <tr>
@@ -70,11 +72,17 @@
               </td>
               <td  valign='top'>
                 <%=  
+
+
                   if  agenda_line_item.person_display_name_source == 'Static Text'
                     agenda_line_item.person_display_name
                   else 
                     @agenda.member_for(agenda_line_item.person_display_name)
-                  end %> 
+                  end 
+
+                   
+
+                  %> 
               </td>
             </tr>
           <% end %>

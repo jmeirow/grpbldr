@@ -36,9 +36,7 @@ class Agenda
 
   def member_for(role_name)
      
-    result = @roles[role_name]
-    result = 'TBD' if result.nil?
-    result
+    @roles[role_name] ? @roles[role_name] : 'TBD' 
   end
 
 

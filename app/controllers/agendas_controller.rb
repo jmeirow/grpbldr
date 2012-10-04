@@ -28,7 +28,7 @@ class AgendasController < ApplicationController
 
 
   def get_role_names
-
+       
       @roles = Hash.new
 
       Assignment.where("meeting_id = ?", @meeting.id).each do |assignment|
