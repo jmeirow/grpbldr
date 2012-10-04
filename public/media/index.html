@@ -46,7 +46,12 @@
     <video width="640" height="480" controls="controls"   >
       <source src="GB.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
       <source src="GB.ogv" type='video/ogg; codecs="theora, vorbis"' />
-      Your browser does not support the video tag.
+      <object width="640" height="480" type="application/x-shockwave-flash" data="__FLASH__.SWF">
+      <!-- Firefox uses the `data` attribute above, IE/Safari uses the param below -->
+      <param name="gb" value="__FLASH__.SWF" />
+      <param name="flashvars" value="controlbar=over&amp;image=__POSTER__.JPG&amp;file=__VIDEO__.MP4" />
+    </object>
+
     </video>
 
 
