@@ -11,6 +11,8 @@ Rolemaster::Application.routes.draw do
   get "maintenance/display_message" => "maintenance#display_message" , :as => "display_message"
 
   get "public/home"
+  get "public/tos"
+
 
   get "public/club/:club_id" => "public#club" 
 

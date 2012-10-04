@@ -6,6 +6,8 @@ class PublicController < ApplicationController
   	def home
   	end
 
+  	def tos
+  	end
 	 
 
 	def club
