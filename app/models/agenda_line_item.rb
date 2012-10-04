@@ -27,6 +27,10 @@ class AgendaLineItem < ActiveRecord::Base
   def resolved_line_item_head
 
   end
+
+  def printed_start_time
+    start_time if time_format == 'Start Time'
+  end
   
 
   def toggle_inclusion

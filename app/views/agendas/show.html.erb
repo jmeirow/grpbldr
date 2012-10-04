@@ -40,49 +40,42 @@
 
 
   <div id='content' style='width:735px'>   
-      <table id='table' cellpadding='5' cellspacing='5'>
-
-        <thead>
-          <tr><th width='70px'>Time</th><th width='370px'>Role / Agenda Item for  <%= @agenda.meeting_date %></th><th width='130px'>Member</th></tr>
-        </thead>
-
-        <tbody>
-
-          <% @agenda.agenda_line_items.each do |agenda_line_item| %>
-
-          <%
-                Role.where("club_id = ?", @club.id).each do |role|
-                    agenda_line_item.line_item_text.gsub!('$$'+role.description+'$$', @agenda.member_for(role.description))
-                    agenda_line_item.line_item_header.gsub!('$$'+role.description+'$$', @agenda.member_for(role.description))
-                   
-
-                end
-                
+      
 
 
-          %>
+    <table id='table' cellpadding='5' cellspacing='5'>
 
+      <thead>
+        <tr><th width='70px'>Time</th><th width='370px'>Role / Agenda Item for  <%= @agenda.meeting_date %></th><th width='130px'>Member</th></tr>
+      </thead>
 
+      <tbody>
 
-              <tr>
+        <% @agenda.agenda_line_items.each do |agenda_line_item| %>
 
-                <td  valign='top'>
-                          <%= agenda_line_item.start_time %> 
-                </td>
-                <td>  
-                    <strong><%=agenda_line_item.line_item_header %></strong><br/>
-                    <%= agenda_line_item.line_item_text  %>
-                </td>
-                <td  valign='top'>
+        <%
+              Role.where("club_id = ?", @club.id).each do |role|
+                  agenda_line_item.line_item_text.gsub!('$$'+role.description+'$$', @agenda.member_for(role.description))
+                  agenda_line_item.line_item_header.gsub!('$$'+role.description+'$$', @agenda.member_for(role.description))
+              end
+        %>
+          <tr>
 
-                      <%=  
-                         if  agenda_line_item.person_display_name_source == 'Static Text'
-                                 agenda_line_item.person_display_name
-                              else 
-                                @agenda.member_for(agenda_line_item.person_display_name)
-                              end 
-                      %> 
-                </td>
+              <td  valign='top'>
+                        <%= agenda_line_item.printed_start_time %> 
+              </td>
+              <td>  
+                  <strong><%=agenda_line_item.line_item_header %></strong><br/>
+                  <%= agenda_line_item.line_item_text  %>
+              </td>
+              <td  valign='top'>
+                <%=  
+                  if  agenda_line_item.person_display_name_source == 'Static Text'
+                    agenda_line_item.person_display_name
+                  else 
+                    @agenda.member_for(agenda_line_item.person_display_name)
+                  end %> 
+              </td>
             </tr>
           <% end %>
         </tbody>       
