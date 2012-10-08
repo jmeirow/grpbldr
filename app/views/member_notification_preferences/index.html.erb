@@ -1,0 +1,21 @@
+<h1>Listing member_notification_preferences</h1>
+
+<table>
+  <tr>
+    <th>Member</th>
+    <th>Notification type</th>
+    <th>Enabled</th>
+  </tr>
+
+<% @member_notification_preferences.each do |member_notification_preference| %>
+  <tr>
+    <td><%= member_notification_preference.member_id %></td>
+    <td><%= member_notification_preference.notification_type_id %></td>
+    <td><%= member_notification_preference.enabled %></td>
+   
+  </tr>
+<% end %>
+</table>
+
+<br />
+ 

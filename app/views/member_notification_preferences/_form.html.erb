@@ -1,0 +1,29 @@
+<%= form_for([current_club, current_member,@member_notification_preference]) do |f| %>
+  <% if @member_notification_preference.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member_notification_preference.errors.count, "error") %> prohibited this member_notification_preference from being saved:</h2>
+
+      <ul>
+      <% @member_notification_preference.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :member_id %><br />
+    <%= f.number_field :member_id %>
+  </div>
+  <div class="field">
+    <%= f.label :notification_type_id %><br />
+    <%= f.number_field :notification_type_id %>
+  </div>
+  <div class="field">
+    <%= f.label :enabled %><br />
+    <%= f.check_box :enabled %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

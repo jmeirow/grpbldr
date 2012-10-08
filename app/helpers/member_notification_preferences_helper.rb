@@ -1,0 +1,2 @@
+module MemberNotificationPreferencesHelper
+end

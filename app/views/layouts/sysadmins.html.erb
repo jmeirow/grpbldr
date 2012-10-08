@@ -57,13 +57,23 @@
 
                <%= link_to "Return to Main Menu", club_member_assignments_path(session[:club_id], current_member) %> <br/>    
                <br/>  
-                  <%= link_to "Test Email Config", test_email_path %><br>
-                  <%= link_to "Revoke Admin", sessions_revoke_admin_path %><br>
-                  <%= link_to "Revoke Super User", sessions_revoke_super_user_path %><br/> 
-                  <a href='#'>Reports </a><br/> 
+                  
                   <%= link_to "All Members", all_members_path %><br>  
+                  <%= link_to "All Clubs", all_clubs_path %><br>  
+
+                  <br/>  
+
+                  <%= link_to "Notification Types", notification_types_path %> <br/>  
+
+                  <br/>
+
                   <%= link_to "Configuration Parameters", sys_configurations_path %> <br/>  
                   <%= link_to "Software Release Info", updates_path, :target => '_blank' %> <br/>  
+                  
+                  <br/>
+
+                  <%= link_to "Revoke Admin", sessions_revoke_admin_path %><br>
+                  <%= link_to "Revoke Super User", sessions_revoke_super_user_path %><br/> 
                   <br/>  <br/>  
 
               <div style='font-size:7pt'>
