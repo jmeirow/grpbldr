@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Mailer type:</b>
+  <%= @notification_type.mailer_type %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @notification_type.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_club_member_member_notification_preference_path(@notification_type) %> |
+<%= link_to 'Back', club_member_member_notification_preferences_path %>

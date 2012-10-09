@@ -32,6 +32,7 @@ Rolemaster::Application.routes.draw do
   get "sessions/revoke_admin"
   get "sessions/revoke_super_user"
   get "all_members" => "sysadmins#all_members"
+  get "all_clubs" => "sysadmins#all_clubs"
   get "admins/blank" => "admins#blank", :as => "admin"
   get "sysadmins/blank" => "sysadmins#blank", :as => "sysadmins"
   get "bizadmins/blank" => "bizadmins#blank", :as => "bizadmins"
@@ -85,6 +86,12 @@ Rolemaster::Application.routes.draw do
 
   resources :password_resets
   
+
+
+
+  resources :notification_types
+
+
   resources :contest_signups
 
   resources :clubs do
@@ -98,7 +105,8 @@ Rolemaster::Application.routes.draw do
           get 'past_activity'
         end
       end
-      resources :absences 
+      resources :absences
+      resources :member_notification_preferences 
     end
     resources :roles 
     resources :meeting_types 

@@ -86,10 +86,12 @@
             <hr style="height:2px;border:none;background-color:green;color:green" />
 
 
-            <%= link_to "My Upcoming Activity", club_member_assignments_path(params[:club_id], current_member) %> <br/>  
+            <%= link_to "Upcoming Activity", club_member_assignments_path(params[:club_id], current_member) %> <br/>  
            
-            <%= link_to "My Previous Activity", past_activity_club_member_assignments_path(params[:club_id],current_member) %>   <br/>  
+            <%= link_to "Previous Activity", past_activity_club_member_assignments_path(params[:club_id],current_member) %>   <br/>  
+            <%= link_to "Notifications", club_member_member_notification_preferences_path(params[:club_id],current_member) %>   <br/>  
            
+           <br/>
 
             <%= link_to "Meetings", club_meetings_path(params[:club_id]) %><br>
             <%= link_to "Member Directory", club_members_path(params[:club_id]) %>  <br/>  
