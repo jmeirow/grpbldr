@@ -2,7 +2,7 @@ class AbsencesController < ApplicationController
   # GET /absences
   # GET /absences.json
   def index
-    @absences = Absence.where("member_id = ?",params[:member_id]).page(params[:page]).per(7)
+    @absences = Absence.where("member_id = ?",params[:member_id]).order("start_date DESC").page(params[:page]).per(7)
     @member = Member.find(params[:member_id])
     
 
@@ -15,7 +15,7 @@ class AbsencesController < ApplicationController
 
   # GET /club/:club_id/absences
   def list
-    @absences = Absence.where("member_id in (?)",Member.where("club_id = ?",params[:club_id])).page(params[:page]).per(7)
+    @absences = Absence.where("member_id in (?)",Member.where("club_id = ?",params[:club_id])).order("start_date DESC").page(params[:page]).per(7)
   end
   
 
