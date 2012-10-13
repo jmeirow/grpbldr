@@ -53,38 +53,11 @@
 
         <% @agenda.agenda_line_items.each do |agenda_line_item| %>
 
-        <%
-              Role.where("club_id = ?", @club.id).each do |role|
-                agenda_line_item.line_item_text.gsub!('$$'+role.description+'$$', @agenda.member_for(role.description))
-                agenda_line_item.line_item_header.gsub!('$$'+role.description+'$$', @agenda.member_for(role.description))
-                agenda_line_item.person_display_name.gsub!('$$'+role.description+'$$', @agenda.member_for(role.description))
-                
-              end
-        %>
           <tr>
-
-              <td  valign='top'>
-                        <%= agenda_line_item.printed_start_time %> 
-              </td>
-              <td>  
-                  <strong><%=agenda_line_item.line_item_header %></strong><br/>
-                  <%= agenda_line_item.line_item_text  %>
-              </td>
-              <td  valign='top'>
-                <%=  
-
-
-                  if  agenda_line_item.person_display_name_source == 'Static Text'
-                    agenda_line_item.person_display_name
-                  else 
-                    @agenda.member_for(agenda_line_item.person_display_name)
-                  end 
-
-                   
-
-                  %> 
-              </td>
-            </tr>
+            <td  valign='top'> <%= agenda_line_item.printed_start_time %> </td>
+            <td> <strong><%=agenda_line_item.resolved_line_item_head %> </strong><br/> <%= agenda_line_item.resolved_line_item_text  %> </td>
+            <td  valign='top'> <%= agenda_line_item.resolved_person_display_name %> </td>
+          </tr>
           <% end %>
         </tbody>       
       </table> 

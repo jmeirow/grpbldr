@@ -15,17 +15,34 @@ class AgendaLineItem < ActiveRecord::Base
 
   validates :line_item_header, :presence => true
   validates :duration_in_minutes, :presence => true,  :numericality => { :only_integer => true, :greater_than_or_equal_to => 0 }
+
+
+
+  def agenda=(parent)
+    @agenda = parent 
+  end
+  def agenda
+    @agenda
+  end
+
+
+
   
   def resolved_person_display_name
+      if person_display_name_source == 'Static Text'
+        person_display_name
+      else
 
+        agenda.member_for(person_display_name)
+      end
   end
 
   def resolved_line_item_text
-
+    agenda.resolved_line_item_text line_item_text
   end
 
   def resolved_line_item_head
-
+    agenda.resolved_line_item_head line_item_header
   end
 
   def printed_start_time

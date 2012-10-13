@@ -18,7 +18,7 @@
       <div style='float:left;width:300px'>
         <ul >
           <li style='margin-top:0px;margin-bottom:0px'   ><%= link_to 'New Agenda line item', new_club_agenda_definition_agenda_line_item_path(@club,@agenda_definition) %></li>
-          <li style='margin-top:0px;margin-bottom:0px' ><%= link_to "Update all line items to be included in agenda." , agenda_definition_include_all_lines_path(@agenda_definition) %></li>
+         
           <li style='margin-top:0px;margin-bottom:0px'  ><%= link_to "Preview Agenda." , club_meeting_agenda_definition_print_path(session[:club_id], current_club.next_meeting, @agenda_definition)  %></li>
         </ul>
      

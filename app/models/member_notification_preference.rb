@@ -1,42 +1,26 @@
 class MemberNotificationPreference < ActiveRecord::Base
-  attr_accessible :enabled, :member_id, :notification_type_id
+  attr_accessible :enabled, :member_id, :notification_type_id ,  :description
+
+  attr_accessor :description
 
 
-
-
-  def self.all_preferences member_id
-    self.add_new member_id
-    self.current_preferences member_id
+  def self.get_all_for_member member_id
+    Array.new
   end
 
 
-
-private
-
-  def self.current_preferences member_id
-    MemberNotificationPreference.where("member_id = ?", member_id)
-  end
-
-
-
-
-
-
-  def self.new_preferences member_id
-    all_types = NotificationType.all
-    all_prefs = self.current_preferences member_id
+  def self.create_missing_instances member_id
+      
     
-
+    current_ids = MemberNotificationPreference.where("member_id = ?", member_id).select { |x| x.notification_type_id}
+    
      
 
+      
 
-    end
 
-    
- 
 
   end
-
 
 
 

@@ -1,39 +1,46 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.8'
 gem 'actionmailer', '3.2.8'
-gem 'pg', '0.14.0'
-gem 'eventmachine'
-gem 'kaminari'
-gem 'tzinfo'
-gem 'chronic'
-gem 'ori'
-gem 'hirb'
 gem 'bcrypt-ruby', :require => "bcrypt"
-gem 'railsthemes'
-gem 'execjs'
-gem "sidekiq", "~> 2.1.0"
-gem 'sinatra', :require => nil
-gem 'jquery-rails'
 gem 'capistrano'
-gem 'mail'
+gem 'chronic'
+gem 'eventmachine'
+gem 'execjs'
 gem 'flt'
+gem 'hirb'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'mail'
 gem 'mailman', :require => false
+gem 'ori'
+gem 'pg', '0.14.0'
+gem 'rails', '3.2.8'
+gem 'railsthemes'
+gem 'sidekiq', '~> 2.1.0'
+gem 'sinatra', :require => nil
 gem 'slim'
+gem 'tzinfo'
 
 
 
 group :development do
-  gem 'thin' 
+  gem 'factory_girl_rails'
+  gem 'ffi'
+  gem 'guard-rspec'
   gem 'letter_opener'  
   gem 'pry' 
   gem 'pry-doc' 
-  gem 'pry-rails' 
-  gem 'pry_debug'  
   gem 'pry-nav' 
+  gem 'pry-rails' 
   gem 'pry-stack_explorer'
-  gem 'vagrant'
+  gem 'pry_debug'  
+  gem 'rb-fsevent', '~> 0.9.1'
+  gem 'rb-inotify' 
+  gem 'rspec-rails' 
+  gem 'terminal-notifier-guard'
   gem 'therubyracer'
+  gem 'thin' 
+  gem 'vagrant'
 end
 
 group :test do
@@ -43,15 +50,6 @@ group :test do
   gem 'database_cleaner', '~> 0.7.2'
   gem 'launchy'
   gem 'turn', '0.8.2', :require => false
-end
-
-group :development, :test do
-  gem 'slim'
-  gem 'rspec-rails' 
-  gem 'rb-inotify' 
-  gem 'factory_girl_rails'
-  gem 'letter_opener'  
-  gem 'guard-rspec'
 end
 
 group :production do

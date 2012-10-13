@@ -3,8 +3,7 @@ require 'custom/system_services.rb'
 
 
 class AssignmentsController < ApplicationController
-  # GET /assignments
-  # GET /assignments.json
+ 
 
   include SystemServices
 

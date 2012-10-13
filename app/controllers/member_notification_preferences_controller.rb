@@ -2,7 +2,7 @@ class MemberNotificationPreferencesController < ApplicationController
   # GET /member_notification_preferences
   # GET /member_notification_preferences.json
   def index
-    @member_notification_preferences = MemberNotificationPreference.all
+    @member_notification_preferences = get_members_preferences
 
     respond_to do |format|
       format.html # index.html.erb
@@ -80,4 +80,8 @@ class MemberNotificationPreferencesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+
+
 end
