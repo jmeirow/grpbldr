@@ -63,14 +63,14 @@
       </table> 
   </div>
 
-    <div   style='margin-left:50px'>
+    <div   style='width:700px;margin-left:50px'>
 
 
      <% @agenda_bottom = AgendaBottom.where(" agenda_definition_id = ? ",@meeting_agenda_definition.id).first %>
       <% if @agenda_bottom.nil? == false %>
 
         <h4><%= @agenda.agenda_bottom.heading_text %></h4> 
-        <%= @agenda.agenda_bottom.body_text %>
+        <%= @agenda.agenda_bottom.body_text.html_safe %>
         <br/><br/>
       <% end %>  
 
