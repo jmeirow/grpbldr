@@ -65,25 +65,31 @@
 
     <div   style='margin-left:50px'>
 
+
+     <% @agenda_bottom = AgendaBottom.where(" agenda_definition_id = ? ",@meeting_agenda_definition.id).first %>
+      <% if @agenda_bottom.nil? == false %>
+
         <h4><%= @agenda.agenda_bottom.heading_text %></h4> 
         <%= @agenda.agenda_bottom.body_text %>
         <br/><br/>
-          
-        <% if @meeting_agenda_definition.show_absent_members == true %>
-          
-          <h4>Absent Today</h4>
-          <ul >
-            <% @absent_members = Absence.absent_members(@club.id, @meeting.meeting_date)   
-           
-             @absent_members.each do |member| %>
-              
-                <li  > 
-                  <%= member.full_name if member %>
-                </li>
-            <% end %>
-          </ul>
-        <% end %>
-      </table>
+      <% end %>  
+
+      <% if @meeting_agenda_definition.show_absent_members == true %>
+        
+        <h4>Absent Today</h4>
+        <ul >
+          <% @absent_members = Absence.absent_members(@club.id, @meeting.meeting_date)   
+         
+           @absent_members.each do |member| %>
+            
+              <li  > 
+                <%= member.full_name if member %>
+              </li>
+          <% end %>
+        </ul>
+      <% end %>
+
+
     </div>
   </div>
 

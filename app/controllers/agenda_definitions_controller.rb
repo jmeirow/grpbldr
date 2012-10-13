@@ -17,6 +17,7 @@ class AgendaDefinitionsController < ApplicationController
   # GET /agenda_definitions/1.json
   def show
     @agenda_definition = AgendaDefinition.find(params[:id])
+    @agenda_bottom = AgendaBottom.where(" agenda_definition_id = ? ",@agenda_definition.id).first
     @club = current_club
     get_agenda_top_link(@agenda_top_link,@agenda_top_link_text)
     get_agenda_bottom_link(@agenda_bottom_link,@agenda_bottom_link_text)
