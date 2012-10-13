@@ -30,6 +30,15 @@
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
+  <p>        
+    Show Absent Members on Agenda? &nbsp;&nbsp;&nbsp;&nbsp;
+    Yes <%= f.radio_button :show_absent_members, "true" %><br/> &nbsp;&nbsp;&nbsp;&nbsp;
+    No <%= f.radio_button :show_absent_members, "false" %>
+  </p>  
+
+
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -30,4 +30,12 @@ class Absence < ActiveRecord::Base
     @member = Member.find(self[:member_id])
     return @member.full_name
   end
+
+  def self.absent_members(club_id, meeting_date )
+    Member.joins('INNER JOIN absences on absences.member_id = members.id').where("club_id = ? and  ? between absences.start_date and absences.end_date and ? between members.start_date and members.end_date",  
+        club_id, meeting_date, meeting_date).order("last_name, first_name") 
+  end
+
+
 end
+ 
