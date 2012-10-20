@@ -38,17 +38,6 @@ group :development, :test do
   gem 'therubyracer'
   gem 'thin' 
   gem 'vagrant'
-
-
-  if RUBY_PLATFORM =~ /linux/ then
-    gem 'rb-inotify' 
-  else
-    gem 'rb-fsevent', '~> 0.9.1'
-  end
-
- 
-
- 
   gem 'faker'
   gem 'vagrant'
   gem 'capybara'
@@ -56,6 +45,13 @@ group :development, :test do
   gem 'launchy'
   gem 'turn', '0.8.2', :require => false
   gem 'factory_girl_rails'
+
+  # if RUBY_PLATFORM =~ /linux/ then
+  #   gem 'rb-inotify' 
+  # else
+  #   gem 'rb-fsevent', '~> 0.9.1'
+  # end
+
 end
 
 group :production do
