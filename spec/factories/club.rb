@@ -2,10 +2,11 @@
 
 FactoryGirl.define do
   factory :club do
-    id 100
+  	id 100
     name "Factory Club"
     email_enabled true
-    sequence(:domain) { |n| 'n' }
+  	domain "100"
+    before(:create) { Club.destroy_all }
   end
 end
 

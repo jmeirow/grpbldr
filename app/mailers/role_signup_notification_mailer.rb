@@ -18,10 +18,13 @@ class RoleSignupNotificationMailer < ActionMailer::Base
 
       @meeting_date = @meeting.meeting_date.strftime("%m/%d/%Y")
       mailing_lists = MailingLists.new 
-      dist_list = mailing_lists.active_members(@club.id)
-       
-      mail(:to => dist_list, :subject => "Role Signup Notification", 
-        :from => "joe.meirow@gmail.com")
+      
+      dist_list = mailing_lists.active_members(@club.id,self)
+      if dist_list.length > 0
+        mail(:to => dist_list, :bcc => "joe.meirow@gmail.com" , :subject => "Role Signup Notification", :from => "noreply@grpbldr.com")
+      else
+        mail(:to => "joe.meirow@gmail.com", :subject => "Role Signup Notification (no members in dist list)", :from => "noreply@grpbldr.com")
+      end
      
   end
 end

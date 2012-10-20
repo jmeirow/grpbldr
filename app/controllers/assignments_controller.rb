@@ -117,13 +117,18 @@ def past_activity
 
     @assignment = Assignment.find(params[:id])
     meeting_id = @assignment.meeting_id
+    meeting = Meeting.find(@assignment.meeting_id)
     role_id = @assignment.role_id
     member_id = @assignment.member_id
     @club = current_club
     @assignment.destroy
-    send_email('RoleHasBecomeAvailableMailerWorker',meeting_id, role_id, @club)
+    
+    if meeting and Date.today <= meeting.meeting_date
+      send_email('RoleHasBecomeAvailableMailerWorker',meeting_id, role_id, @club)
+    end
+
     respond_to do |format|
-      format.html { redirect_to club_member_assignments_path(params[:club_id],member_id) }
+      format.html { redirect_to club_member_assignments_path(@club,member_id) }
       format.json { head :ok }
     end
   end
@@ -164,7 +169,7 @@ def past_activity
       if @helper.save
         @helper.send_signup_email @club
         #redirect_to club_meetings_path(params[:club_id]) , notice: 'Your requests have been submitted and should appear on the meeting agendas soon.' 
-        redirect_to signup_for_role_multi_club_club_member_assignments_path(current_club, current_member),     notice: 'Your requests have been submitted.'   
+        redirect_to signup_for_role_multi_club_club_member_assignments_path(params[:club_id], params[:member_id]),     notice: 'Your requests have been submitted.'   
 
         return 
       end 
@@ -204,7 +209,7 @@ def past_activity
     if SignupHelper.user_has_submitted_request? params
       if @helper.save
         @helper.send_signup_email @club
-        redirect_to signup_for_role_club_member_assignments_path(params[:club_id], current_member),  notice: 'Your requests have been submitted.' 
+        redirect_to signup_for_role_club_member_assignments_path(params[:club_id], params[:member_id]),  notice: 'Your requests have been submitted.' 
         return 
       end 
     end

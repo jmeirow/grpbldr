@@ -97,6 +97,7 @@ Rolemaster::Application.routes.draw do
   resources :clubs do
    
     resources :members do
+     
       resources :assignments do
         collection do
           get 'signup_for_role'
@@ -107,6 +108,9 @@ Rolemaster::Application.routes.draw do
       end
       resources :absences
       resources :member_notification_preferences 
+      put "update_email_preferences" => "member_notification_preferences#update_email_preferences"
+
+  
     end
     resources :roles 
     resources :meeting_types 

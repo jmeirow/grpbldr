@@ -1,21 +1,47 @@
-<h1>Listing member_notification_preferences</h1>
+<h2>Email Notification Preferences</h2>
+
+
+
+
+<%= form_tag(club_member_update_email_preferences_path, :method => "put" ) do %>
+  
+  <% if  notice %>
+    <div class="alert-box success" style='width:475'>
+      <%= notice %> 
+    </div>
+  <% end %>
+  <% if @save_status == false %>
+    <div id="error_explanation">
+      <h8> Not all of your preferences were saved. Please try again.</h8>
+
+ 
+    </div>
+  <% end %>
+
 
 <table>
   <tr>
-    <th>Member</th>
-    <th>Notification type</th>
-    <th>Enabled</th>
+     
+    
+    <th>Description</th>
+    <th>Notify me via email?</th>
   </tr>
 
-<% @member_notification_preferences.each do |member_notification_preference| %>
+
+<% @member_notification_preferences.each do |pref| %>
   <tr>
-    <td><%= member_notification_preference.member_id %></td>
-    <td><%= member_notification_preference.notification_type_id %></td>
-    <td><%= member_notification_preference.enabled %></td>
-   
+
+    
+    <td><%= pref.description %></td>
+    <td>
+
+     Yes <%=  radio_button_tag "enabled_#{pref.id.to_s}" ,  true,  pref.enabled == true    %><br/> &nbsp;&nbsp;&nbsp;&nbsp;
+     No <%=  radio_button_tag "enabled_#{pref.id.to_s}" ,  false, pref.enabled == false  %><br/>  
+    </td>
   </tr>
 <% end %>
 </table>
-
+  <%= submit_tag "Save Preferences" %>
 <br />
  
+<% end %>

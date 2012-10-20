@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'spec_helper.rb'
 
 # Specs in this file have access to a helper object that includes
 # the MemberNotificationPreferencesHelper. For example:

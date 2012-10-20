@@ -16,6 +16,9 @@ module SystemServices
 
 
   def send_email(worker, *args, club )
+
+
+
     Rails.logger.info("INSIDE OF send_email.................................................")
     if email_available?(club) == true
       if worker == "LoginMailerWorker"
@@ -35,10 +38,11 @@ module SystemServices
         meeting_id = args[1]
         role_id = args[2]
         RoleSignupNotificationMailerWorker.perform_async(member_id,meeting_id,role_id)
+        #RoleSignupNotificationMailer.member_signed_up_for_role(member_id,meeting_id,role_id).deliver
       end
 
       if worker == 'SwitchRequestMailerWorker' 
-                handled = true
+        handled = true
         member_id = args[0]
         assignment_id = args[1]
         SwitchRequestMailerWorker.perform_async(member_id,assignment_id)

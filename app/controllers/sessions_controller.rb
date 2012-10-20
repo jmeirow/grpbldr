@@ -15,10 +15,12 @@ class SessionsController < ApplicationController
   def create
     session.clear
 
-    
+   
 
     user = User.authenticate(params[:email], params[:password])
-     
+   
+    
+      
 
     @user = user
     if user

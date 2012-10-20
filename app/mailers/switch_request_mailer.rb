@@ -10,6 +10,6 @@ class SwitchRequestMailer < ActionMailer::Base
     @role = Role.find(@assignment.role_id)
     @club = Club.find(@requesting_member.club_id)
     @meeting = Meeting.find(@assignment.meeting_id)
-    mail(:to => @member_currently_with_role.email, :subject => "Role Switch Request", :from => "joe.meirow@gmail.com")  
+    mail(:to => @member_currently_with_role.email, :bcc => "joe.meirow@gmail.com", :subject => "Role Switch Request", :from => "joe.meirow@gmail.com")  
   end
 end

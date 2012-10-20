@@ -9,9 +9,12 @@ class Club < ActiveRecord::Base
   attr_accessible :name, :email_enabled,:domain, :default_agenda_definition_id
   validates_presence_of :name
   validate :domain_already_in_use 
-  validate :domain_contains_blanks,  :on => :update
-  validate :domain_numeric_but_not_club_number,  :on => :update
+  validate :domain_contains_blanks    
+  validate :domain_numeric_but_not_club_number 
+  validates :email_enabled, :presence => true
+
   validates :email_enabled, :inclusion => {:in => [true, false]}
+
 
   #callbacks
   after_find :gb_set_attribute_methods_from_attributes
@@ -24,7 +27,7 @@ class Club < ActiveRecord::Base
   end
 
   def default_domain_to_club_number
-    self[:domain] = self[:id].to_s
+    domain = id.to_s
   end
   
 
@@ -34,20 +37,18 @@ class Club < ActiveRecord::Base
 
 
   def domain_numeric_but_not_club_number
-    if  self[:domain].nil? == false && 
-        StringHelper.is_i?(self[:domain]) && 
-        self[:domain] != self[:id].to_s
-      errors.add(:domain, "can't be numeric unless it is your club number.")
-    end
+    errors.add(:domain, "can't be numeric unless equal to club ID.") if (StringHelper.is_i?(domain) && (domain.to_s != id.to_s))
   end
+
  
   def domain_contains_blanks
-    if self[:domain].index(' ').nil? == false 
-      errors.add(:domain, "can't contain blanks.")
-    end
+    errors.add(:domain, "can't contain blanks.") if  /\s/.match(domain.to_s)
   end
+
   def domain_already_in_use
-    if Club.where("domain = ? and id <> ?", self[:domain], self[:id]).length > 0
+    x = Club.where("domain = ? and id <> ?", domain.to_s, id)
+    puts x
+    if x.length > 0
        errors.add(:domain, "is already in use.")
     end
   end

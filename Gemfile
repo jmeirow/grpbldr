@@ -23,9 +23,8 @@ gem 'tzinfo'
 
 
 
-group :development do
-  gem 'factory_girl_rails'
-  gem 'ffi'
+group :development, :test do
+  gem 'ffi' 
   gem 'guard-rspec'
   gem 'letter_opener'  
   gem 'pry' 
@@ -34,22 +33,29 @@ group :development do
   gem 'pry-rails' 
   gem 'pry-stack_explorer'
   gem 'pry_debug'  
-  gem 'rb-fsevent', '~> 0.9.1'
-  gem 'rb-inotify' 
   gem 'rspec-rails' 
   gem 'terminal-notifier-guard'
   gem 'therubyracer'
   gem 'thin' 
   gem 'vagrant'
-end
 
-group :test do
+
+  if RUBY_PLATFORM =~ /linux/ then
+    gem 'rb-inotify' 
+  else
+    gem 'rb-fsevent', '~> 0.9.1'
+  end
+
+ 
+
+ 
   gem 'faker'
   gem 'vagrant'
   gem 'capybara'
   gem 'database_cleaner', '~> 0.7.2'
   gem 'launchy'
   gem 'turn', '0.8.2', :require => false
+  gem 'factory_girl_rails'
 end
 
 group :production do

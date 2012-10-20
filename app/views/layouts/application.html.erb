@@ -43,6 +43,8 @@
 
   <body  >
     
+    <% @club = current_club %>
+   
     <!-- ***************************************************************** -->
     <!-- If current user is logged in, display user-nav menu area         -->
     <!-- ***************************************************************** -->    
@@ -64,14 +66,14 @@
             <div style='font-size:9pt'>
 
                <div style='font-size:9pt;font-weight:bold'>
-                <%= link_to "Sign Up for a Role", signup_for_role_club_member_assignments_path(params[:club_id], current_member) %>  <br/>    
+                <%= link_to "Sign Up for a Role", signup_for_role_club_member_assignments_path(params[:club_id], params[:member_id]) %>  <br/>    
                 
                 <%= link_to "Contest Roles", contest_signups_path %>  <br/>    
                 
-                  <%  meeting = current_club.next_meeting  %>
+                  <%  meeting = @club.next_meeting  %>
                   <%  if meeting.nil? == false %>
 
-                    <%=  link_to "Next Meeting's Agenda", club_meeting_agenda_definition_print_path(params[:club_id], meeting, current_club.default_agenda_definiton_id)  , :target => "_blank" %> <br/> 
+                    <%=  link_to "Next Meeting's Agenda", club_meeting_agenda_definition_print_path(params[:club_id], meeting, @club.default_agenda_definiton_id)  , :target => "_blank" %> <br/> 
 
 
                     <%=  link_to "Next Meeting's Notes",  club_meeting_print_notes_setup_path(params[:club_id], meeting)   %>
@@ -86,16 +88,17 @@
             <hr style="height:2px;border:none;background-color:green;color:green" />
 
 
-            <%= link_to "Upcoming Activity", club_member_assignments_path(params[:club_id], current_member) %> <br/>  
+            <%= link_to "Upcoming Activity", club_member_assignments_path(params[:club_id], params[:member_id]) %> <br/>  
            
-            <%= link_to "Previous Activity", past_activity_club_member_assignments_path(params[:club_id],current_member) %>   <br/>  
-            <%= link_to "Notifications", club_member_member_notification_preferences_path(params[:club_id],current_member) %>   <br/>  
+            <%= link_to "Previous Activity", past_activity_club_member_assignments_path(params[:club_id],params[:member_id]) %>   <br/>  
+            <%= link_to "Notifications", club_member_member_notification_preferences_path(params[:club_id],params[:member_id]) %>   <br/>  
+ 
            
            <br/>
 
             <%= link_to "Meetings", club_meetings_path(params[:club_id]) %><br>
             <%= link_to "Member Directory", club_members_path(params[:club_id]) %>  <br/>  
-            <%= link_to "Absences", club_member_absences_path(params[:club_id],current_member) %>  <br/>  
+            <%= link_to "Absences", club_member_absences_path(params[:club_id],params[:member_id]) %>  <br/>  
   
 
 

@@ -1,3 +1,6 @@
+
+
+
 class RoleDependencyMessage
 
   def initialize (role)  
