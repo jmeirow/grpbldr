@@ -7,14 +7,14 @@ class AgendaBottomsController < ApplicationController
   # GET /agenda_tops
   # GET /agenda_tops.json
   def index
-    @club = current_club
+    #@club = current_club
     @agenda_top = AgendaTop.where("agenda_definition_id = ?", params[:adenda_definition_id]).first
   end
 
   # GET /agenda_bottoms/1
   # GET /agenda_bottoms/1.json
   def show
-    @club = current_club
+    #@club = current_club
     @agenda_bottom = AgendaBottom.where("agenda_definition_id = ?",params[:agenda_definition_id]  ).first
     @agenda_definition = AgendaDefinition.find(params[:agenda_definition_id])
     if @agenda_bottom.nil?
@@ -26,7 +26,7 @@ class AgendaBottomsController < ApplicationController
   # GET /agenda_bottoms/new
   # GET /agenda_bottoms/new.json
   def new
-    @club = current_club
+    #@club = current_club
     @agenda_bottom = AgendaBottom.new
     @agenda_definition = AgendaDefinition.find(params[:agenda_definition_id])
     @agenda_bottom.agenda_definition_id = @agenda_definition.id
@@ -34,7 +34,7 @@ class AgendaBottomsController < ApplicationController
 
   # GET /agenda_bottoms/1/edit
   def edit
-    @club = current_club
+    #@club = current_club
     @agenda_bottom = AgendaBottom.where("agenda_definition_id = ?",params[:agenda_definition_id]  ).first
     @agenda_definition = AgendaDefinition.find(params[:agenda_definition_id])
   end
@@ -42,7 +42,7 @@ class AgendaBottomsController < ApplicationController
   # POST /agenda_bottoms
   # POST /agenda_bottoms.json
   def create
-    @club = current_club
+    #@club = current_club
     @agenda_bottom = AgendaBottom.new(params[:agenda_bottom])
     @agenda_definition = AgendaDefinition.find(params[:agenda_bottom][:agenda_definition_id])
     if @agenda_bottom.save
@@ -55,7 +55,7 @@ class AgendaBottomsController < ApplicationController
   # PUT /agenda_bottoms/1
   # PUT /agenda_bottoms/1.json
   def update
-    @club = current_club
+    #@club = current_club
     @agenda_bottom = AgendaBottom.find(params[:id])
     @agenda_definition = AgendaDefinition.find(params[:agenda_definition_id])
      if @agenda_bottom.update_attributes(params[:agenda_bottom])
@@ -71,7 +71,7 @@ class AgendaBottomsController < ApplicationController
   # DELETE /agenda_bottoms/1
   # DELETE /agenda_bottoms/1.json
   def destroy
-    @club = current_club
+    #@club = current_club
     @agenda_bottom = AgendaBottom.find(params[:id])
     @agenda_bottom.destroy
     redirect_to club_agenda_definition_agenda_bottoms_url 

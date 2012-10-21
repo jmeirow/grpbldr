@@ -6,7 +6,7 @@ class MeetingTypesController < ApplicationController
 
 
   def index
-    @club = current_club
+    #@club = current_club
     @meeting_types = MeetingType.where("club_id = ?", @club.id).order('is_default desc, description asc')
 
     respond_to do |format|
@@ -17,7 +17,7 @@ class MeetingTypesController < ApplicationController
   # GET /meeting_types/1
   # GET /meeting_types/1.json
   def show
-    @club = current_club
+    #@club = current_club
     @meeting_type = MeetingType.find(params[:id])
    
     respond_to do |format|
@@ -30,7 +30,7 @@ class MeetingTypesController < ApplicationController
   def new
     init_drop_down_values
     @meeting_type = MeetingType.new
-    @club = current_club
+    #@club = current_club
     respond_to do |format|
       format.html # new.html.erb
     end
@@ -39,7 +39,7 @@ class MeetingTypesController < ApplicationController
   # GET /meeting_types/1/edit
   def edit
     init_drop_down_values
-    @club = current_club
+    #@club = current_club
     @meeting_type = MeetingType.find(params[:id])
   end
 
@@ -48,7 +48,7 @@ class MeetingTypesController < ApplicationController
   def create
     @meeting_type = MeetingType.new(params[:meeting_type])
     @meeting_type.is_default = false 
-    @club = current_club
+    #@club = current_club
     @meeting_type.club_id = params[:club_id]
     respond_to do |format|
       if @meeting_type.save
@@ -63,7 +63,7 @@ class MeetingTypesController < ApplicationController
   # PUT /meeting_types/1.json
   def update
     @meeting_type = MeetingType.find(params[:id])
-    @club = current_club
+    #@club = current_club
     respond_to do |format|
       if @meeting_type.update_attributes(params[:meeting_type])
         format.html { redirect_to club_meeting_types_path (@club), notice: 'Meeting type was successfully updated.' }
@@ -76,7 +76,7 @@ class MeetingTypesController < ApplicationController
   # DELETE /meeting_types/1
   # DELETE /meeting_types/1.json
   def destroy
-    @club = current_club
+    #@club = current_club
     @meeting_type = MeetingType.find(params[:id])
     @meeting_type.destroy
     respond_to do |format|

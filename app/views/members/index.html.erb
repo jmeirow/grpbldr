@@ -1,16 +1,18 @@
  
 
+
+ 
 <div style='width:550px;    text-align:center'>
    
     <div style=' align:center ;background-color:lightgray'>
-      <h4  >Members of <em><%=current_club.name %> </em> </h4> 
+      <h4  >Members of <em><%=@club.name %> </em> </h4> 
       </div>
 
 	<div style='width:550px'>
 			<div style='float:left'> <%= paginate @members %>   	</div>
 			<div style='float:right'>	
 				<% if session[:logged_in_admin] %>
-					<%= link_to 'New Member', new_club_member_path(params[:club_id]) %>
+					<%= link_to 'New Member', new_club_member_path(@club) %>
 				<% end %>	
 
 			</div>	
@@ -42,10 +44,10 @@
 			<td><%= member.full_name %></td>
 			<td><%= member.start_date.strftime("%m/%d/%Y") %></td>
 			<% if session[:logged_in_admin]  or member.email == user.email %>	
-				<td><%= link_to  'Assignments',  club_member_assignments_path(params[:club_id],member) %></td>		
-				<td><%= link_to  'Absences',  club_member_absences_path(params[:club_id],member) %></td>		
-		    <td><%= link_to 'Show', club_member_path(params[:club_id],member) %></td>
-		    <td><%= link_to 'Edit', edit_club_member_path(params[:club_id],member) %></td>
+				<td><%= link_to  'Assignments',  club_member_assignments_path(@club,member) %></td>		
+				<td><%= link_to  'Absences',  club_member_absences_path(@club,member) %></td>		
+		    <td><%= link_to 'Show', club_member_path(@club,member) %></td>
+		    <td><%= link_to 'Edit', edit_club_member_path(@club,member) %></td>
 			<% else %>
 				<td>&nbsp;</td>		
 				<td>&nbsp;</td>		

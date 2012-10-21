@@ -3,11 +3,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
    
 
-  helper_method :current_user , :current_user_admin?, :current_member, :current_club, :current_user_is_super_user?, 
-                :multiple_members? 
+  helper_method :current_user , :current_user_admin?, :current_member, :current_club, :current_user_is_super_user?, :multiple_members?
 
 
-  before_filter :protect_against_url_tampering  , :check_web_status
+  before_filter :set_club_and_member, :protect_against_url_tampering  , :check_web_status
 
 
 
@@ -24,7 +23,12 @@ private
 
   
 
-
+  def set_club_and_member
+    if session[:club_id]
+       @club = current_club
+    end
+ 
+  end
 
 
 

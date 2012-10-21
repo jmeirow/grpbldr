@@ -7,7 +7,7 @@ class AgendaDefinitionsController < ApplicationController
 
 
   def index
-    @club = current_club
+    #@club = current_club
 
     @agenda_definitions = AgendaDefinition.where("club_id = ?", @club.id)
     
@@ -18,7 +18,7 @@ class AgendaDefinitionsController < ApplicationController
   def show
     @agenda_definition = AgendaDefinition.find(params[:id])
     @agenda_bottom = AgendaBottom.where(" agenda_definition_id = ? ",@agenda_definition.id).first
-    @club = current_club
+    #@club = current_club
     get_agenda_top_link(@agenda_top_link,@agenda_top_link_text)
     get_agenda_bottom_link(@agenda_bottom_link,@agenda_bottom_link_text)
     
@@ -28,21 +28,21 @@ class AgendaDefinitionsController < ApplicationController
   # GET /agenda_definitions/new.json
   def new
     @agenda_definition = AgendaDefinition.new
-    @club = current_club
+    #@club = current_club
   end
 
   # GET /agenda_definitions/1/edit
   def edit
     
     @agenda_definition = AgendaDefinition.find(params[:id])
-    @club = current_club
+    #@club = current_club
   end
 
   # POST /agenda_definitions
   # POST /agenda_definitions.json
   def create
     @agenda_definition = AgendaDefinition.new(params[:agenda_definition])
-    @club = current_club
+    #@club = current_club
     @agenda_definition.club_id = @club.id
     if @agenda_definition.save
       redirect_to club_agenda_definition_path(@club,@agenda_definition), notice: 'Agenda definition was successfully created.'  
@@ -54,7 +54,7 @@ class AgendaDefinitionsController < ApplicationController
   # PUT /agenda_definitions/1
   # PUT /agenda_definitions/1.json
   def update
-    @club = current_club
+    #@club = current_club
     @agenda_definition = AgendaDefinition.find(params[:agenda_definition][:id])
     if @agenda_definition.update_attributes(params[:agenda_definition])
       redirect_to club_agenda_definition_path(@club,@agenda_definition), notice: 'Agenda definition was successfully updated.'  
@@ -75,7 +75,7 @@ class AgendaDefinitionsController < ApplicationController
 
    
   def get_agenda_top_link(link,text)
-    @club = current_club
+    #@club = current_club
     
     @agenda_definition  = AgendaDefinition.find(params[:id])
     @agenda_top = AgendaTop.where(" agenda_definition_id = ? ",@agenda_definition.id).first
@@ -85,7 +85,7 @@ class AgendaDefinitionsController < ApplicationController
   end
 
   def get_agenda_bottom_link(link,text)
-    @club = current_club
+    #@club = current_club
     
     @agenda_definition  = AgendaDefinition.find(params[:id])
     @agenda_bottom = AgendaBottom.where(" agenda_definition_id = ? ",@agenda_definition.id).first
@@ -96,7 +96,7 @@ class AgendaDefinitionsController < ApplicationController
 
 
   def include_all_lines
-    @club = current_club
+    #@club = current_club
     @agenda_definition  = AgendaDefinition.find(params[:agenda_definition_id])
     AgendaLineItem.update_all({:include_in_agenda => 'Yes'}, {:agenda_definition_id => params[:agenda_definition_id]})
     redirect_to  club_agenda_definition_agenda_line_items_path(@club,@agenda_definition), notice: 'All line items now included on agenda.'  

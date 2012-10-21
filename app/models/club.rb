@@ -11,7 +11,7 @@ class Club < ActiveRecord::Base
   validate :domain_already_in_use 
   validate :domain_contains_blanks    
   validate :domain_numeric_but_not_club_number 
-  validates :email_enabled, :presence => true
+   
 
   validates :email_enabled, :inclusion => {:in => [true, false]}
 

@@ -13,7 +13,7 @@ class AgendaLineItemsController < ApplicationController
   def index
     
     @agenda_line_items = AgendaLineItem.where("agenda_definition_id = ?", params[:agenda_definition_id]).order("sequence_nbr asc")
-    @club = current_club
+    #@club = current_club
     @agenda_definition = AgendaDefinition.find(params[:agenda_definition_id])
 
 
@@ -51,7 +51,7 @@ class AgendaLineItemsController < ApplicationController
   def show
     @agenda_line_item = AgendaLineItem.where("id = ?",params[:id]).first
     @agenda_definition = AgendaDefinition.find(params[:agenda_definition_id])
-    @club = current_club
+    #@club = current_club
  end
 
   # GET /agenda_line_items/new
@@ -68,7 +68,7 @@ class AgendaLineItemsController < ApplicationController
     @agenda_definition = AgendaDefinition.find(params[:agenda_definition_id]) 
     @agenda_line_item = AgendaLineItem.find(params[:id])
     @agenda_line_item.agenda_definition_id = @agenda_definition.id
-    @club = current_club
+    #@club = current_club
     @roles = Role.where("club_id = ?", @club.id).order("description asc")
     @leaders = Leader.where("club_id = ?", @club.id).order("title asc")
 
@@ -79,7 +79,7 @@ class AgendaLineItemsController < ApplicationController
   # POST /agenda_line_items.json
   def create
     
-    @club = current_club
+    #@club = current_club
     @agenda_line_item = AgendaLineItem.new(params[:agenda_line_item])
     @agenda_line_item.agenda_definition_id = params[:agenda_definition_id]
     @agenda_definition = AgendaDefinition.find(params[:agenda_definition_id]) 
@@ -98,7 +98,7 @@ class AgendaLineItemsController < ApplicationController
   def update
      
     @agenda_line_item = AgendaLineItem.where("id = ? ", params[:id]).first
-    @club = current_club
+    #@club = current_club
     @agenda_definition = AgendaDefinition.find(@agenda_line_item.agenda_definition_id)
 
     if @agenda_line_item.update_attributes(params[:agenda_line_item])
@@ -134,7 +134,7 @@ class AgendaLineItemsController < ApplicationController
     line_item.toggle_inclusion
     line_item.save
 
-    @club = current_club
+    #@club = current_club
     @agenda_definition = AgendaDefinition.find(params[:agenda_definition_id])
     @agenda_line_items= AgendaLineItem.where("agenda_definition_id = ?", params[:agenda_definition_id])
 
@@ -149,7 +149,7 @@ class AgendaLineItemsController < ApplicationController
     @next_sequence_nbr = AgendaLineItem.where("agenda_definition_id = ?",params[:agenda_definition_id]).maximum("sequence_nbr")
     @next_sequence_nbr = @next_sequence_nbr.nil? ? 0 : @next_sequence_nbr  + 1
     @agenda_definition = AgendaDefinition.find(params[:agenda_definition_id]) 
-    @club = current_club
+    #@club = current_club
     @roles = Role.where("club_id = ?", @club.id).order("description asc")
     @leaders = Leader.where("club_id = ?", @club.id).order("title asc")
   end

@@ -8,7 +8,7 @@ class ContestSignupsController < ApplicationController
 
 
   def index
-    @club = current_club
+    #@club = current_club
     @contest_signups = ContestSignup.where("club_id = ?", @club.id).order("role_description")
     render :index
   end 
@@ -18,7 +18,7 @@ class ContestSignupsController < ApplicationController
   # GET /contest_signups/1.json
   def show
     @contest_signup = ContestSignup.find(params[:id])
-    @club = current_club
+    #@club = current_club
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @contest_signup }
@@ -29,7 +29,7 @@ class ContestSignupsController < ApplicationController
   # GET /contest_signups/new.json
   def new
     @contest_signup = ContestSignup.new
-    @club = current_club
+    #@club = current_club
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @contest_signup }
@@ -41,7 +41,7 @@ class ContestSignupsController < ApplicationController
   # GET /contest_signups/1/edit
   def signup
 
-    club = current_club
+    #club = current_club
 
     @contest_signup = ContestSignup.find(params[:format])
     
@@ -54,7 +54,7 @@ class ContestSignupsController < ApplicationController
   # GET /contest_signups/1/edit
   def remove
 
-    club = current_club
+    #club = current_club
 
     @contest_signup = ContestSignup.find(params[:format])
     
@@ -66,7 +66,7 @@ class ContestSignupsController < ApplicationController
 
   # GET /contest_signups/1/edit
   def edit
-    @club = current_club
+    #@club = current_club
     @contest_signup = ContestSignup.find(params[:id])
    
     if @contest_signup.save
@@ -81,7 +81,7 @@ class ContestSignupsController < ApplicationController
   # POST /contest_signups.json
   def create
     @contest_signup = ContestSignup.new(params[:contest_signup])
-    @club = current_club
+    #@club = current_club
     @contest_signup.club_id = @club.id
     respond_to do |format|
       if @contest_signup.save
@@ -97,7 +97,7 @@ class ContestSignupsController < ApplicationController
   # PUT /contest_signups/1
   # PUT /contest_signups/1.json
   def update
-    @club = current_club
+    #@club = current_club
     @contest_signup = ContestSignup.find(params[:id])
     params[:contest_signup][:member_id] = current_member.id
     respond_to do |format|

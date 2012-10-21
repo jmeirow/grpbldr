@@ -74,8 +74,8 @@ class AbsencesController < ApplicationController
   # PUT /absences/1.json
   def update
     @absence = Absence.find(params[:id])
-    @member = Member.find(params[:member_id])
-    @club = Club.find(params[:club_id] )   
+    #@member = Member.find(params[:member_id])
+    #@club = Club.find(params[:club_id] )   
 
  
         

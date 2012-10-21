@@ -10,7 +10,7 @@ class MembersController < ApplicationController
 
   def index
   
-    @club = current_club
+    #@club = current_club
 
     @members = Member.current(@club).order("last_name, first_name").page(params[:page]).per(7)
 
@@ -38,7 +38,7 @@ class MembersController < ApplicationController
      
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html  
       format.json { render json: @member }
     end
   end
@@ -68,7 +68,7 @@ class MembersController < ApplicationController
   # PUT /members/1
   # PUT /members/1.json
   def update
-    @club = current_club
+    #@club = current_club
 
     @member = Member.find(params[:id])
 

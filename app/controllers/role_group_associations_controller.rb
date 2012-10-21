@@ -2,7 +2,7 @@ class RoleGroupAssociationsController < ApplicationController
   # GET /role_group_associations
   # GET /role_group_associations.json
   def index
-    @club = current_club
+    #@club = current_club
 
 
     @role_group = RoleGroup.find(params[:role_group_id])
@@ -22,7 +22,7 @@ class RoleGroupAssociationsController < ApplicationController
   # PUT /role_group_associations.json
   def replace
 
-    @club = current_club
+    #@club = current_club
     
     if params["added_role_id"]
       RoleGroupAssociation.create(:role_group_id => params[:role_group_id], :role_id => params[:added_role_id], :club_id => @club.id)

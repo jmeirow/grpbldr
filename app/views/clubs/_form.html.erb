@@ -5,7 +5,7 @@
 <%= form_for(@club, :class => 'nice'  ) do |f| %>
   <% if @club.errors.any? %>
        <div id="error_explanation" class="alert-box error" style='width:475px;'>
-      <h4><%= pluralize(@club.errors.count, "error") %> prohibited this club from being saved:</h4>
+      <h8><%= pluralize(@club.errors.count, "error") %> prohibited this club from being saved:</h8>
 
       <ul>
       <% @club.errors.full_messages.each do |msg| %>

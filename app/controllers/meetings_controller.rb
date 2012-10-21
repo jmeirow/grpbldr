@@ -3,7 +3,7 @@ class MeetingsController < ApplicationController
   # GET /meetings.json
   def index
     @meetings = Meeting.where("club_id = ? and meeting_date >= ?", params[:club_id], Date.today).order("meeting_date").page(params[:page]).per(7)
-    @club = current_club
+    #@club = current_club
 
     respond_to do |format|
       format.html # index.html.erb
@@ -37,7 +37,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   # GET /meetings/new.json
   def new
-    @club = current_club
+    #@club = current_club
     @meeting = Meeting.new
 
    

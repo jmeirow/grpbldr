@@ -15,7 +15,7 @@ class AgendasController < ApplicationController
 
   def show 
 
-    @club = current_club
+    #@club = current_club
   	@agenda = Agenda.new(params[:meeting_id],params[:agenda_definition_id])
     @meeting = Meeting.find(params[:meeting_id])
     @meeting_agenda_definition = AgendaDefinition.find(params[:agenda_definition_id])

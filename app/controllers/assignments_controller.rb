@@ -120,7 +120,7 @@ def past_activity
     meeting = Meeting.find(@assignment.meeting_id)
     role_id = @assignment.role_id
     member_id = @assignment.member_id
-    @club = current_club
+    #@club = current_club
     @assignment.destroy
     
     if meeting and Date.today <= meeting.meeting_date
@@ -159,7 +159,7 @@ def past_activity
     end
 
 
-    @club = Club.find(params[:club_id])
+    #@club = Club.find(params[:club_id])
     @clubs = Club.where("id in (?)", session[:clubs])
 
     @helper = SignupHelper.new params
@@ -201,7 +201,7 @@ def past_activity
        params[:filtered_on_free] = "0"
     end
     
-    @club = Club.find(params[:club_id])
+    #@club = Club.find(params[:club_id])
 
     @helper = SignupHelper.new params
      
