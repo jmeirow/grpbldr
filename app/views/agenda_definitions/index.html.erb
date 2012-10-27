@@ -36,7 +36,7 @@
     <td><%= agenda_definition.name %></td>
     <td><%= agenda_definition.description %></td>
     <td><%= link_to 'Compose', club_agenda_definition_path(params[:club_id],agenda_definition) %></td>
-    <td style='width:100px'><%= link_to 'Edit Description', edit_club_agenda_definition_path(params[:club_id],agenda_definition) %></td>
+    <td style='width:100px'><%= link_to 'Description/Settings', edit_club_agenda_definition_path(params[:club_id],agenda_definition) %></td>
   </tr>
 <% end %>
 </table>

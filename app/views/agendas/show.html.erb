@@ -78,37 +78,47 @@
 
       <table cellspacing=4>
         <tr>
-          <td>
-        <% if @meeting_agenda_definition.show_absent_members == true %>
+          <td width='33%'> 
+            <% if @meeting_agenda_definition.show_absent_members == true %>
+              <h4>Absent Today</h4>
+              <ul >
+                  <% @absent_members = Absence.absent_members(@club.id, @meeting.meeting_date)
+                  @absent_members.each do |member| %>
+                  <li  > <%= member.full_name if member %> </li>
+                <% end %>
+              </ul>
+            <% end %>
+          </td>
           
-          <h4>Absent Today</h4>
-          <ul >
-            <% @absent_members = Absence.absent_members(@club.id, @meeting.meeting_date)
-           
-             @absent_members.each do |member| %>
-              
-                <li  > 
-                  <%= member.full_name if member %>
-                </li>
-            <% end %>
-          </ul>
-        <% end %>
-      </td>
-      <td>
-        <% if @meeting_agenda_definition.show_next_meeting_open_roles == true %>
-          <h4>Roles Needed for <%=@next_meeting.meeting_date.strftime("%m/%d/%Y")%></h4>
-          <ul>
-            <% Role.needed_for_meeting(@next_meeting).each do |role| %>
-              <li><%=role.description%></li>
-            <% end %>
-          </ul>
 
-        <%end%>
+          <td width='33%'>
+            <% 
+            #binding.pry
+            if @meeting_agenda_definition.show_this_meeting_open_roles == true %>
+              <h4>Open Roles for Today's Meeting</h4>
+              <ul>
+                <% 
+                  #binding.pry
+                  Role.needed_for_meeting(@meeting).each do |role| %>
+                  <li><%=role.description%></li>
+                <% end %>
+              </ul>
+            <%end%>
+          </td>
+          
 
-      </td>
-      </tr>
-    </table>
-
+          <td width='34%'>
+            <% if @meeting_agenda_definition.show_next_meeting_open_roles == true %>
+              <h4>Roles Needed for <%=@next_meeting.meeting_date.strftime("%m/%d/%Y")%></h4>
+              <ul>
+               <% Role.needed_for_meeting(@next_meeting).each do |role| %>
+                <li><%=role.description%></li>
+                  <% end %>
+                </ul>
+            <%end%>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 
