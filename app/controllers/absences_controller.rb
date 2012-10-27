@@ -1,4 +1,9 @@
 class AbsencesController < ApplicationController
+  
+
+  #layout  :get_layout
+
+
   # GET /absences
   # GET /absences.json
   def index
@@ -102,4 +107,19 @@ class AbsencesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+protected
+
+  def get_layout
+   if params[:layout] && params[:layout] == "admins"
+      "admins"
+    else
+      "application"
+    end
+  end
+
+
 end
+
+
+

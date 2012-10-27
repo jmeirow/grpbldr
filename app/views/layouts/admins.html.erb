@@ -72,35 +72,21 @@
                   <%= link_to "Club Info", club_path(session[:club_id]) %><br/> 
                 </div>
 
-
-
+              
                 <div style='padding-top:3px;'>
-                  <%= link_to "Agenda Types", club_agenda_definitions_path(session[:club_id]) %><br/> 
-                </div>
-
-                <div style='padding-top:3px;'>
-                  <a href='#'>Email</a><br/>  
+                  <%= link_to "Agenda Types", club_agenda_definitions_path(session[:club_id]), :layout => 'admins' %><br/> 
                 </div>
 
 
+
                 <div style='padding-top:3px;'>
-                  <%= link_to "Generate Assignments", forassignment_club_meetings_path(session[:club_id]) %><br> 
+                  <%= link_to "Assignments", forassignment_club_meetings_path(session[:club_id]) %><br> 
                 </div>                
 
 
                 <div style='padding-top:3px;'>
                   <%= link_to "Leader Definition", club_leaders_path(session[:club_id]) %><br> 
                 </div>                
-
-
-                <div style='padding-top:3px;'>
-                  <a href='#'>Leader Maintenance </a><br/> 
-                </div> 
-
-
-                <div style='padding-top:3px;'>
-                  <a href='#'>Reports </a><br/> 
-                </div>               
 
 
                 <div style='padding-top:3px;'>
@@ -117,9 +103,7 @@
                   <%= link_to "Role Groups",club_role_groups_path(session[:club_id])  %><br>   
                 </div>
 
-                <div style='padding-top:3px;'>
-                  <a href='#'>Social Media </a><br/>  
-                </div>
+              
 
 
                 

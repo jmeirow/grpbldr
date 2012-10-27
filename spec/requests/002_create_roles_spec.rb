@@ -26,7 +26,9 @@ describe "Adding roles " do
     page.should have_content "Description can't be blank"
 
 
-    fill_in "role_description", :with => "Role number 1" 
+    role_name = "Role example number 1"
+
+    fill_in "role_description", :with => role_name
     click_button "Save Role" 
     page.should have_content "Role was successfully created."  
 
@@ -38,7 +40,7 @@ describe "Adding roles " do
 
     all("tr").each do |row| 
       within(row) do
-        if row.text.match(/Role number 1/)
+        if /#{role_name}/.match(row.text)
           role_1_found = true
         end
       end

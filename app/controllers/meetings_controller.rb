@@ -1,6 +1,11 @@
 class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
+
+  #layout   :get_layout
+
+
+
   def index
     @meetings = Meeting.where("club_id = ? and meeting_date >= ?", params[:club_id], Date.today).order("meeting_date").page(params[:page]).per(7)
     #@club = current_club
@@ -124,6 +129,15 @@ class MeetingsController < ApplicationController
 
 
 
+protected
+
+  def get_layout
+   if params[:layout] && params[:layout] == "admins"
+      "admins"
+    else
+      "application"
+    end
+  end
 
   
 end

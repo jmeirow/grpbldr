@@ -13,6 +13,9 @@ class AgendasController < ApplicationController
   end
 
 
+    
+
+
   def show 
 
     #@club = current_club

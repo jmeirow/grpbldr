@@ -108,15 +108,6 @@
              <% if session[:logged_in_admin] %>
                <hr style="height:2px;border:none;background-color:green;color:green" />
 
-               <span style='font-weight:bold'>  Club Administration  </span>
-
-               <br/> <br/> 
-
-               
- 
-              <%= link_to "Absences", list_club_absences_path(@club) %><br>
-              <%= link_to "Meetings", club_meetings_path(@club) %><br>
-              <%= link_to "Members", club_members_path(@club) %><br>
               <%= link_to "Administration",  admin_path(@club)  %><br> 
 
 
@@ -128,12 +119,7 @@
             <div>
 
               <% if current_user_is_super_user? %>
-                
                 <hr style="height:2px;border:none;background-color:green;color:green" />
-                
-
-                  
-                  
                   <%= link_to "Business Administration", bizadmins_path %><br>
                   <%= link_to "System Administration", sysadmins_path %><br>
                 

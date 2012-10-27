@@ -1,12 +1,12 @@
 
 
 class MembersController < ApplicationController
+  
+
+  #layout :get_layout
+
   # GET /members
   # GET /members.json
-
-
-
-
 
   def index
   
@@ -97,4 +97,17 @@ class MembersController < ApplicationController
       format.json { head :ok }
     end
   end
+
+
+protected
+
+  def get_layout
+   if params[:layout] && params[:layout] == "admins"
+      "admins"
+    else
+      "application"
+    end
+  end
+
+
 end
