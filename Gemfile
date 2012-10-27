@@ -50,7 +50,7 @@ group :development, :test do
   # if RUBY_PLATFORM =~ /linux/ then
   #   gem 'rb-inotify' 
   # else
-     gem 'rb-fsevent', '~> 0.9.1'
+  # gem 'rb-fsevent', '~> 0.9.1'
   # end
 
 end

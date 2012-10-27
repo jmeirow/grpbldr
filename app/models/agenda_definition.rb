@@ -4,7 +4,7 @@ class AgendaDefinition < ActiveRecord::Base
   include ActiveBuilder
 
   #access
-  attr_accessible :description, :name, :club_id , :show_absent_members
+  attr_accessible :description, :name, :club_id , :show_absent_members, :show_next_meeting_open_roles
 
   
   #callbacks

@@ -31,6 +31,9 @@ class Meeting < ActiveRecord::Base
     return cnt
   end
   
+  def next_meeting
+    Meeting.where("club_id = ? and meeting_date > ?", self[:club_id], self[:meeting_date]).order("meeting_date").limit(1).first
+  end
 
 
   def self.CanPerform(member, role)

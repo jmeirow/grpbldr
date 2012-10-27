@@ -28,7 +28,7 @@
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.text_area :description, :size => "30x6" %>
   </div>
   <p>        
     Show Absent Members on Agenda? &nbsp;&nbsp;&nbsp;&nbsp;
@@ -36,10 +36,14 @@
     No <%= f.radio_button :show_absent_members, "false" %>
   </p>  
 
+  <p>        
+    Show Next Meeting's Open Roles on Agenda? &nbsp;&nbsp;&nbsp;&nbsp;
+    Yes <%= f.radio_button :show_next_meeting_open_roles, "true" %><br/> &nbsp;&nbsp;&nbsp;&nbsp;
+    No <%= f.radio_button :show_next_meeting_open_roles, "false" %>
+  </p>  
 
 
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      <div class="actions">
+        <%= f.submit "Save Definition", :class => 'button' , :style => 'font-size:8pt;margin-top:20px'  %>
+      </div>
 <% end %>
