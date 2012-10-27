@@ -35,7 +35,7 @@
 
     <% if @helper.errors.any? %>
       <div id="error_explanation" class="alert-box error"  >
-        <h6><%= pluralize(@helper.errors.count, "error") %> prohibited this request from being saved:</h6>
+        <h8><%= pluralize(@helper.errors.count, "error") %> prohibited this request from being saved:</h8>
 
         <ul>
         <% @helper.errors.full_messages.each do |msg| %>
@@ -167,33 +167,33 @@
       </thead>
 
       <tbody>
+      <% row_cnt = 1 %>
       <% @requested_information.each do |aa| 
 
             if   (  (params[:filtered_on_free]=="1" &&  aa.prior_committments.length == 0 )  || ( params[:filtered_on_free]=="0"  ))
 
               holder = Assignment.member_for_meeting_and_role(aa.meeting.id, aa.role.id) %>
-            <tr>
+            <tr id=row_<%="#{row_cnt}"%> >
 
 
               <!-- Put checkbox here if the role is open -->
 
-              <td> 
+              <td id=cb_<%="#{row_cnt}"%>> 
                 
-                <%= 
-
-
-                if holder == 'Open'  
-                  check_box_tag   'signup_ids[]', aa.meeting.id.to_s + '_' + aa.role.id.to_s   
-                end  
-              %>
-
+                        
+                  <%= 
+                    if holder == 'Open'  
+                      check_box_tag   'signup_ids[]', aa.meeting.id.to_s + '_' + aa.role.id.to_s   
+                    end  
+                  %>
+                
 
              
 
               </td>
 
                     
-              <td>
+              <td id=date_<%="#{row_cnt}"%> >
 
                 <%  if holder == 'Open'  && aa.prior_committments.length > 0  
 
@@ -262,12 +262,12 @@
 
 
               </td>
-              <td><%= aa.role.description %></td>
-              <td><%= holder %></td>
+              <td id=role_<%="#{row_cnt}"%>><%= aa.role.description %></td>
+              <td id=occupant_<%="#{row_cnt}"%>  ><%= holder %></td>
 
               <!-- put checkbox here if the role is filled (request a switch from current holder) -->
 
-              <td><%=   
+              <td id=cb_switch_<%="#{row_cnt +=1}"%>><%=   
                 if holder != 'Open' && holder != member.full_name
                   check_box_tag  'switch_ids[]', aa.assignment.id.to_s
                 end 

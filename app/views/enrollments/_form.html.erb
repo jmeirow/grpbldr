@@ -3,7 +3,7 @@
 
   <% if @enrollment.errors.any? %>
        <div id="error_explanation" class="alert-box [error]">
-      <h5><%= pluralize(@enrollment.errors.count, "error") %> prohibited this enrollment from being processed:</h5>
+      <h8><%= pluralize(@enrollment.errors.count, "error") %> prohibited this enrollment from being processed:</h8>
 
       <ul>
       <% @enrollment.errors.full_messages.each do |msg| %>

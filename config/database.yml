@@ -3,7 +3,7 @@ development:
   database: <%= ENV['GB_APP_DEVELOPMENT_DATABASE'] %>
   pool: 15
   timeout:
-  encoding: unicode
+  encoding: unicode 
   username: postgres
   password:  <%= ENV['GB_APP_DB_PASSWORD'] %>
   host: localhost

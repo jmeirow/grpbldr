@@ -6,14 +6,16 @@ class Enrollment
   include ActiveModel::Conversion
   extend ActiveModel::Naming
   
-  
-  validates :first_name, :last_name, :club_name, :email, :password, :password_confirmation,   :presence => true
-  
   attr_accessor :last_name,  :first_name,  :club_name, :start_date, :club_id, :end_date, :email, :password, :password_confirmation
   
+  validates :first_name, :last_name, :club_name, :email, :presence => true
+  validates :password, :confirmation => true
+  validates :password_confirmation, :presence => true
   attr_accessible :last_name,  :first_name,  :club_name, :start_date, :club_id, :end_date, :email, :password, :password_confirmation
 
-
+  validates_format_of :email, :with => /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i
+  
+ 
 
   def persisted?
     false

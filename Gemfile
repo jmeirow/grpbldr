@@ -40,7 +40,8 @@ group :development, :test do
   gem 'vagrant'
   gem 'faker'
   gem 'vagrant'
-  gem 'capybara'
+  gem 'capybara_rails'
+  gem 'capybara-webkit'
   gem 'database_cleaner', '~> 0.7.2'
   gem 'launchy'
   gem 'turn', '0.8.2', :require => false
@@ -49,7 +50,7 @@ group :development, :test do
   # if RUBY_PLATFORM =~ /linux/ then
   #   gem 'rb-inotify' 
   # else
-  #   gem 'rb-fsevent', '~> 0.9.1'
+     gem 'rb-fsevent', '~> 0.9.1'
   # end
 
 end

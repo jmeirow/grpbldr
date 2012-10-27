@@ -1,50 +1,50 @@
-	<% if  notice %>
-		<div class="alert-box success" style='width:635px' >
-			<%= notice %> 
-		</div>
-	<% end %>
+  <% if  notice %>
+    <div class="alert-box success" style='width:635px' >
+      <%= notice %> 
+    </div>
+  <% end %>
 
 
 
  
 <div style='width:650px;    text-align:center'>
-	 
-	 	<div style=' ;background-color:lightgray'>
-		  <h4  >Upcoming Activity for <em><%= @member.full_name %></em></h4> 
-  		</div>
-	<br/>
+   
+    <div style=' ;background-color:lightgray'>
+      <h4  >Upcoming Activity for <em><%= @member.full_name %></em></h4> 
+      </div>
+  <br/>
 
-	<div style='width:650px;'>
-			<div style='float:left'> <%= paginate @assignments %></div>
-	</div>
+  <div style='width:650px;'>
+      <div style='float:left'> <%= paginate @assignments %></div>
+  </div>
 
 </div>
 
  
 
 <table style='width:550px;'>
-	<thead>
+  <thead>
 
 
-  	<tr >
-	    <th>Date</th>
-	    <th>Role</th>
-	    <th>Member Assigned</th>
+    <tr >
+      <th>Date</th>
+      <th>Role</th>
+      <th>Member Assigned</th>
         <th style='width:100px'  >Remove <br/>Assignment</th>
-	</tr>
-	</thead>
-
-	<tbody>
-		<% @assignments.each do |assignment| %>
-			<% #@member = Member.find(assignment.member_id) %>
-		  <tr>
-				<td><%= assignment.meeting.meeting_date.strftime("%m/%d/%Y") %></td>
-				<td><%= assignment.role.description %></td>
-				<td><%= assignment.member.full_name %></td>
-				<td > <%= link_to 'Remove', club_member_assignment_path(params[:club_id],params[:member_id],assignment),  :data => {:confirm => 'Are you sure?' }, method: :delete %></td>
-					 
-		  </tr>
-	</tbody>		  
+  </tr>
+  </thead>
+  <% row_cnt = 1 %>
+  <tbody>
+    <% @assignments.each do |assignment| %>
+      <% #@member = Member.find(assignment.member_id) %>
+      <tr id=row_<%="#{row_cnt}"%>>
+        <td id=date_<%="#{row_cnt}"%>><%= assignment.meeting.meeting_date.strftime("%m/%d/%Y") %></td>
+        <td id=role_<%="#{row_cnt}"%>><%= assignment.role.description %></td>
+        <td><%= assignment.member.full_name %></td>
+        <td id=link_<%="#{row_cnt += 1}"%>> <%= link_to 'Remove', club_member_assignment_path(params[:club_id],params[:member_id],assignment), :id => 'link_' + row_cnt.to_s    ,:data => {:confirm => 'Are you sure?' }, method: :delete %></td>
+           
+      </tr>
+  </tbody>      
 <% end %>
 </table>
 

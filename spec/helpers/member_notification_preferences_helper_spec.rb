@@ -10,6 +10,6 @@ require 'spec_helper.rb'
 #     end
 #   end
 # end
-describe MemberNotificationPreferencesHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
+# describe MemberNotificationPreferencesHelper do
+#   pending "add some examples to (or delete) #{__FILE__}"
+# end

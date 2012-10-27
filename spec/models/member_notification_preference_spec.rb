@@ -7,7 +7,9 @@ def nbr
 end
 
 def cleanup
+  
   MemberNotificationPreference.destroy_all
+  NotificationType.destroy_all
 end
 
 
@@ -36,20 +38,25 @@ describe MemberNotificationPreference do
         end
 
         it "\n #{nbr}: should show ALL Notification Types, even brand new ones the user has not previously seen." do
-          #cleanup
+          cleanup
           member_id = 10
+          NotificationType.create!(:mailer_type => 'RoleSignupNotificationMailer', :description => 'aaa')
+          NotificationType.create!(:mailer_type => 'RoleHasBecomeAvailableMailer', :description => 'bbb')
           x = MemberNotificationPreference.get_all_for_member(member_id)
-          # x.class.name.to_s eq("Array")
-          # x[0].class.name.should eq(MemberNotificationPreference)
           x.length.should eq(2)
         end
 
 
         it "should have the same description as as the type" do
-          type = NotificationType.find(1)
+          cleanup
+          NotificationType.create!(:mailer_type => 'RoleSignupNotificationMailer', :description => 'aaa')
+          NotificationType.create!(:mailer_type => 'RoleHasBecomeAvailableMailer', :description => 'bbb')
+
+          type = NotificationType.first
           MemberNotificationPreference.create(:enabled => false, :member_id => 5, :notification_type_id => type.id)
           pref = MemberNotificationPreference.where("member_id = ?", 5).first
           pref.description.should eq(type.description)     
+
         end
       end
 

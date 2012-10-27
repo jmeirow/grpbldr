@@ -32,7 +32,6 @@ class AgendaLineItem < ActiveRecord::Base
       if person_display_name_source == 'Static Text'
         person_display_name
       else
-
         agenda.member_for(person_display_name)
       end
   end

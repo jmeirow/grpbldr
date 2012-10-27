@@ -44,6 +44,8 @@ class Agenda
 
 
   def resolved_line_item_text (line_item_text)
+
+     
     @roles.each do |role, role_text| 
       line_item_text.gsub!(/[$][$]#{role}[$][$]/,role_text)
     end

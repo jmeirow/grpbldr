@@ -19,8 +19,12 @@ class MemberNotificationPreference < ActiveRecord::Base
 
   def init_description
     if notification_type_id
-      type = NotificationType.find(notification_type_id)
-      @description = type.description
+      begin
+        type = NotificationType.find(notification_type_id)
+        @description = type.description
+      rescue Exception => e 
+        @description = ''
+      end
     end
   end
 

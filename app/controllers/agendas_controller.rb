@@ -36,7 +36,6 @@ class AgendasController < ApplicationController
         member = Member.find(assignment.member_id)
         @roles[role.description] = member.first_name + ' ' +  member.last_name
       end
-
     end
 
 

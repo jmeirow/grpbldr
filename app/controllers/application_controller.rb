@@ -35,7 +35,8 @@ private
 
   def check_web_status
      
-    return if request.env['REQUEST_URI'].include?("display_message")
+    #return if request.env['REQUEST_URI'].include?("display_message")
+    return if request.url.include?("display_message")
 
     config = SysConfiguration.where("config_key = ?", "web.status").first
 
