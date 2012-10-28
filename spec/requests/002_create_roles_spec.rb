@@ -19,11 +19,7 @@ describe "Adding roles " do
     click_button "Sign In"
     page.should have_content  "Upcoming Activity for Meirow, Joseph"     
 
-    click_link "Administration" 
-    click_link "Roles" 
-    click_link  "New Role" 
-    click_button "Save Role"
-    page.should have_content "Description can't be blank"
+
 
 
     role_name = "Role example number 1"
@@ -46,9 +42,50 @@ describe "Adding roles " do
       end
     end    
     role_1_found.should be_true
+
+    click_link "Main Menu" 
+
+    click_link "Administration" 
+    click_link "Roles" 
+    click_link  "New Role" 
+    click_button "Save Role"
+    page.should have_content "Description can't be blank"
+
+
+    role_name = "Role example number 2"
+
+    fill_in "role_description", :with => role_name
+    click_button "Save Role" 
+    page.should have_content "Role was successfully created."  
+
+    
+
+
   end
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 end
