@@ -1,7 +1,7 @@
 class AbsencesController < ApplicationController
   
 
-  #layout  :get_layout
+  layout  :get_layout
 
 
   # GET /absences
@@ -19,7 +19,7 @@ class AbsencesController < ApplicationController
 
 
   # GET /club/:club_id/absences
-  def list
+  def list  
     @absences = Absence.where("member_id in (?)",Member.where("club_id = ?",params[:club_id])).order("start_date DESC").page(params[:page]).per(7)
   end
   
@@ -111,14 +111,14 @@ class AbsencesController < ApplicationController
 protected
 
   def get_layout
-   if params[:layout] && params[:layout] == "admins"
+
+    case action_name
+    when "list" 
       "admins"
     else
       "application"
     end
   end
-
-
 end
 
 

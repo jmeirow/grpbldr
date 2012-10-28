@@ -68,13 +68,13 @@
                <div style='font-size:9pt;font-weight:bold'>
                 <%= link_to "Sign Up for a Role", signup_for_role_club_member_assignments_path(@club, @member) %>  <br/>    
                 
-                <%= link_to "Contest Roles", contest_signups_path %>  <br/>    
+            <hr style="height:2px;border:none;background-color:green;color:green" />
                 
                   <%  meeting = @club.next_meeting  %>
                   <%  if meeting.nil? == false %>
 
                     <%=  link_to "Next Meeting's Agenda", club_meeting_agenda_definition_print_path(@club, meeting, @club.default_agenda_definiton_id)  , :target => "_blank" %> <br/> 
-
+            <hr style="height:2px;border:none;background-color:green;color:green" />
 
                     <%=  link_to "Next Meeting's Notes",  club_meeting_print_notes_setup_path(@club, meeting)   %>
                   <%  end %>
@@ -91,13 +91,13 @@
             <%= link_to "Upcoming Activity", club_member_assignments_path(@club, @member) %> <br/>  
             <%= link_to "Previous Activity", past_activity_club_member_assignments_path(@club,@member) %>   <br/>  
             <%= link_to "Notifications", club_member_member_notification_preferences_path(@club,@member) %>   <br/>  
- 
+            <%= link_to "Absences", club_member_absences_path(@club,@member) %>  <br/>  
+
            
            <br/>
 
             <%= link_to "Meetings", club_meetings_path(@club) %><br>
             <%= link_to "Member Directory", club_members_path(@club) %>  <br/>  
-            <%= link_to "Absences", club_member_absences_path(@club,@member) %>  <br/>  
   
 
 
