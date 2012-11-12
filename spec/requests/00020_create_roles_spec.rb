@@ -1,25 +1,26 @@
 require "spec_helper"
 require "pp"
  
-describe "Adding roles " do
+describe "A user session to create roles "   do
   
 
-  it "should login as joe meirow" do
+  it "should require the user to log in"      do
+    
     visit log_in_path
     fill_in "email", :with => "joe.meirow@gmail.com"
-    fill_in "password", :with => "monie423"
+    fill_in "password", :with => "123456!!"
     click_button "Sign In"
-  end
+ 
+
+ 
+    page.should have_content  "Upcoming Activity"     
+
+  
 
 
-  it  "should require required role data"  do
-    visit log_in_path
-    fill_in "email", :with =>  "joe.meirow@gmail.com" 
-    fill_in "password", :with =>  "monie423" 
-    click_button "Sign In"
-    page.should have_content  "Upcoming Activity for Meirow, Joseph"     
-
-
+    click_link "Administration"  
+    click_link "Roles"  
+    click_link "New Role"  
 
 
     role_name = "Role example number 1"

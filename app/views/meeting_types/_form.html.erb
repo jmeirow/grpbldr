@@ -3,7 +3,7 @@
 <%= form_for([@club,@meeting_type]) do |f| %>
   <% if @meeting_type.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@meeting_type.errors.count, "error") %> prohibited this meeting_type from being saved:</h2>
+      <h2><%= pluralize(@meeting_type.errors.count, "error") %> prohibited this Meeting Type from being saved:</h2>
 
       <ul>
       <% @meeting_type.errors.full_messages.each do |msg| %>
@@ -15,29 +15,19 @@
 
 
 
-
-  <table>
-    <tr> 
-          <td><strong>Description:</stong></td>    
-          <td><%= f.text_field :description %></td>
-    </tr>
-    <tr> 
-          <td><strong>Hour:</stong></td>           
-          <td> <%= f.select  :hour, options_for_select(@hours , @meeting_type.hour  ),:class => 'input-text', :style => 'display:inline'    %> </td>
-    </tr>
-    <tr> 
-          <td><strong>Minute:</stong></td>       
-          <td><%= f.select  :minute, options_for_select(@minutes , @meeting_type.minute  ),:class => 'input-text', :style => 'display:inline'    %> </td>
-    </tr>
-    <tr> 
-          <td><strong>AM or PM:</stong></td>
-          <td><%= f.select  :am_pm, options_for_select(@am_pm , @meeting_type.am_pm  ),:class => 'input-text', :style => 'display:inline'    %> </td> 
-    </tr>
-
+ 
+  <label>Meeting Type:</label>  
+  <%= f.text_field :description %> 
+ 
+  <label>Default Meeting Time:</label>
+  <%= f.text_field :meeting_time  , :class => 'input-text' %><br><br>
 
  
  
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions" style='font-size:7pt;float:left; '>
+     <%= f.submit 'Save Meeting Type', :class => 'button'   %>
   </div>
+
+<br/>
+
 <% end %>

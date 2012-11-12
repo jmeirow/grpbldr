@@ -56,8 +56,10 @@
     <thead>
     <tr>
       <th>Meeting Date</th>
+      <th>Meeting Time</th>
+
       <th>Available Roles</th>
-      <th>Get Agenda</th>
+      <th>View</th>
       <% if session[:logged_in_admin] %>      
         <th colspan='3'>Add/Change/Delete Meetings</th>
       <% else %>
@@ -76,8 +78,9 @@
       <% @meetings.each do |meeting| %>
             <tr>
               <td><%= meeting.meeting_date_display %></td>
+              <td><%= meeting.meeting_time %></td>
               <td><%= meeting.unfilled_roles_count(params[:club_id]) %></td>
-              <td><%=  link_to 'Agenda', club_meeting_agenda_definition_print_path(params[:club_id], meeting, @club.default_agenda_definiton_id)  , :target => "_blank" %></td>
+              <td><%=  link_to 'Agenda', club_meeting_agenda_definition_print_path(params[:club_id], meeting, @club.default_agenda_definition_id)  , :target => "_blank" %></td>
               
     
 

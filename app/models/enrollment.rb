@@ -46,17 +46,19 @@ class Enrollment
 
         club = Club.create(:name => club_name)
  
+         
         Member.create(:first_name => first_name, :last_name => last_name, :email => email, :club_id => club.id, :start_date => Date.today, :end_date => Date.parse("9999/12/31") )
      
         Admin.create(:club_id => club.id, :email => email)
 
+        agenda_def = AgendaDefinition.create(:description => "Regular meeting agenda template.", :name => "Regular", :club_id => club.id, :show_absent_members =>false, :show_next_meeting_open_roles => false, :show_this_meeting_open_roles => false )
+        meeting_type = MeetingType.create(:description => 'Regular', :club_id => club.id, :is_default => true, :hour => 12, :minute => 0, :am_pm => 'PM', :meeting_time => "12:00 PM")
+        club.default_agenda_definition_id = agenda_def.id
+        club.default_meeting_type_id = meeting_type.id
 
-        MeetingType.create(:description => 'Regular', :club_id => club.id, :is_default => true, :hour => 12, :minute => 0, :am_pm => 'PM')
-
- 
-
-      rescue ActiveRecord::StatementInvalid
+      rescue ActiveRecord::StatementInvalid => e1
         raise ActiveRecord::Rollback
+
       end
     
     end

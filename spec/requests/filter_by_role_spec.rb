@@ -9,7 +9,7 @@
 #     it "should show only roles that match the role used in the filter.",  :driver => :selenium  do
 #       visit log_in_path
 #       fill_in "email", :with => "joe.meirow@gmail.com"
-#       fill_in "password", :with => "monie423"
+#       fill_in "password", :with => "123456!!"
 #       click_button "Sign In"
 #       page.should have_content("Upcoming Activity for Meirow, Joseph")    
 #       click_link('Sign Up')

@@ -19,10 +19,10 @@ class AgendasController < ApplicationController
   def show 
 
     #@club = current_club
-  	@agenda = Agenda.new(params[:meeting_id],params[:agenda_definition_id])
+  	@agenda = Agenda.new(params[:meeting_id].to_i,params[:agenda_definition_id].to_i)
     @meeting = Meeting.find(params[:meeting_id])
-    @next_meeting = @meeting.next_meeting
-    @meeting_agenda_definition = AgendaDefinition.find(params[:agenda_definition_id])
+    #@next_meeting = @meeting.next_meeting
+    @meeting_agenda_definition = AgendaDefinition.find(params[:agenda_definition_id].to_i)
     get_role_names
   	respond_to do |format|
       format.html   

@@ -1,34 +1,53 @@
 class Agenda
 
-
-
-
-
-
-
-
-
   def initialize(meeting_id, agenda_definition_id)
 
- 
-      @meeting = Meeting.find(meeting_id)
-      @roles = Hash.new
-      if !agenda_definition_id.nil? && agenda_definition_id.to_i > 0
-        @agenda_top = AgendaTop.where(" agenda_definition_id = ?", agenda_definition_id).first
-        @agenda_bottom = AgendaBottom.where(" agenda_definition_id = ?", agenda_definition_id).first
-        @agenda_line_items = AgendaLineItem.where(" agenda_definition_id = ? and include_in_agenda = ?", agenda_definition_id, 'Yes').order("sequence_nbr asc")
-        @agenda_line_items.each { |x| x.agenda = self }
-      end
+    @meeting = Meeting.find(meeting_id)
+    @roles = Hash.new
 
-      Assignment.where("meeting_id = ?", @meeting.id).each do |assignment|
-        role = Role.find(assignment.role_id)
-        member = Member.find(assignment.member_id)
-        @roles[role.description] = member.first_name + ' ' +  member.last_name
-      end
+    # if !agenda_definition_id.nil? && agenda_definition_id.to_i > 0
+    @agenda_top = AgendaTop.where(" agenda_definition_id = ?", agenda_definition_id).first
+    @agenda_bottom = AgendaBottom.where(" agenda_definition_id = ?", agenda_definition_id).first
+    @agenda_line_items = AgendaLineItem.where(" agenda_definition_id = ? and include_in_agenda = ?", agenda_definition_id, 'Yes').order("sequence_nbr asc")
 
- 
+    #binding.pry
+    set_times_for_this_meeting(meeting_id,agenda_definition_id) 
 
+    @agenda_line_items.each { |x| x.agenda = self }
+    # end
+
+    Assignment.where("meeting_id = ?", @meeting.id).each do |assignment|
+      role = Role.find(assignment.role_id)
+      member = Member.find(assignment.member_id)
+      @roles[role.description] = member.first_name + ' ' +  member.last_name
+    end
   end 
+
+
+  def set_times_for_this_meeting(meeting_id,agenda_definition_id) 
+
+     
+    timer = RunningTime.new(@meeting.hour, @meeting.minute, @meeting.am_pm) 
+    first = true
+    offset = 1
+
+    @agenda_line_items.each do |line_item|
+
+      if line_item.include_in_agenda == 'Yes'
+        line_item.start_time = timer.to_s
+        timer + (line_item.duration_in_minutes + offset)
+        if first
+          first = false
+          offset = 0
+        end
+      else
+        line_item.start_time = 'Excluded'
+      end
+      line_item.save
+    end
+  end
+
+
 
 
   def meeting_date
@@ -77,17 +96,6 @@ class Agenda
   def agenda_line_items
     @agenda_line_items
   end
-
-
-
-
-
-
-
-
-
-
-
 
 end
 

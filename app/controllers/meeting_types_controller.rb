@@ -47,6 +47,7 @@ class MeetingTypesController < ApplicationController
   # POST /meeting_types.json
   def create
     @meeting_type = MeetingType.new(params[:meeting_type])
+    @meeting_type.meeting_time = params[:meeting_type][:meeting_time]
     @meeting_type.is_default = false 
     #@club = current_club
     @meeting_type.club_id = params[:club_id]
@@ -63,6 +64,8 @@ class MeetingTypesController < ApplicationController
   # PUT /meeting_types/1.json
   def update
     @meeting_type = MeetingType.find(params[:id])
+    @meeting_type.meeting_time = params[:meeting_type][:meeting_time]
+
     #@club = current_club
     respond_to do |format|
       if @meeting_type.update_attributes(params[:meeting_type])

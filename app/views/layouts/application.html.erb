@@ -73,7 +73,7 @@
                   <%  meeting = @club.next_meeting  %>
                   <%  if meeting.nil? == false %>
 
-                    <%=  link_to "Next Meeting's Agenda", club_meeting_agenda_definition_print_path(@club, meeting, @club.default_agenda_definiton_id)  , :target => "_blank" %> <br/> 
+                    <%=  link_to "Next Meeting's Agenda", club_meeting_agenda_definition_print_path(@club, meeting, @club.default_agenda_definition_id)  , :target => "_blank" %> <br/> 
             <hr style="height:2px;border:none;background-color:green;color:green" />
 
                     <%=  link_to "Next Meeting's Notes",  club_meeting_print_notes_setup_path(@club, meeting)   %>
