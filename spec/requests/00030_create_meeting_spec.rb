@@ -1,20 +1,19 @@
-require 'spec_helper'
-require 'pp'
 require 'date'
-require 'pry'
-require 'pry_debug'
+require "spec_helper"
+require "pp"
+require 'rspec/rspec_helpers.rb'
+require "pry"
+require "pry_debug"
+ 
+include RSpecHelpers
 
-puts ActiveRecord::Base.connection_config
 
 describe "GroupBuilder Session" do
  
   describe "Signing up for a Meeting" do
 
-    it " a user session creating a meeting."   do
-      visit log_in_path
-      fill_in "email", :with => "joe.meirow@gmail.com"
-      fill_in "password", :with => "123456!!"
-      click_button "Sign In"
+    it " a user session creating a meeting.",  :driver => RSpecHelpers.testing_driver  do
+      login
       page.should have_content("Upcoming Activity for Meirow, Joseph")    
       
       puts "-----------------   1"
@@ -27,16 +26,15 @@ describe "GroupBuilder Session" do
        click_link 'New Meeting'
        click_button "Save Meeting"
 
-       #page.should have_content("Meeting date is required")
+      page.should have_content("Meeting date is required")
        
       puts "-----------------   3"
 
-      meeting_date = (Date.today+7) 
+      meeting_date = (Date.today+7).strftime("%m/%d/%Y")
 
       fill_in "meeting_meeting_date_display", :with => meeting_date
       click_button "Save Meeting"
-      page.should have_content("Meeting for #{meeting_date.strftime("%m/%d/%Y")} was successfully created.")
-
+      page.should have_content("successfully created.")
       puts "-----------------   4"
 
 
@@ -47,8 +45,8 @@ describe "GroupBuilder Session" do
       puts "-----------------   5"
      
       all('tr').each do |row| 
-        if  row.text.index(meeting_date.strftime("%m/%d/%Y")).nil? == false  
-          if row.text.index(meeting_date.strftime("%m/%d/%Y"))
+        if  row.text.index(meeting_date).nil? == false  
+          if row.text.index(meeting_date)
             found = true
             break
           end

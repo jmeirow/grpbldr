@@ -1,3 +1,7 @@
+
+require 'pry-stack_explorer'
+
+
 class ApplicationController < ActionController::Base
   
   protect_from_forgery
@@ -6,18 +10,26 @@ class ApplicationController < ActionController::Base
   helper_method :current_user , :current_user_admin?, :current_member, :current_club, :current_user_is_super_user?, :multiple_members?
 
 
-  before_filter :set_club_and_member, :protect_against_url_tampering  , :check_web_status
+  before_filter :set_club_and_member, :protect_against_url_tampering  , :check_web_status, :set_current_member
 
 
 
 
-def initalize
-  session = nil
-  super
-end
+  def initalize
+    session = nil
+    super
+  end
+
+
+  def set_current_member
+    LoggedInMember.current = current_member if current_member
+  end
+
+
 
 
 private     
+
 
 
 
@@ -34,7 +46,6 @@ private
 
 
   def check_web_status
-     
     #return if request.env['REQUEST_URI'].include?("display_message")
     return if request.url.include?("display_message")
 
@@ -64,10 +75,7 @@ private
   end
   
   def current_member
-     
-      Member.find(session[:member_id])  
-    
-
+      Member.find(session[:member_id]) if session[:member_id] 
   end
 
   def current_club
@@ -75,7 +83,7 @@ private
     if session[:user_id].nil?
       @club = Club.find(1)
     else
-      Club.find(current_member.club_id)
+      @club = Club.find(current_member.club_id)
     end  
   end
 

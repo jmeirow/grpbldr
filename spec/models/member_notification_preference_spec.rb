@@ -27,6 +27,7 @@ describe MemberNotificationPreference do
           mnp = MemberNotificationPreference.new
           mnp.description = "some text"
           mnp.description.should eq("some text")
+          cleanup
         end
 
         it "\n #{nbr}: should have an 'enabled' attribute." do
@@ -35,6 +36,7 @@ describe MemberNotificationPreference do
           mnp.enabled.should eq(true)
           mnp.enabled = false
           mnp.enabled.should eq(false)
+          cleanup
         end
 
         it "\n #{nbr}: should show ALL Notification Types, even brand new ones the user has not previously seen." do
@@ -44,6 +46,7 @@ describe MemberNotificationPreference do
           NotificationType.create!(:mailer_type => 'RoleHasBecomeAvailableMailer', :description => 'bbb')
           x = MemberNotificationPreference.get_all_for_member(member_id)
           x.length.should eq(2)
+          cleanup
         end
 
 
@@ -53,9 +56,10 @@ describe MemberNotificationPreference do
           NotificationType.create!(:mailer_type => 'RoleHasBecomeAvailableMailer', :description => 'bbb')
 
           type = NotificationType.first
-          MemberNotificationPreference.create(:enabled => false, :member_id => 5, :notification_type_id => type.id)
-          pref = MemberNotificationPreference.where("member_id = ?", 5).first
-          pref.description.should eq(type.description)     
+          MemberNotificationPreference.create(:enabled => false, :member_id => 1, :notification_type_id => type.id)
+          pref = MemberNotificationPreference.where("member_id = ?", 1).first
+          pref.description.should eq(type.description) 
+          cleanup
 
         end
       end
@@ -63,36 +67,21 @@ describe MemberNotificationPreference do
     end
 
     context "administrator user experience" do
-
-      #
-    
-
-
     end
-
     context "system administrator user experience" do
-
-      #
     end
   end  
 
 
   context "technical requirements"  do
-
     context "creating instances to be viewed (index)"  do
-
-
-   
-
     end
-
-
-
   end
 
 
- 
-   
+
+
+
 
 end
 

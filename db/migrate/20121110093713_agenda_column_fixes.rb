@@ -4,123 +4,65 @@ require 'pp'
 class AgendaColumnFixes < ActiveRecord::Migration
   
 
+  #  delete the clubs we don't need
+  #  temporarily rename the agenda_definition and meeting_type for Northern TM
+  #  create the default meeting_type for any club without a meeting_type
+  #  for each meeting_type without an agenda_definition, create the agenda_definition
+
+
 
   def change
+
     remove_column :clubs, :default_agenda_definition_id
+
     add_column :agenda_definitions, :meeting_type_id, :integer, :default => 0
-    puts "fix  --------  stage 1 -----------"
-
-    x = AgendaDefinition.find(9)
-    x.name = "Regular Meeting"
-    x.save
-
-    puts "fix  --------  stage 2 -----------"
 
 
+    sql = %q(
+
+    delete from meeting_types where club_id in (1,9) or id = 5;
+    update meeting_types set is_default = true where id = 6;
+
+    delete from agenda_definitions where club_id in (1,9);
+
+    update agenda_definitions set name = 'Regular' where id = 9 or name = 'Regular Meeting';
+
+    update meeting_types set hour=12, minute=0, am_pm = 'PM'  where hour is NULL;
 
 
-    
-    Club.all.each do |club|
-      @meeting_type = MeetingType.where("club_id = ? and is_default = true ", club.id).first
-      if @meeting_type.nil? == true
-        @meeting_type               = MeetingType.new
-        @meeting_type.club_id       = club.id
-        @meeting_type.description   = "Regular Meeting"
-        @meeting_type.is_default    = true
-        @meeting_type.hour          = 12
-        @meeting_type.minute        = 0
-        @meeting_type.am_pm         = 'PM'
-        @meeting_type.meeting_time  = "12:00 PM"
-      else
-        if @meeting_type.hour.nil? == true
-          @meeting_type.hour = 12 
-          @meeting_type.minute = 0  
-          @meeting_type.am_pm = 'PM'
-        end  
-      end
-      @meeting_type.save
+    insert into agenda_definitions (name, description, created_at, updated_at, club_id, 
+            show_absent_members, show_next_meeting_open_roles, show_this_meeting_open_roles, meeting_type_id) values (
+    'Regular', 'Regular', NOW(), NOW(), 12,false, false, false, 0);
+
+  
+
+    insert into meeting_types (club_id,description, is_default, hour, minute, am_pm,  created_at, updated_at)
+    select  club_id, 
+        name,
+        case when name = 'Regular' then true 
+        else false 
+        end, 
+        12, 0, 'PM'   , now(), now()
+
+    from agenda_definitions
+    where name not in (select description from meeting_types);
 
 
+    update agenda_definitions set name = 'TM Meeting' where club_id = 11;
+    update meeting_types set description = 'TM Meeting' where club_id = 1;
 
+    update agenda_definitions a
+    set meeting_type_id = b.id
+    from meeting_types b
+    where a.club_id = b.club_id
+    and rtrim(a.name, ' ') = rtrim(b.description, ' ') and (a.meeting_type_id is null or a.meeting_type_id = 0)
 
+    )
 
-
-      puts "fix  --------  stage 3 -----------"
-
-      @agenda = AgendaDefinition.where("meeting_type_id = 0 and club_id = ? and name like 'Regular%'",  @meeting_type.club_id).first
-      if @agenda.nil? == true
-        @agenda                                = AgendaDefinition.new
-        @agenda.club_id                        = club.id
-        @agenda.description                    = "Regular Meeting"
-        @agenda.name                           = "Regular Meeting"
-        @agenda.show_absent_members            = false
-        @agenda.show_next_meeting_open_roles   = false
-        @agenda.show_this_meeting_open_roles   = false
-      end
-      @agenda.meeting_type_id = @meeting_type.id
-      pp @agenda
-      @agenda.save
-      @agenda = nil
-      
+    ActiveRecord::Base.connection.execute(sql)    
    
 
-      puts "fix  --------  stage 4 -----------"
-
-      x = AgendaDefinition.find(9)
-      x.name = "TM Meeting"
-      x.save
-
-      recs = AgendaDefinition.where("meeting_type_id = 0 ",  @meeting_type.club_id)
-      recs.each do |rec|
-        meeting_type               = MeetingType.new
-        meeting_type.club_id       = rec.club_id
-        meeting_type.description   = rec.name
-        meeting_type.is_default    = false
-        meeting_type.hour          = 12
-        meeting_type.minute        = 0
-        meeting_type.am_pm         = 'PM'
-        meeting_type.meeting_time  = "12:00 PM"
-        meeting_type.save
-        rec.meeting_type_id = meeting_type.id
-        rec.save
-      end
-   
-
-
-      puts "fix  --------  stage 5 -----------"
-
-
-      Meeting.all.each do |meeting|
-        if Club.where("id = ?", meeting.club_id).length == 0
-          meeting.delete
-        end
-      end
-
-
-      Meeting.all.each  do  |meeting| 
-        puts "got a meeting....."
-        $stdout.flush
-        
-        if meeting.meeting_type_id.nil? == true
-          puts "got meeting with null meeting_type_id"
-          pp meeting
-        else
-          puts "got a meeting that already has a meeting_type_id"
-          next
-        end
-
-        $stdout.flush
-        type = MeetingType.where("club_id = ? and is_default = true", meeting.club_id).first
-        puts "got the meeting_type to plug it in to meeting"
-        $stdout.flush
-        meeting.hour          = type.hour
-        meeting.minute        = type.minute
-        meeting.am_pm         = type.am_pm
-        meeting.meeting_type_id = type.id
-        meeting.save
-      end
-      puts "fix  --------  DONE  -----------"
-    end
   end
 end
+
 

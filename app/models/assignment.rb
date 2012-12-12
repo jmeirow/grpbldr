@@ -32,6 +32,16 @@
 
 
   def self.member_for_meeting_and_role(meeting_id, role_id)
+
+    # TODO - Cache this (and other IO intensive/repetitive searches)
+    # as instance variables in the controller and use them in the views
+    # Specifically, get ALL for all future meetings in one query.
+    # This code is hitting two tables for each role for each future 
+    # meeting.
+
+
+
+
     name = 'Open'
     xxx = Assignment.where("meeting_id = ? and role_id = ?",meeting_id, role_id)
     xxx.each do |x| 
@@ -40,9 +50,9 @@
     name
   end
   
-  def self.available_assignments(club_id)
+  def self.available_assignments(club_id,meeting_type_id)
       available_assignments = Array.new
-      Meeting.all_future(club_id).each do |meeting|
+      Meeting.all_future_for_type(club_id,meeting_type_id).each do |meeting|
         Role.needed_for_meeting(meeting).each do |role|
           available_assignments << AvailableAssignment.new(meeting,role)
         end
@@ -50,9 +60,9 @@
       available_assignments
   end
   
-  def self.all_assignments(club_id)
+  def self.all_assignments(club_id,meeting_type_id)
       available_assignments = Array.new
-      Meeting.all_future(club_id).each do |meeting|
+      Meeting.all_future_for_type(club_id,meeting_type_id).each do |meeting|
         Role.roles(club_id).each do |role|
           available_assignments << AvailableAssignment.new(meeting,role)
         end
@@ -60,7 +70,7 @@
       available_assignments
   end  
   
-  def self.available_assignments_for_role(role_id,club_id)
+  def self.available_assignments_for_role(role_id,club_id,meeting_type_id)
 
 
 
@@ -74,7 +84,7 @@
       end
 
       available_assignments = Array.new
-      Meeting.all_future(club_id).each do |meeting|
+      Meeting.all_future_for_type(club_id,meeting_type_id).each do |meeting|
         Role.needed_for_meeting(meeting).each do |role|
           if  role_ids.include?(role.id)  
             available_assignments << AvailableAssignment.new(meeting,role)  
@@ -84,24 +94,25 @@
       available_assignments
   end  
   
-  def self.all_assignments_for_role(role_id,club_id)
+  def self.all_assignments_for_role(role_id,club_id,meeting_type_id)
+      
+
+      roles_for_meeting_type = RoleMeetingType.role_ids_for_meeting_type(meeting_type_id)
      
       role_ids = Array.new
       if role_id > 0 
         role_ids << role_id
       else
         RoleGroupAssociation.where("role_group_id = ?", (role_id * -1)).each do |assoc|
-          role_ids <<  assoc.role_id
+          role_ids <<  assoc.role_id if roles_for_meeting_type.include? assoc.role_id
         end
       end
 
 
-
       available_assignments = Array.new
-      Meeting.all_future(club_id).each do |meeting|
+      Meeting.all_future_for_type(club_id,meeting_type_id).each do |meeting|
          Role.roles(club_id).each do |role|
-          
-          if  role_ids.include?(role.id)  
+          if  role_ids.include?(role.id) &&  
             available_assignments << AvailableAssignment.new(meeting,role)  
           end
         end

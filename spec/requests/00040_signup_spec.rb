@@ -1,25 +1,22 @@
-# require 'spec_helper'
-# require 'pp'
-require 'pry'
-require 'pry_debug'
-
-puts ActiveRecord::Base.connection_config
+require 'date'
+require "spec_helper"
+require "pp"
+require 'rspec/rspec_helpers.rb'
+ 
+include RSpecHelpers
 
 describe "GroupBuilder Session" do
  
   describe "Signing up for a Role" do
 
-    it "should give an error message when signing up for a role and no checkbox clicked."    do
-      visit log_in_path
-      fill_in "email", :with => "joe.meirow@gmail.com"
-      fill_in "password", :with => "123456!!"
-      click_button "Sign In"
+    it "should give an error message when signing up for a role and no checkbox clicked."  do
+  
+      login
       page.should have_content("Upcoming Activity for Meirow, Joseph")    
       click_link('Sign Up')
       page.should have_content("Find a Meeting Role")
       click_button "Save Selection"
       page.should have_content("error prohibited")
-    
 
       click_link('Sign Up')
        

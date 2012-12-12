@@ -6,7 +6,7 @@
 
 # describe "GroupBuilder Session" do
 #   describe "Signing up for a Role" do
-#     it "should show only roles that match the role used in the filter.",  :driver => :selenium  do
+#     it "should show only roles that match the role used in the filter.",  :driver => RSpecHelpers.testing_driver  do
 #       visit log_in_path
 #       fill_in "email", :with => "joe.meirow@gmail.com"
 #       fill_in "password", :with => "123456!!"

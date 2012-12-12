@@ -1,15 +1,15 @@
 require 'custom/running_time.rb'
 
 class AgendaLineItemsController < ApplicationController
-  
-
-
 
   layout  'admins'
-
+  
+  
+ 
 
   # GET /agenda_line_items
   # GET /agenda_line_items.json
+
   def index
     
     @agenda_line_items = AgendaLineItem.where("agenda_definition_id = ?", params[:agenda_definition_id]).order("sequence_nbr asc")

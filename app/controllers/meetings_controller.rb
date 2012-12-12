@@ -4,7 +4,8 @@ class MeetingsController < ApplicationController
 
   #layout   :get_layout
 
-
+  #before_filter :require_member # require_user will set the current_member in controllers
+  before_filter :set_current_member
 
   def index
     @meetings = Meeting.where("club_id = ? and meeting_date >= ?", params[:club_id], Date.today).order("meeting_date").page(params[:page]).per(7)
@@ -47,10 +48,11 @@ class MeetingsController < ApplicationController
      
     @meeting = Meeting.new
     @meeting_type = MeetingType.where("club_id = ? and is_default = TRUE", @club.id).first
-    @meeting.hour = @meeting_type.hour
-    @meeting.minute = @meeting_type.minute
-    @meeting.am_pm = @meeting_type.am_pm
+    # @meeting.hour = @meeting_type.hour
+    # @meeting.minute = @meeting_type.minute
+    # @meeting.am_pm = @meeting_type.am_pm
     #@meeting.meeting_time = '%20d' % @meeting.hour + ':' + '%02d' % @meeting.minute + ' ' + @meeting.am_pm  
+    @meeting.meeting_time = @meeting_type.meeting_time
     @meeting.meeting_type_id = @meeting_type.id
     
     
@@ -94,7 +96,6 @@ class MeetingsController < ApplicationController
   def update
     @meeting = Meeting.find(params[:id])
     @meeting.meeting_time = params[:meeting][:meeting_time]
-
     respond_to do |format|
       if @meeting.update_attributes(params[:meeting])
         format.html { redirect_to club_meeting_path(params[:club_id],@meeting), notice: 'Meeting was successfully updated.' }

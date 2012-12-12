@@ -26,14 +26,14 @@ Rolemaster::Application.routes.draw do
   get "batch/bootstrap" => "batch#bootstrap" 
   get "batch/bring_up" => "batch#bring_up" 
   
-  get "agenda_definitions/agenda_intro" => "agenda_definitions#agenda_intro", :as => "agenda_intro"
+  #get "agenda_definitions/agenda_intro" => "agenda_definitions#agenda_intro", :as => "agenda_intro"
 
   get "test/email"
   get "sessions/revoke_admin"
   get "sessions/revoke_super_user"
   get "all_members" => "sysadmins#all_members"
   get "all_clubs" => "sysadmins#all_clubs"
-  get "admins/blank" => "admins#blank", :as => "admin"
+  get "admins/blank/:id" => "admins#blank", :as => "admin"
   get "sysadmins/blank" => "sysadmins#blank", :as => "sysadmins"
   get "bizadmins/blank" => "bizadmins#blank", :as => "bizadmins"
 

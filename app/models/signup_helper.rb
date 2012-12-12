@@ -1,4 +1,7 @@
 require 'custom/system_services.rb'
+require 'pry'
+require 'pry_debug'
+
 
 AVAILABLE_ONLY = "1"
 ALL =  "2"
@@ -7,7 +10,8 @@ ALL =  "2"
 class SignupHelper
   include ActiveModel::Validations
   include SystemServices
-
+  # modules
+  include ActiveBuilder
 
   validate :at_least_one_checkbox_must_be_checked
    
@@ -171,7 +175,7 @@ class SignupHelper
     # If they choose a specific role, then the params hash will contain
     # [:role][:role_id] where :[role_id] = the id of the selected role.
     # 
-    # If they selecte 'All Roles' (the default), the params hash will contain
+    # If they select 'All Roles' (the default), the params hash will contain
     # [:role][:role_id] where [:role_id] = ''
     #
     #
@@ -184,33 +188,26 @@ class SignupHelper
     #
     #
 
+
+    @club = Club.find(params[:club_id].to_i)
+ 
+
     if SignupHelper.initial_page_load? params
-
-        @assignment_query_results = Assignment.available_assignments(params[:club_id].to_i)
-
+        params[:meeting_type_id] = @club.default_meeting_type_id.to_s
+        @assignment_query_results = Assignment.available_assignments(params[:club_id].to_i, @club.default_meeting_type_id)
     else
-
         if self.specfic_role_selected? params 
-
-           
           if self.user_wants_to_see_all_occurrences? params
-            @assignment_query_results = Assignment.all_assignments_for_role(SignupHelper.selected_role_id(params), params[:club_id].to_i)
-
+            @assignment_query_results = Assignment.all_assignments_for_role(SignupHelper.selected_role_id(params), params[:club_id].to_i, params[:meeting_type_id].to_i)
           else
-            @assignment_query_results = Assignment.available_assignments_for_role(SignupHelper.selected_role_id(params), params[:club_id].to_i) 
+            @assignment_query_results = Assignment.available_assignments_for_role(SignupHelper.selected_role_id(params), params[:club_id].to_i, params[:meeting_type_id].to_i) 
           end
-        
-
         else
-
-
           if self.user_wants_to_see_all_occurrences? params
-            @assignment_query_results = Assignment.all_assignments(params[:club_id].to_i) 
+            @assignment_query_results = Assignment.all_assignments(params[:club_id].to_i, params[:meeting_type_id].to_i) 
           else
-            @assignment_query_results = Assignment.available_assignments(params[:club_id].to_i) 
+            @assignment_query_results = Assignment.available_assignments(params[:club_id].to_i, params[:meeting_type_id].to_i) 
           end
-
-
         end
       end
     end

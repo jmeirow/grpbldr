@@ -4,7 +4,8 @@
 
 
 class MemberNotificationPreference < ActiveRecord::Base
-
+  # modules
+  include ActiveBuilder
 
   attr_accessible :enabled, :member_id, :notification_type_id ,  :description
   attr_accessor :description

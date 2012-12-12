@@ -6,9 +6,9 @@ class Club < ActiveRecord::Base
 	
   include ActiveBuilder
   
-  attr_accessible :name, :email_enabled,:domain
+    attr_accessible :name, :email_enabled,:domain
   
-  
+ 
 
   validates_presence_of :name
   validate :domain_already_in_use 
@@ -50,7 +50,7 @@ class Club < ActiveRecord::Base
       default_meeting_type = MeetingType.where("club_id = ? and is_default = true",id).first
       AgendaDefinition.where("meeting_type_id = ? ", default_meeting_type.id).first
     rescue Exception => e 
-       
+      
     end
   end
 

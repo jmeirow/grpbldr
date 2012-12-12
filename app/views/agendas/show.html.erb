@@ -94,12 +94,10 @@
 
           <td width='33%'>
             <% 
-            #binding.pry
             if @meeting_agenda_definition.show_this_meeting_open_roles == true %>
               <h4>Open Roles for Today's Meeting</h4>
               <ul>
                 <% 
-                  #binding.pry
                   Role.needed_for_meeting(@meeting).each do |role| %>
                   <li><%=role.description%></li>
                 <% end %>

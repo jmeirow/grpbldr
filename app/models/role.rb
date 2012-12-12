@@ -1,3 +1,8 @@
+require 'custom/params_to_array.rb'
+require 'custom/state_changes.rb'
+
+
+
 class Role < ActiveRecord::Base
 
 
@@ -32,8 +37,12 @@ class Role < ActiveRecord::Base
 
     assignments = Assignment.where("meeting_id = ? ", meeting.id)
 
+    role_ids =  Array.new
+    RoleMeetingType.where("meeting_type_id = ?",  meeting.meeting_type_id).each { |role_for_meeting_type | role_ids << role_for_meeting_type.role_id }
+    
+
     if assignments.nil?  || assignments.length == 0
-      return Role.where("club_id = ?", meeting.club_id)
+      return Role.where("club_id = ? and id not in (?)", meeting.club_id, role_ids)
     else
       s = ""
       assignments.each do |a|
@@ -41,7 +50,7 @@ class Role < ActiveRecord::Base
         s = s + ','
       end
       s = s[0..-2]
-      roles = Role.where("club_id = ? and id not in (#{s})", meeting.club_id  ).order("description")
+      roles = Role.where("club_id = ? and id in (?) and id not in (#{s})", meeting.club_id, role_ids  ).order("description")
       return roles
     end
   end
@@ -58,31 +67,68 @@ class Role < ActiveRecord::Base
 
 
   
-  def self.roles(club_id)
-    Role.where("club_id = ?", club_id).order("description")
+  def self.roles(club_id,meeting_type_id)
+    role_ids =  Array.new
+    RoleMeetingType.where("meeting_type_id = ?",  meeting_type_id).each { |role_for_meeting_type | role_ids << role_for_meeting_type.role_id }
+    Role.where("club_id = ?  and id in (?) ", club_id, role_ids).order("description")
   end
 
-  def self.roles_with_groups(club_id)
-      
+
+
+
+
+
+
+
+
+  def self.roles_with_groups_for_meeting_type(club_id,meeting_type_id)
+
+
+    # This method insures that only roles and role group 
+    # associated with the given meeting type
+    # are returned to the caller.
+
+ 
     unsorted = Hash.new
     
-    Role.where("club_id = ?", club_id).order("description").each do |role|
+    role_ids =  Array.new
+    RoleMeetingType.where("meeting_type_id = ?",  meeting_type_id).each { |role_for_meeting_type | role_ids << role_for_meeting_type.role_id }
+    
+
+    Role.where("club_id = ? and id in (?)", club_id, role_ids).order("description").each do |role|
       unsorted[role.id] = role.description
     end
 
-    RoleGroup.where("club_id = ?", club_id).order("description").each do |group|
+    role_groups =  Array.new
+    RoleGroupAssociation.where("role_id in (?)",  role_ids).each { | role_group_assoc_rec | role_groups << role_group_assoc_rec.role_group_id }
+
+    RoleGroup.where("club_id = ? and id in (?)", club_id, role_groups).order("description").each do |group|
       unsorted[group.id * -1] = group.description
     end
 
-    RoleGroupAssociation.where("club_id = ?", club_id).each do |assoc| 
+    RoleGroupAssociation.where("club_id = ? and role_id in (?)", club_id, role_ids).each do |assoc| 
       unsorted.delete(assoc.role_id)
     end
      
     unsorted.sort {|a,b| a[1] <=> b[1]}
-
-    
     
   end
+
+
+  def self.role_meeting_type_prefix
+    'mt_'
+  end
+
+  def self.refresh_role_meeting_types(role_id,params)
+    selections_before = RoleMeetingType.where(" role_id = ?", role_id)
+    selections_after = ParamsToArray.do(Role.role_meeting_type_prefix, params)
+    state_changes = StateChanges.new(selections_before,selections_after)
+    RoleMeetingType.delete(state_changes.deleted) if state_changes.deleted.length > 0
+    state_changes.added.each {|meeting_type_id|  RoleMeetingType.create( :role_id => role_id, :meeting_type_id => meeting_type_id)}
+  end
+
+
+
 
 
 

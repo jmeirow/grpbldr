@@ -1,6 +1,7 @@
 require './lib/custom/time_parser.rb'
 require './lib/custom/date_time_validations.rb'
-
+require 'pry'
+require 'pry_debug'
 
 
 class Meeting < ActiveRecord::Base
@@ -16,8 +17,8 @@ class Meeting < ActiveRecord::Base
 #        Access 
 ##############################################################################
 
-  attr_accessible  :meeting_date, :id ,  :hour, :minute, :am_pm, :meeting_type_id, :meeting_time, :meeting_date_display
-  attr_accessor :padded_minutes
+  attr_accessible  :meeting_date, :id ,  :hour, :minute, :am_pm, :meeting_type_id, :meeting_time, :meeting_date_display 
+  attr_accessor :padded_minutes 
 
   attr_writer :meeting_date_display
 
@@ -60,13 +61,13 @@ class Meeting < ActiveRecord::Base
   end
   
 
-  def self.needing_assignments(club_id)
-    Meeting.where("club_id = ? and assignments_count < ? and meeting_date > ?", club_id, Role.roles(club_id).count, Date.today).order("meeting_date")
+  def self.needing_assignments(club_id, meeting_type_id)
+    Meeting.where("club_id = ? and meeting_type_id = ? and assignments_count < ? and meeting_date > ?", club_id, meeting_type_id, Role.roles(club_id, meeting_type_id).count, Date.today).order("meeting_date")
   end
 
 
-  def self.all_future(club_id)
-    Meeting.where("club_id = ?   and meeting_date >= ?", club_id,   Date.today).order("meeting_date")
+  def self.all_future_for_type(club_id,meeting_type_id)
+    Meeting.where("club_id = ?  and meeting_type_id = ? and meeting_date >= ?", club_id, meeting_type_id,  Date.today).order("meeting_date")
   end
  
 
@@ -74,24 +75,16 @@ class Meeting < ActiveRecord::Base
 ##############################################################################
 #        INSTANCE METHODS 
 ##############################################################################
-  def meeting_time
-    '%02d' %  hour + ':' + '%02d' %  minute + ' ' +  am_pm  
-  end
-
-
-  def meeting_time=(value)
-    @meeting_time = value
-  end
+ 
 
 
   def next_meeting
     Meeting.where("club_id = ? and meeting_date > ?", self[:club_id], self[:meeting_date]).order("meeting_date").limit(1).first
   end
 
- 
     
-  def unfilled_roles_count (club_id)
-    Role.roles(club_id).length -  self[:assignments_count] 
+  def unfilled_roles_count (club_id, meeting_type_id)
+    Role.roles(club_id, meeting_type_id).length -  self[:assignments_count] 
   end
 
   
@@ -122,7 +115,6 @@ class Meeting < ActiveRecord::Base
     #self[:meeting_date_display], self[:meeting_date]  = val
     @meeting_date_display = val
     @meeting_date = val
-
     @meeting_date_error_msg = get_error_for_date(val,:meeting_date)
   end
 

@@ -1,92 +1,54 @@
 require "spec_helper"
 require "pp"
- 
-describe "A user session to create roles "   do
+require 'rspec/rspec_helpers.rb'
+
+
+describe "When creating roles, "   do
   
-
-  it "should require the user to log in"      do
-    
-    visit log_in_path
-    fill_in "email", :with => "joe.meirow@gmail.com"
-    fill_in "password", :with => "123456!!"
-    click_button "Sign In"
- 
-
- 
-    page.should have_content  "Upcoming Activity"     
-
+  include RSpecHelpers
   
-
-
-    click_link "Administration"  
-    click_link "Roles"  
-    click_link "New Role"  
-
-
-    role_name = "Role example number 1"
-
-    fill_in "role_description", :with => role_name
-    click_button "Save Role" 
-    page.should have_content "Role was successfully created."  
-
-
-    click_link "Roles"  
-
- 
-    role_1_found = false
-
-    all("tr").each do |row| 
-      within(row) do
-        if /#{role_name}/.match(row.text)
-          role_1_found = true
-        end
-      end
-    end    
-    role_1_found.should be_true
-
-    click_link "Main Menu" 
-
+  it " descriptive information is required."  do
+    login 
     click_link "Administration" 
     click_link "Roles" 
     click_link  "New Role" 
+
+    # try to save without entering data....
     click_button "Save Role"
     page.should have_content "Description can't be blank"
 
 
-    role_name = "Role example number 2"
+    click_link "Main Menu" 
 
-    fill_in "role_description", :with => role_name
-    click_button "Save Role" 
-    page.should have_content "Role was successfully created."  
+     
 
+    role_1_name  = "Role 1"
+    create_role  role_1_name
+
+    role_1_found = false
+    click_link "Roles" 
+
+    all("tr").each do |row| 
+      if /#{role_1_name}/.match(row.text)
+        role_1_found = true
+        break
+      end
+    end    
+    role_1_found.should be_true
     
+    click_link  "Main Menu" 
+    role_2_name = "Role 2"
+    create_role role_2_name
+    role_2_found = false
+    click_link "Roles" 
 
 
+    all("tr").each do |row| 
+      if /Role 2/.match(row.text)
+        role_2_found = true
+        break
+      end
+    end    
+    role_2_found.should be_true
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end

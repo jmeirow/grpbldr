@@ -64,6 +64,11 @@ class Member < ActiveRecord::Base
   end 
 
 
+
+
+
+
+
   def self.current_members(club_id)
     Member.where("club_id = ? and ? between start_date and end_date", club_id, Date.today).order("last_name, first_name")
   end

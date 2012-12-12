@@ -2,8 +2,8 @@
 
 <%= form_for([@club,@meeting_type]) do |f| %>
   <% if @meeting_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@meeting_type.errors.count, "error") %> prohibited this Meeting Type from being saved:</h2>
+    <div id="error_explanation" style='width:600px'>
+      <h8><%= pluralize(@meeting_type.errors.count, "error") %> prohibited this Meeting Type from being saved:</h8>
 
       <ul>
       <% @meeting_type.errors.full_messages.each do |msg| %>

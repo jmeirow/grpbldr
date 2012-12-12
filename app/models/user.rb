@@ -24,10 +24,13 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   
 
-
+ 
 
   
   # Class methods
+
+
+
 
   def self.authenticate(email,password)
     

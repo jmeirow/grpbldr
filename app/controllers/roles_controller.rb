@@ -1,10 +1,10 @@
+
+
 class RolesController < ApplicationController
   # GET /roles
   # GET /roles.json
 
   layout  'admins'
- 
-
 
   def index
     #@club = current_club
@@ -38,12 +38,6 @@ class RolesController < ApplicationController
     end
   end
 
-  # GET /roles/1/edit
-  def edit
-    #@club = current_club
-    @role = Role.find(params[:id])
-  end
-
   # POST /roles
   # POST /roles.json
   def create
@@ -54,6 +48,7 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.save
+        Role.refresh_role_meeting_types(@role.id,params)
         format.html { redirect_to club_role_path(params[:club_id],@role), notice: 'Role was successfully created.' }
         format.json { render json: @role, status: :created, location: @role }
       else
@@ -63,21 +58,22 @@ class RolesController < ApplicationController
     end
   end
 
+  # GET /roles/1/edit
+  def edit
+    #@club = current_club
+    @role = Role.find(params[:id])
+  end
+
   # PUT /roles/1
   # PUT /roles/1.json
   def update
-    #@club = current_club
+    @club = current_club
 
     @role = Role.find(params[:id])
-
-    respond_to do |format|
-      if @role.update_attributes(params[:role])
-        format.html { redirect_to club_roles_path(params[:club_id]), notice: 'Role was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @role.errors, status: :unprocessable_entity }
-      end
+    
+    if @role.update_attributes(params[:role])
+      Role.refresh_role_meeting_types(@role.id,params)
+      redirect_to club_roles_path(@club, notice: 'Role was successfully updated.')
     end
   end
 
@@ -93,4 +89,11 @@ class RolesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+
+  private 
+
+
+
+
 end

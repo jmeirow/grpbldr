@@ -1,6 +1,4 @@
 
-
-
 <style type="text/css">
   .demoHeaders { margin-top: 2em; }
   #dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
@@ -22,21 +20,17 @@
 <% dcnt = 1 %>
 
 <div style='width:650px;    text-align:center'>
-
   <% if  notice %>
     <div class="alert-box success" style='width:635px'>
       <%= notice %> 
     </div>
   <% end %>
-   
     <div style=' ;background-color:lightgray'>
       <h4  >Find a Meeting Role </h4> 
     </div>
-
     <% if @helper.errors.any? %>
       <div id="error_explanation" class="alert-box error"  >
         <h8><%= pluralize(@helper.errors.count, "error") %> prohibited this request from being saved:</h8>
-
         <ul>
         <% @helper.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -45,24 +39,14 @@
       </div>
     <% end %>
 </div>
-
-
-
-
-
  
 <%= form_tag  url_for(:controller => 'assignments', :action => 'signup_for_role')  , :method=>:get, :id => 'find_role'  do  %>
-
-
-
- 
   <div id='container' style='width:650px;float:left;margin-top:10px'>
- 
-   <div style='text-align:center;font-size:7pt;float:left; margin-right:10px'>
-        <%= submit_tag 'Save Selection(s)' ,  :id => 'submit_request'  , :style => 'height:30px;vertical-align:text-middle' %>
+    <div style='text-align:center;font-size:7pt;float:left; margin-right:10px'>
+  
+     <%= submit_tag 'Save Selection(s)' ,  :id => 'submit_request'  , :style => 'height:30px;vertical-align:text-middle' %>
     </div>
-
-     <div id="free" style='float:left;text-align:center;margin-right:50px;font-size:8pt;margin-left:50px'>
+    <div id="free" style='float:left;text-align:center;margin-right:50px;font-size:8pt;margin-left:50px'>
         Show only dates I'm completely free:
         <% 
               if  params[:filtered_on_free]== "1" %>
@@ -71,90 +55,73 @@
                   <%=check_box_tag 'filtered_on_free', '1'   %>
            <% end %>
     </div>
-   
- 
-
     <% if multiple_members? %>
-         <div    style='float:left;width:210px;font-size:8pt;'>
-       View my other clubs' schedule. Click <%= link_to "here", signup_for_role_multi_club_club_member_assignments_path(params[:club_id],params[:member_id]), :style => 'color:black' %>.
 
-        </div>
-     
+      <div    style='float:left;width:210px;font-size:8pt;'>
+      View my other clubs' schedule. Click <%= link_to "here", signup_for_role_multi_club_club_member_assignments_path(params[:club_id],params[:member_id]), :style => 'color:black' %>.
+      </div>
     <% end %>
     <br/>
 
+
+    <!-- ========================== Select Lists here ====================================== -->
     <div style='float:left'>
-        <div id="role" style='float:left;text-align:center; padding-left:10px;margin-left:0px'>
-          Desired Role
-            <%= 
-                if params[:role].nil?
-                    collection_select(:role, :role_id,  
-                                  Role.roles_with_groups(@club.id)   , :first, :last, 
-                                  :include_blank => 'All roles' ) 
-                else
-                    collection_select(:role, :role_id,  
-                                  Role.roles_with_groups(@club.id)  , :first, :last, 
-                                  :selected => params[:role][:role_id] ,
-                                  :include_blank => 'All roles' )
-                end
-            %>
+       <div id="meeting_type" style='text-align:center;float:left;margin-left:0px;margin-right:10px '>
+          Meeting Type:
+          <%= 
+            if params[:role].nil?
+              select_tag(:meeting_type_id, options_from_collection_for_select(@view_model.meeting_type_select_list, :id, :description), { "style" => "width:100px" })
+            else
+              select_tag(:meeting_type_id, options_from_collection_for_select(@view_model.meeting_type_select_list, :id, :description, :selected => params[:meeting_type_id]), { "style" => "width:100px" })
+            end
+          %>
         </div>
 
-        <div id="select" style='text-align:center;float:left;padding-right:10px;padding-left:10px '>
-
-            Where role is:
-
-            <%= 
-                  if params[:role].nil?
-                  
-                      select_tag(:assignments, 
-                            options_for_select(
-                            [ ['Available', 1], 
-                              ['Available or Filled', 2] 
-                            ])) 
-                  else
-                      select_tag(:assignments, 
-                          options_for_select(
-                          [ ['Available', 1], 
-                            ['Available or Filled', 2] 
-                          ],  :selected => params[:assignments] )) 
-                  end
+        <div id="role" style='float:left;text-align:center; margin-left:10px;margin-left:10px'>
+          Desired Role
+          <%= 
+            if params[:role].nil?
+                collection_select(:role, :role_id, @view_model.role_select_list , :first, :last, {:include_blank => 'All roles' }, { "style" => "width:100px" } )
+            else
+                collection_select(:role, :role_id, @view_model.role_select_list  , :first, :last, {:selected => params[:role][:role_id] , :include_blank => 'All roles'} , { "style" => "width:100px" } )
+            end
           %>
+        </div>
+
+        <div id="select" style='text-align:center;float:left;margin-right:10px;margin-left:10px '>
+            Where role is:
+            <%= 
+              if params[:role].nil?
+              
+                  select_tag(:assignments, 
+                        options_for_select(
+                        [ ['Available', 1], 
+                          ['Available or Filled', 2] 
+                        ]), { "style" => "width:100px" }) 
+              else
+                  select_tag(:assignments, 
+                      options_for_select(
+                      [ ['Available', 1], 
+                        ['Available or Filled', 2] 
+                      ],  :selected => params[:assignments] ), { "style" => "width:100px" }) 
+              end        %>
         </div>
 
 
         <% if session[:logged_in_admin] %>
-
-          <div id="select_member" style='text-align:center;float:left;padding-right:0px;padding-left:0px '>
-
+          <div id="select_member" style='text-align:center;float:left;margin-right:10px;margin-left:0px '>
               On behalf of: 
-
-              <%=  collection_select(:selected_member , :member_id,           Member.current_members(@club.id),                     
-                                  :id, :full_name,  :include_blank => 'Select From List'  ) %>
-
-
-
-              
-                
+              <%=  collection_select(:selected_member , :member_id, @view_model.member_select_list, :id, :full_name,   {:include_blank => 'Select From List'} , { "style" => "width:100px" }  ) %>
           </div>
-
         <% end %>
-
-
     </div> 
-
     <br><br>
-     
      <div style='float:left' >
       Dates appearing as buttons indicate you're already scheduled for one or more roles. Click the button to display them and then decide if you are able to take on an additional role.
      </div>
   </div>
 
- 
-
-
   <div style='float:left;width:700px;height:190px;overflow:auto'>  
-    
     <table style='width:650px'>
       <thead>
       <tr>
@@ -165,38 +132,28 @@
         <th>Request Switch</th>
       </tr>
       </thead>
-
       <tbody>
-      <% row_cnt = 1 %>
-      <% @requested_information.each do |aa| 
+        <% row_cnt = 1 %>
+        <% @requested_information.each do |aa| 
 
-            if   (  (params[:filtered_on_free]=="1" &&  aa.prior_committments.length == 0 )  || ( params[:filtered_on_free]=="0"  ))
+          if   (  (params[:filtered_on_free]=="1" &&  aa.prior_committments.length == 0 )  || ( params[:filtered_on_free]=="0"  ))
 
-              holder = Assignment.member_for_meeting_and_role(aa.meeting.id, aa.role.id) %>
+            holder = Assignment.member_for_meeting_and_role(aa.meeting.id, aa.role.id) %>
+      
             <tr id='row_<%="#{row_cnt}"%>' >
-
-
-              <!-- Put checkbox here if the role is open -->
-
-              <td id='cb_<%="#{row_cnt}"%>'  > 
-                
-                         
-                  <%= 
-                    if holder == 'Open'  
-                      check_box_tag   'signup_ids[]', aa.meeting.id.to_s + '_' + aa.role.id.to_s   
-                    end  
-                  %>
-                
-
              
-
+              <!-- ============================   checkbox column     ======================= -->
+              <td id='cb_<%="#{row_cnt}"%>'  > 
+                <%= 
+                  if holder == 'Open'  
+                    check_box_tag   'signup_ids[]', aa.meeting.id.to_s + '_' + aa.role.id.to_s   
+                  end  
+                %>
               </td>
-
-                    
-              <td  >
-
+              
+              <!-- ============================    date column        ======================= -->
+              <td>
                 <span id='date_<%="#{row_cnt}"%>'>
-
                 <%  if holder == 'Open'  && aa.prior_committments.length > 0  
 
                     x = String.new 
@@ -207,9 +164,7 @@
                     end
                     x += '</ul>'
                 %>
-
-
-                         <a href='#' id='dialog_link_<%=dcnt%>' class= 'ui-state-default ui-corner-all'   ><%= aa.meeting.meeting_date.strftime("%m/%d/%Y")  %></a>  
+                  <a href='#' id='dialog_link_<%=dcnt%>' class= 'ui-state-default ui-corner-all'   ><%= aa.meeting.meeting_date.strftime("%m/%d/%Y")  %></a>  
 
                         <script type='text/javascript' >
 
@@ -252,76 +207,62 @@
                           <p>You are already scheduled for the following on <%= aa.meeting.meeting_date.strftime("%m/%d/%Y")  %>:</p>
                           <p><%=h simple_format(x) %></p>
                         </div>
-
-
-
        
                         <% dcnt = dcnt + 1 %>
+
+               
 
                 <% else %>
                   <%= aa.meeting.meeting_date.strftime("%m/%d/%Y")  %>
                 <% end %>
                 </span>
-
               </td>
+
+              <!-- ============================    role description   ======================= -->
               <td id='role_<%="#{row_cnt}"%>'  ><%= aa.role.description %></td>
+              
+              <!-- ============================    occupant           ======================= -->
               <td id='occupant_<%="#{row_cnt}"%>'  ><%= holder %></td>
 
-              <!-- put checkbox here if the role is filled (request a switch from current holder) -->
-
-              <td id='cb_switch_<%="#{row_cnt +=1}"%>'><%=   
-                if holder != 'Open' && holder != member.full_name
-                  check_box_tag  'switch_ids[]', aa.assignment.id.to_s
-                end 
+              <!-- ============================    checkbox for requesting a switch ========= -->
+              <td id='cb_switch_<%="#{row_cnt +=1}"%>'>
+                <%=   
+                  if holder != 'Open' && holder != member.full_name
+                    check_box_tag  'switch_ids[]', aa.assignment.id.to_s
+                  end 
                 %> 
-      
               </td>
-              
             </tr>
-        <% end %>
-      <% end %>
+          <% end %>
+         <% end %>
       </tbody>
     </table>
   </div>
 <% end  %>
 
  
-
- 
 <script type='text/javascript'>
-
-
-
   $('#role').change(function() 
   {
     $('#find_role').submit()
-
   });  
-
-
-  
+  $('#meeting_type').change(function() 
+  {
+    $('#find_role').submit()
+  }); 
   $('#free').change(function() 
   {
     $('#find_role').submit()
-
   });
-
   $('#assignments').change(function() 
   {
     $('#find_role').submit()
- 
   });  
-  
-  
   $('#mybutton').click(function() 
   {
     $('#did_user_submit').val('true');
     $('#submit_request').submit()
-
   });
-  
- 
- 
 </script>
 
  

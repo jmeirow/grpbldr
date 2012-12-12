@@ -30,9 +30,8 @@
   <tr>
     <td><%= meeting_type.description %></td>
     
-    <% time = '%0*d' % [2,meeting_type.minute] %>
       
-    <td><%= "#{meeting_type.hour}:#{time} #{meeting_type.am_pm}" %></td>
+    <td><%= "#{meeting_type.meeting_time}" %></td>
      
   
    

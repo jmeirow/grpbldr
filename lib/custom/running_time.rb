@@ -1,22 +1,22 @@
+
+
 class RunningTime
   def initialize(hour,minute,am_pm )
-
-   
     @hour = hour
     @minute = minute
-    self + 720 unless am_pm.downcase == 'am'
+    @am_pm = am_pm
+    self + 720 unless @am_pm.downcase == 'am'
   end
 
   def +(minutes)
-
     @minute += minutes
     @hour += @minute / 60
     @hour %= 24 
     @minute %= 60
     to_s
   end
+  
   def to_s
-    
     am_pm = 'AM' if  (0..11) === @hour
     am_pm = 'PM' if  (12..23) === @hour
     if @hour > 12

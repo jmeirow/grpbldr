@@ -1,5 +1,6 @@
 require 'custom/system_services.rb'
-
+require 'view_models/signup_for_role/select_lists.rb'
+require 'view_models/signup_for_role/cache.rb'
 
 
 class AssignmentsController < ApplicationController
@@ -160,7 +161,7 @@ def past_activity
 
 
     #@club = Club.find(params[:club_id])
-    @clubs = Club.where("id in (?)", session[:clubs])
+    @club = Club.where("id in (?)", session[:clubs])
 
     @helper = SignupHelper.new params
      
@@ -190,18 +191,45 @@ def past_activity
     respond_to do |format|
       format.html  { render  :layout => 'signup_for_role_multi_club'  }
     end
-
-
   end
 
-  def signup_for_role
-    
-    if !params[:filtered_on_free] 
 
+
+  def member_signing_up_for_meeting_role
+
+
+=begin 
+ 
+   
+
+
+    
+    
+    
+=end 
+
+    
+    
+    
+    
+ 
+
+  
+  end
+
+
+  def signup_for_role
+   
+
+
+
+
+
+    if !params[:filtered_on_free] 
        params[:filtered_on_free] = "0"
     end
     
-    #@club = Club.find(params[:club_id])
+    @club = Club.find(params[:club_id])
 
     @helper = SignupHelper.new params
      
@@ -215,7 +243,8 @@ def past_activity
     end
 
   
-    @prior_committments = Assignment.includes(:meeting).where("member_id = ? and meetings.meeting_date >= ?", params[:member_id], Date.today) 
+    @view_model = SelectLists.new(Cache.new(@club,params[:meeting_type_id].to_i ), params[:meeting_type_id].to_i      ) 
+    @prior_committments = Assignment.includes(:meeting).where("member_id = ? and meetings.meeting_type_id = ? and meetings.meeting_date >= ?", params[:member_id].to_i, params[:meeting_type_id].to_i,Date.today) 
 
     @requested_information = @helper.requested_information 
 

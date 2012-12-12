@@ -24,8 +24,7 @@ module Rolemaster
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
     # Activate observers that should always be running.
-    # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-
+    config.active_record.observers = :absence_observer, :admin_observer, :agenda_bottom_observer, :agenda_definition_observer, :agenda_line_item_observer, :agenda_top_observer, :agreement_observer, :assignment_observer, :assignment_report_observer, :available_assignment_observer, :club_observer, :contest_signup_observer, :email_observer, :leader_history_observer, :leader_observer, :meeting_note_observer, :meeting_observer, :meeting_type_observer, :member_notification_preference_observer, :member_observer, :notification_type_observer, :role_group_association_observer, :role_group_observer, :role_observer, :sys_configuration_observer, :update_observer, :user_observer
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Eastern Time (US & Canada)'
@@ -49,6 +48,11 @@ module Rolemaster
     config.active_record.whitelist_attributes = true
 
     config.active_record.default_timezone = :local
+
+
+ 
+
+
     
     
   end

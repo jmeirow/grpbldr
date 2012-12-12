@@ -8,7 +8,7 @@
 <%= form_for([ current_club ,@meeting], :class => 'nice' ) do |f| %>
   <% if @meeting.errors.any? %>
        <div id="error_explanation" class="alert-box [error]">
-      <h4><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h4>
+      <h8><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h8>
 
       <ul>  
       <% @meeting.errors.full_messages.each do |msg| %>
@@ -58,11 +58,6 @@
   {
     set_time();
   });  
-
-  $(document).ready(set_time())
-
- 
-
  
   function set_time() {
     id = $("#meeting_meeting_type_id").val()
