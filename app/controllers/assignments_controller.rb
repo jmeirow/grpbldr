@@ -219,10 +219,6 @@ def past_activity
 
 
   def signup_for_role
-   
-
-
-
 
 
     if !params[:filtered_on_free] 

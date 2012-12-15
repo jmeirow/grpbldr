@@ -51,75 +51,69 @@
   end
   
   def self.available_assignments(club_id,meeting_type_id)
-      available_assignments = Array.new
-      Meeting.all_future_for_type(club_id,meeting_type_id).each do |meeting|
-        Role.needed_for_meeting(meeting).each do |role|
-          available_assignments << AvailableAssignment.new(meeting,role)
-        end
+    available_assignments = Array.new
+    Meeting.all_future_for_type(club_id,meeting_type_id).each do |meeting|
+      Role.needed_for_meeting(meeting).each do |role|
+        available_assignments << AvailableAssignment.new(meeting,role)
       end
-      available_assignments
+    end
+    available_assignments
   end
   
   def self.all_assignments(club_id,meeting_type_id)
-      available_assignments = Array.new
-      Meeting.all_future_for_type(club_id,meeting_type_id).each do |meeting|
-        Role.roles(club_id).each do |role|
-          available_assignments << AvailableAssignment.new(meeting,role)
-        end
+    available_assignments = Array.new
+    Meeting.all_future_for_type(club_id,meeting_type_id).each do |meeting|
+      Role.roles(club_id,meeting_type_id).each do |role|
+        available_assignments << AvailableAssignment.new(meeting,role)
       end
-      available_assignments
+    end
+    available_assignments
   end  
   
+
+
+
+  def self.get_role_ids (role_id,club_id,meeting_type_id)
+    roles_for_meeting_type = RoleMeetingType.role_ids_for_meeting_type(meeting_type_id)
+    role_ids = Array.new
+    if role_id > 0 
+      role_ids << role_id
+    else
+      RoleGroupAssociation.where("role_group_id = ?", (role_id.abs)).each do |assoc|
+        role_ids <<  assoc.role_id if roles_for_meeting_type.include? assoc.role_id
+      end
+    end
+    role_ids 
+  end
+
   def self.available_assignments_for_role(role_id,club_id,meeting_type_id)
-
-
-
-      role_ids = Array.new
-      if role_id > 0 
-        role_ids << role_id
-      else
-        RoleGroupAssociation.where("role_group_id = ?", (role_id * -1)).each do |assoc|
-          role_ids << assoc.role_id
+    role_ids = get_role_ids(role_id,club_id,meeting_type_id)
+    available_assignments = Array.new
+    Meeting.all_future_for_type(club_id,meeting_type_id).each do |meeting|
+      Role.needed_for_meeting(meeting).each do |role|
+        if  role_ids.include?(role.id)  
+          available_assignments << AvailableAssignment.new(meeting,role)  
         end
       end
-
-      available_assignments = Array.new
-      Meeting.all_future_for_type(club_id,meeting_type_id).each do |meeting|
-        Role.needed_for_meeting(meeting).each do |role|
-          if  role_ids.include?(role.id)  
-            available_assignments << AvailableAssignment.new(meeting,role)  
-          end
-        end
-      end
-      available_assignments
+    end
+    available_assignments
   end  
   
   def self.all_assignments_for_role(role_id,club_id,meeting_type_id)
-      
-
-      roles_for_meeting_type = RoleMeetingType.role_ids_for_meeting_type(meeting_type_id)
-     
-      role_ids = Array.new
-      if role_id > 0 
-        role_ids << role_id
-      else
-        RoleGroupAssociation.where("role_group_id = ?", (role_id * -1)).each do |assoc|
-          role_ids <<  assoc.role_id if roles_for_meeting_type.include? assoc.role_id
+    role_ids = get_role_ids(role_id,club_id,meeting_type_id)
+    available_assignments = Array.new
+    Meeting.all_future_for_type(club_id,meeting_type_id).each do |meeting|
+       Role.roles(club_id,meeting_type_id).each do |role|
+        if  role_ids.include?(role.id) &&  
+          available_assignments << AvailableAssignment.new(meeting,role)  
         end
       end
-
-
-      available_assignments = Array.new
-      Meeting.all_future_for_type(club_id,meeting_type_id).each do |meeting|
-         Role.roles(club_id).each do |role|
-          if  role_ids.include?(role.id) &&  
-            available_assignments << AvailableAssignment.new(meeting,role)  
-          end
-        end
-      end
-      
-      available_assignments
+    end
+    available_assignments
   end  
+
+
+
 
 end
 

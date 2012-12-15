@@ -81,9 +81,11 @@
           Desired Role
           <%= 
             if params[:role].nil?
-                collection_select(:role, :role_id, @view_model.role_select_list , :first, :last, {:include_blank => 'All roles' }, { "style" => "width:100px" } )
+                collection_select(:role, :role_id, @view_model.role_select_list, :id, :text, {:include_blank => 'All roles' }, { "style" => "width:100px" } )
+                #select_tag(:role_id, options_from_collection_for_select(@view_model.role_select_list, :id, :description) ,{:include_blank => 'All roles' , "style" => "width:100px" } )
             else
-                collection_select(:role, :role_id, @view_model.role_select_list  , :first, :last, {:selected => params[:role][:role_id] , :include_blank => 'All roles'} , { "style" => "width:100px" } )
+                collection_select(:role, :role_id, @view_model.role_select_list, :id, :text, {:selected => params[:role][:role_id] , :include_blank => 'All roles'} , { "style" => "width:100px" } )
+                #select_tag(:role_id, options_from_collection_for_select(@view_model.role_select_list, :id, :description ,{:selected => params[:role][:role_id] }) ,{:include_blank => 'All roles' }, { "style" => "width:100px" } )
             end
           %>
         </div>

@@ -37,12 +37,11 @@ class Role < ActiveRecord::Base
 
     assignments = Assignment.where("meeting_id = ? ", meeting.id)
 
-    role_ids =  Array.new
-    RoleMeetingType.where("meeting_type_id = ?",  meeting.meeting_type_id).each { |role_for_meeting_type | role_ids << role_for_meeting_type.role_id }
-    
+      
+    role_ids =  RoleMeetingType.where("meeting_type_id = ?",  meeting.meeting_type_id).map { |role_for_meeting_type | role_for_meeting_type.role_id }
 
     if assignments.nil?  || assignments.length == 0
-      return Role.where("club_id = ? and id not in (?)", meeting.club_id, role_ids)
+      return Role.where("club_id = ? and id in (?)", meeting.club_id, role_ids)
     else
       s = ""
       assignments.each do |a|
@@ -56,20 +55,19 @@ class Role < ActiveRecord::Base
   end
   
   
-  def self.get_role_ids_from(assignments)
-    assignments.each do |a|
-      s = s + a.role_id.to_s + ","
-    end
-    return s.chomp
-  end
+  # def self.get_role_ids_from(assignments)
+  #   assignments.each do |a|
+  #     s = s + a.role_id.to_s + ","
+  #   end
+  #   return s.chomp
+  # end
 
 
 
 
   
   def self.roles(club_id,meeting_type_id)
-    role_ids =  Array.new
-    RoleMeetingType.where("meeting_type_id = ?",  meeting_type_id).each { |role_for_meeting_type | role_ids << role_for_meeting_type.role_id }
+    role_ids = RoleMeetingType.where("meeting_type_id = ?",  meeting_type_id).map { |role_for_meeting_type | role_for_meeting_type.role_id }
     Role.where("club_id = ?  and id in (?) ", club_id, role_ids).order("description")
   end
 
@@ -81,38 +79,36 @@ class Role < ActiveRecord::Base
 
 
 
-  def self.roles_with_groups_for_meeting_type(club_id,meeting_type_id)
+  # def self.roles_with_groups_for_meeting_type(club_id,meeting_type_id)
 
 
-    # This method insures that only roles and role group 
-    # associated with the given meeting type
-    # are returned to the caller.
+  #   # This method insures that only roles and role group 
+  #   # associated with the given meeting type
+  #   # are returned to the caller.
 
  
-    unsorted = Hash.new
+  #   unsorted = Hash.new
     
-    role_ids =  Array.new
-    RoleMeetingType.where("meeting_type_id = ?",  meeting_type_id).each { |role_for_meeting_type | role_ids << role_for_meeting_type.role_id }
+  #   role_ids = RoleMeetingType.where("meeting_type_id = ?",  meeting_type_id).map { |role_for_meeting_type | role_for_meeting_type.role_id }
     
 
-    Role.where("club_id = ? and id in (?)", club_id, role_ids).order("description").each do |role|
-      unsorted[role.id] = role.description
-    end
+  #   Role.where("club_id = ? and id in (?)", club_id, role_ids).order("description").each do |role|
+  #     unsorted[role.id] = role.description
+  #   end
 
-    role_groups =  Array.new
-    RoleGroupAssociation.where("role_id in (?)",  role_ids).each { | role_group_assoc_rec | role_groups << role_group_assoc_rec.role_group_id }
+  #   role_groups =  RoleGroupAssociation.where("role_id in (?)",  role_ids).each { | role_group_assoc_rec | role_group_assoc_rec.role_group_id }
 
-    RoleGroup.where("club_id = ? and id in (?)", club_id, role_groups).order("description").each do |group|
-      unsorted[group.id * -1] = group.description
-    end
+  #   RoleGroup.where("club_id = ? and id in (?)", club_id, role_groups).order("description").each do |group|
+  #     unsorted[group.id * -1] = group.description
+  #   end
 
-    RoleGroupAssociation.where("club_id = ? and role_id in (?)", club_id, role_ids).each do |assoc| 
-      unsorted.delete(assoc.role_id)
-    end
+  #   RoleGroupAssociation.where("club_id = ? and role_id in (?)", club_id, role_ids).each do |assoc| 
+  #     unsorted.delete(assoc.role_id)
+  #   end
      
-    unsorted.sort {|a,b| a[1] <=> b[1]}
+  #   unsorted.sort {|a,b| a[1] <=> b[1]}
     
-  end
+  # end
 
 
   def self.role_meeting_type_prefix

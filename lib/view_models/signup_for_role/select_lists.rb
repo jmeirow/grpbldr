@@ -1,7 +1,16 @@
 
+
+class SelectList
+  attr_reader :id, :text 
+  def initialize id, text
+    @id = id
+    @text = text
+  end
+end
+
 class SelectLists
 
-  attr_reader :meeting_type_select_list, :member_select_list,   :role_select_list
+  attr_accessor :meeting_type_select_list, :member_select_list,   :role_select_list
 
   def initialize cache, meeting_type
     @cache = cache 
@@ -10,36 +19,30 @@ class SelectLists
     @meeting_type_select_list = @cache.meeting_types
 
   end
+
 private
 
-
-
- 
-
   def member_of_group? role_id
-    @role_group_associations.map {|x| x.role_id }.include? role_id
+    @cache.role_group_associations.map {|x| x.role_id }.include? role_id
+  end
+
+  def get_group_name role_group_id
+    @cache.role_groups.find {|x| x.id == role_group_id }.description
   end
 
   def build_role_select_list
-    @cache.roles.map {|x| [x.id, x.description]}
-      # reject { |x| member_of_group? x.id }.
-      # map {|x| [x.id, x.description]}
-
     
-    # role_for_this_meeting_type = @cache.role_meeting_types.select { |x| x.meeting_type_id == @meeting_type_id }.map {|x| x.role_id }
-    # role_group_associations = @cache.role_group_associations.select {|assoc| role_for_this_meeting_type.include? assoc.role_id } 
-    # applicable_groups = @cache.role_groups.select {|group| role_group_associations.map {|x| x.role_group_id }.include? group.id }
-    # # contains roles for selcted meeting_type less roles belonging to a role group
-    # a  = @cache.roles.
-    #       select { |role| role_for_this_meeting_type.include? role.id }.
-    #       reject { |role| role_group_associations.include? role.id }.
-    #       map    { |role| [role.id, role.description] } 
+    selects = Array.new 
     
-    # b = @cache.role_groups.
-    #       select {|group| role_group_associations.map {|x| x.group_is}.include? group.id }.
-    #       map { |group| [group.id * -1, group.description] }
-    # a + b
+    @cache.roles.
+      select {|x| !member_of_group? x.id }.
+      each   {|x| selects << SelectList.new(x.id, x.description)}
 
+    @cache.role_group_associations.
+      select {|x| member_of_group? x.role_id }.
+      each   {|x| selects << SelectList.new(x.role_group_id*-1, get_group_name(x.role_group_id))  if (selects.find{|y| y.id == (x.role_group_id*-1) }.nil?)   } 
 
+    selects.sort_by(&:text)
+    
   end
 end
