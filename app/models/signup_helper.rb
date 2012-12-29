@@ -19,9 +19,10 @@ class SignupHelper
   # Instance methods here
   #
 
-  def initialize(params)
+  def initialize(params, cache)
     @params = params
-    @requested_information = SignupHelper.get_requested_information params
+    @requested_information = SignupHelper.get_requested_information params, cache
+    @cache = cache
   end
 
   def requested_information
@@ -158,7 +159,7 @@ class SignupHelper
   end
 
   
-  def self.get_requested_information (params)
+  def self.get_requested_information (params,cache)
     # The purpose of this method is to return to the users a list of 
     # future meeting roles based on information the user has submitted.
     #
@@ -194,19 +195,19 @@ class SignupHelper
 
     if SignupHelper.initial_page_load? params
         params[:meeting_type_id] = @club.default_meeting_type_id.to_s
-        @assignment_query_results = Assignment.available_assignments(params[:club_id].to_i, @club.default_meeting_type_id)
+        @assignment_query_results = Assignment.available_assignments(params[:club_id].to_i, @club.default_meeting_type_id, cache)
     else
         if self.specfic_role_selected? params 
           if self.user_wants_to_see_all_occurrences? params
-            @assignment_query_results = Assignment.all_assignments_for_role(SignupHelper.selected_role_id(params), params[:club_id].to_i, params[:meeting_type_id].to_i)
+            @assignment_query_results = Assignment.all_assignments_for_role(SignupHelper.selected_role_id(params), params[:club_id].to_i, params[:meeting_type_id].to_i, cache)
           else
-            @assignment_query_results = Assignment.available_assignments_for_role(SignupHelper.selected_role_id(params), params[:club_id].to_i, params[:meeting_type_id].to_i) 
+            @assignment_query_results = Assignment.available_assignments_for_role(SignupHelper.selected_role_id(params), params[:club_id].to_i, params[:meeting_type_id].to_i, cache) 
           end
         else
           if self.user_wants_to_see_all_occurrences? params
-            @assignment_query_results = Assignment.all_assignments(params[:club_id].to_i, params[:meeting_type_id].to_i) 
+            @assignment_query_results = Assignment.all_assignments(params[:club_id].to_i, params[:meeting_type_id].to_i,cache) 
           else
-            @assignment_query_results = Assignment.available_assignments(params[:club_id].to_i, params[:meeting_type_id].to_i) 
+            @assignment_query_results = Assignment.available_assignments(params[:club_id].to_i, params[:meeting_type_id].to_i,cache) 
           end
         end
       end

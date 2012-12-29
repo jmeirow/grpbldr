@@ -1,3 +1,5 @@
+require './lib/view_models/meetings/meeting_index_cache.rb'
+
 
 
 class AgendasController < ApplicationController
@@ -23,9 +25,12 @@ class AgendasController < ApplicationController
       flash[:notice] = "An agenda has not yet been defined. Create an 'Agenda Top' and one or more 'Agenda Line Items'."
       redirect_to club_agenda_definition_path @club, @agenda_definition
     else
-    	@agenda = Agenda.new(params[:meeting_id].to_i,params[:agenda_definition_id].to_i)
+
+      @agenda = Agenda.new(params[:meeting_id].to_i,params[:agenda_definition_id].to_i)
       @meeting = Meeting.find(params[:meeting_id])
+      @club = Club.find(@meeting.club_id)
       @meeting_agenda_definition = AgendaDefinition.find(params[:agenda_definition_id].to_i)
+      @cache = MeetingIndexCache.new(@club,@meeting.meeting_type_id)
       get_role_names
     	respond_to do |format|
         format.html   

@@ -1,7 +1,3 @@
-
-
- 
-
  
 <% show_assignments = false %>
 
@@ -18,9 +14,6 @@
     </div>
   <% end %>
 
-
-
-   
 
   <table width='550px'  color='white'>
 
@@ -65,13 +58,8 @@
       <% else %>
         <th>Show/Notes</th>
       <% end %>
-      
-
-      
-
     </tr>
     </thead>
-
     <tbody>
 
 
@@ -79,8 +67,8 @@
             <tr>
               <td><%= meeting.meeting_date_display %></td>
               <td><%= meeting.meeting_time %></td>
-              <td><%= meeting.unfilled_roles_count(params[:club_id], params[:meeting_type_id]) %></td>
-              <td><%=  link_to 'Agenda', club_meeting_agenda_definition_print_path(params[:club_id], meeting, @club.default_agenda_definition_id)  , :target => "_blank" %></td>
+              <td><%= meeting.meeting_info.unfilled_roles_count  %></td>
+              <td><%=  link_to 'Agenda', club_meeting_agenda_definition_print_path(params[:club_id], meeting, AgendaDefinition.where("meeting_type_id = ?",meeting.meeting_type_id).first                )  , :target => "_blank" %></td>
               
     
 

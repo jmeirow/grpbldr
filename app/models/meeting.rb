@@ -1,5 +1,6 @@
 require './lib/custom/time_parser.rb'
 require './lib/custom/date_time_validations.rb'
+require './lib/view_models/meetings/meeting_index_cache.rb'
 require 'pry'
 require 'pry_debug'
 
@@ -51,15 +52,7 @@ class Meeting < ActiveRecord::Base
 ##############################################################################
 
  
-  def self.get_total_open_roles_for_meetings(meeting_ids, club_id)
-    cnt = 0
-    meetings = Meeting.where("club_id = ? and id in (?)", club_id, meeting_ids)
-    meetings.each do |meeting|  
-      cnt = cnt + meeting.unfilled_roles_count
-    end
-    return cnt
-  end
-  
+
 
   def self.needing_assignments(club_id, meeting_type_id)
     Meeting.where("club_id = ? and meeting_type_id = ? and assignments_count < ? and meeting_date > ?", club_id, meeting_type_id, Role.roles(club_id, meeting_type_id).count, Date.today).order("meeting_date")
@@ -76,25 +69,18 @@ class Meeting < ActiveRecord::Base
 #        INSTANCE METHODS 
 ##############################################################################
  
+ 
+
+  def meeting_info
+    @meeting_info ||= MeetingInfo.new(self)
+
+  end
 
 
   def next_meeting
     Meeting.where("club_id = ? and meeting_date > ?", self[:club_id], self[:meeting_date]).order("meeting_date").limit(1).first
   end
-
-    
-  def unfilled_roles_count (club_id, meeting_type_id)
-    Role.roles(club_id, meeting_type_id).length -  self[:assignments_count] 
-  end
-
-  
-  def unfilled_roles(club_id)
-    Role.needed_for_meeting(self[:id])
-  end
-  
-  def has_available_roles?
-    unfilled_roles > 0
-  end
+ 
 
   def padded_minutes
     if self[:minute]  < 10
@@ -104,12 +90,9 @@ class Meeting < ActiveRecord::Base
     end
   end
   
-
-  
   def meeting_date_display
     return meeting_date.strftime("%m/%d/%Y") unless meeting_date.blank? 
   end
-
 
   def meeting_date_display=(val)
     #self[:meeting_date_display], self[:meeting_date]  = val
@@ -117,14 +100,6 @@ class Meeting < ActiveRecord::Base
     @meeting_date = val
     @meeting_date_error_msg = get_error_for_date(val,:meeting_date)
   end
-
-
-
-
-  
-
-
-
 
 private
 

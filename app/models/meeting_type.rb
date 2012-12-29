@@ -17,17 +17,5 @@ class MeetingType < ActiveRecord::Base
 
   validate :meeting_time_parseable
   validates :description, :presence => true
-
-
-
-
-  # def meeting_time
-  #  '%02d' %  hour + ':' + '%02d' %  minute + ' ' +  am_pm  
-  # end
-
-  # def meeting_time=(value)
-  #   @meeting_time = value
-  # end
-
   
 end

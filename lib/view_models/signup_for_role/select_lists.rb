@@ -8,16 +8,23 @@ class SelectList
   end
 end
 
-class SelectLists
 
+
+
+
+
+
+
+
+
+class SelectLists
   attr_accessor :meeting_type_select_list, :member_select_list,   :role_select_list
 
-  def initialize cache, meeting_type
+  def initialize cache 
     @cache = cache 
     @member_select_list = cache.current_members
     @role_select_list = build_role_select_list
-    @meeting_type_select_list = @cache.meeting_types
-
+    @meeting_type_select_list = build_meeting_type_select_list
   end
 
 private
@@ -30,8 +37,16 @@ private
     @cache.role_groups.find {|x| x.id == role_group_id }.description
   end
 
+
+  def build_meeting_type_select_list
+    selects = Array.new 
+    @cache.meeting_types.
+      each {|x| selects << SelectList.new(x.id, x.description ) }
+    selects 
+  end
+
+
   def build_role_select_list
-    
     selects = Array.new 
     
     @cache.roles.

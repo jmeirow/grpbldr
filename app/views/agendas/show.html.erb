@@ -41,19 +41,12 @@
 
 
   <div id='content' style='width:735px'>   
-      
-
-
     <table id='table' cellpadding='5' cellspacing='5'>
-
       <thead>
         <tr><th width='70px'>Time</th><th width='370px'>Role / Agenda Item for  <%= @agenda.meeting_date %></th><th width='130px'>Member</th></tr>
       </thead>
-
       <tbody>
-
         <% @agenda.agenda_line_items.each do |agenda_line_item| %>
-
           <tr>
             <td  valign='top'> <%= agenda_line_item.printed_start_time %> </td>
             <td> <strong><%=agenda_line_item.resolved_line_item_head %> </strong><br/> <%= agenda_line_item.resolved_line_item_text  %> </td>
@@ -63,10 +56,7 @@
         </tbody>       
       </table> 
   </div>
-
     <div   style='width:700px;margin-left:50px'>
-
-
      <% @agenda_bottom = AgendaBottom.where(" agenda_definition_id = ? ",@meeting_agenda_definition.id).first %>
       <% if @agenda_bottom.nil? == false %>
 
@@ -74,9 +64,6 @@
         <%= @agenda.agenda_bottom.body_text.html_safe %>
         <br/><br/>
       <% end %>  
-
-
-
       <table cellspacing=4>
         <tr>
           <td width='33%'> 
@@ -90,27 +77,25 @@
               </ul>
             <% end %>
           </td>
-          
-
           <td width='33%'>
             <% 
             if @meeting_agenda_definition.show_this_meeting_open_roles == true %>
               <h4>Open Roles for Today's Meeting</h4>
               <ul>
                 <% 
-                  Role.needed_for_meeting(@meeting).each do |role| %>
+                  Role.needed_for_meeting(@meeting,@cache).each do |role| %>
                   <li><%=role.description%></li>
                 <% end %>
               </ul>
             <%end%>
-          </td>ß
+          </td>
           
 
           <td width='34%'>
             <% if @meeting_agenda_definition.show_next_meeting_open_roles == true %>
               <h4>Roles Needed for <%=@meeting.meeting_date.strftime("%m/%d/%Y")%></h4>
               <ul>
-               <% Role.needed_for_meeting(@meeting).each do |role| %>
+               <% Role.needed_for_meeting(@meeting,@cache).each do |role| %>
                 <li><%=role.description%></li>
                   <% end %>
                 </ul>
@@ -120,31 +105,3 @@
       </table>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

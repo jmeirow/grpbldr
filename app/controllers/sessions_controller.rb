@@ -35,10 +35,10 @@ class SessionsController < ApplicationController
 
       if @members.length > 1 
         session[:clubs] = user.clubs
-        session[:members] = user.members.length
+        session[:members] = @members.map {|x| x.id }
         render  :action => 'present'
       else
-        session[:members] = @members.length  
+        session[:members] = @members.map {|x| x.id }
         establish_session @members[0] 
         redirect_to club_member_assignments_path(params[:club_id],@members.first), :notice => "Logged in!"
       end
@@ -78,7 +78,7 @@ class SessionsController < ApplicationController
 
       if @members.length > 1 
         session[:clubs] = user.clubs
-        session[:members] = user.members
+        session[:members] = @members.map {|x| x.id }
         flash[:notice] = "You must select a club."
         render :action => 'present'
       end

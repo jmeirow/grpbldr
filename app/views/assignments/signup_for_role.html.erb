@@ -68,13 +68,7 @@
     <div style='float:left'>
        <div id="meeting_type" style='text-align:center;float:left;margin-left:0px;margin-right:10px '>
           Meeting Type:
-          <%= 
-            if params[:role].nil?
-              select_tag(:meeting_type_id, options_from_collection_for_select(@view_model.meeting_type_select_list, :id, :description), { "style" => "width:100px" })
-            else
-              select_tag(:meeting_type_id, options_from_collection_for_select(@view_model.meeting_type_select_list, :id, :description, :selected => params[:meeting_type_id]), { "style" => "width:100px" })
-            end
-          %>
+          <%= select_tag(:meeting_type_id, options_from_collection_for_select(@view_model.meeting_type_select_list, :id, :text, :selected => params[:meeting_type_id] ), { "style" => "width:100px" }) %>
         </div>
 
         <div id="role" style='float:left;text-align:center; margin-left:10px;margin-left:10px'>
@@ -82,10 +76,8 @@
           <%= 
             if params[:role].nil?
                 collection_select(:role, :role_id, @view_model.role_select_list, :id, :text, {:include_blank => 'All roles' }, { "style" => "width:100px" } )
-                #select_tag(:role_id, options_from_collection_for_select(@view_model.role_select_list, :id, :description) ,{:include_blank => 'All roles' , "style" => "width:100px" } )
             else
                 collection_select(:role, :role_id, @view_model.role_select_list, :id, :text, {:selected => params[:role][:role_id] , :include_blank => 'All roles'} , { "style" => "width:100px" } )
-                #select_tag(:role_id, options_from_collection_for_select(@view_model.role_select_list, :id, :description ,{:selected => params[:role][:role_id] }) ,{:include_blank => 'All roles' }, { "style" => "width:100px" } )
             end
           %>
         </div>
@@ -140,7 +132,10 @@
 
           if   (  (params[:filtered_on_free]=="1" &&  aa.prior_committments.length == 0 )  || ( params[:filtered_on_free]=="0"  ))
 
-            holder = Assignment.member_for_meeting_and_role(aa.meeting.id, aa.role.id) %>
+            holder = Assignment.member_for_meeting_and_role(aa.meeting.id, aa.role.id, @cache) 
+
+
+            %>
       
             <tr id='row_<%="#{row_cnt}"%>' >
              

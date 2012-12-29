@@ -10,7 +10,6 @@ class MeetingsController < ApplicationController
   def index
     @meetings = Meeting.where("club_id = ? and meeting_date >= ?", params[:club_id], Date.today).order("meeting_date").page(params[:page]).per(7)
     #@club = current_club
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @meetings }
@@ -44,19 +43,10 @@ class MeetingsController < ApplicationController
   # GET /meetings/new 
   # GET /meetings/new.json
   def new
-    #@club = current_club
-     
-    @meeting = Meeting.new
-    @meeting_type = MeetingType.where("club_id = ? and is_default = TRUE", @club.id).first
-    # @meeting.hour = @meeting_type.hour
-    # @meeting.minute = @meeting_type.minute
-    # @meeting.am_pm = @meeting_type.am_pm
-    #@meeting.meeting_time = '%20d' % @meeting.hour + ':' + '%02d' % @meeting.minute + ' ' + @meeting.am_pm  
-    @meeting.meeting_time = @meeting_type.meeting_time
+    @meeting = Meeting.new  
+    @meeting_type = MeetingType.where("club_id = ? and is_default = true", @club.id).first
     @meeting.meeting_type_id = @meeting_type.id
-    
-    
-
+    @meeting.meeting_time = @meeting_type.meeting_time
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @meeting }
@@ -66,14 +56,11 @@ class MeetingsController < ApplicationController
   # GET /meetings/1/edit
   def edit
     @meeting = Meeting.find(params[:id])
-    #@meeting.meeting_time = '%2d' % @meeting.hour + ':' + '%2d' % @meeting.minute + ' ' + @meeting.am_pm  
-    
-
   end
 
   # POST /meetings
   # POST /meetings.json
-  def create
+  def createsss
     @meeting = Meeting.new(params[:meeting])
     @meeting.club_id = params[:club_id]
     meeting_date = @meeting.meeting_date.strftime("%m/%d/%Y") if @meeting.meeting_date

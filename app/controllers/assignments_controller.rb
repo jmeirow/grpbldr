@@ -1,6 +1,6 @@
 require 'custom/system_services.rb'
 require 'view_models/signup_for_role/select_lists.rb'
-require 'view_models/signup_for_role/cache.rb'
+require 'view_models/signup_for_role/signup_cache.rb'
 
 
 class AssignmentsController < ApplicationController
@@ -12,6 +12,8 @@ class AssignmentsController < ApplicationController
   layout 'admin', :only => [:signup_for_role_multi_club]
 
   def index
+    
+
     @assignments = Assignment.includes(:meeting).where("member_id = ? and meetings.meeting_date >= ?", params[:member_id], Date.today).order("meeting_date").page(params[:page]).per(7)
     @member = Member.find(params[:member_id])
     
@@ -144,39 +146,42 @@ def past_activity
 
 
   def signup_for_role_multi_club
-  
-    
 
     if !params[:filtered_on_free] 
-
        params[:filtered_on_free] = "0"
     end
+    
 
     if params[:club]
-
       params[:club_id] = params[:club][:id]
       member = Member.where("club_id = ? and email = ?", params[:club_id], session[:email]).first
       params[:member_id] = member.id
+      @club = Club.find(params[:club_id].to_i)
+    else
+      @club = current_club
     end
 
+    if !params[:meeting_type_id] 
+       params[:meeting_type_id] = @club.default_meeting_type_id.to_s
+    end
+    
+    
 
-    #@club = Club.find(params[:club_id])
-    @club = Club.where("id in (?)", session[:clubs])
+    @clubs = Club.where("id in (?)", session[:clubs])
+    @cache = SignupCache.new(@club,params[:meeting_type_id].to_i )
 
-    @helper = SignupHelper.new params
+    @helper = SignupHelper.new params, @cache
      
 
     if SignupHelper.user_has_submitted_request? params
       if @helper.save
         @helper.send_signup_email @club
-        #redirect_to club_meetings_path(params[:club_id]) , notice: 'Your requests have been submitted and should appear on the meeting agendas soon.' 
         redirect_to signup_for_role_multi_club_club_member_assignments_path(params[:club_id], params[:member_id]),     notice: 'Your requests have been submitted.'   
-
         return 
       end 
     end
 
-  
+    @view_model = SelectLists.new(@cache ) 
     @prior_committments = Assignment.includes(:meeting).where("member_id in (?) and meetings.meeting_date >= ?", session[:members], Date.today) 
 
     @requested_information = @helper.requested_information 
@@ -195,40 +200,25 @@ def past_activity
 
 
 
-  def member_signing_up_for_meeting_role
-
-
-=begin 
  
-   
-
-
-    
-    
-    
-=end 
-
-    
-    
-    
-    
- 
-
-  
-  end
 
 
   def signup_for_role
 
+  @club = Club.find(params[:club_id])
 
     if !params[:filtered_on_free] 
        params[:filtered_on_free] = "0"
     end
     
-    @club = Club.find(params[:club_id])
+    if !params[:meeting_type_id] 
+       params[:meeting_type_id] = @club.default_meeting_type_id.to_s
+    end
+    
+   
+    @cache = SignupCache.new(@club,params[:meeting_type_id].to_i )
 
-    @helper = SignupHelper.new params
-     
+    @helper = SignupHelper.new params, @cache
  
     if SignupHelper.user_has_submitted_request? params
       if @helper.save
@@ -237,9 +227,8 @@ def past_activity
         return 
       end 
     end
-
   
-    @view_model = SelectLists.new(Cache.new(@club,params[:meeting_type_id].to_i ), params[:meeting_type_id].to_i      ) 
+    @view_model = SelectLists.new(@cache) 
     @prior_committments = Assignment.includes(:meeting).where("member_id = ? and meetings.meeting_type_id = ? and meetings.meeting_date >= ?", params[:member_id].to_i, params[:meeting_type_id].to_i,Date.today) 
 
     @requested_information = @helper.requested_information 
@@ -247,7 +236,6 @@ def past_activity
     @requested_information.each do |item|
       item.prior_committments = @prior_committments.select { |e|  e.meeting.meeting_date == item.meeting.meeting_date  }
     end
-
 
     @arr_name = Kaminari.paginate_array(@requested_information).page(params[:page]).per(10)
 
