@@ -60,7 +60,7 @@ class MeetingsController < ApplicationController
 
   # POST /meetings
   # POST /meetings.json
-  def createsss
+  def create
     @meeting = Meeting.new(params[:meeting])
     @meeting.club_id = params[:club_id]
     meeting_date = @meeting.meeting_date.strftime("%m/%d/%Y") if @meeting.meeting_date

@@ -1,25 +1,42 @@
 <h4>Listing Meeting Notes</h4>
 
-<table>
-  <tr>
-    <th>Member name</th>
-    <th>Body</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @meeting_notes.each do |meeting_note| %>
-  <tr>
-    <td><%= meeting_note.member_name %></td>
-    <td><%= meeting_note.body %></td>
-    <td><%= link_to 'Show', meeting_note %></td>
-    <td><%= link_to 'Edit', edit_meeting_note_path(meeting_note) %></td>
-    <td><%= link_to 'Destroy', meeting_note,  :data => {:confirm => 'Are you sure?' }, method: :delete %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
+<% if @meeting_notes.length > 0 %>
+
+  <table>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td colspan='5' style='align:right'><%= link_to 'New Meeting Note', new_club_meeting_meeting_note_path(@club, @meeting)  %></td>
+    </tr>
+    <tr>
+      <th>Member name</th>
+      <th>Body</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @meeting_notes.each do |meeting_note| %>
+      <tr>
+        <td><%= meeting_note.member_name %></td>
+        <td><%= meeting_note.body %></td>
+        <td><%= (link_to 'Show', club_meeting_meeting_note_path(@club,meeting_note.meeting_id,meeting_note) )  if meeting_note.is_private == false || meeting_note.member_id == @current_member.id  %></td>
+        <td><%= (link_to 'Edit', edit_club_meeting_meeting_note_path(@club,meeting_note.meeting_id,meeting_note))  if  meeting_note.member_id == @current_member.id    %></td>
+        <td><%= (link_to 'Destroy', club_meeting_meeting_note_path(@club,meeting_note.meeting_id,meeting_note),   :data => {:confirm => 'Are you sure?' }, method: :delete )  if  meeting_note.member_id == @current_member.id  %></td>
+      </tr>
+    <% end %>
+    </table>
+  <% else %>
+    No notes to display.&nbsp;&nbsp;<%= link_to 'Create one now.', new_club_meeting_meeting_note_path(@club, @meeting) %>
+  <% end %>
+<br/>
+
+
+
+
 
  

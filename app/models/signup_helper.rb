@@ -14,10 +14,7 @@ class SignupHelper
   include ActiveBuilder
 
   validate :at_least_one_checkbox_must_be_checked
-   
-  #
-  # Instance methods here
-  #
+ 
 
   def initialize(params, cache)
     @params = params
@@ -47,12 +44,8 @@ class SignupHelper
 
         if @params[:selected_member].nil? == false  &&  @params[:selected_member][:member_id] != ""  
             Assignment.create(:role_id => ids[1], :meeting_id => ids[0], :member_id => @params[:selected_member][:member_id] )
-            
-
         else
           Assignment.create(:role_id => ids[1], :meeting_id => ids[0], :member_id => @params[:member_id])
-        
-
         end
       end
     end

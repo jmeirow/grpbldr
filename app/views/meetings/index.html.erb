@@ -47,14 +47,12 @@
 
   <table style='width:550px'>
     <thead>
-    <tr>
-      <th>Meeting Date</th>
-      <th>Meeting Time</th>
-
-      <th>Available Roles</th>
-      <th>View</th>
+    <tr >
+      <th style="vertical-align:bottom" > Meeting Date/Time</th>
+      <th style="vertical-align:bottom" ><%= raw("Unfilled<br/>Roles") %></th>
+      <th style="vertical-align:bottom" >View</th>
       <% if session[:logged_in_admin] %>      
-        <th colspan='3'>Add/Change/Delete Meetings</th>
+        <th  style="vertical-align:bottom" colspan='3'>Add/Change/Delete Meetings</th>
       <% else %>
         <th>Show/Notes</th>
       <% end %>
@@ -65,14 +63,13 @@
 
       <% @meetings.each do |meeting| %>
             <tr>
-              <td><%= meeting.meeting_date_display %></td>
-              <td><%= meeting.meeting_time %></td>
+              <td><%= "#{meeting.meeting_date_display} #{meeting.meeting_time}" %></td>
               <td><%= meeting.meeting_info.unfilled_roles_count  %></td>
               <td><%=  link_to 'Agenda', club_meeting_agenda_definition_print_path(params[:club_id], meeting, AgendaDefinition.where("meeting_type_id = ?",meeting.meeting_type_id).first                )  , :target => "_blank" %></td>
               
     
 
-                    <td><%= link_to 'Show/Notes', club_meeting_path(params[:club_id],meeting) %></td>
+                    <td><%= link_to 'Notes', club_meeting_meeting_notes_path(params[:club_id], meeting) %></td>
               <% if session[:logged_in_admin] %>  
                     <td><%= link_to 'Edit', edit_club_meeting_path(params[:club_id],meeting) %></td>
                     <td><%= link_to 'Delete', club_meeting_path(params[:club_id],meeting), confirm: 'Are you sure?', method: :delete %></td>
@@ -84,9 +81,6 @@
                 <tr>
 
                   <td colspan="5">
-              
-
-                       
 
                       <% @assignments = Assignment.where("meeting_id = ?", meeting.id).order("role_id") %>
 

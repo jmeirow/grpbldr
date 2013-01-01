@@ -21,7 +21,6 @@ class SessionsController < ApplicationController
    
     
       
-
     @user = user
     if user
       session[:user_id] = user.id 
@@ -31,7 +30,9 @@ class SessionsController < ApplicationController
       if @members.length == 0
         redirect_to root_url , :notice => 'You have not yet been added as a member to any club/organization within GroupBuilder. Please contact the administrator of your organization.'
         return
-      end  
+      end 
+
+
 
       if @members.length > 1 
         session[:clubs] = user.clubs

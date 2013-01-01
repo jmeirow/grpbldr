@@ -75,7 +75,7 @@ private
   end
   
   def current_member
-      Member.find(session[:member_id]) if session[:member_id] 
+      @current_member ||= Member.find(session[:member_id]) if session[:member_id] 
   end
 
   def current_club

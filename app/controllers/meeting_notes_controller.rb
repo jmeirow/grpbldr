@@ -8,7 +8,9 @@ class MeetingNotesController < ApplicationController
   # GET /meeting_notes
   # GET /meeting_notes.json
   def index
-    @meeting_notes = MeetingNote.all
+
+    @meeting = Meeting.find(params[:meeting_id])
+    @meeting_notes = MeetingNote.where("meeting_id = ?  and (is_private = false OR member_id = ?) ", params[:meeting_id], current_member.id     )
 
     respond_to do |format|
       format.html # index.html.erb
