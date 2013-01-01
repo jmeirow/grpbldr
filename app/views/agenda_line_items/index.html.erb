@@ -70,23 +70,23 @@
 
   </style>
   <script>
-        $(function() {
-          $("#line_items").sortable( { cursor: 'pointer',   opacity: 0.60,
+    $(function() {
+      $("#line_items").sortable( { cursor: 'pointer',   opacity: 0.60,
 
-          update: function(event, ui) {
+      update: function(event, ui) {
 
-              $.post($(this).data('update-url'), $(this).sortable('serialize'),
-                 location.reload());
-            },
-          start: function(event, ui) {
-              $(ui.item).css('background-color','red')
+          $.post($(this).data('update-url'), $(this).sortable('serialize'),
+             location.reload());
+        },
+      start: function(event, ui) {
+          $(ui.item).css('background-color','red')
 
-            },
-          stop: function(event, ui) {
-              $(ui.item).css('background-color', 'green')
-           }
-          });          
-        }) ;
+        },
+      stop: function(event, ui) {
+          $(ui.item).css('background-color', 'green')
+       }
+      });          
+    }) ;
   </script>
  
  

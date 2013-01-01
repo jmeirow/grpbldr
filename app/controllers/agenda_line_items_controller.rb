@@ -112,10 +112,11 @@ class AgendaLineItemsController < ApplicationController
   # DELETE /agenda_line_items/1.json
   def destroy
     @agenda_line_item = AgendaLineItem.find(params[:id])
+    @agenda_definition = AgendaDefinition.find(@agenda_line_item.agenda_definition_id)
     @agenda_line_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to agenda_line_items_url }
+      format.html { redirect_to club_agenda_definition_agenda_line_items_path(@club,@agenda_definition) }
       format.json { head :no_content }
     end
   end

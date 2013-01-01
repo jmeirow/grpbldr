@@ -130,26 +130,17 @@
       </ul>
     </div>
 
-
-
-
-
-
-
-
-
+  <div style'float:bottom'>
+    <% if /edit/.match(request.fullpath) %>
+     <%= link_to 'Delete this line item', club_agenda_definition_agenda_line_item_path(@club, @agenda_definition), confirm: 'Are you sure?', method: :delete %> 
+    <% end %>
+  </div>
 
 
 
   </div>
  
 <% end %>
-
-
-
-
-
-
 
 
 

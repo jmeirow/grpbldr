@@ -1,3 +1,7 @@
+
+require './lib/custom/cancel_link.rb'
+
+
 class MeetingNotesController < ApplicationController
 
   
@@ -32,7 +36,6 @@ class MeetingNotesController < ApplicationController
   # GET /meeting_notes/new
   # GET /meeting_notes/new.json
   def new
-
 
     @meeting_note = MeetingNote.new
     @meeting = Meeting.find(params[:meeting_id])
