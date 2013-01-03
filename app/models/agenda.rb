@@ -84,12 +84,14 @@ class Agenda
     @agenda_line_items
   end
 
-  def self.all_required_elements_created_for? club
-    default_agenda_def_id = club.default_agenda_definition_id
-    AgendaTop.where( :agenda_definition_id => default_agenda_def_id).count == 1 && AgendaLineItem.where(:agenda_definition_id => default_agenda_def_id).count > 0
+  # def self.all_required_elements_created_for? club
+  #   default_agenda_def_id = club.default_agenda_definition_id
+  #   AgendaTop.where( :agenda_definition_id => default_agenda_def_id).count == 1 && AgendaLineItem.where(:agenda_definition_id => default_agenda_def_id).count > 0
+  # end
+
+  def self.all_required_elements_created_for? agenda_definition
+    AgendaTop.where( :agenda_definition_id => agenda_definition.id).count == 1 && AgendaLineItem.where(:agenda_definition_id => agenda_definition.id).count > 0
   end
-
-
 
 end
 

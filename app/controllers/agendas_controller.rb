@@ -19,9 +19,8 @@ class AgendasController < ApplicationController
   def show 
 
  
-
-    if !Agenda.all_required_elements_created_for? current_club
-      @agenda_definition = AgendaDefinition.find(@club.default_meeting_type_id) 
+    @meeting_agenda_definition = AgendaDefinition.find(params[:agenda_definition_id].to_i)
+    if !@meeting_agenda_definition || (!Agenda.all_required_elements_created_for? @meeting_agenda_definition)
       flash[:notice] = "An agenda has not yet been defined. Create an 'Agenda Top' and one or more 'Agenda Line Items'."
       redirect_to club_agenda_definition_path @club, @agenda_definition
     else
@@ -29,7 +28,7 @@ class AgendasController < ApplicationController
       @agenda = Agenda.new(params[:meeting_id].to_i,params[:agenda_definition_id].to_i)
       @meeting = Meeting.find(params[:meeting_id])
       @club = Club.find(@meeting.club_id)
-      @meeting_agenda_definition = AgendaDefinition.find(params[:agenda_definition_id].to_i)
+      #@meeting_agenda_definition = AgendaDefinition.find(params[:agenda_definition_id].to_i)
       @cache = MeetingIndexCache.new(@club,@meeting.meeting_type_id)
       get_role_names
     	respond_to do |format|

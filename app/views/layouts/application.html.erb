@@ -73,7 +73,9 @@
                   <%  meeting = @club.next_meeting  %>
 
                   <%  if meeting.nil? == false %>
-                    <% if Agenda.all_required_elements_created_for? @club %>
+                    <% 
+                    agenda_definition = AgendaDefinition.find(@club.default_agenda_definition_id)
+                    if Agenda.all_required_elements_created_for? agenda_definition %>
                       <%=  link_to "Next Meeting's Agenda", club_meeting_agenda_definition_print_path(@club, meeting, @club.default_agenda_definition_id)  , :target => "_blank" %> <br/> 
                     <% else %>
                       <%=  link_to "Next Meeting's Agenda", club_meeting_agenda_definition_print_path(@club, meeting, @club.default_agenda_definition_id)   %> <br/> 

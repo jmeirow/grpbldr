@@ -50,7 +50,7 @@
     <tr >
       <th style="vertical-align:bottom" > Meeting Date/Time</th>
       <th style="vertical-align:bottom" ><%= raw("Unfilled<br/>Roles") %></th>
-      <th style="vertical-align:bottom" >View</th>
+      <th style="vertical-align:bottom" >Meeting Type / <br/>Agenda Link</th>
       <% if session[:logged_in_admin] %>      
         <th  style="vertical-align:bottom" colspan='3'>Add/Change/Delete Meetings</th>
       <% else %>
@@ -65,8 +65,16 @@
             <tr>
               <td><%= "#{meeting.meeting_date_display} #{meeting.meeting_time}" %></td>
               <td><%= meeting.meeting_info.unfilled_roles_count  %></td>
-              <td><%=  link_to 'Agenda', club_meeting_agenda_definition_print_path(params[:club_id], meeting, AgendaDefinition.where("meeting_type_id = ?",meeting.meeting_type_id).first                )  , :target => "_blank" %></td>
-              
+              <td>
+
+                <%  agenda_definition = AgendaDefinition.where("meeting_type_id = ? ", meeting.meeting_type_id).first %>
+                <% if agenda_definition && (Agenda.all_required_elements_created_for? agenda_definition ) %>
+                  <%=  link_to agenda_definition.name, club_meeting_agenda_definition_print_path(params[:club_id], meeting, AgendaDefinition.where("meeting_type_id = ?",meeting.meeting_type_id).first                )  , :target => "_blank" %></td>
+              <% else %>
+                <% meeting_type = MeetingType.find(meeting.meeting_type_id) %>
+                <%= meeting_type.description %>
+              <% end %>
+
     
 
                     <td><%= link_to 'Notes', club_meeting_meeting_notes_path(params[:club_id], meeting) %></td>
