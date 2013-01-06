@@ -23,11 +23,11 @@
     <td><%= agenda_top.image_height %></td>
     <td><%= link_to 'Show', club_agenda_definition_agenda_top_path(params[:club_id],params[:agenda_definition_id],agenda_top) %></td>
     <td><%= link_to 'Edit',  edit_club_agenda_definition_agenda_top_path(params[:club_id],params[:agenda_definition_id],agenda_top) %></td>
-    <td><%= link_to 'Destroy', club_agenda_definition_agenda_top_path(params[:club_id],params[:agenda_definition_id],agenda_top),    :data => {:confirm => 'Are you sure?' } , method: :delete %></td>
+    <td><%= link_to 'Delete', club_agenda_definition_agenda_top_path(params[:club_id],params[:agenda_definition_id],agenda_top),    :data => {:confirm => 'Are you sure?' } , method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Agenda top', new_club_agenda_definition_agenda_top_path(params[:club_id],params[:agenda_definition_id]) %>
+<%= link_to 'Create agenda top', new_club_agenda_definition_agenda_top_path(params[:club_id],params[:agenda_definition_id]) %>

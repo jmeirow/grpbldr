@@ -10,7 +10,7 @@
         <div style='float:left'> <%= paginate @roles %>     </div>
         <span style='float:right'>  
         <% if session[:logged_in_admin] %>
-          <%= link_to 'New Role', new_club_role_path(@club) %>
+          <%= link_to 'Create Role', new_club_role_path(@club) %>
         <% end %> 
         </span>
 

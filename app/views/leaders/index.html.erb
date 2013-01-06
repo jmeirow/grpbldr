@@ -16,7 +16,7 @@
     <td style='width:300px'><%= leader.description.slice(0..100) + '...' %></td>
     <td><%= link_to 'Show', club_leader_path(@club,leader) %></td>
     <td><%= link_to 'Edit', edit_club_leader_path(@club,leader) %></td>
-    <td><%= link_to 'Destroy', club_leader_path(@club,leader),  :data => {:confirm => 'Are you sure?' }, method: :delete %></td>
+    <td><%= link_to 'Delete', club_leader_path(@club,leader),  :data => {:confirm => 'Are you sure?' }, method: :delete %></td>
   </tr>
 <% end %>
 </table>

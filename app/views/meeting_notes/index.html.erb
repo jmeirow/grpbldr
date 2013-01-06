@@ -26,7 +26,7 @@
         <td><%= meeting_note.body %></td>
         <td><%= (link_to 'Show', club_meeting_meeting_note_path(@club,meeting_note.meeting_id,meeting_note) )  if meeting_note.is_private == false || meeting_note.member_id == @current_member.id  %></td>
         <td><%= (link_to 'Edit', edit_club_meeting_meeting_note_path(@club,meeting_note.meeting_id,meeting_note))  if  meeting_note.member_id == @current_member.id    %></td>
-        <td><%= (link_to 'Destroy', club_meeting_meeting_note_path(@club,meeting_note.meeting_id,meeting_note),   :data => {:confirm => 'Are you sure?' }, method: :delete )  if  meeting_note.member_id == @current_member.id  %></td>
+        <td><%= (link_to 'Delete', club_meeting_meeting_note_path(@club,meeting_note.meeting_id,meeting_note),   :data => {:confirm => 'Are you sure?' }, method: :delete )  if  meeting_note.member_id == @current_member.id  %></td>
       </tr>
     <% end %>
     </table>

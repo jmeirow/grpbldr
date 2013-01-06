@@ -17,9 +17,9 @@
      
       <div style='float:left;width:300px'>
         <ul >
-          <li style='margin-top:0px;margin-bottom:0px'   ><%= link_to 'New Agenda line item', new_club_agenda_definition_agenda_line_item_path(@club,@agenda_definition) %></li>
+          <li style='margin-top:0px;margin-bottom:0px'   ><%= link_to 'Add line item', new_club_agenda_definition_agenda_line_item_path(@club,@agenda_definition) %></li>
          
-          <li style='margin-top:0px;margin-bottom:0px'  ><%= link_to "Preview Agenda." , club_meeting_agenda_definition_print_path(session[:club_id], current_club.next_meeting, @agenda_definition)  %></li>
+          <li style='margin-top:0px;margin-bottom:0px'  ><%= link_to "Preview." , club_meeting_agenda_definition_print_path(session[:club_id], current_club.next_meeting, @agenda_definition)  %></li>
         </ul>
      
 
@@ -39,7 +39,7 @@
               <div style='font-family:helvetica;'>
 
 
-                  <p style='font-size:7pt;'>Create new line items by click the <strong><em>'New Agenda Line Item'</em></strong> link to the left. Once you've created line items, you can sort their position
+                  <p style='font-size:7pt;'>Create new line items by click the <strong><em>'Add line item'</em></strong> link to the left. Once you've created line items, you can sort their position
                     by dragging and dropping them in the list below.</p>
 
 

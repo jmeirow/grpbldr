@@ -1,5 +1,7 @@
 Rolemaster::Application.routes.draw do
  
+  get "roadmap/index"
+
   get "bizadmins/blank"
 
   #get "password_resets/new"

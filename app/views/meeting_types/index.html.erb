@@ -20,10 +20,7 @@
    <tr>
     <th>Description</th>
     <th>Time</th>
-   
-   
-    <th colspan='2' align='right'><%= link_to 'New Meeting Type', new_club_meeting_type_path %></th>
- 
+    <th colspan='2' align='right'><%= link_to 'Create Meeting Type', new_club_meeting_type_path %></th>
   </tr>
 
 <% @meeting_types.each do |meeting_type| %>
@@ -38,10 +35,10 @@
     <td><%= link_to 'Edit', edit_club_meeting_type_path(@club,meeting_type) %></td>
 
     <%if meeting_type.is_default == true %>
-        <td>Can't delete defaul meeting type.</td>
+        <td>Can't delete default meeting type.</td>
     <% else %>
 
-    <td><%= link_to 'Destroy', club_meeting_type_path(@club,meeting_type), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Delete', club_meeting_type_path(@club,meeting_type), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
 
 
@@ -51,4 +48,13 @@
 
 <br />
 
-<%= link_to 'New Meeting Type', new_club_meeting_type_path %>
+
+
+<% if @new_meeting_type_id %>
+ <div style=' ;background-color:lightgreen;width:650px'>
+  <p> You've just created a new Meeting Type. Click <%= link_to 'here', new_club_agenda_definition_path(:meeting_type_id => @new_meeting_type_id ) %>
+ to define an agenda for this meeting type. You can also do this at a later date if you wish.
+  </p>
+</div>
+
+<% end %>

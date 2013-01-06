@@ -12,7 +12,7 @@
 			<div style='float:left'> <%= paginate @members %>   	</div>
 			<div style='float:right'>	
 				<% if session[:logged_in_admin] %>
-					<%= link_to 'New Member', new_club_member_path(@club) %>
+					<%= link_to 'Add Member', new_club_member_path(@club) %>
 				<% end %>	
 
 			</div>	

@@ -1,7 +1,5 @@
 
 
-
-
 <%= form_for([current_club,@agenda_definition]) do |f| %>
   <% if @agenda_definition.errors.any? %>
     <div id="error_explanation">
@@ -14,22 +12,27 @@
       </ul>
     </div>
   <% end %>
-
-
-
-
   
     <%= f.hidden_field :id %>
   
-
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <label>Meeting Type</label>
+    <% 
+
+
+    if !@meeting_type_id.nil? %>
+      <%= f.select(:meeting_type_id, options_from_collection_for_select(@available_meeting_types, 'id', 'description' , @meeting_type_id )) %>
+    <% else %>
+      <%= f.select(:meeting_type_id, options_from_collection_for_select(@available_meeting_types, 'id', 'description')) %>
+    <% end %>
+ 
   </div>
+
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description, :size => "30x6" %>
   </div>
+
 
 
   <table>

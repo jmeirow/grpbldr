@@ -67,20 +67,23 @@
               </strong>
               <br/>    
               <br/>  
-
                 <div style='padding-top:3px;'>
-                  <%= link_to "Club Info", club_path(session[:club_id]) %><br/> 
+                  <%= link_to "Absences", list_club_absences_path(@club) %>  <br/>   
                 </div>
 
-              
+
                 <div style='padding-top:3px;'>
                   <%= link_to "Agenda Types", club_agenda_definitions_path(session[:club_id]), :layout => 'admins' %><br/> 
                 </div>
 
 
+                <div style='padding-top:3px;'>
+                  <%= link_to "Club Info", club_path(session[:club_id]) %><br/> 
+                </div>
+
 
                 <div style='padding-top:3px;'>
-                  <%= link_to "Assignments", forassignment_club_meetings_path(session[:club_id]) %><br> 
+                  <!-- link_to "Assignments", forassignment_club_meetings_path(session[:club_id]) --> 
                 </div>                
 
 
@@ -103,9 +106,6 @@
                   <%= link_to "Role Groups",club_role_groups_path(session[:club_id])  %><br>   
                 </div>
 
-                <div style='padding-top:3px;'>
-                  <%= link_to "Absences", list_club_absences_path(@club) %>  <br/>   
-                </div>
               
            
 

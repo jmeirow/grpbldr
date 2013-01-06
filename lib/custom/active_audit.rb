@@ -1,5 +1,5 @@
 require 'uuid'
-
+ 
 module ActiveAudit
 
 
@@ -11,7 +11,6 @@ module ActiveAudit
       @changes = ''
       AuditWorker.perform_async(@id,@action,@member_name,@model_name,'',@data_after,@changes)
   end
-
 
 
   def before_destroy(observed)
