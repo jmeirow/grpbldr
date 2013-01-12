@@ -22,7 +22,7 @@ class AgendasController < ApplicationController
     @meeting_agenda_definition = AgendaDefinition.find(params[:agenda_definition_id].to_i)
     if !@meeting_agenda_definition || (!Agenda.all_required_elements_created_for? @meeting_agenda_definition)
       flash[:notice] = "An agenda has not yet been defined. Create an 'Agenda Top' and one or more 'Agenda Line Items'."
-      redirect_to club_agenda_definition_path @club, @agenda_definition
+      redirect_to club_agenda_definition_path @club, @meeting_agenda_definition
     else
 
       @agenda = Agenda.new(params[:meeting_id].to_i,params[:agenda_definition_id].to_i)
