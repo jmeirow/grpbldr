@@ -1,5 +1,5 @@
 
-require 'pry-stack_explorer'
+
 
 
 class ApplicationController < ActionController::Base

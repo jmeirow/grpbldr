@@ -2,8 +2,7 @@ require 'date'
 require "spec_helper"
 require "pp"
 require 'rspec/rspec_helpers.rb'
-require "pry"
-require "pry_debug"
+
  
 include RSpecHelpers
 

@@ -1,7 +1,4 @@
-
-require 'pry'
-require 'pry_debug'
-
+ 
 
 
 class AgendaDefinitionsController < ApplicationController
