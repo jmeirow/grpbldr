@@ -20,7 +20,7 @@ gem 'sidekiq', '~> 2.1.0'
 gem 'sinatra', :require => nil
 gem 'slim'
 gem 'tzinfo'
-gem 'uuid'
+gem "uuid", "~> 2.3.6"
 
 
 
