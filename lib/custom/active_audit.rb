@@ -1,4 +1,3 @@
-require 'uuid'
  
 module ActiveAudit
 
@@ -38,8 +37,8 @@ module ActiveAudit
 private
 
   def preserve_data_from_this_thread(observed)
-    uuid = UUID.new
-    @id = uuid.generate.to_s
+    
+    @id = "1"
     if LoggedInMember.current.nil? == false 
       @member_name = LoggedInMember.current.full_name
     else
