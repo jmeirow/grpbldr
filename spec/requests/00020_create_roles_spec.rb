@@ -11,7 +11,7 @@ describe "When creating roles, "   do
     login 
     click_link "Administration" 
     click_link "Roles" 
-    click_link  "New Role" 
+    click_link  "Create Role" 
 
     # try to save without entering data....
     click_button "Save Role"

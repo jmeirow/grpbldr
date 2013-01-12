@@ -15,7 +15,7 @@ include RSpecHelpers
       
       click_link('Administration')
       click_link('Meeting Types')
-      click_link('New Meeting Type')
+      click_link('Create Meeting Type')
 
       page.should have_content("New Meeting Type")
 

@@ -4,7 +4,7 @@ require 'rspec/rspec_helpers.rb'
  
 
 
-  RSpecHelpers.initialize_session
+RSpecHelpers.initialize_session
 
 
 describe "When registing a new club/organization, the system " do

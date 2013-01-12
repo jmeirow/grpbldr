@@ -45,7 +45,7 @@ module   RSpecHelpers
   def create_role  role_name
     click_link "Administration"  
     click_link "Roles"  
-    click_link "New Role"  
+    click_link "Create Role"  
     fill_in "role_description", :with => role_name
     click_button "Save Role" 
   end
