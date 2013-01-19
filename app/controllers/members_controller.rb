@@ -74,9 +74,6 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       if @member.update_attributes(params[:member])
-        @member.event.transacted_by = current_member.full_name
-        @member.event.club_id = session[:club_id]
-        @member.event.save
         format.html { redirect_to club_member_path(params[:club_id],@member), notice: 'Member was successfully updated.' }
         format.json { head :ok }
       else

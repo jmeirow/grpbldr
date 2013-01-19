@@ -80,22 +80,23 @@
           <td width='33%'>
             <% 
             if @meeting_agenda_definition.show_this_meeting_open_roles == true %>
-              <h4>Open Roles for Today's Meeting</h4>
+              <h4>Today's Open Roles</h4>
               <ul>
                 <% 
-                  Role.needed_for_meeting(@meeting,@cache).each do |role| %>
-                  <li><%=role.description%></li>
+                  Role.where("id in (?)", @meeting.available_roles_as_array).order("description").each do |role| %>
+                  <li><%=role.description %></li>
                 <% end %>
               </ul>
             <%end%>
           </td>
           
 
-          <td width='34%'>
+          <td width='34%' style='align:center'>
             <% if @meeting_agenda_definition.show_next_meeting_open_roles == true %>
-              <h4>Roles Needed for <%=@meeting.meeting_date.strftime("%m/%d/%Y")%></h4>
-              <ul>
-               <% Role.needed_for_meeting(@meeting,@cache).each do |role| %>
+              <h4>Next Meeting: <%=@next_meeting.meeting_date.strftime("%m/%d/%Y")%></h4> 
+              <h4 style='font-size:10pt'><%=MeetingType.find(@next_meeting.meeting_type_id).description %></h4>
+              <ul style='align:left'>
+               <% Role.where("id in (?)", @next_meeting.available_roles_as_array).order("description").each do |role| %>
                 <li><%=role.description%></li>
                   <% end %>
                 </ul>

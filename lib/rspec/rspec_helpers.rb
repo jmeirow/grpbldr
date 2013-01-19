@@ -47,12 +47,15 @@ module   RSpecHelpers
     click_link "Roles"  
     click_link "Create Role"  
     fill_in "role_description", :with => role_name
-    click_button "Save Role" 
+    choose('Regular')
   end
+
   def create_memeber
   end
+
   def create_role_group
   end
+
   def create_role_meeting_type
   end
 

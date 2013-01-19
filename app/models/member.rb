@@ -17,12 +17,7 @@ class Member < ActiveRecord::Base
   after_validation do
      @changes = self.changes.to_s
   end 
-  after_save(:on => :create) do
-    @event = Event.new(  :event => 'created', :model => 'Member', :detail => @changes    )
-  end
-  after_save(:on => :update) do
-    @event = Event.create(  :event => 'updated', :model => 'Member', :detail => @changes    )
-  end
+
 
 
 
@@ -46,9 +41,7 @@ class Member < ActiveRecord::Base
   scope :past,    lambda { |club| where(" club_id = ? and ? not between start_date and end_date", club.id, Date.today)  }
  
 
-  def event
-    @event
-  end
+
 
  
 
@@ -82,6 +75,6 @@ class Member < ActiveRecord::Base
     else
       msg = "MemberMailer.member_added skipped for #{member.email} because they already existed.", member.email
     end
-    Event.create(:log => msg)
+     
   end
 end

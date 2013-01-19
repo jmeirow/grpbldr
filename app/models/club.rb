@@ -21,10 +21,6 @@ class Club < ActiveRecord::Base
 
   after_find :gb_set_attribute_methods_from_attributes
   after_create :default_domain_to_club_number
- 
- 
-
-
 
 
   def self.roles

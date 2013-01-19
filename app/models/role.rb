@@ -1,6 +1,11 @@
 require 'custom/params_to_array.rb'
 require 'custom/state_changes.rb'
 
+if ENV["RAILS_ENV"] == 'development'
+  require 'pry'
+  require 'pry'
+end
+
 
 
 class Role < ActiveRecord::Base
@@ -32,9 +37,12 @@ class Role < ActiveRecord::Base
   end
   
 	def self.needed_for_meeting(meeting,cache)
-    assignments = cache.assignments.select{|x| x.meeting_id == meeting.id  }
-    result = cache.roles.select {|x| !assignments.map{|y| y.role_id }.include? x.id  }
-    result 
+    filled_assignments = Assignment.where("meeting_id = ?", meeting.id )
+    needed = Array.new
+    cache.roles.select do |role| 
+      needed << role unless filled_assignments.map{ |y| y.role_id }.include? role.id  
+    end
+    needed
   end
   
   def self.roles(club_id,meeting_type_id,cache)
@@ -53,14 +61,5 @@ class Role < ActiveRecord::Base
     RoleMeetingType.delete(state_changes.deleted) if state_changes.deleted.length > 0
     state_changes.added.each {|meeting_type_id|  RoleMeetingType.create( :role_id => role_id, :meeting_type_id => meeting_type_id)}
   end
-
-
-
-
-
-
-
-
-      
   
 end

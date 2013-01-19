@@ -27,6 +27,7 @@ class AgendasController < ApplicationController
 
       @agenda = Agenda.new(params[:meeting_id].to_i,params[:agenda_definition_id].to_i)
       @meeting = Meeting.find(params[:meeting_id])
+      @next_meeting = @meeting.next_meeting
       @club = Club.find(@meeting.club_id)
       #@meeting_agenda_definition = AgendaDefinition.find(params[:agenda_definition_id].to_i)
       @cache = MeetingIndexCache.new(@club,@meeting.meeting_type_id)
