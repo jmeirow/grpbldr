@@ -1,6 +1,6 @@
 require './lib/custom/active_audit.rb'
-require 'pry'
-require 'pry_debug'
+# require 'pry'
+# require 'pry_debug'
 
 
 

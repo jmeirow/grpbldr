@@ -2,8 +2,8 @@ require './lib/custom/time_parser.rb'
 require './lib/custom/date_time_validations.rb'
 require './lib/view_models/meetings/meeting_index_cache.rb'
 
-require 'pry'
-require 'pry_debug'
+# require 'pry'
+# require 'pry_debug'
 
 
 
