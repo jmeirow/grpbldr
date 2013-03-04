@@ -1,7 +1,6 @@
 module SystemServices
 
   def email_available?(club)
-    Rails.logger.info("INSIDE OF email_available.................................................")
     global_email_on = false
     config = SysConfiguration.where("config_key = ?", "system.email.global.send").first
     if config.nil?
@@ -10,7 +9,6 @@ module SystemServices
       global_email_on = (config.config_value == 'Y')
     end
     result = club.email_enabled && global_email_on
-    Rails.logger.info("Value returned from email_available..#{result}...............................................")
     result 
   end
 
@@ -19,7 +17,6 @@ module SystemServices
 
 
 
-    Rails.logger.info("INSIDE OF send_email.................................................")
     if email_available?(club) == true
       if worker == "LoginMailerWorker"
         member_id = args[0]

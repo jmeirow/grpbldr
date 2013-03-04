@@ -1,7 +1,7 @@
+require 'pry'
+require 'pry_debug'
  
 module ActiveAudit
-
-
 
   def after_create(observed)
       @data_after= observed.get_state
@@ -46,12 +46,4 @@ private
     end
     @model_name = observed.class.name
   end
-
-
-  
-
-
-
-
-
 end

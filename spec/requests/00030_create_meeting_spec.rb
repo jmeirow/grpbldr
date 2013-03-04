@@ -9,51 +9,72 @@ include RSpecHelpers
 
 describe "GroupBuilder Session" do
  
-  describe "Signing up for a Meeting" do
+  describe "Creating a REGULAR meeting  " do
+
+    it " a user session creating a meeting." ,  :driver => RSpecHelpers.testing_driver  do
+      login
+      
+      
+
+      click_link('Meetings')
+      
+      
+
+      click_link 'New Meeting'
+      click_button "Save Meeting"
+
+      page.should have_content("Meeting date is required")
+       
+
+      meeting_date = (Date.today+7).strftime("%m/%d/%Y")
+
+      fill_in "meeting_meeting_date_display", :with => meeting_date
+      
+      click_button "Save Meeting"
+      
+      page.should have_content("successfully created.")
+      page.should have_content(meeting_date)
+
+
+      click_link "Log out"
+    end
+  end
+
+describe "Creating an OFFICER Meeting" do
 
     it " a user session creating a meeting.",  :driver => RSpecHelpers.testing_driver  do
       login
       page.should have_content("Upcoming Activity for Meirow, Joseph")    
       
-      puts "-----------------   1"
 
       click_link('Meetings')
       page.should have_content("Meetings for SpeakEasy Toastmasters")
       
-      puts "-----------------   2"
 
-       click_link 'New Meeting'
-       click_button "Save Meeting"
+      click_link 'New Meeting'
+      click_button "Save Meeting"
 
       page.should have_content("Meeting date is required")
        
-      puts "-----------------   3"
 
-      meeting_date = (Date.today+7).strftime("%m/%d/%Y")
+      meeting_date = (Date.today+14).strftime("%m/%d/%Y")
 
       fill_in "meeting_meeting_date_display", :with => meeting_date
+      
+      page.select('Officer', :from => 'meeting_meeting_type_id')
+
       click_button "Save Meeting"
       page.should have_content("successfully created.")
-      puts "-----------------   4"
 
 
       click_link('Meetings')
-      
+      page.should have_content(meeting_date)
  
-      found = false
-      puts "-----------------   5"
-     
-      all('tr').each do |row| 
-        if  row.text.index(meeting_date).nil? == false  
-          if row.text.index(meeting_date)
-            found = true
-            break
-          end
-        end
-      end
-      puts "-----------------   6"
-      found.should be_true
+      
     end
   end
+
+
+
  end
 

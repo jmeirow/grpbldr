@@ -1,3 +1,11 @@
+
+if ENV['RAILS_ENV'] != 'production'
+  require 'pry'
+  require 'pry_debug'
+end
+
+
+
 class EnrollmentsController < ApplicationController
   
 
@@ -13,7 +21,6 @@ class EnrollmentsController < ApplicationController
   end
 
   def create
-     
     @enrollment = Enrollment.new(params[:enrollment])
     if @enrollment.valid?
       @enrollment.create_other_models

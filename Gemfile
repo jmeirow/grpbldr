@@ -14,14 +14,16 @@ gem 'mail'
 gem 'mailman', :require => false
 gem 'ori'
 gem 'pg', '0.14.0'
+#gem 'rails', '3.2.11'
 gem 'rails', '3.2.11'
 gem 'railsthemes'
 gem 'sidekiq', '~> 2.1.0'
+# gem 'sidekiq', '~> 2.1.0'
 gem 'sinatra', :require => nil
 gem 'slim'
 gem 'tzinfo'
-
-
+gem 'rabl'
+gem 'oj'
 
 group :development, :test do
   gem 'ffi' 
@@ -44,7 +46,8 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'database_cleaner', '~> 0.7.2'
   gem 'launchy'
-  gem 'turn', '0.8.2', :require => false
+  gem 'turn',  :require => false
+  #gem 'turn', '0.8.2', :require => false
   gem 'factory_girl_rails'
 
   # if RUBY_PLATFORM =~ /linux/ then
@@ -56,7 +59,8 @@ group :development, :test do
 end
 
 group :production do
-  gem 'turn', '0.8.2', :require => false
+  # gem 'turn', '0.8.2', :require => false
+  gem 'turn', :require => false
   gem 'unicorn'
 end
 

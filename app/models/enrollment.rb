@@ -1,4 +1,5 @@
- 
+require 'pry'
+require 'pry_debug' 
 
 class Enrollment    
   include ActiveModel::MassAssignmentSecurity
@@ -34,7 +35,7 @@ class Enrollment
   # end
   
   def create_other_models
-    User.transaction do
+    ActiveRecord::Base.transaction do
       begin
 
         
@@ -58,6 +59,7 @@ class Enrollment
         club.save
         
       rescue ActiveRecord::StatementInvalid => e1
+        GenericLog.create(:information =>  "failed in 'create_other_models' e1 => #{e1} ")
         raise ActiveRecord::Rollback
 
       end

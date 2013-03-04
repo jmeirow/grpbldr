@@ -1,11 +1,13 @@
 require 'spec_helper'
 require 'pp'
 require 'rspec/rspec_helpers.rb'
- 
 
+if ENV['RAILS_ENV'] !='production'
+  require 'pry'
+  require 'pry_debug'
+end
 
 RSpecHelpers.initialize_session
-
 
 describe "When registing a new club/organization, the system " do
 
@@ -18,7 +20,7 @@ describe "When registing a new club/organization, the system " do
     page.should have_content("prohibited this enrollment from")
   end
 
-  it "should give correct error messages when partial data entered."   do
+  it "should give correct error messages when partial data entered."  do
     visit log_in_path
     click_link('Register')
     fill_in "enrollment_first_name", :with => "Joseph"

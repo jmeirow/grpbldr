@@ -6,8 +6,9 @@ Rolemaster::Application.routes.draw do
 
   #get "password_resets/new"
 
-  require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+
+
+
 
  
   get "maintenance/display_message" => "maintenance#display_message" , :as => "display_message"
@@ -23,10 +24,7 @@ Rolemaster::Application.routes.draw do
   get "contest" => "contest_signups#signup" 
   get "remove" => "contest_signups#remove" 
 
-  get "batch/toggle" => "batch#toggle" 
-  get "batch/run" => "batch#run" 
-  get "batch/bootstrap" => "batch#bootstrap" 
-  get "batch/bring_up" => "batch#bring_up" 
+
   
   #get "agenda_definitions/agenda_intro" => "agenda_definitions#agenda_intro", :as => "agenda_intro"
 
@@ -125,7 +123,7 @@ Rolemaster::Application.routes.draw do
       end
     end
 
-    resources :password_resets
+    
 
     resources :meetings do
       get 'forassignment', :on => :collection
@@ -178,4 +176,18 @@ Rolemaster::Application.routes.draw do
   match 'railsthemes/landing' => 'railsthemes#landing'
   match 'railsthemes/inner' => 'railsthemes#inner'
   match 'railsthemes/jquery_ui' => 'railsthemes#jquery_ui'
+
+
+  if ENV["RAILS_ENV"] == "production"
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+    get "batch/toggle" => "batch#toggle" 
+    get "batch/run" => "batch#run" 
+    get "batch/bootstrap" => "batch#bootstrap" 
+    get "batch/bring_up" => "batch#bring_up" 
+
+  end
+
+
+
 end

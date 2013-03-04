@@ -31,6 +31,7 @@ class Meeting < ActiveRecord::Base
 
   after_find :gb_set_attribute_methods_from_attributes
   after_validation :update_time
+  after_create :populate_available_roles_for 
   
 
 ##############################################################################
@@ -96,14 +97,18 @@ class Meeting < ActiveRecord::Base
 
   def add_to_available_roles obj
     if obj.class == Role && obj.club_id == self[:club_id] 
-      roles = self[:available_roles].split(',')
-      roles << obj.id 
-      self[:available_roles] = roles.join(',')
+      if self[:available_roles].nil?
+        self[:available_roles] = obj.id.to_s
+      else
+        roles = self[:available_roles].split(',')
+        roles << obj.id 
+        self[:available_roles] = roles.join(',')
+      end
     end
   end
 
   def remove_from_available_roles obj
-    if obj.class == Role && obj.club_id == self[:club_id] 
+    if obj.class == Role && obj.club_id == self[:club_id] && self[:available_roles].nil? == false
       roles = self[:available_roles].split(',').collect {|x| x.to_i}
       roles.delete(obj.id)
       self[:available_roles] = roles.join(',')
@@ -118,6 +123,8 @@ class Meeting < ActiveRecord::Base
   def available_role_count
     available_roles_as_array.length
   end
+
+
 
   def self.populate_available_roles
     Meeting.where("meeting_date >= ?", Date.today).order("id").each do |meeting|
@@ -145,6 +152,21 @@ class Meeting < ActiveRecord::Base
     Assignment.select {|x| x.meeting_id == meeting.id }.map {|x| x.role_id }
   end 
 
+##############################################################################
+#        Callback handlers
+##############################################################################
+
+  def populate_available_roles_for 
+    meeting = self
+    all_roles_for_meeting = Meeting.get_all_roles_for_meeting meeting 
+    filled_roles_for_meeting = Meeting.get_filled_roles_for_meeting meeting  
+    available_meetings = all_roles_for_meeting - filled_roles_for_meeting 
+    available_meetings.each do |role_id|
+      role = Role.find(role_id)
+      meeting.add_to_available_roles role 
+      meeting.save
+    end
+  end
 
 private
 
@@ -159,9 +181,6 @@ private
   end
 
 
-##############################################################################
-#        Callback handlers
-##############################################################################
 
 
 ##############################################################################

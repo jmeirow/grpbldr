@@ -30,8 +30,6 @@ class UsersController < ApplicationController
   end
 
 
-  # GET /members/1
-  # GET /members/1.json
   def show
 
     layout 'application'
@@ -42,6 +40,12 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+
+
+
+ 
+
+  
 
    # GET /users/1/edit
   def edit

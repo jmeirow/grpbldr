@@ -1,5 +1,7 @@
 require 'custom/system_services.rb'
-  
+require 'pry' 
+require 'pry_debug'
+
 
 
 class SessionsController < ApplicationController 
@@ -13,13 +15,10 @@ class SessionsController < ApplicationController
 
   
   def create
-    session.clear
 
-   
+    reset_session
 
     user = User.authenticate(params[:email], params[:password])
-   
-    
       
     @user = user
     if user
@@ -31,8 +30,6 @@ class SessionsController < ApplicationController
         redirect_to root_url , :notice => 'You have not yet been added as a member to any club/organization within GroupBuilder. Please contact the administrator of your organization.'
         return
       end 
-
-
 
       if @members.length > 1 
         session[:clubs] = user.clubs
@@ -56,7 +53,7 @@ class SessionsController < ApplicationController
   end
    
   def destroy  
-     session  = nil  
+     reset_session
      redirect_to root_url, :notice => "Logged out!"  
   end
 
@@ -72,7 +69,6 @@ class SessionsController < ApplicationController
 
 
   def select
-
     if !params[:member_id] || params[:member_id] == ""
       user = User.find(session[:user_id]) 
       @members =  Member.where( "email = ? and ? between start_date and end_date", user.email, Time.now  )
@@ -84,9 +80,10 @@ class SessionsController < ApplicationController
         render :action => 'present'
       end
     else
-      member = Member.find(params[:member_id])
-      establish_session(member)
-      redirect_to club_member_assignments_path(params[:club_id],member), :notice => "Logged in!"
+      @member = Member.find(params[:member_id])
+      @club = Club.find(@member.club_id)
+      establish_session(@member)
+      redirect_to club_member_assignments_path(@club.id,@member.id), :notice => "Logged in!"
     end
   end
 

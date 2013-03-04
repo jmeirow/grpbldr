@@ -4,7 +4,9 @@ module   RSpecHelpers
   def self.initialize_session
     Thread.current[:email] = "joe.meirow@gmail.com"
     Thread.current[:password] = "monie423!!"
-    Thread.current[:driver] = :webkit
+    #Thread.current[:driver] = :webkit
+    Thread.current[:driver] = :selenium
+
   end
 
   def self.testing_driver
@@ -42,12 +44,15 @@ module   RSpecHelpers
   def create_meeting_type
   end
 
-  def create_role  role_name
+  def create_role  role_name, meeting_type_description
     click_link "Administration"  
     click_link "Roles"  
     click_link "Create Role"  
     fill_in "role_description", :with => role_name
-    choose('Regular')
+    meeting_type = MeetingType.where("description = '#{meeting_type_description}'").first
+    the_tag = "mt_#{meeting_type.id.to_s}"
+    page.check(the_tag)
+    click_button "Save Role"
   end
 
   def create_memeber

@@ -20,10 +20,8 @@ describe "When creating roles, "   do
 
     click_link "Main Menu" 
 
-     
-
     role_1_name  = "Role 1"
-    create_role  role_1_name
+    create_role  role_1_name, 'Regular'
 
     role_1_found = false
     click_link "Roles" 
@@ -35,10 +33,10 @@ describe "When creating roles, "   do
       end
     end    
     role_1_found.should be_true
-    
+
     click_link  "Main Menu" 
     role_2_name = "Role 2"
-    create_role role_2_name
+    create_role role_2_name, 'Officer'
     role_2_found = false
     click_link "Roles" 
 
@@ -52,3 +50,7 @@ describe "When creating roles, "   do
     role_2_found.should be_true
   end
 end
+
+
+
+

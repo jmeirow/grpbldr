@@ -46,6 +46,9 @@
   
      <%= submit_tag 'Save Selection(s)' ,  :id => 'submit_request'  , :style => 'height:30px;vertical-align:text-middle' %>
     </div>
+
+    <input id='change_club' type='hidden'></input>
+
     <div id="free" style='float:left;text-align:center;margin-right:50px;font-size:8pt;margin-left:50px'>
         Show only dates I'm completely free:
         <% 
@@ -258,31 +261,47 @@
 
  
 <script type='text/javascript'>
- $('#club').change(function() 
+ 
+$('#club').change(function() 
   {
+    
     $('#find_role').submit()
   }); 
-  $('#role').change(function() 
+
+
+$('#role').change(function() 
   {
     $('#find_role').submit()
   });  
-  $('#meeting_type').change(function() 
+
+
+$('#meeting_type').change(function() 
   {
     $('#find_role').submit()
   }); 
-  $('#free').change(function() 
+
+
+$('#free').change(function() 
   {
     $('#find_role').submit()
   });
-  $('#assignments').change(function() 
+
+
+
+$('#assignments').change(function() 
   {
     $('#find_role').submit()
   });  
-  $('#mybutton').click(function() 
+
+
+$('#mybutton').click(function() 
   {
     $('#did_user_submit').val('true');
     $('#submit_request').submit()
   });
+
 </script>
 
  
+
+

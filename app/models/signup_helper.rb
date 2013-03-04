@@ -54,7 +54,6 @@ class SignupHelper
   end
 
   def send_signup_email club
-    Rails.logger.info("INSIDE OF send_signup_email.................................................")
     member_id = member_id_of_role_holder
     unless @params[:switch_ids].nil?
       @params[:switch_ids].each do |assignment_id|

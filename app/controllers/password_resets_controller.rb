@@ -1,3 +1,6 @@
+require 'pry'
+require 'pry_debug'
+
 class PasswordResetsController < ApplicationController
   
   layout  'sessions'
