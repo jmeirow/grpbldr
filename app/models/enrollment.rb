@@ -1,5 +1,3 @@
-require 'pry'
-require 'pry_debug' 
 
 class Enrollment    
   include ActiveModel::MassAssignmentSecurity

@@ -1,10 +1,6 @@
 require 'custom/params_to_array.rb'
 require 'custom/state_changes.rb'
 
-if ENV["RAILS_ENV"] == 'development'
-  require 'pry'
-  require 'pry'
-end
 
 
 

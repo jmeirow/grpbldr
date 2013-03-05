@@ -1,8 +1,4 @@
 
-if ENV['RAILS_ENV'] != 'production'
-  require 'pry'
-  require 'pry_debug'
-end
 
 
 

@@ -2,10 +2,6 @@ require 'spec_helper'
 require 'pp'
 require 'rspec/rspec_helpers.rb'
 
-if ENV['RAILS_ENV'] !='production'
-  require 'pry'
-  require 'pry_debug'
-end
 
 RSpecHelpers.initialize_session
 
