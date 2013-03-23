@@ -1,6 +1,6 @@
 module SystemServices
 
-  def email_available?(club)
+  def email_available_for_club?(club)
     global_email_on = false
     config = SysConfiguration.where("config_key = ?", "system.email.global.send").first
     if config.nil?
@@ -17,7 +17,7 @@ module SystemServices
 
 
 
-    if email_available?(club) == true
+    if email_available_for_club?(club) == true
       if worker == "LoginMailerWorker"
         member_id = args[0]
         LoginMailerWorker.perform_async(member_id)

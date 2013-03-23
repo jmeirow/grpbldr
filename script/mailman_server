@@ -27,10 +27,6 @@ require "#{ENV['GB_RAILS_ROOT']}/lib/custom/string_helper.rb"
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/mailing_lists.rb"
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/system_services.rb"
 
-
-
-
-
 #-----------------------------------------------------------------------------------------------------------
 #  This class represents a recipient list for the new email created from the read email
 #-----------------------------------------------------------------------------------------------------------
@@ -139,6 +135,8 @@ include ActionView::Helpers::TagHelper
 count = 1
 
 Mailman.logger.info  "beginning monitoring..."
+
+
 Mailman::Application.run do
   default do
   	begin 
