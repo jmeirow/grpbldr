@@ -5,7 +5,7 @@ module ApplicationHelper
   include SystemServices 
 
   def email_available_for_header?
-    email_available_for_club? (current_club)
+    email_available_for_club? current_club
   end
 
 end
