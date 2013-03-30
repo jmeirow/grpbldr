@@ -14,7 +14,7 @@ gem 'mail'
 gem 'mailman', :require => false
 gem 'ori'
 gem 'pg', '0.14.0'
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.12'
 gem 'railsthemes'
 gem 'sidekiq', '~> 2.1.0'
 gem 'sinatra', :require => nil
