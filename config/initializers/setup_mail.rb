@@ -5,7 +5,5 @@ ActionMailer::Base.smtp_settings = {
   :user_name            =>  ENV['GB_SMTP_USER_NAME'],  
   :password             =>  ENV['GB_SMTP_PASSWORD'],
   :authentication       =>  ENV['GB_SMTP_AUTHENTICATION'], 
-  :openssl_verify_mode  => 'none', 
   :enable_starttls_auto => true  
 } 
- 
