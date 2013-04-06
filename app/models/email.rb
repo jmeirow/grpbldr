@@ -1,3 +1,5 @@
+ 
+
 class Email < ActiveRecord::Base
 
   # modules

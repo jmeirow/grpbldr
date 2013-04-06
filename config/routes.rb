@@ -74,7 +74,7 @@ Rolemaster::Application.routes.draw do
   resources :sessions
   resources :enrollments
 
-  
+  resources :dist_lists
 
   resources :users do
       put "update_password" => "users#update_password"

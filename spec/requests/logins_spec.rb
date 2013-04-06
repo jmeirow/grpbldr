@@ -16,7 +16,7 @@
 
 #     it "should fail to login as joe meirow" do
 #       visit log_in_path
-#       fill_in "email", :with => "joe.meirow@gmail.com"
+#       fill_in "email", :with => "joe.meirow@GRPBldr.com"
 #       fill_in "password", :with => "123456!!"
 #       click_button "Sign In"
 #       page.should have_content("Invalid email")
@@ -30,7 +30,7 @@
 
 #     it "should login as joe meirow" do
 #       visit log_in_path
-#       fill_in "email", :with => "joe.meirow@gmail.com"
+#       fill_in "email", :with => "joe.meirow@GRPBldr.com"
 #       fill_in "password", :with => "123456!!"
 #       click_button "Sign In"
 

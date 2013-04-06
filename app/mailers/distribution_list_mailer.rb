@@ -7,7 +7,7 @@ class DistributionListMailer < ActionMailer::Base
    
   	email = Email.find(id)
   	 
-	  @body = message.text_part.body.raw_source
+	@body = message.text_part.body.raw_source
 
 	
 	content_type = "text/plain"
