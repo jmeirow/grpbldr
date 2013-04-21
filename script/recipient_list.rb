@@ -1,6 +1,6 @@
 require 'date'
-require 'pry'
-require 'pry_debug'
+# require 'pry'
+# require 'pry_debug'
 
 
 class RecipientList 
