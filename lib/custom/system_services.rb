@@ -14,9 +14,6 @@ module SystemServices
 
 
   def send_email(worker, *args, club )
-
-
-
     if email_available_for_club?(club) == true
       if worker == "LoginMailerWorker"
         member_id = args[0]
@@ -47,11 +44,16 @@ module SystemServices
     end     
   end
 
-  def relay_email(id, message)
+  def relay_email id, message
     if email_available? == true
       DistributionListMailer.relay(id,message).deliver
     end
   end
-  
+
+  def send_email_to_sysadmin id
+    if email_available? == true
+      DistributionListMailer.send_to_sysadmin(id).deliver
+    end
+  end
 
 end

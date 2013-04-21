@@ -1,0 +1,60 @@
+
+<script>
+$.ajaxSetup ({  
+    cache: false  
+}); 
+</script>
+
+<h1>Distribution List Maintenance</h1>
+<p id="notice" class="alert-box success"><%= notice %></p>
+
+ 
+<table width='650px'>
+  <tr>
+    <td width='300px'>   
+      <table>
+        <tr>
+          <th>Distribution List</th>
+        </tr>
+        <tr>
+          <td>
+
+          <select id='selected_list_id' name='selected_list_id' size='5' style='width:300px'>
+            <% @dist_lists.each do |dist_list| %>
+              <option value='<%=dist_list.id%>'    <%= 'selected' if dist_list.id == @dist_list.id %>  ><%= dist_list.name %>
+            <%end%>
+          </select> 
+
+          <script>
+              $('#selected_list_id').change(function(event) {
+                var selectPath = '/clubs/' +  '<%=@club.id%>/dist_lists/' + selected_list_id.value + '/select' ;
+                $.ajax(selectPath)
+                });
+          </script>
+
+
+        </td>
+      </tr>
+     </table>  
+    </td>    
+    <td width='300px'>
+      <table   cellpadding='0', cellspacing='0'>
+        <tr>
+          <th>Members</th>
+        </tr>
+        <tr>
+          <td>
+            <div id='member_content'  >
+                 <%= render "select", :select => @members %>
+
+            </div>
+          </td>
+          </tr>
+        </table>
+      </td>
+  </tr>
+</table>
+
+
+
+

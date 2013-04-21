@@ -1,0 +1,6 @@
+<h1>Editing Distribution List:  <%= @dist_list.name %> </h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', [current_club, @dist_list] %> |
+<%= link_to 'Back', club_dist_lists_path( current_club )%>

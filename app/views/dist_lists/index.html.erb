@@ -1,0 +1,23 @@
+<h1>Listing Distribution Lists</h1>
+<p id="notice" class="alert-box success"><%= notice %></p>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <td></td>
+    <td colsplan=3><%= link_to 'New Distribution List', new_club_dist_list_path %></td>
+  </tr>
+
+<% @dist_lists.each do |dist_list| %>
+  <tr>
+    <td><%= dist_list.name %></td>
+    <td><%= dist_list.description %></td>
+    <td><%= link_to 'Edit', edit_club_dist_list_path(@club,dist_list) %></td>
+    <td><%= link_to 'Add/Delete Members',  club_dist_list_display_list_path(@club,dist_list) %></td>
+    <td><%= link_to 'Delete', club_dist_list_path(@club,dist_list), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

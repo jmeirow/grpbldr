@@ -1,6 +1,4 @@
 
-
-
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/string_helper.rb"
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/mailing_lists.rb"
 require "#{ENV['GB_RAILS_ROOT']}/app/models/email.rb"
@@ -12,7 +10,7 @@ require "mailman"
 class MailmanServer
 
   def self.run 
-
+    puts "Mailman Server is loading configuration..."
     ENV[MailUtility.RAILS_ENV] ||= "development"
 
     ENV[MailUtility.GB_EMAIL_POLLING_DOMAIN]  ||= "@gmail.com"
@@ -34,10 +32,11 @@ class MailmanServer
         :password   =>  ENV['GB_RELAY_POP_PASSWORD']
       }
     end
-
+    puts "Mailman Server is running..."
     Mailman::Application.run do
       to('') do
         begin
+          puts "Mailman is polling..."
           MailUtility.new.forward(message, params)
         rescue Exception => e 
           puts e.message 

@@ -1,0 +1,30 @@
+<%= form_for([current_club,@dist_list]) do |f| %>
+  <% if @dist_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dist_list.errors.count, "error") %> prohibited this dist_list from being saved:</h2>
+
+      <ul>
+      <% @dist_list.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description , :size => 200, :rows => 5%>
+  </div>
+  <div class="field">
+    (Members are automatically deleted from Distribution Lists when their membership ends.)
+    <%= f.label :auto_delete, "Auto Delete" %> <br />
+   <%= f.select(:auto_delete, options_for_select( [ 'Y','N'  ] , @dist_list.auto_delete )  )  %> 
+  </div>
+  <div class="actions">
+    <%= f.submit "Save" %>
+  </div>
+<% end %>

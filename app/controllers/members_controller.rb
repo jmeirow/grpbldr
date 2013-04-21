@@ -10,9 +10,18 @@ class MembersController < ApplicationController
 
   def index
   
-    #@club = current_club
 
-    @members = Member.current(@club).order("last_name, first_name").page(params[:page]).per(7)
+
+    params[:members_to_list] = 'current' if params[:members_to_list].nil?
+
+
+    @club = current_club
+    if params[:members_to_list]  && params[:members_to_list] == 'all'
+        @members = Member.where("club_id = ?",@club.id).order("last_name, first_name").page(params[:page]).per(7)
+    else
+        @members = Member.current(@club).order("last_name, first_name").page(params[:page]).per(7)
+    end
+
 
     respond_to do |format|
       format.html # index.html.erb

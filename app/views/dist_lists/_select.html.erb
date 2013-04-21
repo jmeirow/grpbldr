@@ -1,0 +1,21 @@
+<div id='member_content' style='padding-left:15px;padding-right:15px;
+                  padding-top:2px;padding-bottom:2px;
+                  float:left;
+                  width=300px;
+                  font-size:8pt;
+                  background-color:lightgray; 
+                  ;border-style:solid;border-color:gray;border-width:2px;'>
+
+          <% @club_mbrs.each do  |member| %>
+
+             <%= check_box_tag("cbt_#{member.id}", value = nil, checked = (@list_members.include?(member.id))   ) %><%=member.full_name%><br/>
+              <script>
+                  $('#<%="cbt_#{member.id}"%>').change(function(event) {
+                    var togglePath = '/clubs/' +  '<%=@club.id%>/dist_lists/' + '<%=@dist_list.id%>' + '/toggle/<%=member.id%>';
+                    $.ajax(togglePath);
+                  });
+              </script>
+            <% end %>
+
+
+</div>

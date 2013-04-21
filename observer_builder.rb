@@ -35,7 +35,7 @@ end
 
 def not_observer_class? file
   info __method__ , file
-  !file.end_with? "Observer.rb" 
+  !file.end_with? "_observer.rb" 
 end
 
 def info  method, text  

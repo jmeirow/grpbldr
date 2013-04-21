@@ -8,6 +8,7 @@ class RecipientList
   def initialize
 
     @polling_domain = ENV[MailUtility.GB_EMAIL_POLLING_DOMAIN]
+    puts "GB_EMAIL_POLLING_DOMAIN = #{@polling_domain}"
   end
 
 
@@ -20,7 +21,6 @@ class RecipientList
 
 
   def addresses
-
     @addresses.join(', ')
   end
 
@@ -33,25 +33,24 @@ class RecipientList
 
   def known_handle? full_name 
     handle, list = full_name.split('.')
-    %w(speakeasy northern).include? handle.downcase
+    Club.where("domain is not null").collect{|x| x.domain.downcase}.include? handle.downcase
   end
 
 
   def list_valid_for_handle? full_name
-    handle, list = full_name.split('.').collect{|x| x.downcase }
-    return true if %w(members leaders).include? handle 
+    handle, list = full_name.split('.').collect{|x| x.downcase}
+    return true if %w(members).include? list.downcase 
     
-    db = Hash.new
-    db[:speakeasy] = %w(members )
-    db[:northern] = %w(members )
-    db[handle.to_sym].include? list.downcase
+
+    club = Club.where("domain = ?", handle).first
+    DistList.where("club_id = ?",club.id ).collect{|x| x.name.downcase }.include? list.downcase
   end
 
 
   def get_individual_addrs_for good_names
     addrs = Array.new
     good_names.each do |name|
-      handle, list = name.split('.')
+      handle, list = name.split('.').collect{|x| x.downcase}
       addrs += addrs_for handle, list
     end 
     addrs
@@ -60,13 +59,31 @@ class RecipientList
 
   def addrs_for handle, list
     club = Club.where("domain = ?", handle).first
-    addrs = Array.new
-
-    Member.where("club_id = ? and ? between start_date and end_date", club.id, Date.today ).each do |mem|
-      puts "adding email address #{mem.email} to recipient list."
-      addrs << mem.email
+    if club 
+      addrs = Array.new
+      if list == 'members'
+        Member.where("club_id = ? and ? between start_date and end_date", club.id, Date.today ).each do |mem|
+          addrs << mem.email
+        end
+        return addrs
+      else
+        dist_list = DistList.where("lower(name) = ? and club_id = ?", list, club.id).first
+        if dist_list 
+          ids = Array.new
+          DistListMember.where("dist_list_id = ? ", dist_list.id).each{ |x|  ids << x.member_id }
+          Member.find_all_by_id(ids).each  do |x| 
+            addrs << x.email if (Time.now > x.start_date && Time.now < x.end_date) 
+          end
+          addrs
+        else
+          puts "invaid dist_list name: #{list}"    # log bad list name
+          []  # return empty list for bad list name
+        end
+      end
+    else
+       puts "invalid club: #{handle}"  # log club not found here....
+      [] # return empty list for bad club name
     end
-    addrs 
   end
 
 end

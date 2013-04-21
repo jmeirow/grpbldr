@@ -1,9 +1,4 @@
 
-
-
-
-
-
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/string_helper.rb"
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/mailing_lists.rb"
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/system_services.rb"
@@ -14,6 +9,8 @@ require "#{ENV['GB_RAILS_ROOT']}/script/mail_utility.rb"
 class MailmanServer
 
   def self.run 
+    
+    puts "Mailman Server is loading configuration..."
 
     ENV[MailUtility.RAILS_ENV] ||= "development"
     #require File.dirname(__FILE__) + "/../config/environment"
@@ -38,9 +35,11 @@ class MailmanServer
       }
     end
 
+
     Mailman::Application.run do
       to('') do
         begin
+          puts "Processing incoming message..."
           MailUtility.new.forward(message, params)
         rescue Exception => e 
           puts e.message 

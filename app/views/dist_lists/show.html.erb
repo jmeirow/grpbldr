@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @dist_list.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @dist_list.description %>
+</p>
+
+<p>
+  <b>Auto delete:</b>
+  <%= @dist_list.auto_delete %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_club_dist_list_path(@club,@dist_list) %> |
+<%= link_to 'Back', club_dist_lists_path(current_club )%>

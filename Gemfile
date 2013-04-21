@@ -26,9 +26,14 @@ gem 'oj'
 
 group :development do
   gem 'brakeman', :require => false
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+
 end
 
 group :development, :test do
+  gem 'zeus'
   gem 'ffi' 
   gem 'guard-rspec'
   gem 'letter_opener'  
@@ -73,6 +78,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.5'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.0.3'
+  gem 'zurb-foundation', '~> 4.1.2'
 end
 
 

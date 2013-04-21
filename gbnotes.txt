@@ -1,0 +1,12 @@
+
+
+
+Distribution List testing:
+
+01. Check for unique dist_list_name within club, case insensitive  DONE
+02. Bad club DONE
+03. Bad dist list for good club DONE
+04. Empty dist list DONE
+05. Test different text-case for domain(handle) and list
+06. Test one attachment
+07. Test > 1 attachment
