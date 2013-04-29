@@ -1,28 +1,29 @@
 source 'http://rubygems.org'
 
-gem 'actionmailer'  
-gem 'bcrypt-ruby', :require => "bcrypt"
-gem 'capistrano'
-gem 'chronic'
-gem 'eventmachine'
-gem 'execjs'
-gem 'flt'
-gem 'hirb'
-gem 'jquery-rails'
-gem 'kaminari'
-gem 'mail'
-gem 'mailman', :require => false
-gem 'ori'
-gem 'pg', '0.14.0'
-gem 'rails', '3.2.12'
-gem 'railsthemes'
-gem 'sidekiq', '~> 2.1.0'
-gem 'sinatra', :require => nil
-gem 'slim'
-gem 'tzinfo'
-gem 'rabl'
-gem 'oj'
-
+  gem 'actionmailer'  
+  gem 'bcrypt-ruby', :require => "bcrypt"
+  gem 'capistrano'
+  gem 'chronic'
+  gem 'eventmachine'
+  gem 'execjs'
+  gem 'flt'
+  gem 'hirb'
+  gem 'jquery-rails'
+  gem 'kaminari'
+  gem 'mail'
+  gem 'maildir'
+  gem 'mailman', :require => false
+  gem 'ori'
+  gem 'pg', '0.15.1'
+  gem 'rails', '3.2.12'
+  gem 'railsthemes'
+  gem 'sidekiq', '~> 2.1.0'
+  gem 'sinatra', :require => nil
+  gem 'slim'
+  gem 'tzinfo'
+  gem 'rabl'
+  gem 'oj'
+  gem 'daemons'
 
 group :development do
   gem 'brakeman', :require => false
@@ -33,7 +34,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'zeus'
+  #gem 'zeus'
   gem 'ffi' 
   gem 'guard-rspec'
   gem 'letter_opener'  

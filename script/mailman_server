@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+require "mailman"
+
+require "#{ENV['GB_RAILS_ROOT']}/config/environment"
+require "#{ENV['GB_RAILS_ROOT']}/lib/custom/string_helper.rb"
+require "#{ENV['GB_RAILS_ROOT']}/lib/custom/mailing_lists.rb"
+require "#{ENV['GB_RAILS_ROOT']}/app/models/email.rb"
+require "#{ENV['GB_RAILS_ROOT']}/script/recipient_list.rb"
+require "#{ENV['GB_RAILS_ROOT']}/script/mail_utility.rb"
+
+
+
+   
+puts "Mailman Server is loading configuration..."
+ENV['RAILS_ENV'] ||= "development"
+ENV['GB_EMAIL_POLLING_DOMAIN']  ||= "@gmail.com"
+
+
+Mailman.config.ignore_stdin = true
+
+if ENV[MailUtility.RAILS_ENV] == 'test'
+  Mailman.config.maildir = File.expand_path("../../tmp/test_maildir", __FILE__)
+else
+  Mailman.config.logger = Logger.new "#{ENV['GB_RAILS_ROOT']}/log/mailman_#{ENV[MailUtility.RAILS_ENV]}.log"
+  Mailman.config.poll_interval = 2
+  Mailman.config.pop3 = {
+    :server     =>  ENV['GB_RELAY_POP_SERVER'], 
+    :port       =>  995, 
+    :ssl        =>  true,
+    :username   =>  ENV['GB_RELAY_POP_USERNAME'],
+    :password   =>  ENV['GB_RELAY_POP_PASSWORD']
+  }
+  
+end
+Mailman.config.logger.debug "Mailman Server is running..."
+
+Mailman::Application.run do
+  to('') do
+    begin
+      Mailman.config.logger.debug "#{`vm_stat | grep -i free`}"
+      MailUtility.new.forward(message, params)
+    rescue Exception => e 
+      puts e.message 
+      puts e.backtrace
+    end
+  end
+end
+   
+
+ 

@@ -45,6 +45,24 @@ module SystemServices
   end
 
   def relay_email id, message
+    
+    Mailman.config.logger.debug   "inside of relay_email"
+
+    # if !ActiveRecord::Base.connection_config
+    #   ActiveRecord::Base.establish_connection(
+    #     adapter: "postgresql",
+    #     database: "grpbldr_development" ,
+    #     pool: 15,
+    #     encoding: "unicode" ,
+    #     username: "postgres",
+    #     password:  "monie423",
+    #     host: "localhost"
+    #   )
+    # end
+
+
+
+
     if email_available? == true
       DistributionListMailer.relay(id,message).deliver
     end
