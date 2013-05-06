@@ -12,5 +12,7 @@ options = {
     :log_output => true,
   }
 
-Daemons.run('script/mailman_server', options)
+Daemons.run_proc('script/mailman_server', options) do
+  
+end
 
