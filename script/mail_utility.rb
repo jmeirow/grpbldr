@@ -49,6 +49,9 @@ class MailUtility
         else 
           puts "#{e.backtrace}"
         end
+      ensure 
+        puts e.message
+        puts e.backtrace
       end
     else
       email = copy message 
