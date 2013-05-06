@@ -16,6 +16,9 @@ class MailUtility
 
   def initialize
     Mailman.config.logger = Logger.new "#{ENV['GB_RAILS_ROOT']}/log/mailman_#{ENV[MailUtility.RAILS_ENV]}.log"
+
+
+      
   end
 
   include EmailConfig
@@ -67,6 +70,10 @@ class MailUtility
 
   def copy message 
 
+    if ActiveRecord.retrieve_connection
+      ActiveRecord.remove_connection
+    end
+    
     ActiveRecord::Base.establish_connection(
       adapter: "postgresql",
       database: "grpbldr_#{ENV['RAILS_ENV']}" ,
@@ -75,8 +82,6 @@ class MailUtility
       password:  "#{ENV['GB_APP_DB_PASSWORD']}",
       host: "localhost"
     )
-      
-
 
     begin
       email = Email.new 
