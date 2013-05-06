@@ -70,8 +70,8 @@ class MailUtility
 
   def copy message 
 
-    if ActiveRecord.retrieve_connection
-      ActiveRecord.remove_connection
+    if ActiveRecord::Base.retrieve_connection
+      ActiveRecord::Base.remove_connection
     end
     
     ActiveRecord::Base.establish_connection(
