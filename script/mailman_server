@@ -3,7 +3,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require "mailman"
-require 'YAML'
+require 'yaml'
 require 'pp'
 # require 'pry'
 # require 'pry_debug'
