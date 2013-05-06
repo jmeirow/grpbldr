@@ -1,0 +1,18 @@
+development:
+  server:         pop.secureserver.net
+  port:           995
+  ssl:            true
+  username:       info2@grpbldr.com
+  password:       monie423
+test:
+  server:         pop.secureserver.net
+  port:           995
+  ssl:            true
+  username:       info2@grpbldr.com
+  password:       monie423
+production:
+  server:         pop.secureserver.net
+  port:           995
+  ssl:            true
+  username:       info2@grpbldr.com
+  password:       monie423

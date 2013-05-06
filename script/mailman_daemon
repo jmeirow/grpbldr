@@ -13,10 +13,9 @@ require 'daemons'
 require 'action_view'
 require "#{ENV['GB_RAILS_ROOT']}/config/environment"
 
-puts "Mailman Server servicing request to #{ARGV[0]}"
 
 options = {
-    :log_output => true
+    :log_output => true,
   }
 
 Daemons.run('script/mailman_server', options)

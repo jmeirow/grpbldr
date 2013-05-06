@@ -3071,3 +3071,133 @@ log writing failed. closed stream
 Message with subject = '0508' was saved.
 log writing failed. closed stream
 Total count of emails sent:  100
+/Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/pop.rb:545:in `initialize': execution expired (Timeout::Error)
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/pop.rb:545:in `open'
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/pop.rb:545:in `block in do_start'
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/pop.rb:545:in `do_start'
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/pop.rb:538:in `start'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/receiver/pop3.rb:29:in `connect'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:117:in `block in polling_loop'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:115:in `loop'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:115:in `polling_loop'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:75:in `run'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:7:in `run'
+	from /Users/joe/development/products/grpbldr/env/dev/grpbldr/script/mailman_server:38:in `<top (required)>'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:245:in `load'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:245:in `block in load'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:236:in `load_dependency'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:245:in `load'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/application.rb:203:in `start_load'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/application.rb:298:in `start'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/controller.rb:70:in `run'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons.rb:147:in `block in run'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/cmdline.rb:109:in `call'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/cmdline.rb:109:in `catch_exceptions'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons.rb:146:in `run'
+	from script/mailman_daemon:22:in `<main>'
+mailman_server: process with pid 8830 started.
+Mailman Server is loading configuration...
+mailman_server: process with pid 11719 started.
+/Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/YAML.rb:48: warning: already initialized constant ENGINE
+/Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/YAML.rb:69: warning: already initialized constant ENGINE
+/Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/YAML.rb:73: warning: already initialized constant ENGINE
+Mailman Server is loading configuration...
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+  Rendered distribution_list_mailer/relay.text.erb (6.1ms)
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+Message with subject = '0802' was saved.
+log writing failed. closed stream
+Total count of emails sent:  105
+/Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/protocol.rb:146:in `rescue in rbuf_fill': Timeout::Error (Timeout::Error)
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/protocol.rb:140:in `rbuf_fill'
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/protocol.rb:122:in `readuntil'
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/protocol.rb:132:in `readline'
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/pop.rb:996:in `recv_response'
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/pop.rb:992:in `get_response'
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/pop.rb:980:in `block in quit'
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/pop.rb:1012:in `critical'
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/pop.rb:980:in `quit'
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/pop.rb:599:in `do_finish'
+	from /Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/pop.rb:587:in `finish'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/receiver/pop3.rb:34:in `disconnect'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:119:in `block in polling_loop'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:115:in `loop'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:115:in `polling_loop'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:75:in `run'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:7:in `run'
+	from /Users/joe/development/products/grpbldr/env/dev/grpbldr/script/mailman_server:48:in `<top (required)>'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:245:in `load'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:245:in `block in load'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:236:in `load_dependency'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:245:in `load'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/application.rb:203:in `start_load'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/application.rb:298:in `start'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/controller.rb:70:in `run'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons.rb:147:in `block in run'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/cmdline.rb:109:in `call'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/cmdline.rb:109:in `catch_exceptions'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons.rb:146:in `run'
+	from script/mailman_daemon:22:in `<main>'
+mailman_server: process with pid 4328 started.
+/Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/YAML.rb:48: warning: already initialized constant ENGINE
+/Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/YAML.rb:69: warning: already initialized constant ENGINE
+/Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/YAML.rb:73: warning: already initialized constant ENGINE
+Mailman Server is loading configuration...
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+  Rendered distribution_list_mailer/relay.text.erb (6.4ms)
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+log writing failed. closed stream
+Message with subject = '0901' was saved.
+log writing failed. closed stream
+Total count of emails sent:  43
+/Users/joe/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/net/pop.rb:529:in `start': POP session already started (IOError)
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/receiver/pop3.rb:29:in `connect'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:117:in `block in polling_loop'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:115:in `loop'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:115:in `polling_loop'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:75:in `run'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/mailman-0.6.0/lib/mailman/application.rb:7:in `run'
+	from /Users/joe/development/products/grpbldr/env/dev/grpbldr/script/mailman_server:48:in `<top (required)>'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:245:in `load'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:245:in `block in load'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:236:in `load_dependency'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:245:in `load'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/application.rb:203:in `start_load'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/application.rb:298:in `start'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/controller.rb:70:in `run'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons.rb:147:in `block in run'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/cmdline.rb:109:in `call'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons/cmdline.rb:109:in `catch_exceptions'
+	from /Users/joe/.rvm/gems/ruby-1.9.3-p392/gems/daemons-1.1.9/lib/daemons.rb:146:in `run'
+	from script/mailman_daemon:22:in `<main>'
