@@ -1,6 +1,6 @@
 require 'pp'
-require 'pry'
-require 'pry_debug'
+# require 'pry'
+# require 'pry_debug'
 
 
 class DistributionListMailer < ActionMailer::Base

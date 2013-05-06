@@ -5,8 +5,8 @@ require 'bundler/setup'
 require "mailman"
 require 'YAML'
 require 'pp'
-require 'pry'
-require 'pry_debug'
+# require 'pry'
+# require 'pry_debug'
 
 require "#{ENV['GB_RAILS_ROOT']}/config/environment"
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/string_helper.rb"
