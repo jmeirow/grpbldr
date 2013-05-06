@@ -2,7 +2,6 @@
 
 
 
-ENV['GB_RAILS_ROOT']='/Users/joe/development/products/grpbldr/env/dev/grpbldr'
  
 
  
@@ -10,7 +9,7 @@ ENV['GB_RAILS_ROOT']='/Users/joe/development/products/grpbldr/env/dev/grpbldr'
 require 'rubygems'
 require "bundler/setup"
 require 'daemons'
-require 'action_view'
+#require 'action_view'
 require "#{ENV['GB_RAILS_ROOT']}/config/environment"
 
 
