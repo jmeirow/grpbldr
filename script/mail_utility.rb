@@ -66,10 +66,10 @@ class MailUtility
 
     ActiveRecord::Base.establish_connection(
       adapter: "postgresql",
-      database: "grpbldr_development" ,
+      database: "grpbldr_#{RAILS_ENV}" ,
       encoding: "unicode" ,
       username: "postgres",
-      password:  "monie423",
+      password:  "#{ENV['GB_APP_DB_PASSWORD']}",
       host: "localhost"
     )
       
