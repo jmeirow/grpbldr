@@ -28,9 +28,6 @@ yaml_file =  "#{ENV["GB_RAILS_ROOT"]}/config/pop.yml"
 config = YAML::load(File.open(yaml_file))
 
 Mailman.config.ignore_stdin = true
-Mailman.config.logger = Logger.new File.expand_path("../../log/mailman_#{Rails.env}.log", __FILE__)
-
-Mailman.config.ignore_stdin = true
 
 if ENV[MailUtility.RAILS_ENV] == 'test'
   Mailman.config.maildir = File.expand_path("../../tmp/test_maildir", __FILE__)

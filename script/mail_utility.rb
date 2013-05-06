@@ -16,9 +16,7 @@ class MailUtility
 
   def initialize
     Mailman.config.logger = Logger.new "#{ENV['GB_RAILS_ROOT']}/log/mailman_#{ENV[MailUtility.RAILS_ENV]}.log"
-
-
-      
+    Mailman.config.ignore_stdin = true
   end
 
   include EmailConfig
