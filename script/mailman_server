@@ -37,16 +37,21 @@ if ENV[MailUtility.RAILS_ENV] == 'test'
 else
   Mailman.config.logger = Logger.new File.expand_path("../../log/mailman_#{Rails.env}.log", __FILE__)
   Mailman.config.poll_interval = 15
-  Mailman.config.pop3 = {
-
-    :server           => config["development"]["server"], 
-    :port             => 995, 
-    :ssl              => true,
-    :username         => config["development"]["username"], 
-    :password         => config["development"]["password"]
   
-  }
+  if !Mailman.config.pop3
 
+    yaml_file =  "#{ENV["GB_RAILS_ROOT"]}/config/pop.yml"
+    config = YAML::load(File.open(yaml_file))
+    Mailman.config.pop3 = {
+
+      :server           => config["development"]["server"], 
+      :port             => 995, 
+      :ssl              => true,
+      :username         => config["development"]["username"], 
+      :password         => config["development"]["password"]
+    
+    }
+  end
   
 end
 
