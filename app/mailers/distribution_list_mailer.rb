@@ -26,12 +26,6 @@ class DistributionListMailer < ActionMailer::Base
   	@body = message.text_part.body
     content_type = "text/plain"
 
-    # message.attachments.each do | attachment |
-    #   File.open(attachment.filename,"w") do |f|
-    #     f.write(attachment.read)
-    #   end
-    #   attachments[attachment.filename] = File.read(attachment.filename)
-    # end
 
     mail( :from => email.from, 
           :to => email.to, 

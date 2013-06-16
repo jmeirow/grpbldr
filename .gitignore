@@ -15,7 +15,11 @@
 #.vagrant*
 #Vagrantfile
 build.sh
-
+.env
+*.output
+Vagrant*
+.vagrant/*
+.v*
 
 /app/models/doc/*
 

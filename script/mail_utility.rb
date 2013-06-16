@@ -9,13 +9,10 @@ require "#{ENV['GB_RAILS_ROOT']}/script/recipient_list.rb"
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/system_services.rb"
 require "#{ENV['GB_RAILS_ROOT']}/app/models/sys_configuration.rb"
 
-
- 
-
 class MailUtility
 
   def initialize
-    Mailman.config.logger = Logger.new "#{ENV['GB_RAILS_ROOT']}/log/mailman_#{ENV[MailUtility.RAILS_ENV]}.log"
+
     Mailman.config.ignore_stdin = true
   end
 
@@ -24,51 +21,40 @@ class MailUtility
   include SystemServices
 
   def self.GB_EMAIL_POLLING_DOMAIN
+
     "GB_EMAIL_POLLING_DOMAIN"
   end
+
   def self.RAILS_ENV
+
     "RAILS_ENV"
   end
+  
   def self.GB_RELAY_POP_SERVER
+
     "GB_RELAY_POP_SERVER"
   end
 
   def forward message, params
 
     if message.to.length > 0
-      begin 
-        email = copy (message) 
-        email.save
-        relay_email(email.id, message) 
-        email.delivered_ts = Time.now
-        email.save 
-      rescue Exception => e 
-        if email.id 
-          email.comments = "   :::    " + e.message 
-          email.save
-          notify_sysadmin_email_failure   email
-        else 
-          puts "#{e.backtrace}"
-        end
-      ensure 
-        puts e.message
-        puts e.backtrace
-      end
+      email = copy (message) 
+      email.save
+      relay_email(email.id, message) 
+      email.delivered_ts = Time.now
+      email.save 
     else
       email = copy message 
       email.comments =  "Email not sent - empty recipient_list"
       email.save
     end
-    puts "Message with subject = '#{email.subject}' was saved."
-    puts "Total count of emails sent:  #{Email.count}"
-  
-
   end
   
 
   def copy message 
 
     if ActiveRecord::Base.retrieve_connection
+      
       ActiveRecord::Base.remove_connection
     end
     
@@ -77,23 +63,19 @@ class MailUtility
       database: "grpbldr_#{ENV['RAILS_ENV']}" ,
       encoding: "unicode" ,
       username: "postgres",
-      password:  "#{ENV['GB_APP_DB_PASSWORD']}",
+      password:  ENV['GB_APP_DB_PASSWORD'],
       host: "localhost"
     )
 
-    begin
-      email = Email.new 
-      email.from  = message.from
-      email.to =   RecipientList.new(message.to).addresses
-      email.cc =   RecipientList.new(message.cc).addresses if email.cc
-      email.bcc =  RecipientList.new(message.bcc).addresses if email.bcc
-      email.subject =  message.subject
-      email.from = message.from.first
-      email.body = message.text_part.body.raw_source
-      email
-    rescue Exception => e
-      puts "#{e.message}"
-    end
+    email = Email.new 
+    email.from  = message.from
+    email.to =   RecipientList.new(message.to).addresses
+    email.cc =   RecipientList.new(message.cc).addresses if email.cc
+    email.bcc =  RecipientList.new(message.bcc).addresses if email.bcc
+    email.subject =  message.subject
+    email.from = message.from.first
+    email.body = message.text_part.body.raw_source
+    email
   end
 
  
@@ -120,4 +102,7 @@ class MailUtility
 
 
 end
+
+
+
 

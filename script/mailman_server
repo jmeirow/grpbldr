@@ -1,12 +1,20 @@
-#!/usr/bin/env ruby
 
 require 'rubygems'
 require 'bundler/setup'
 require "mailman"
 require 'yaml'
 require 'pp'
-# require 'pry'
-# require 'pry_debug'
+ 
+
+
+dir =  ARGV[0]
+file = "#{dir}/.env"
+
+File.open(file, "r").each do |record|
+   key, value = record.chomp.split(',')
+   ENV[key] = value
+end
+
 
 require "#{ENV['GB_RAILS_ROOT']}/config/environment"
 require "#{ENV['GB_RAILS_ROOT']}/lib/custom/string_helper.rb"
@@ -15,51 +23,39 @@ require "#{ENV['GB_RAILS_ROOT']}/app/models/email.rb"
 require "#{ENV['GB_RAILS_ROOT']}/script/recipient_list.rb"
 require "#{ENV['GB_RAILS_ROOT']}/script/mail_utility.rb"
 
-
-
-   
-puts "Mailman Server is loading configuration..."
-ENV['RAILS_ENV'] ||= "development"
-ENV['GB_EMAIL_POLLING_DOMAIN']  ||= "@gmail.com"
-
  
-yaml_file =  "#{ENV["GB_RAILS_ROOT"]}/config/pop.yml"
- 
-config = YAML::load(File.open(yaml_file))
-
+Mailman.config.logger = Logger.new File.expand_path("../../log/mailman.log", __FILE__)
 Mailman.config.ignore_stdin = true
+Mailman.config.poll_interval = 3
 
-if ENV[MailUtility.RAILS_ENV] == 'test'
-  Mailman.config.maildir = File.expand_path("../../tmp/test_maildir", __FILE__)
-else
-  Mailman.config.logger = Logger.new File.expand_path("../../log/mailman_#{Rails.env}.log", __FILE__)
-  Mailman.config.poll_interval = 15
-  
-  if !Mailman.config.pop3
 
-    yaml_file =  "#{ENV["GB_RAILS_ROOT"]}/config/pop.yml"
-    config = YAML::load(File.open(yaml_file))
-    Mailman.config.pop3 = {
+server = ENV['GB_RELAY_POP_SERVER'].gsub(/"/,'')
+ 
+Mailman.config.pop3 = {
+  :server           => server, 
+  :port             => 995, 
+  :ssl              => true,
+  :username         => ENV['GB_RELAY_POP_USERNAME'],
+  :password         => ENV['GB_RELAY_POP_PASSWORD']
+} unless Mailman.config.pop3
 
-      :server           => config["development"]["server"], 
-      :port             => 995, 
-      :ssl              => true,
-      :username         => config["development"]["username"], 
-      :password         => config["development"]["password"]
-    
-    }
-  end
-  
+
+$stdout.reopen(File.expand_path(File.expand_path("../../log/mailman.log", __FILE__), "w"))
+$stderr.reopen(File.expand_path(File.expand_path("../../log/mailman.log", __FILE__), "w"))
+
+
+if @x.nil? == false
+  puts "raising error  x ========================================================================>"
+  $stdout.flush
+  raise "heeelllpppp!!!!!!!!"
+else 
+  puts "SETTING x ========================================================================>"
+  @x = "x"
 end
 
 Mailman::Application.run do
   to('') do
-    begin
       MailUtility.new.forward(message, params)
-    rescue Exception => e 
-      puts e.message 
-      puts e.backtrace
-    end
   end
 end
    

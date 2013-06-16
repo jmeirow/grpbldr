@@ -76,12 +76,12 @@ class RecipientList
           end
           addrs
         else
-          puts "invaid dist_list name: #{list}"    # log bad list name
+          Mailman.logger.info "invaid dist_list name: #{list}"    # log bad list name
           []  # return empty list for bad list name
         end
       end
     else
-       puts "invalid club: #{handle}"  # log club not found here....
+       Mailman.logger.info "invalid club: #{handle}"  # log club not found here....
       [] # return empty list for bad club name
     end
   end
