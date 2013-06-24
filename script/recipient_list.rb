@@ -8,7 +8,6 @@ class RecipientList
   def initialize
 
     @polling_domain = ENV[MailUtility.GB_EMAIL_POLLING_DOMAIN]
-    puts "GB_EMAIL_POLLING_DOMAIN = #{@polling_domain}"
   end
 
 

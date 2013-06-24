@@ -12,7 +12,6 @@ require "#{ENV['GB_RAILS_ROOT']}/app/models/sys_configuration.rb"
 class MailUtility
 
   def initialize
-
     Mailman.config.ignore_stdin = true
   end
 
@@ -21,17 +20,14 @@ class MailUtility
   include SystemServices
 
   def self.GB_EMAIL_POLLING_DOMAIN
-
     "GB_EMAIL_POLLING_DOMAIN"
   end
 
   def self.RAILS_ENV
-
     "RAILS_ENV"
   end
   
   def self.GB_RELAY_POP_SERVER
-
     "GB_RELAY_POP_SERVER"
   end
 
@@ -54,7 +50,6 @@ class MailUtility
   def copy message 
 
     if ActiveRecord::Base.retrieve_connection
-      
       ActiveRecord::Base.remove_connection
     end
     
