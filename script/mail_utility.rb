@@ -36,6 +36,7 @@ class MailUtility
     if message.to.length > 0
       email = copy (message) 
       email.save
+      sleep 2
       relay_email(email.id, message) 
       email.delivered_ts = Time.now
       email.save 
