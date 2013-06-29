@@ -62,14 +62,16 @@ Daemons.run_proc('mailman.rb') do
   reassign_io  logfile, files
 
   loop do
+    sleep 2
     login server
     Mailman::Application.run do
+      sleep 2
       default do
         MailUtility.new.forward(message, params)
       end
     end
     Mailman.config.pop3.disconnect
-    sleep 5
+    sleep 2
   end
 end
 
