@@ -69,6 +69,7 @@ Daemons.run_proc('mailman.rb') do
       end
     end
     Mailman.config.pop3.disconnect
+    sleep 5
   end
 end
 
