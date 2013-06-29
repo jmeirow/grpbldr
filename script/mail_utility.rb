@@ -63,14 +63,18 @@ class MailUtility
       host: "localhost"
     )
 
+    
+    msg = Mail.new(message)
     email = Email.new 
-    email.from  = message.from
-    email.to =   RecipientList.new(message.to).addresses
-    email.cc =   RecipientList.new(message.cc).addresses if email.cc
-    email.bcc =  RecipientList.new(message.bcc).addresses if email.bcc
-    email.subject =  message.subject
-    email.from = message.from.first
-    email.body = message.text_part.body.raw_source
+
+
+    email.from  = msg.from
+    email.to =   RecipientList.new(msg.to).addresses
+    email.cc =   RecipientList.new(msg.cc).addresses if email.cc
+    email.bcc =  RecipientList.new(msg.bcc).addresses if email.bcc
+    email.subject =  msg.subject
+    email.from = msg.from.first
+    email.body = msg.text_part #.body.raw_source
     email
   end
 
