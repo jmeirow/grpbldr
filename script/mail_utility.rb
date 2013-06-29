@@ -74,7 +74,7 @@ class MailUtility
     email.bcc =  RecipientList.new(msg.bcc).addresses if email.bcc
     email.subject =  msg.subject
     email.from = msg.from.first
-    email.body = msg.text_part #.body.raw_source
+    email.body = msg.text_part.body
     email
   end
 
