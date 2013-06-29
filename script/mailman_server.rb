@@ -13,11 +13,38 @@ require "#{ENV['GB_RAILS_ROOT']}/app/models/email.rb"
 require "#{ENV['GB_RAILS_ROOT']}/script/recipient_list.rb"
 require "#{ENV['GB_RAILS_ROOT']}/script/mail_utility.rb"
 
+ 
+
+logfile = "#{Dir.pwd}/mailman_server.log"
+server = ENV['GB_RELAY_POP_SERVER'].gsub(/"/,'')
+files = Array.new
+first_time = true
+
+
+
+
+def config logfile, server
+  Mailman.config.logger = Logger.new File.open(logfile,"w")
+  Mailman.config.ignore_stdin = true
+  Mailman.config.graceful_death = true
+end
+
+
+def login server
+  Mailman.config.pop3 = {
+  :server           => server, 
+  :port             => 995, 
+  :ssl              => true,
+  :username         => ENV['GB_RELAY_POP_USERNAME'],
+  :password         => ENV['GB_RELAY_POP_PASSWORD']
+} unless Mailman.config.pop3
+end
+
 
 def reassign_io logfile, files
   first_time_files = Array.new
   ObjectSpace.each_object(File) do |f|
-    first_time_files << f.path  if ( (!files.include?(f.path)) && ( f.path.end_with?('.log') ||  f.path.end_with?('.output') ))
+    first_time_files << f.path  if ( (!files.include?(f.path)) && ( f.path.end_with?('.log') ||  f.path.end_with?('.output')) && (!f.path.include? 'development.log') )
   end
   first_time_files.each do |file|
       puts "Redicting io for #{file}"
@@ -27,63 +54,23 @@ def reassign_io logfile, files
   $stdout.sync = true
 end
 
-def config logfile, server
-  Mailman.config.poll_interval = 3
-  Mailman.config.logger = Logger.new File.open(logfile,"w")
-  Mailman.config.ignore_stdin = true
-  Mailman.config.pop3 = {
-    :server           => server, 
-    :port             => 995, 
-    :ssl              => true,
-    :username         => ENV['GB_RELAY_POP_USERNAME'],
-    :password         => ENV['GB_RELAY_POP_PASSWORD']
-  } unless Mailman.config.pop3
-end
 
-logfile = "#{Dir.pwd}/mailman_server.log"
-server = ENV['GB_RELAY_POP_SERVER'].gsub(/"/,'')
-files = Array.new
-first_time = true
+config logfile, server
 
 Daemons.run_proc('mailman.rb') do 
-  if first_time
-    first_time = false
-    Mailman.config.logger.info "hey"
-    first_time = false
-    config logfile, server
-    reassign_io  logfile, files
-  end
-  loop do 
+
+  reassign_io  logfile, files
+
+  loop do
+    login server
     Mailman::Application.run do
       default do
         MailUtility.new.forward(message, params)
-        puts "inside"
       end
     end
-    puts "outside"
-    sleep 2
+    Mailman.config.pop3.disconnect
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
